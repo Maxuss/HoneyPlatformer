@@ -15,9 +15,11 @@ namespace Controller
         private bool _earlyJump;
         private bool _consumeJump;
         private bool _coyoteUsable;
+        private bool _hasBufferedJump;
 
         private float _time;
         private float _frameLeftGround = float.MinValue;
+        private float _lastJumpPressed;
         
         [SerializeField]
         private float moveSpeed = 1f;
@@ -38,7 +40,7 @@ namespace Controller
         [SerializeField]
         private LayerMask playerMask;
        
-        // private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
+        private bool HasBufferedJump => _hasBufferedJump && _time < _lastJumpPressed + .1f;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .15f;
         
         void Awake()
@@ -93,10 +95,10 @@ namespace Controller
 
         private void HandleJump()
         {
-            if (!_grounded && !_input.JumpHeld && _rb.velocity.y > 0)
+            if (!_earlyJump && !_grounded && !_input.JumpHeld && _rb.velocity.y > 0)
                 _earlyJump = true;
 
-            if (!_consumeJump)
+            if (!_consumeJump && !HasBufferedJump)
                 return;
 
             if (_grounded || CanUseCoyote)
@@ -104,6 +106,8 @@ namespace Controller
                 _velocity.y = jumpForce;
                 _earlyJump = false;
                 _coyoteUsable = false;
+                _hasBufferedJump = false;
+                _lastJumpPressed = 0;
             }
 
             _consumeJump = false;
@@ -124,6 +128,7 @@ namespace Controller
                     _grounded = true;
                     _coyoteUsable = true;
                     _earlyJump = false;
+                    _hasBufferedJump = true;
                     break;
                 case true when !groundHit:
                     _grounded = false;
@@ -152,6 +157,7 @@ namespace Controller
             if (_input.JumpDown)
             {
                 _consumeJump = true;
+                _lastJumpPressed = _time;
             }
         }
 
