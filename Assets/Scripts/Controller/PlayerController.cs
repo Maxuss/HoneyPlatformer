@@ -14,6 +14,10 @@ namespace Controller
         private Vector2 _velocity;
         private bool _earlyJump;
         private bool _consumeJump;
+        private bool _coyoteUsable;
+
+        private float _time;
+        private float _frameLeftGround = float.MinValue;
         
         [SerializeField]
         private float moveSpeed = 1f;
@@ -33,6 +37,9 @@ namespace Controller
         private float airDrag = 0.8f;
         [SerializeField]
         private LayerMask playerMask;
+       
+        // private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
+        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .15f;
         
         void Awake()
         {
@@ -92,42 +99,44 @@ namespace Controller
             if (!_consumeJump)
                 return;
 
-            if (_grounded)
+            if (_grounded || CanUseCoyote)
             {
                 _velocity.y = jumpForce;
                 _earlyJump = false;
+                _coyoteUsable = false;
             }
 
             _consumeJump = false;
         }
 
-        private void Jump()
-        {
-            _earlyJump = false;
-            _velocity.y = jumpForce;
-        }
-
         private void CollisionCheck()
         {
-            // Physics2D.queriesStartInColliders = false;
+            Physics2D.queriesStartInColliders = false;
 
             bool groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, groundDistance, ~playerMask);
             bool ceilingHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.up, groundDistance, ~playerMask);
 
             if (ceilingHit) _velocity.y = Mathf.Min(0, _velocity.y);
 
-            _grounded = _grounded switch
+            switch (_grounded)
             {
-                false when groundHit => true,
-                true when !groundHit => false,
-                _ => _grounded
-            };
-
-            // Physics2D.queriesStartInColliders = _queryStartColliderCached;
+                case false when groundHit:
+                    _grounded = true;
+                    _coyoteUsable = true;
+                    _earlyJump = false;
+                    break;
+                case true when !groundHit:
+                    _grounded = false;
+                    _frameLeftGround = _time;
+                    break;
+            }
+            
+            Physics2D.queriesStartInColliders = _queryStartColliderCached;
         }
         
         void Update()
         {
+            _time += Time.deltaTime;
             GatherInput();
         }
         
