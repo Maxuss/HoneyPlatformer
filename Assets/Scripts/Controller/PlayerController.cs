@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Controller
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
     public class PlayerController : MonoBehaviour
     {
+        #region Movement
+        
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private bool _grounded;
@@ -20,6 +23,21 @@ namespace Controller
         private float _time;
         private float _frameLeftGround = float.MinValue;
         private float _lastJumpPressed;
+
+        private FacingDirection _facingDirection = FacingDirection.Left;
+        
+        #endregion
+        
+        #region Dragging
+        private FixedJoint2D _draggedObject;
+        private bool _isDragging;
+
+        [SerializeField]
+        private Transform handGrabTransform;
+        [SerializeField]
+        private LayerMask grabLayer;
+        
+        #endregion
         
         [SerializeField]
         private float moveSpeed = 1f;
@@ -57,6 +75,7 @@ namespace Controller
             
             HandleJump();
             HandleHorizontal();
+            HandleGrab();
             HandleGravity();
             
             CommitMovement();
@@ -76,9 +95,25 @@ namespace Controller
             }
             else
             {
-                _velocity.x = Mathf.MoveTowards(_velocity.x, _input.HorizontalMove * moveSpeed,
+                var oldDir = _facingDirection;
+                _facingDirection = _input.HorizontalMove > 0 ? FacingDirection.Right : FacingDirection.Left;
+                if (oldDir != _facingDirection)
+                    HandleDirectionChange();
+                _velocity.x = Mathf.MoveTowards(_velocity.x, _input.HorizontalMove * moveSpeed * (_isDragging ? 0.8f : 1f),
                     acceleration * Time.fixedDeltaTime);
             }
+        }
+
+        private void HandleDirectionChange()
+        {
+            // TODO: also animation here?
+            
+            // changing grab transform position
+            var position = handGrabTransform.position;
+            position =
+                new Vector3(transform.position.x + (_facingDirection == FacingDirection.Left ? -.8f : .8f),
+                    position.y, position.z);
+            handGrabTransform.position = position;
         }
 
         private void HandleGravity()
@@ -98,7 +133,8 @@ namespace Controller
             if (!_earlyJump && !_grounded && !_input.JumpHeld && _rb.velocity.y > 0)
                 _earlyJump = true;
 
-            if (!_consumeJump && !HasBufferedJump)
+            // cant jump if dragging an object
+            if ((!_consumeJump && !HasBufferedJump) || _isDragging)
                 return;
 
             if (_grounded || CanUseCoyote)
@@ -138,6 +174,36 @@ namespace Controller
             
             Physics2D.queriesStartInColliders = _queryStartColliderCached;
         }
+
+        private void HandleGrab()
+        {
+            switch (_input.GrabHeld)
+            {
+                case false when _isDragging:
+                    _draggedObject.connectedBody = null;
+                    _draggedObject.enabled = false;
+                    _draggedObject = null;
+                    _isDragging = false;
+                    break;
+                case true when !_isDragging:
+                {
+                    var hit = Physics2D.Raycast(
+                        handGrabTransform.position,
+                        _facingDirection == FacingDirection.Left ? Vector3.left : Vector3.right,
+                        0.1f, grabLayer
+                    );
+                    
+                    if (hit.collider != null)
+                    {
+                        _draggedObject = hit.collider.gameObject.GetComponent<FixedJoint2D>();
+                        _draggedObject.connectedBody = _rb;
+                        _draggedObject.enabled = true;
+                        _isDragging = true;
+                    }
+                    break;
+                }
+            }
+        }
         
         void Update()
         {
@@ -151,7 +217,8 @@ namespace Controller
             {
                 JumpDown = Input.GetButtonDown("Jump"),
                 JumpHeld = Input.GetButton("Jump"),
-                HorizontalMove = Input.GetAxisRaw("Horizontal")
+                HorizontalMove = Input.GetAxisRaw("Horizontal"),
+                GrabHeld = Input.GetKey(KeyCode.LeftShift)
             };
 
             if (_input.JumpDown)
@@ -166,6 +233,13 @@ namespace Controller
             internal bool JumpDown;
             internal bool JumpHeld;
             internal float HorizontalMove;
+            internal bool GrabHeld;
+        }
+
+        private enum FacingDirection
+        {
+            Left,
+            Right
         }
     }
 }
