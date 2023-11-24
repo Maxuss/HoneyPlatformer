@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Controller
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D), typeof(AudioSource))]
     public class PlayerController : MonoBehaviour
     {
         #region Movement
@@ -25,6 +27,7 @@ namespace Controller
         private float _lastJumpPressed;
 
         private FacingDirection _facingDirection = FacingDirection.Left;
+        private float _lastFootstep;
         
         #endregion
         
@@ -38,6 +41,8 @@ namespace Controller
         private LayerMask grabLayer;
         
         #endregion
+
+        private AudioSource _as;
         
         [SerializeField]
         private float moveSpeed = 1f;
@@ -57,6 +62,11 @@ namespace Controller
         private float airDrag = 0.8f;
         [SerializeField]
         private LayerMask playerMask;
+        [SerializeField]
+        private List<AudioClip> footstepSounds;
+
+        [SerializeField] 
+        private float timeBetweenFootsteps = 0.5f;
        
         private bool HasBufferedJump => _hasBufferedJump && _time < _lastJumpPressed + .1f;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .15f;
@@ -65,6 +75,7 @@ namespace Controller
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<CapsuleCollider2D>();
+            _as = GetComponent<AudioSource>();
 
             _queryStartColliderCached = Physics2D.queriesStartInColliders;
         }
@@ -101,6 +112,13 @@ namespace Controller
                     HandleDirectionChange();
                 _velocity.x = Mathf.MoveTowards(_velocity.x, _input.HorizontalMove * moveSpeed * (_isDragging ? 0.8f : 1f),
                     acceleration * Time.fixedDeltaTime);
+                
+                if (!_grounded || Time.time - _lastFootstep < timeBetweenFootsteps) return;
+                
+                // playing footstep sounds
+                _lastFootstep = Time.time;
+                var clip = footstepSounds[Random.Range(0, footstepSounds.Count)];
+                _as.PlayOneShot(clip, 0.2f);
             }
         }
 
