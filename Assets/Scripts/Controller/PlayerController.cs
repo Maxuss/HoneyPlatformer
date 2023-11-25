@@ -35,6 +35,7 @@ namespace Controller
         private FixedJoint2D _draggedObject;
         private bool _isDragging;
 
+        [Header("Grabbing objects")]
         [SerializeField]
         private Transform handGrabTransform;
         [SerializeField]
@@ -44,6 +45,7 @@ namespace Controller
 
         private AudioSource _as;
         
+        [Header("Movement")]
         [SerializeField]
         private float moveSpeed = 1f;
         [SerializeField]
@@ -62,6 +64,8 @@ namespace Controller
         private float airDrag = 0.8f;
         [SerializeField]
         private LayerMask playerMask;
+        
+        [Space(20)]
         [SerializeField]
         private List<AudioClip> footstepSounds;
 
@@ -124,8 +128,6 @@ namespace Controller
 
         private void HandleDirectionChange()
         {
-            // TODO: also animation here?
-            
             // changing grab transform position
             var position = handGrabTransform.position;
             position =
