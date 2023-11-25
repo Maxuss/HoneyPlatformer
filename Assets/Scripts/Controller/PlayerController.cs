@@ -26,7 +26,7 @@ namespace Controller
         private float _frameLeftGround = float.MinValue;
         private float _lastJumpPressed;
 
-        private FacingDirection _facingDirection = FacingDirection.Left;
+        public FacingDirection facingDirection = FacingDirection.Left;
         private float _lastFootstep;
         
         #endregion
@@ -74,6 +74,10 @@ namespace Controller
        
         private bool HasBufferedJump => _hasBufferedJump && _time < _lastJumpPressed + .1f;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .15f;
+
+        public bool IsInUi { get; set; } = false;
+        
+        public static PlayerController Instance { get; private set; }
         
         void Awake()
         {
@@ -82,6 +86,8 @@ namespace Controller
             _as = GetComponent<AudioSource>();
 
             _queryStartColliderCached = Physics2D.queriesStartInColliders;
+
+            Instance = this;
         }
 
         private void FixedUpdate()
@@ -110,9 +116,9 @@ namespace Controller
             }
             else
             {
-                var oldDir = _facingDirection;
-                _facingDirection = _input.HorizontalMove > 0 ? FacingDirection.Right : FacingDirection.Left;
-                if (oldDir != _facingDirection)
+                var oldDir = facingDirection;
+                facingDirection = _input.HorizontalMove > 0 ? FacingDirection.Right : FacingDirection.Left;
+                if (oldDir != facingDirection)
                     HandleDirectionChange();
                 _velocity.x = Mathf.MoveTowards(_velocity.x, _input.HorizontalMove * moveSpeed * (_isDragging ? 0.8f : 1f),
                     acceleration * Time.fixedDeltaTime);
@@ -131,7 +137,7 @@ namespace Controller
             // changing grab transform position
             var position = handGrabTransform.position;
             position =
-                new Vector3(transform.position.x + (_facingDirection == FacingDirection.Left ? -.8f : .8f),
+                new Vector3(transform.position.x + (facingDirection == FacingDirection.Left ? -.8f : .8f),
                     position.y, position.z);
             handGrabTransform.position = position;
         }
@@ -209,7 +215,7 @@ namespace Controller
                 {
                     var hit = Physics2D.Raycast(
                         handGrabTransform.position,
-                        _facingDirection == FacingDirection.Left ? Vector3.left : Vector3.right,
+                        facingDirection == FacingDirection.Left ? Vector3.left : Vector3.right,
                         0.1f, grabLayer
                     );
                     
@@ -228,7 +234,8 @@ namespace Controller
         void Update()
         {
             _time += Time.deltaTime;
-            GatherInput();
+            if(!IsInUi)
+                GatherInput();
         }
         
         private void GatherInput()
@@ -256,7 +263,7 @@ namespace Controller
             internal bool GrabHeld;
         }
 
-        private enum FacingDirection
+        public enum FacingDirection
         {
             Left,
             Right

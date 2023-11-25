@@ -4,7 +4,6 @@ namespace Program.Trigger
 {
     public class TimeoutTrigger: ITrigger
     {
-
         private readonly float _timeoutSeconds;
         private float _timeInit;
         private bool _activated;
@@ -13,6 +12,8 @@ namespace Program.Trigger
         {
             _timeoutSeconds = timeoutSeconds;
         }
+
+        public string Name => $"Wait for {_timeoutSeconds} seconds";
 
         public bool ShouldTrigger(Programmable programmable)
         {
@@ -23,6 +24,11 @@ namespace Program.Trigger
         {
             _timeInit = Time.time;
             _activated = false;
+        }
+
+        public ITrigger Copy()
+        {
+            return new TimeoutTrigger(_timeoutSeconds);
         }
 
         public void Activated()

@@ -1,4 +1,5 @@
 using System;
+using Program.Action;
 using Program.Trigger;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,15 +15,44 @@ namespace Program
             new TimeoutTrigger(5f),
             new TimeoutTrigger(1f)
         };
-        
-        protected override void Activate()
-        {
-            Debug.Log("TRIGGER EXECUTED");
-        }
 
+        public override IAction[] ApplicableActions { get; } =
+        {
+            new TestAction1(),
+            new TestAction2()
+        };
+        
         protected override void Init()
         {
-            SelectedTrigger = ApplicableTriggers[0];
+            
+        }
+
+        private struct TestAction1: IAction
+        {
+            public string Name => "Do something";
+            public void Execute(Programmable instance)
+            {
+                Debug.Log("First action executed");
+            }
+
+            public IAction Copy()
+            {
+                return new TestAction1();
+            }
+        }
+
+        private struct TestAction2: IAction
+        {
+            public string Name => "Do something else";
+            public void Execute(Programmable instance)
+            {
+                Debug.Log("Second action executed");
+            }
+
+            public IAction Copy()
+            {
+                return new TestAction2();
+            }
         }
     }
 }
