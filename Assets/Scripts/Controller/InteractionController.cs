@@ -21,9 +21,17 @@ namespace Controller
                 0.1f, interactLayer
             );
 
-            if (hit.collider != null && hit.collider.gameObject.TryGetComponent<Programmable>(out var programmable))
+            var isNotNull = hit.collider != null;
+            switch (isNotNull)
             {
-                programmable.OnInteract();
+                case true when hit.collider.gameObject.TryGetComponent<Programmable>(out var programmable):
+                    programmable.OnInteract();
+                    break;
+                case true when
+                    ClassController.Instance.activeClass == ClassController.PlayerClass.Programmer &&
+                    hit.collider.gameObject.TryGetComponent<RemoteControlPanel>(out var remoteControl):
+                    remoteControl.remoteAccess.OnInteract();
+                    break;
             }
         }
     }
