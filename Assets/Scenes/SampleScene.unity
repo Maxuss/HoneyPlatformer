@@ -2569,6 +2569,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 64a9aca6626eb37f4a347fc417dab7e8, type: 3}
   - {fileID: 8300000, guid: 25e0d50b9a4cf7891a8556e6930662d3, type: 3}
   - {fileID: 8300000, guid: 156d1556edc0d63028cf987422b70a94, type: 3}
+  jumpSound: {fileID: 8300000, guid: 5a03bbae046b54c9b8113a857c68c72a, type: 3}
   timeBetweenFootsteps: 0.5
 --- !u!50 &1605131814
 Rigidbody2D:

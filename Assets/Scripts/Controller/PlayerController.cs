@@ -68,6 +68,8 @@ namespace Controller
         [Space(20)]
         [SerializeField]
         private List<AudioClip> footstepSounds;
+        [SerializeField]
+        private AudioClip jumpSound;
 
         [SerializeField] 
         private float timeBetweenFootsteps = 0.5f;
@@ -166,6 +168,7 @@ namespace Controller
             if (_grounded || CanUseCoyote)
             {
                 _velocity.y = jumpForce;
+                _as.PlayOneShot(jumpSound);
                 _earlyJump = false;
                 _coyoteUsable = false;
                 _hasBufferedJump = false;
