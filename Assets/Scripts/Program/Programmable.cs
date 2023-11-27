@@ -15,7 +15,7 @@ namespace Program
         public abstract IAction[] ApplicableActions { get; }
 
         [SerializeField]
-        private Canvas uiCanvas;
+        private GameObject containerObject;
         [SerializeField]
         private TMP_Dropdown selectTrigger;
         [SerializeField]
@@ -30,7 +30,7 @@ namespace Program
 
         private void Start()
         {
-            uiCanvas.enabled = false;
+            containerObject.SetActive(false);
             Init();
         }
 
@@ -49,7 +49,7 @@ namespace Program
                     Cursor.visible = false;
                     _editing = false;
                     PlayerController.Instance.IsInUi = false;
-                    uiCanvas.enabled = false;
+                    containerObject.SetActive(false);
                     selectTrigger.enabled = false;
                     selectAction.enabled = false;
 
@@ -68,7 +68,7 @@ namespace Program
 
         public void OnInteract()
         {
-            uiCanvas.enabled = true;
+            containerObject.SetActive(true);
             selectAction.enabled = true;
             selectTrigger.enabled = true;
             Cursor.visible = true;
