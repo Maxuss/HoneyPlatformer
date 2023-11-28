@@ -77,7 +77,7 @@ namespace Controller
         private bool HasBufferedJump => _hasBufferedJump && _time < _lastJumpPressed + .1f;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .15f;
 
-        public bool IsInUi { get; set; } = false;
+        public bool IsDisabled { get; set; } = false;
         
         public static PlayerController Instance { get; private set; }
         
@@ -237,7 +237,7 @@ namespace Controller
         void Update()
         {
             _time += Time.deltaTime;
-            if(!IsInUi)
+            if(!IsDisabled)
                 GatherInput();
         }
         

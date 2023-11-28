@@ -41,14 +41,14 @@ namespace Program
 
         private void Update()
         {
-            if (PlayerController.Instance.IsInUi && _editing)
+            if (PlayerController.Instance.IsDisabled && _editing)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
                     _editing = false;
-                    PlayerController.Instance.IsInUi = false;
+                    PlayerController.Instance.IsDisabled = false;
                     containerObject.SetActive(false);
                     selectTrigger.enabled = false;
                     selectAction.enabled = false;
@@ -74,7 +74,7 @@ namespace Program
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             _editing = true;
-            PlayerController.Instance.IsInUi = true;
+            PlayerController.Instance.IsDisabled = true;
 
             selectTrigger.options = ApplicableTriggers.Select(each => new TMP_Dropdown.OptionData(each.Name)).ToList();
             selectAction.options = ApplicableActions.Select(each => new TMP_Dropdown.OptionData(each.Name)).ToList();
