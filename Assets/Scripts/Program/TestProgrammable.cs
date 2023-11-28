@@ -1,4 +1,5 @@
 using System;
+using Dialogue;
 using Program.Action;
 using Program.Trigger;
 using Unity.VisualScripting;
@@ -22,6 +23,8 @@ namespace Program
             new TestAction2()
         };
         
+        public DialogueDefinition dialogue;
+        
         protected override void Init()
         {
             
@@ -32,7 +35,7 @@ namespace Program
             public string Name => "Do something";
             public void Execute(Programmable instance)
             {
-                Debug.Log("First action executed");
+                instance.StartCoroutine(DialogueManager.Instance.StartDialogue((instance as TestProgrammable)?.dialogue));
             }
 
             public IAction Copy()

@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Controller
 {
@@ -106,6 +109,9 @@ namespace Controller
 
         private void CommitMovement()
         {
+            if (IsDisabled)
+                // zero x velocity if we are in UI
+                _velocity.x = 0;
             _rb.velocity = _velocity;
         }
 
