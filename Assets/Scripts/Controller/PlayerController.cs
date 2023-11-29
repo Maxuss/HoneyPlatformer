@@ -145,7 +145,7 @@ namespace Controller
             // changing grab transform position
             var position = handGrabTransform.position;
             position =
-                new Vector3(transform.position.x + (facingDirection == FacingDirection.Left ? -.05f : .05f),
+                new Vector3(transform.position.x + (facingDirection == FacingDirection.Left ? -.5f : .5f),
                     position.y, position.z);
             handGrabTransform.position = position;
         }
