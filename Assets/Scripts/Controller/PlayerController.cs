@@ -17,6 +17,7 @@ namespace Controller
         private Rigidbody2D _rb;
         private BoxCollider2D _col;
         private bool _grounded;
+        private bool _groundedLastFrame;
         private bool _queryStartColliderCached;
         private GatheredInput _input;
         private Vector2 _velocity;
@@ -73,6 +74,8 @@ namespace Controller
         private List<AudioClip> footstepSounds;
         [SerializeField]
         private AudioClip jumpSound;
+        [SerializeField]
+        private AudioClip landSound;
 
         [SerializeField] 
         private float timeBetweenFootsteps = 0.5f;
@@ -174,7 +177,9 @@ namespace Controller
             if (_grounded || CanUseCoyote)
             {
                 _velocity.y = jumpForce;
+                
                 _as.PlayOneShot(jumpSound);
+
                 _earlyJump = false;
                 _coyoteUsable = false;
                 _hasBufferedJump = false;
@@ -206,7 +211,13 @@ namespace Controller
                     _frameLeftGround = _time;
                     break;
             }
-            
+
+            if (_grounded && !_groundedLastFrame)
+            {
+                _as.PlayOneShot(landSound);
+            }
+
+            _groundedLastFrame = _grounded;
             Physics2D.queriesStartInColliders = _queryStartColliderCached;
         }
 
