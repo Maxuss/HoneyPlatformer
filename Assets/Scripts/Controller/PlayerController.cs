@@ -9,13 +9,13 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Controller
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D), typeof(AudioSource))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D), typeof(AudioSource))]
     public class PlayerController : MonoBehaviour
     {
         #region Movement
         
         private Rigidbody2D _rb;
-        private CapsuleCollider2D _col;
+        private BoxCollider2D _col;
         private bool _grounded;
         private bool _queryStartColliderCached;
         private GatheredInput _input;
@@ -87,7 +87,7 @@ namespace Controller
         void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _col = GetComponent<CapsuleCollider2D>();
+            _col = GetComponent<BoxCollider2D>();
             _as = GetComponent<AudioSource>();
 
             _queryStartColliderCached = Physics2D.queriesStartInColliders;
@@ -145,7 +145,7 @@ namespace Controller
             // changing grab transform position
             var position = handGrabTransform.position;
             position =
-                new Vector3(transform.position.x + (facingDirection == FacingDirection.Left ? -.8f : .8f),
+                new Vector3(transform.position.x + (facingDirection == FacingDirection.Left ? -.05f : .05f),
                     position.y, position.z);
             handGrabTransform.position = position;
         }
@@ -188,8 +188,8 @@ namespace Controller
         {
             Physics2D.queriesStartInColliders = false;
 
-            bool groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, groundDistance, ~playerMask);
-            bool ceilingHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.up, groundDistance, ~playerMask);
+            bool groundHit = Physics2D.BoxCast(_col.bounds.center, _col.size, 0, Vector2.down, groundDistance, ~playerMask);
+            bool ceilingHit = Physics2D.BoxCast(_col.bounds.center, _col.size, 0, Vector2.up, groundDistance, ~playerMask);
 
             if (ceilingHit) _velocity.y = Mathf.Min(0, _velocity.y);
 
