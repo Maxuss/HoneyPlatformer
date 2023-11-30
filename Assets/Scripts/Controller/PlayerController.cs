@@ -9,13 +9,18 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Controller
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D), typeof(AudioSource))]
+    [RequireComponent(
+        typeof(Rigidbody2D), typeof(BoxCollider2D),
+        typeof(AudioSource))]
     public class PlayerController : MonoBehaviour
     {
         #region Movement
         
         private Rigidbody2D _rb;
         private BoxCollider2D _col;
+        private Animator _anim;
+        private SpriteRenderer _spriteRenderer;
+        
         private bool _grounded;
         private bool _groundedLastFrame;
         private bool _queryStartColliderCached;
@@ -79,7 +84,9 @@ namespace Controller
 
         [SerializeField] 
         private float timeBetweenFootsteps = 0.5f;
-       
+
+        private static readonly int Speed = Animator.StringToHash("Speed");
+
         private bool HasBufferedJump => _hasBufferedJump && _time < _lastJumpPressed + .1f;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .15f;
 
@@ -92,6 +99,8 @@ namespace Controller
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<BoxCollider2D>();
             _as = GetComponent<AudioSource>();
+            _anim = GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
 
             _queryStartColliderCached = Physics2D.queriesStartInColliders;
 
@@ -116,6 +125,8 @@ namespace Controller
                 // zero x velocity if we are in UI
                 _velocity.x = 0;
             _rb.velocity = _velocity;
+            _anim.SetFloat(Speed, Mathf.Abs(_velocity.x));
+            _spriteRenderer.flipX = _spriteRenderer.flipX ? _velocity.x <= 0f : _velocity.x < 0f;
         }
 
         private void HandleHorizontal()
