@@ -81,9 +81,14 @@ namespace Controller
         private AudioClip jumpSound;
         [SerializeField]
         private AudioClip landSound;
-
         [SerializeField] 
         private float timeBetweenFootsteps = 0.5f;
+
+        [Space(20)] 
+        [SerializeField]
+        private ParticleSystem jumpParticles;
+        [SerializeField]
+        private ParticleSystem landParticles;
 
         private static readonly int Speed = Animator.StringToHash("Speed");
 
@@ -190,6 +195,7 @@ namespace Controller
                 _velocity.y = jumpForce;
                 
                 _as.PlayOneShot(jumpSound);
+                jumpParticles.Play();
 
                 _earlyJump = false;
                 _coyoteUsable = false;
@@ -226,6 +232,7 @@ namespace Controller
             if (_grounded && !_groundedLastFrame)
             {
                 _as.PlayOneShot(landSound);
+                landParticles.Play();
             }
 
             _groundedLastFrame = _grounded;
