@@ -91,6 +91,7 @@ namespace Controller
         private ParticleSystem landParticles;
 
         private static readonly int Speed = Animator.StringToHash("Speed");
+        private static readonly int IsJumping = Animator.StringToHash("IsJumping");
 
         private bool HasBufferedJump => _hasBufferedJump && _time < _lastJumpPressed + .1f;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .15f;
@@ -194,6 +195,7 @@ namespace Controller
             {
                 _velocity.y = jumpForce;
                 
+                _anim.SetBool(IsJumping, true);
                 _as.PlayOneShot(jumpSound);
                 jumpParticles.Play();
 
@@ -231,6 +233,7 @@ namespace Controller
 
             if (_grounded && !_groundedLastFrame)
             {
+                _anim.SetBool(IsJumping, false);
                 _as.PlayOneShot(landSound);
                 landParticles.Play();
             }
