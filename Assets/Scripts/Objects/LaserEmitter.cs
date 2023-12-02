@@ -4,10 +4,13 @@ using UnityEngine;
 
 namespace Objects
 {
+    [RequireComponent(typeof(AudioSource))]
     public class LaserEmitter: MonoBehaviour
     {
         [SerializeField]
         private LineRenderer laserLine;
+        [SerializeField]
+        private Transform laserPos;
         [SerializeField]
         private List<ParticleSystem> emitParticles;
         [SerializeField]
@@ -20,6 +23,16 @@ namespace Objects
         private Color laserColorB;
         [SerializeField]
         private LayerMask collisionMask;
+
+        [SerializeField]
+        private AudioClip laserActivate;
+        [SerializeField]
+        private AudioClip laserDeactivate;
+        [SerializeField]
+        private AudioClip laserLoop;
+
+        private AudioSource _as;
+        private bool _isActive;
         
         public EmitterColor EmitterType;
 
@@ -28,54 +41,87 @@ namespace Objects
 
         public void Start()
         {
+            _as = GetComponent<AudioSource>();
+            _as.clip = laserLoop;
+            _as.volume = 0.1f;
+            _as.loop = true;
+            
             laserLine.material.SetColor(LaserColorFrom, laserColorA);
             laserLine.material.SetColor(LaserColorTo, laserColorB);
-            laserLine.positionCount = 6;
-            laserLine.transform.position = transform.position;
+
+            LaserManager.OnMirrorChanged += RecalculateReflections;
         }
 
-        private List<Vector2> _laserVertices = new();
-        private void CastRay(Vector3 pos, Vector3 dir)
+        private void Awake()
         {
-            _laserVertices.Add(pos);
+            RecalculateReflections();
+        }
 
-            Ray2D ray = new Ray2D(pos, dir);
-
-            var hit = Physics2D.Raycast(pos, dir, 10f, collisionMask);
-
-            if (hit)
+        [ContextMenu("Toggle Laser")]
+        public void Toggle()
+        {
+            _isActive = !_isActive;
+            if (!_isActive)
             {
-                if (!hit.collider.CompareTag("Mirror"))
-                {
-                    _laserVertices.Add(hit.point);
-                    UpdateLaser();
-                }
-                else
-                {
-                    var point = hit.point;
-                    var newDir = Vector2.Reflect(dir, hit.normal);
-                    _laserVertices.Add(hit.point);
-                    // CastRay(point, newDir);
-                }
+                laserLine.gameObject.SetActive(false);
+                _as.Stop();
+                _as.PlayOneShot(laserDeactivate);
             }
             else
             {
-                _laserVertices.Add(ray.GetPoint(10f));
+                laserLine.gameObject.SetActive(true);
+                _as.PlayOneShot(laserActivate);
+                _as.Play();
+                RecalculateReflections();
             }
         }
 
-        void UpdateLaser()
+        private void RecalculateReflections()
         {
-            int count = 0;
-            laserLine.positionCount = _laserVertices.Count;
+            if (!_isActive)
+                return;
+            
+            var currentLength = 10f;
+            var currentBounces = 4;
+            RaycastHit2D hit;
+            var verts = new List<Vector3>();
+            verts.Add(laserPos.position);
+            var currentPoint = transform.position;
+            var direction = transform.right;
 
-            foreach (var vertex in _laserVertices)
-            {
-                laserLine.SetPosition(count, vertex);
-                count++;
+            while(currentLength > 0 && currentBounces >= 0){
+                hit = Physics2D.Raycast(currentPoint, direction, currentLength, collisionMask);
+                if (hit)
+                {
+                    verts.Add(hit.point);
+                    currentLength -= Vector3.Distance(currentPoint, hit.point);
+                    currentPoint = hit.point;
+                    if (hit.collider.CompareTag("Mirror"))
+                    {
+                        direction = Vector3.Reflect(direction, hit.normal);
+                        currentBounces--;
+                    }
+                    else if (hit.collider.CompareTag("LaserConsumer"))
+                    {
+                        hit.collider.GetComponent<LaserConsumer>().ReceiveLaser(EmitterType);
+                        currentLength = 0;
+                    }
+                    else
+                    {
+                        currentLength = 0;
+                    }
+                }
+                else
+                {
+                    verts.Add(currentPoint + currentLength * direction);
+                    currentLength = 0;
+                }
             }
-        }
 
+            laserLine.positionCount = verts.Count;
+            laserLine.SetPositions(verts.ToArray());
+        }
+        
         public enum EmitterColor
         {
             Blue,
