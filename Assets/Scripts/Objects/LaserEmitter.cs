@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Program.Action;
 using UnityEngine;
+using Utils;
 using UnityEngine.Serialization;
 
 namespace Objects
@@ -31,8 +32,6 @@ namespace Objects
         private AudioClip laserActivate;
         [SerializeField]
         private AudioClip laserDeactivate;
-        [SerializeField]
-        private AudioClip laserLoop;
 
         private AudioSource _as;
         [SerializeField]
@@ -50,9 +49,7 @@ namespace Objects
         public void Start()
         {
             _as = GetComponent<AudioSource>();
-            _as.clip = laserLoop;
             _as.volume = 0.1f;
-            _as.loop = true;
             
             laserLine.material.SetColor(LaserColorFrom, laserColorA);
             laserLine.material.SetColor(LaserColorTo, laserColorB);
@@ -65,7 +62,14 @@ namespace Objects
             _particles = startParticles.Concat(endParticles).ToArray();
 
             laserLine.gameObject.SetActive(isActive);
-            if (isActive) return;
+            if (isActive)
+            {
+                StartCoroutine(Util.Delay(() =>
+                {
+                    LaserManager.Instance.ActivateLaser();
+                }, 0.5f));
+                return;
+            }
             
             _as.Stop();
             foreach (var ps in _particles)
@@ -98,6 +102,7 @@ namespace Objects
                 {
                     ps.Stop();
                 }
+                LaserManager.Instance.DeactivateLaser();
             }
             else
             {
@@ -109,6 +114,7 @@ namespace Objects
                 {
                     ps.Play();
                 }
+                LaserManager.Instance.ActivateLaser();
             }
         }
 
