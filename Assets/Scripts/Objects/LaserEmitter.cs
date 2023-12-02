@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Objects
 {
@@ -12,9 +14,9 @@ namespace Objects
         [SerializeField]
         private Transform laserPos;
         [SerializeField]
-        private List<ParticleSystem> emitParticles;
+        private GameObject startVfx;
         [SerializeField]
-        private List<ParticleSystem> collideParticles;
+        private GameObject endVfx;
         [SerializeField]
         [ColorUsage(false, true)]
         private Color laserColorA;
@@ -32,7 +34,10 @@ namespace Objects
         private AudioClip laserLoop;
 
         private AudioSource _as;
-        private bool _isActive;
+        [SerializeField]
+        private bool isActive = false;
+
+        private ParticleSystem[] _particles;
         
         public EmitterColor EmitterType;
 
@@ -50,6 +55,20 @@ namespace Objects
             laserLine.material.SetColor(LaserColorTo, laserColorB);
 
             LaserManager.OnMirrorChanged += RecalculateReflections;
+
+            var startParticles = startVfx.GetComponentsInChildren<ParticleSystem>();
+            var endParticles = endVfx.GetComponentsInChildren<ParticleSystem>();
+
+            _particles = startParticles.Concat(endParticles).ToArray();
+
+            if (isActive) return;
+            
+            laserLine.gameObject.SetActive(false);
+            _as.Stop();
+            foreach (var ps in _particles)
+            {
+                ps.Stop();
+            }
         }
 
         private void Awake()
@@ -57,15 +76,25 @@ namespace Objects
             RecalculateReflections();
         }
 
+        private void Update()
+        {
+            // TODO: remove me, used for testing
+            RecalculateReflections();
+        }
+
         [ContextMenu("Toggle Laser")]
         public void Toggle()
         {
-            _isActive = !_isActive;
-            if (!_isActive)
+            isActive = !isActive;
+            if (!isActive)
             {
                 laserLine.gameObject.SetActive(false);
                 _as.Stop();
                 _as.PlayOneShot(laserDeactivate);
+                foreach (var ps in _particles)
+                {
+                    ps.Stop();
+                }
             }
             else
             {
@@ -73,16 +102,20 @@ namespace Objects
                 _as.PlayOneShot(laserActivate);
                 _as.Play();
                 RecalculateReflections();
+                foreach (var ps in _particles)
+                {
+                    ps.Play();
+                }
             }
         }
 
         private void RecalculateReflections()
         {
-            if (!_isActive)
+            if (!isActive)
                 return;
             
-            var currentLength = 10f;
-            var currentBounces = 4;
+            var currentLength = 18f;
+            var currentBounces = 6;
             RaycastHit2D hit;
             var verts = new List<Vector3>();
             verts.Add(laserPos.position);
@@ -119,6 +152,9 @@ namespace Objects
             }
 
             laserLine.positionCount = verts.Count;
+            endVfx.transform.position = (Vector2) verts.Last();
+            var secondToLast = verts.Count - 2 < 0 ? transform.position : verts[^2];
+            endVfx.transform.rotation = Quaternion.LookRotation(secondToLast - endVfx.transform.position);
             laserLine.SetPositions(verts.ToArray());
         }
         

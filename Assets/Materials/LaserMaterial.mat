@@ -59,8 +59,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _LaserColor: {r: 4, g: 1.5660377, b: 1.5660377, a: 0}
-    - _LaserColorFrom: {r: 2.4214318, g: 6.498019, b: 2.8244405, a: 0}
-    - _LaserColorTo: {r: 1.1327807, g: 4.828879, b: 5.3366547, a: 0}
+    - _LaserColorFrom: {r: 0.60535794, g: 1.6245048, b: 0.7061101, a: 0}
+    - _LaserColorTo: {r: 4.5311217, g: 19.315512, b: 21.346615, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6348833487737799815

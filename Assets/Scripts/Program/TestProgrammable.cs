@@ -1,5 +1,6 @@
 using System;
 using Dialogue;
+using Objects;
 using Program.Action;
 using Program.Trigger;
 using Unity.VisualScripting;
@@ -32,10 +33,10 @@ namespace Program
 
         private struct TestAction1: IAction
         {
-            public string Name => "Do something";
+            public string Name => "Toggle laser";
             public void Execute(Programmable instance)
             {
-                instance.StartCoroutine(DialogueManager.Instance.StartDialogue((instance as TestProgrammable)?.dialogue));
+                instance.wiredObject.GetComponent<LaserEmitter>().Toggle();
             }
 
             public IAction Copy()

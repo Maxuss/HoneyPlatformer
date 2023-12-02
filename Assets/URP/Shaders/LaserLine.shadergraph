@@ -88,9 +88,6 @@
             "m_Id": "08944f636a3a46df9c4dad341a860947"
         },
         {
-            "m_Id": "bbf83bb7d6384f6a99c684abf6e41e3f"
-        },
-        {
             "m_Id": "78efc5244f14441aa5b2e58f4e69f7b8"
         },
         {
@@ -499,20 +496,6 @@
                     "m_Id": "1d54d4426ff14327b7bef849174f2538"
                 },
                 "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "bbf83bb7d6384f6a99c684abf6e41e3f"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "08944f636a3a46df9c4dad341a860947"
-                },
-                "m_SlotId": 0
             }
         },
         {
@@ -1258,8 +1241,8 @@
     "m_ObjectId": "24e566e58ddb447db26a2739c81a460a",
     "m_Title": "Laser Effects",
     "m_Position": {
-        "x": -974.7014770507813,
-        "y": -236.64590454101563
+        "x": -975.0001220703125,
+        "y": -237.00015258789063
     }
 }
 
@@ -3686,43 +3669,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.PositionNode",
-    "m_ObjectId": "bbf83bb7d6384f6a99c684abf6e41e3f",
-    "m_Group": {
-        "m_Id": "24e566e58ddb447db26a2739c81a460a"
-    },
-    "m_Name": "Position",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -950.0,
-            "y": -178.00001525878907,
-            "width": 206.00006103515626,
-            "height": 130.99998474121095
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "e83df31028cb4cd2ba1fca54a96d9119"
-        }
-    ],
-    "synonyms": [
-        "location"
-    ],
-    "m_Precision": 1,
-    "m_PreviewExpanded": false,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 2,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Space": 2,
-    "m_PositionSource": 0
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "bdb049bde37d43779976f37a18b5c177",
@@ -4317,29 +4263,6 @@
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
-    "m_ObjectId": "e83df31028cb4cd2ba1fca54a96d9119",
-    "m_Id": 0,
-    "m_DisplayName": "Out",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
     "m_Labels": []
 }
 
