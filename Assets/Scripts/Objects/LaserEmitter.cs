@@ -64,9 +64,9 @@ namespace Objects
 
             _particles = startParticles.Concat(endParticles).ToArray();
 
+            laserLine.gameObject.SetActive(isActive);
             if (isActive) return;
             
-            laserLine.gameObject.SetActive(false);
             _as.Stop();
             foreach (var ps in _particles)
             {
@@ -123,7 +123,7 @@ namespace Objects
             var verts = new List<Vector3>();
             verts.Add(laserPos.position);
             var currentPoint = transform.position;
-            var direction = transform.right;
+            var direction = transform.up;
 
             while(currentLength > 0 && currentBounces >= 0){
                 hit = Physics2D.Raycast(currentPoint, direction, currentLength, collisionMask);
