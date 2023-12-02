@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Program.Action;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -43,6 +44,8 @@ namespace Objects
 
         private static readonly int LaserColorFrom = Shader.PropertyToID("_LaserColorFrom");
         private static readonly int LaserColorTo = Shader.PropertyToID("_LaserColorTo");
+        
+        #region Behaviour
 
         public void Start()
         {
@@ -157,6 +160,17 @@ namespace Objects
             endVfx.transform.rotation = Quaternion.LookRotation(secondToLast - endVfx.transform.position);
             laserLine.SetPositions(verts.ToArray());
         }
+        
+        #endregion
+        
+        #region Programming
+
+        public static IAction ToggleLaserAction => new DelegatedAction("Toggle laser", (obj) =>
+        {
+            obj.wiredObject.GetComponent<LaserEmitter>()?.Toggle();
+        });
+        
+        #endregion
         
         public enum EmitterColor
         {

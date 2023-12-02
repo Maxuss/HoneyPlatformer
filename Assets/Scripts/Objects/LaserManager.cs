@@ -4,6 +4,6 @@ namespace Objects
     
     public static class LaserManager
     {
-        public static MirrorChanged OnMirrorChanged;
+        public static event MirrorChanged OnMirrorChanged;
     }
 }

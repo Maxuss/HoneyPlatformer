@@ -1,17 +1,11 @@
-using System;
-using Dialogue;
 using Objects;
 using Program.Action;
 using Program.Trigger;
-using Unity.VisualScripting;
-using UnityEngine;
 
 namespace Program
 {
     public class TestProgrammable: Programmable
     {
-        private bool _activated;
-        
         public override ITrigger[] ApplicableTriggers { get; } =
         {
             new TimeoutTrigger(5f),
@@ -20,43 +14,7 @@ namespace Program
 
         public override IAction[] ApplicableActions { get; } =
         {
-            new TestAction1(),
-            new TestAction2()
+            LaserEmitter.ToggleLaserAction
         };
-        
-        public DialogueDefinition dialogue;
-        
-        protected override void Init()
-        {
-            
-        }
-
-        private struct TestAction1: IAction
-        {
-            public string Name => "Toggle laser";
-            public void Execute(Programmable instance)
-            {
-                instance.wiredObject.GetComponent<LaserEmitter>().Toggle();
-            }
-
-            public IAction Copy()
-            {
-                return new TestAction1();
-            }
-        }
-
-        private struct TestAction2: IAction
-        {
-            public string Name => "Do something else";
-            public void Execute(Programmable instance)
-            {
-                Debug.Log("Second action executed");
-            }
-
-            public IAction Copy()
-            {
-                return new TestAction2();
-            }
-        }
     }
 }
