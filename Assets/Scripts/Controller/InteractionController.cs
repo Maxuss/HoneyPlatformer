@@ -28,7 +28,6 @@ namespace Controller
                     programmable.OnInteract();
                     break;
                 case true when
-                    ClassController.Instance.activeClass == ClassController.PlayerClass.Programmer &&
                     hit.collider.gameObject.TryGetComponent<RemoteControlPanel>(out var remoteControl):
                     remoteControl.remoteAccess.OnInteract();
                     break;
