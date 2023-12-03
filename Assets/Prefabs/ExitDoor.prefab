@@ -172,3 +172,4 @@ MonoBehaviour:
   nextLevel:
     asset: {fileID: 0}
     guid: 00000000000000000000000000000000
+  doorOpen: {fileID: 8300000, guid: f8470458b59315d08bd31a00a372a622, type: 3}

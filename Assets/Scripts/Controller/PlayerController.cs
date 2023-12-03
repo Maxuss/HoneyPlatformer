@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Level;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;
@@ -12,8 +13,7 @@ using Vector3 = UnityEngine.Vector3;
 namespace Controller
 {
     [RequireComponent(
-        typeof(Rigidbody2D), typeof(BoxCollider2D),
-        typeof(AudioSource))]
+        typeof(Rigidbody2D), typeof(BoxCollider2D))]
     public class PlayerController : MonoBehaviour
     {
         #region Movement
@@ -53,8 +53,6 @@ namespace Controller
         private LayerMask grabLayer;
         
         #endregion
-
-        private AudioSource _as;
         
         [Header("Movement")]
         [SerializeField]
@@ -120,7 +118,6 @@ namespace Controller
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<BoxCollider2D>();
-            _as = GetComponent<AudioSource>();
             _anim = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -174,7 +171,7 @@ namespace Controller
                 // playing footstep sounds
                 _lastFootstep = Time.time;
                 var clip = footstepSounds[Random.Range(0, footstepSounds.Count)];
-                _as.PlayOneShot(clip, 0.2f);
+                SfxManager.Instance.Play(clip, 0.2f);
             }
         }
 
@@ -214,7 +211,7 @@ namespace Controller
                 _velocity.y = jumpForce;
                 
                 _anim.SetBool(IsJumping, true);
-                _as.PlayOneShot(jumpSound);
+                SfxManager.Instance.Play(jumpSound, 0.2f);
                 jumpParticles.Play();
 
                 _earlyJump = false;
@@ -252,7 +249,7 @@ namespace Controller
             if (_grounded && !_groundedLastFrame)
             {
                 _anim.SetBool(IsJumping, false);
-                _as.PlayOneShot(landSound);
+                SfxManager.Instance.Play(landSound, 0.2f);
                 landParticles.Play();
             }
 

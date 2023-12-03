@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Level;
 using Program.Action;
 using UnityEngine;
 using Utils;
@@ -8,7 +9,6 @@ using UnityEngine.Serialization;
 
 namespace Objects
 {
-    [RequireComponent(typeof(AudioSource))]
     public class LaserEmitter: MonoBehaviour
     {
         [SerializeField]
@@ -33,7 +33,6 @@ namespace Objects
         [SerializeField]
         private AudioClip laserDeactivate;
 
-        private AudioSource _as;
         [SerializeField]
         private bool isActive = false;
 
@@ -48,9 +47,6 @@ namespace Objects
 
         public void Start()
         {
-            _as = GetComponent<AudioSource>();
-            _as.volume = 0.1f;
-            
             laserLine.material.SetColor(LaserColorFrom, laserColorA);
             laserLine.material.SetColor(LaserColorTo, laserColorB);
 
@@ -71,7 +67,6 @@ namespace Objects
                 return;
             }
             
-            _as.Stop();
             foreach (var ps in _particles)
             {
                 ps.Stop();
@@ -96,8 +91,7 @@ namespace Objects
             if (!isActive)
             {
                 laserLine.gameObject.SetActive(false);
-                _as.Stop();
-                _as.PlayOneShot(laserDeactivate);
+                SfxManager.Instance.Play(laserDeactivate, 0.1f);
                 foreach (var ps in _particles)
                 {
                     ps.Stop();
@@ -107,8 +101,7 @@ namespace Objects
             else
             {
                 laserLine.gameObject.SetActive(true);
-                _as.PlayOneShot(laserActivate);
-                _as.Play();
+                SfxManager.Instance.Play(laserActivate, 0.1f);
                 RecalculateReflections();
                 foreach (var ps in _particles)
                 {

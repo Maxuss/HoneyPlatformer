@@ -17,6 +17,8 @@ namespace Objects
     {
         [SerializeField]
         private SceneReference nextLevel;
+        [SerializeField]
+        private AudioClip doorOpen;
         
         private Animator _anim;
 
@@ -70,7 +72,8 @@ namespace Objects
         {
             var door = obj as ExitDoor;
             door!.GetComponent<BoxCollider2D>().isTrigger = true;
-            door!._anim.Play("UnlockDoor");
+            door._anim.Play("UnlockDoor");
+            SfxManager.Instance.Play(door.doorOpen);
             SceneManager.LoadSceneAsync(door.nextLevel.BuildIndex, LoadSceneMode.Additive);
         });
     }
