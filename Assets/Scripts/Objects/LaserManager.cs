@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Objects
 {
@@ -41,6 +42,14 @@ namespace Objects
         {
             _activeLasers--;
             if(_activeLasers <= 0)
+                _as.Stop();
+        }
+
+        public void Reload()
+        {
+            // clearing active lasers
+            _activeLasers = FindObjectsOfType<LaserEmitter>().Length;
+            if(_activeLasers == 0)
                 _as.Stop();
         }
     }

@@ -32,21 +32,36 @@ namespace Objects
         {
             if (!other.CompareTag("Player"))
                 return;
-            // TODO: camera movement to the next level
-            Debug.Log("TRIGGER PASSED");
-            var obj = nextLevel.LoadedScene.GetRootGameObjects()[0];
-            var tilemap = obj.GetComponentInChildren<Tilemap>();
+            
+            // First object is always the grid
+            var grid = nextLevel.LoadedScene.GetRootGameObjects()[0];
+            var tilemap = grid.GetComponentInChildren<Tilemap>();
 
             var playerPos = PlayerController.Instance.transform.position;
-            PlayerController.Instance.transform.position += new Vector3(tilemap.cellSize.x * 2, 0f);
-            LevelManager.Instance.SwitchLevel(tilemap.GetComponentInChildren<Tilemap>());
             
+            LevelManager.Instance.SwitchLevel(tilemap.GetComponentInChildren<Tilemap>());
+
+            StartCoroutine(this.CallbackCoroutine(
+                PlayerController.Instance.AutonomousMove(playerPos + new Vector3(tilemap.cellSize.x * 3f, 0f)),
+                () =>
+                {
+                    var scene = nextLevel.LoadedScene;
+                    // Second object is always the entrance door
+                    var door = scene.GetRootGameObjects()[1];
+                    door.GetComponent<Animator>().Play("LockDoor");
+                    door.GetComponent<BoxCollider2D>().enabled = true;
+                }
+            ));
             StartCoroutine(this.CallbackCoroutine(
                 CameraController.Instance.TransitionToPoint(playerPos + new Vector3(tilemap.cellSize.x * 11f, 0f)),
                 () =>
                 {
                     _anim.StopPlayback();
-                    SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(0));
+                    var unloaded = SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(0));
+                    unloaded.completed += _ =>
+                    {
+                        LaserManager.Instance.Reload();
+                    };
                 })
             );
         }
@@ -55,7 +70,7 @@ namespace Objects
         {
             var door = obj as ExitDoor;
             door!.GetComponent<BoxCollider2D>().isTrigger = true;
-            door!._anim.Play("UnlockDoor"); 
+            door!._anim.Play("UnlockDoor");
             SceneManager.LoadSceneAsync(door.nextLevel.BuildIndex, LoadSceneMode.Additive);
         });
     }

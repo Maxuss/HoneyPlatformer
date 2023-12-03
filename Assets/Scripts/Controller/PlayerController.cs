@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utils;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -90,6 +92,8 @@ namespace Controller
         [SerializeField]
         private ParticleSystem landParticles;
 
+        private bool _autonomous;
+
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int IsJumping = Animator.StringToHash("IsJumping");
 
@@ -99,8 +103,20 @@ namespace Controller
         public bool IsDisabled { get; set; } = false;
         
         public static PlayerController Instance { get; private set; }
+
+        public IEnumerator AutonomousMove(Vector2 towards)
+        {
+            _autonomous = true;
+            _velocity = Vector2.zero;
+            while (Util.SqrDistance(transform.position, towards) > 0.25f)
+            {
+                _velocity = Vector2.right * 3f;
+                yield return null;
+            }
+            _autonomous = false;
+        }
         
-        void Awake()
+        private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<BoxCollider2D>();
@@ -274,10 +290,10 @@ namespace Controller
             }
         }
         
-        void Update()
+        private void Update()
         {
             _time += Time.deltaTime;
-            if(!IsDisabled)
+            if(!IsDisabled && !_autonomous)
                 GatherInput();
         }
         
