@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Level;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -16,12 +17,28 @@ namespace Controller
 
         private Camera _camera;
 
+        private bool _inTransition = false;
+        
+        public static CameraController Instance { get; private set; }
+
         private void Start()
         {
             _camera = GetComponent<Camera>();
+            Instance = this;
+        }
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
         }
 
         private void LateUpdate()
+        {
+            if(!_inTransition)
+                FollowPlayer();
+        }
+
+        private void FollowPlayer()
         {
             var targetPos = player.position;
             var currentPos = transform.position;
@@ -59,6 +76,20 @@ namespace Controller
                 LevelManager.Instance.MapBounds.min.x + horizontalExtent,
                 LevelManager.Instance.MapBounds.max.x - horizontalExtent
                 );
+        }
+
+        public IEnumerator TransitionToPoint(Vector2 towards)
+        {
+            _inTransition = true;
+            var velocity = Vector2.zero;
+            while (Util.SqrDistance(transform.position, towards) > 0.5f)
+            {
+                var pos = transform.position;
+                transform.position = Vector2.SmoothDamp(pos, towards, ref velocity, 0.4f).ToVec3(pos.z);
+                yield return null;
+            }
+
+            _inTransition = false;
         }
     }
 }

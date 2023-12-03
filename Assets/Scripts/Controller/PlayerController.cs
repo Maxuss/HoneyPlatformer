@@ -111,6 +111,8 @@ namespace Controller
             _queryStartColliderCached = Physics2D.queriesStartInColliders;
 
             Instance = this;
+            
+            DontDestroyOnLoad(this);
         }
 
         private void FixedUpdate()

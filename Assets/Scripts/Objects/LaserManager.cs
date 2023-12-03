@@ -17,7 +17,7 @@ namespace Objects
         private int _activeLasers;
         
         public static LaserManager Instance { get; private set; }
-
+        
         public void Start()
         {
             _as = GetComponent<AudioSource>();

@@ -22,5 +22,18 @@ namespace Utils
             action.Invoke();
             yield return null;
         }
+
+        public static float SqrDistance(Vector2 vec, Vector2 other)
+        {
+            var num1 = vec.x - other.x;
+            var num2 = vec.y - other.y;
+            return num1 * num1 + num2 * num2;
+        }
+
+        public static IEnumerator CallbackCoroutine(this MonoBehaviour self, IEnumerator first, Action callback)
+        {
+            yield return self.StartCoroutine(first);
+            callback.Invoke();
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace Dialogue
             Instance = this;
             dialogueObject.SetActive(false);
         }
-
+        
         private void Update()
         {
             if (!_inDialogue)

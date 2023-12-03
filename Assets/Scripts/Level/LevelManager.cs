@@ -18,13 +18,24 @@ namespace Level
 
         public void Start()
         {
+            RecalculateBounds();
+
+            Instance = this;
+        }
+        
+        private void RecalculateBounds()
+        {
             levelMap.CompressBounds();
             var tileSize = levelMap.size;
             TileSize = (tileSize.x, tileSize.y);
             PixelSize = (tileSize.x * TilePixelSize, tileSize.y * TilePixelSize);
             MapBounds = levelMap.localBounds;
+        }
 
-            Instance = this;
+        public void SwitchLevel(Tilemap newTilemap)
+        {
+            levelMap = newTilemap;
+            RecalculateBounds();
         }
     }
 }
