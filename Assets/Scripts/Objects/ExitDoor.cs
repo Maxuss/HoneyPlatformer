@@ -25,7 +25,7 @@ namespace Objects
         public override ITrigger[] ApplicableTriggers => new ITrigger[] { new TimeoutTrigger(0.5f) };
         public override IAction[] ApplicableActions => new[] { UnlockAction };
 
-        protected override void Init()
+        private void Start()
         {
             _anim = GetComponent<Animator>();
         }
