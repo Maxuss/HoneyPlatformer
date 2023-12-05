@@ -19,6 +19,8 @@ namespace Objects
         private SceneReference nextLevel;
         [SerializeField]
         private AudioClip doorOpen;
+        [SerializeField]
+        private AudioClip doorClose;
         
         private Animator _anim;
 
@@ -52,6 +54,7 @@ namespace Objects
                     var door = scene.GetRootGameObjects()[1];
                     door.GetComponent<Animator>().Play("LockDoor");
                     door.GetComponent<BoxCollider2D>().enabled = true;
+                    SfxManager.Instance.Play(doorClose, .5f);
                 }
             ));
             StartCoroutine(this.CallbackCoroutine(
@@ -73,7 +76,7 @@ namespace Objects
             var door = obj as ExitDoor;
             door!.GetComponent<BoxCollider2D>().isTrigger = true;
             door._anim.Play("UnlockDoor");
-            SfxManager.Instance.Play(door.doorOpen);
+            SfxManager.Instance.Play(door.doorOpen, .5f);
             SceneManager.LoadSceneAsync(door.nextLevel.BuildIndex, LoadSceneMode.Additive);
         });
     }

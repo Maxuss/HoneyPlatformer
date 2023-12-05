@@ -1,3 +1,4 @@
+using Dialogue;
 using Objects;
 using Program.Action;
 using Program.Trigger;
@@ -7,6 +8,9 @@ namespace Program
 {
     public class TestProgrammable: Programmable
     {
+        [SerializeField]
+        private DialogueDefinition dialogueDefinition;
+        
         public override ITrigger[] ApplicableTriggers { get; } =
         {
             new TimeoutTrigger(1f),
@@ -16,6 +20,10 @@ namespace Program
 
         public override IAction[] ApplicableActions { get; } =
         {
+            new DelegatedAction("Test dialogue", instance =>
+            {
+                instance.StartCoroutine(DialogueManager.Instance.StartDialogue((instance as TestProgrammable)?.dialogueDefinition));
+            }),
             LaserEmitter.ToggleLaserAction,
             new DelegatedFloatAction("Debug float data", (instance, val) =>
             {

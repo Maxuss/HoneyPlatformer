@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5e8589763b4e61acf427442650efde, type: 3}
   m_Name: TestDialogue
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 63520109, guid: 1490f550abd10e6bdb61e5a27ddde82c, type: 3}
+  - {fileID: -464147182, guid: 1490f550abd10e6bdb61e5a27ddde82c, type: 3}
+  - {fileID: -1436131212, guid: 1490f550abd10e6bdb61e5a27ddde82c, type: 3}
   audioSounds:
-  - {fileID: 8300000, guid: bac99a808caae4c2f955c8534d3f794a, type: 3}
+  - {fileID: 8300000, guid: ec0012eab26bb5b0c8e89e2ed22ed950, type: 3}
   text: "\u043F\u043E\u0440\u0430 \u0438\u0434\u0442\u0438 \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C
     \u043D\u0430\u0434 \u043D\u0442\u043E, \u0435\u0441\u043B\u0438 \u043C\u044B
     \u043D\u0435 \u043F\u0440\u043E\u0439\u0434\u0435\u043C \u0432 \u0444\u0438\u043D\u0430\u043B,
     \u0442\u043E..."
+  characterName: "\u0422\u0440\u043E\u0444\u0438\u043C"
+  speedModifier: 1
