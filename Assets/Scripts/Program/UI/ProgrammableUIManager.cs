@@ -87,11 +87,16 @@ namespace Program.UI
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 PlayerController.Instance.IsDisabled = false;
+                var toggleGroup = outerTerminalObject.transform.GetChild(0).GetChild(0);
+                toggleGroup.GetChild(0).GetComponent<Toggle>().isOn = true;
+                toggleGroup.GetChild(1).GetComponent<Toggle>().isOn = false;
             }
         }
 
         public void HandleTriggerToggled()
         {
+            if (!_isEditing)
+                return;
             Menu = CurrentMenu.Trigger;
             SfxManager.Instance.Play(buttonClickedSound, 0.2f);
             RebuildTerminalMenu();
@@ -99,6 +104,8 @@ namespace Program.UI
 
         public void HandleExecutionToggled()
         {
+            if (!_isEditing)
+                return;
             Menu = CurrentMenu.Execution;
             SfxManager.Instance.Play(buttonClickedSound, 0.2f);
             RebuildTerminalMenu();
