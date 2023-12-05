@@ -7,7 +7,7 @@ namespace Objects
     [RequireComponent(typeof(Rigidbody2D))]
     public class ConveyorBelt: MonoBehaviour
     {
-        private bool _enabled = false;
+        private bool _enabled = true;
         private Rigidbody2D _rb;
 
         private void Start()
