@@ -121,7 +121,7 @@ namespace Objects
             RaycastHit2D hit;
             var verts = new List<Vector3>();
             verts.Add(laserPos.position);
-            var currentPoint = transform.position;
+            var currentPoint = transform.position + (-transform.right * 0.5f + transform.up * 0.5f);
             var direction = transform.up;
 
             while(currentLength > 0 && currentBounces >= 0){
@@ -156,6 +156,7 @@ namespace Objects
             laserLine.positionCount = verts.Count;
             endVfx.transform.position = (Vector2) verts.Last();
             var secondToLast = verts.Count - 2 < 0 ? transform.position : verts[^2];
+            // TODO: fix normals?
             endVfx.transform.rotation = Quaternion.LookRotation(secondToLast - endVfx.transform.position);
             laserLine.SetPositions(verts.ToArray());
         }
