@@ -24,6 +24,14 @@ namespace Program
             {
                 instance.StartCoroutine(DialogueManager.Instance.StartDialogue((instance as TestProgrammable)?.dialogueDefinition));
             }),
+            new DelegatedAction("Test conveyor reversing", instance =>
+            {
+                instance.wiredObject.GetComponent<ConveyorBelt>().Reversed = true;
+            }),
+            new DelegatedAction("Test conveyor stopping", instance =>
+            {
+                instance.wiredObject.GetComponent<ConveyorBelt>().Toggle();
+            }),
             LaserEmitter.ToggleLaserAction,
             new DelegatedFloatAction("Debug float data", (instance, val) =>
             {
