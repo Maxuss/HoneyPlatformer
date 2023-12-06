@@ -1,4 +1,4 @@
-using System;
+using Objects;
 using Program;
 using UnityEngine;
 
@@ -24,11 +24,15 @@ namespace Controller
             var isNotNull = hit.collider != null;
             switch (isNotNull)
             {
+                case true when hit.collider.gameObject.TryGetComponent<IInteractable>(out var interactable):
+                    interactable.OnInteract();
+                    break;
+                // TODO: new programmable system
                 case true when hit.collider.gameObject.TryGetComponent<Programmable>(out var programmable):
                     programmable.OnInteract();
                     break;
                 case true when
-                    hit.collider.gameObject.TryGetComponent<RemoteControlPanel>(out var remoteControl):
+                    hit.collider.TryGetComponent<RemoteControlPanel>(out var remoteControl):
                     remoteControl.remoteAccess.OnInteract();
                     break;
             }

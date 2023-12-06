@@ -23,6 +23,16 @@ namespace Utils
             yield return null;
         }
 
+        public static IEnumerator DelayFrames(Action action, int frames)
+        {
+            while (frames > 0)
+            {
+                frames--;
+                yield return null;
+            }
+            action.Invoke();
+        }
+
         public static float SqrDistance(Vector2 vec, Vector2 other)
         {
             var num1 = vec.x - other.x;
