@@ -1,4 +1,5 @@
 using System;
+using Level;
 using Program;
 using Program.Action;
 using Program.Channel;
@@ -21,6 +22,11 @@ namespace Objects
         [SerializeField]
         private Sprite unpressedSprite;
 
+        [SerializeField]
+        private AudioClip pressedSound;
+        [SerializeField]
+        private AudioClip unpressedSound;
+
         private IChannelReceiver _rx;
         private SpriteRenderer _spriteRenderer;
         private bool _isPressed;
@@ -37,18 +43,18 @@ namespace Objects
         {
             if (_isPressed)
                 return;
-
-            _pressed = other;
-
+            
             if (
                 detection == FloorButtonCollisionDetection.Anything ||
                 (detection == FloorButtonCollisionDetection.Box && other.CompareTag("Box")) ||
                 (detection == FloorButtonCollisionDetection.Player && other.CompareTag("Player"))
                 )
             {
+                _pressed = other;
                 _rx.ReceiveBool(true);
                 _isPressed = true;
                 _spriteRenderer.sprite = pressedSprite;
+                SfxManager.Instance.Play(pressedSound, 0.2f);
             }
         }
 
@@ -59,6 +65,7 @@ namespace Objects
             _isPressed = false;
             _rx.ReceiveBool(false);
             _spriteRenderer.sprite = unpressedSprite;
+            SfxManager.Instance.Play(unpressedSound, 0.2f);
         }
 
         public enum FloorButtonCollisionDetection

@@ -194,6 +194,8 @@ MonoBehaviour:
   connectedReceiver: {fileID: 8565688282066590469}
   pressedSprite: {fileID: -292891552, guid: 218d5992d7e31fc9b90ebb7901cb0b4e, type: 3}
   unpressedSprite: {fileID: 521996036, guid: 218d5992d7e31fc9b90ebb7901cb0b4e, type: 3}
+  pressedSound: {fileID: 8300000, guid: eba13fba09705489daa255ffd260ef42, type: 3}
+  unpressedSound: {fileID: 8300000, guid: 6eecbe71c023227a7866671fa29dd652, type: 3}
 --- !u!60 &4410426129036194036
 PolygonCollider2D:
   m_ObjectHideFlags: 0

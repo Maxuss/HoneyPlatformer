@@ -16870,6 +16870,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 1450249295603584, guid: c9bf36a98b79c75b0bff0045b50a5c9f, type: 3}
+      propertyPath: m_TagString
+      value: Box
+      objectReference: {fileID: 0}
     - target: {fileID: 3378884676662239821, guid: c9bf36a98b79c75b0bff0045b50a5c9f, type: 3}
       propertyPath: m_Sprite
       value: 
