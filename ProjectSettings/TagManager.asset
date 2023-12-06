@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Mirror
   - LaserConsumer
+  - Box
   layers:
   - Default
   - TransparentFX
