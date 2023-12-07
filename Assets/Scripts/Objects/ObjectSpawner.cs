@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Level;
 using Program.Channel;
 using UnityEngine;
 using Utils;
-using Random = UnityEngine.Random;
 
 namespace Objects
 {
@@ -34,15 +31,20 @@ namespace Objects
                 particle.Stop();
         }
 
-        public void ReceiveBool(bool b)
+        public void ReceiveBool(Transform src, bool b)
         {
-            if(b)
-                SpawnObject();
-            else
-                StartCoroutine(DestroyObject());
+            switch (b)
+            {
+                case true when _spawnedObject == null:
+                    SpawnObject();
+                    break;
+                case false:
+                    StartCoroutine(DestroyObject());
+                    break;
+            }
         }
 
-        public void ReceiveFloat(float v)
+        public void ReceiveFloat(Transform src, float v)
         {
             if (v > 1f)
             {
@@ -68,6 +70,8 @@ namespace Objects
 
         public IEnumerator DestroyObject()
         {
+            if (_spawnedObject == null) 
+                yield break;
             var objRenderer = _spawnedObject.GetComponent<Renderer>();
 
             var destructionAmount = 0f;
@@ -82,6 +86,8 @@ namespace Objects
             while (destructionAmount < 0.9f)
             {
                 destructionAmount += 0.9f * Time.fixedDeltaTime;
+                if (objRenderer == null)
+                    yield break;
                 objRenderer.material.SetFloat(Amount, destructionAmount);
 
                 yield return null;
@@ -90,15 +96,14 @@ namespace Objects
             _spawnedObject.SetActive(false);
             var obj = _spawnedObject;
             // the object blinks for a frame if destroyed immediately, so delay the destruction
-            StartCoroutine(Util.DelayFrames(() => DestroyImmediate(obj), 1));
             yield return null;
+            DestroyImmediate(obj);
         }
         
         [ContextMenu("Spawn Object")]
         public void SpawnObject()
         {
-            StartCoroutine(DestroyObject());
-            StartCoroutine(DelayedSpawnObject());
+            StartCoroutine(Util.ChainCoroutines(DestroyObject(), DelayedSpawnObject()));
         }
 
         private IEnumerator DelayedSpawnObject()
@@ -120,9 +125,14 @@ namespace Objects
             while (amount >= 0f)
             {
                 amount -= .8f * Time.fixedDeltaTime;
+                if (objRenderer == null)
+                    break;
                 objRenderer.material.SetFloat(Amount, amount);
                 yield return null;
             }
+
+            if (rb == null)
+                yield break;
 
             rb.isKinematic = false;
             rb.velocity += (Vector2) (-transform.up * 6f);

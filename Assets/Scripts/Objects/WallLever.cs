@@ -36,7 +36,7 @@ namespace Objects
             state = !state;
             _spriteRenderer.sprite = state ? onSprite : offSprite;
             SfxManager.Instance.Play(toggleSound, 0.2f);
-            _rx.ReceiveBool(state);
+            _rx.ReceiveBool(transform, state);
         }
     }
 }

@@ -45,5 +45,11 @@ namespace Utils
             yield return self.StartCoroutine(first);
             callback.Invoke();
         }
+
+        public static IEnumerator ChainCoroutines(IEnumerator first, IEnumerator second)
+        {
+            yield return first;
+            yield return second;
+        }
     }
 }

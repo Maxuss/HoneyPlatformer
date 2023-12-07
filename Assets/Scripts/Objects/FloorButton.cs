@@ -51,7 +51,7 @@ namespace Objects
                 )
             {
                 _pressed = other;
-                _rx.ReceiveBool(true);
+                _rx.ReceiveBool(transform, true);
                 _isPressed = true;
                 _spriteRenderer.sprite = pressedSprite;
                 SfxManager.Instance.Play(pressedSound, 0.2f);
@@ -63,7 +63,7 @@ namespace Objects
             if (!_isPressed || _pressed != other) return;
             
             _isPressed = false;
-            _rx.ReceiveBool(false);
+            _rx.ReceiveBool(transform, false);
             _spriteRenderer.sprite = unpressedSprite;
             SfxManager.Instance.Play(unpressedSound, 0.2f);
         }
