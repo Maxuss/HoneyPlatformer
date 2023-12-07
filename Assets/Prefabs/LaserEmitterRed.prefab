@@ -14797,7 +14797,7 @@ MonoBehaviour:
   laserPos: {fileID: 8784395592596985658}
   startVfx: {fileID: 6562491249969107610}
   endVfx: {fileID: 698177833258525791}
-  laserColorA: {r: 12.914242, g: 4.938779, b: 3.4722252, a: 0}
+  laserColorA: {r: 3.2285604, g: 1.2346947, b: 0.8680563, a: 0}
   laserColorB: {r: 4.483848, g: 1.0597072, b: 0.9940606, a: 0}
   collisionMask:
     serializedVersion: 2
@@ -14841,7 +14841,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 1, y: 0}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

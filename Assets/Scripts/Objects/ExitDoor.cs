@@ -1,10 +1,6 @@
-using System;
 using Controller;
 using Eflatun.SceneReference;
 using Level;
-using Program;
-using Program.Action;
-using Program.Trigger;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -13,7 +9,7 @@ using Utils;
 namespace Objects
 {
     [RequireComponent(typeof(Animator))]
-    public class ExitDoor: Programmable
+    public class ExitDoor: MonoBehaviour
     {
         [SerializeField]
         private SceneReference nextLevel;
@@ -24,8 +20,6 @@ namespace Objects
         
         private Animator _anim;
 
-        public override ITrigger[] ApplicableTriggers => new ITrigger[] { new TimeoutTrigger(0.5f) };
-        public override IAction[] ApplicableActions => new[] { UnlockAction };
 
         private void Start()
         {
@@ -71,13 +65,12 @@ namespace Objects
             );
         }
 
-        public static IAction UnlockAction => new DelegatedAction("Unlock door", obj =>
+        public void Unlock()
         {
-            var door = obj as ExitDoor;
-            door!.GetComponent<BoxCollider2D>().isTrigger = true;
-            door._anim.Play("UnlockDoor");
-            SfxManager.Instance.Play(door.doorOpen, .5f);
-            SceneManager.LoadSceneAsync(door.nextLevel.BuildIndex, LoadSceneMode.Additive);
-        });
+            GetComponent<BoxCollider2D>().isTrigger = true;
+            _anim.Play("UnlockDoor");
+            SfxManager.Instance.Play(doorOpen, .5f);
+            SceneManager.LoadSceneAsync(nextLevel.BuildIndex, LoadSceneMode.Additive);
+        }
     }
 }

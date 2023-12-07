@@ -1,51 +1,50 @@
-using Dialogue;
-using Objects;
-using Program.Action;
-using Program.Trigger;
 using UnityEngine;
 
 namespace Program
 {
-    public class TestProgrammable: Programmable
+    public class TestProgrammable: MonoBehaviour, IActionContainer
     {
-        [SerializeField]
-        private DialogueDefinition dialogueDefinition;
+        public string Name => "Тестовый объект";
+        public string Description => "Это просто тест исполнителя ааааа";
+
+        public ActionInfo[] SupportedActions { get; } = new[]
+        {
+            new ActionInfo
+            {
+                ActionName = "Действие 1",
+                ActionDescription = "Тестовое действие 1 без параметра",
+            },
+            new ActionInfo
+            {
+                ActionName = "Действие 2",
+                ActionDescription = "Тестовое действие 2 с численным параметром",
+                ParameterName = "Параметр 1",
+                MaxFloatValue = 14,
+                ValueType = ActionValueType.Float
+            },
+            new ActionInfo
+            {
+                ActionName = "Действие 3",
+                ActionDescription = "Тестовое действие 2 с параметром перечисления",
+                ParameterName = "Параметр 2",
+                EnumType = typeof(TestEnum),
+                ValueType = ActionValueType.Enum
+            }
+        };
+
+        public ProgrammableType Type { get; } = ProgrammableType.Executor;
+        public ActionData SelectedAction { get; set; }
         
-        public override ITrigger[] ApplicableTriggers { get; } =
+        public void Begin(ActionData action)
         {
-            new TimeoutTrigger(1f),
-            new TimeoutTrigger(5f),
-            new TimeoutTrigger(10f)
-        };
+            Debug.Log($"SELECTED: {action.ActionIndex} {action.StoredValue}");
+        }
+    }
 
-        public override IAction[] ApplicableActions { get; } =
-        {
-            new DelegatedAction("Test dialogue", instance =>
-            {
-                instance.StartCoroutine(DialogueManager.Instance.StartDialogue((instance as TestProgrammable)?.dialogueDefinition));
-            }),
-            new DelegatedAction("Test conveyor reversing", instance =>
-            {
-                instance.wiredObject.GetComponent<ConveyorBelt>().Reversed = true;
-            }),
-            new DelegatedAction("Test conveyor stopping", instance =>
-            {
-                instance.wiredObject.GetComponent<ConveyorBelt>().Toggle();
-            }),
-            LaserEmitter.ToggleLaserAction,
-            new DelegatedFloatAction("Debug float data", (instance, val) =>
-            {
-                Debug.Log($"Executed: {val}");
-            }),
-            new DelegatedFloatAction("Debug float data x2", (instance, val) =>
-            {
-                Debug.Log($"Executed: {val * 2}");
-            }),
-            new DelegatedFloatAction("Debug float data x3", (instance, val) =>
-            {
-                Debug.Log($"Executed: {val * 3}");
-            }),
-
-        };
+    public enum TestEnum
+    {
+        ValueA,
+        ValueB,
+        ValueC
     }
 }

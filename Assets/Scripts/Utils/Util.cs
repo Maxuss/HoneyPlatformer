@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Utils
@@ -50,6 +51,12 @@ namespace Utils
         {
             yield return first;
             yield return second;
+        }
+        
+        public static IEnumerable<TK> Select<TK, T>(this IEnumerator<T> e, Func<T, TK> selector) {
+            while (e.MoveNext()) {
+                yield return selector.Invoke(e.Current);
+            }
         }
     }
 }

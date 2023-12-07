@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Level;
-using Program.Action;
 using UnityEngine;
 using Utils;
 using UnityEngine.Serialization;
@@ -157,18 +156,10 @@ namespace Objects
             endVfx.transform.position = (Vector2) verts.Last();
             var secondToLast = verts.Count - 2 < 0 ? transform.position : verts[^2];
             // TODO: fix normals?
+            // TODO: do it!!
             endVfx.transform.rotation = Quaternion.LookRotation(secondToLast - endVfx.transform.position);
             laserLine.SetPositions(verts.ToArray());
         }
-        
-        #endregion
-        
-        #region Programming
-
-        public static IAction ToggleLaserAction => new DelegatedAction("Toggle laser", (obj) =>
-        {
-            obj.wiredObject.GetComponent<LaserEmitter>()?.Toggle();
-        });
         
         #endregion
         

@@ -1,70 +1,81 @@
 using System;
+using System.Linq;
 using Controller;
 using Level;
-using Program.Action;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using TMP_Text = TMPro.TMP_Text;
 
 namespace Program.UI
 {
     public class ProgrammableUIManager: MonoBehaviour
     {
         [SerializeField]
-        private AudioClip buttonClickedSound;
-        [SerializeField]
         private AudioClip terminalButtonClickedSound;
 
         [Space(20)]
         [SerializeField]
-        private GameObject outerTerminalObject;
+        [FormerlySerializedAs("outerTerminalObject")]
+        private GameObject terminalObject;
         [SerializeField]
-        private GameObject terminalButtonContainerObject;
+        [FormerlySerializedAs("terminalButtonContainerObject")] 
+        private GameObject terminalButtonContainer;
 
-        [Space(20)]
-        [SerializeField]
-        private GameObject buttonPrefab;
-
+        [Space(20)] 
         [SerializeField]
         private Sprite selectedSprite;
         [SerializeField]
         private Sprite unselectedSprite;
+
+        [Space(20)]
+        [Header("Object Description")]
+        [SerializeField]
+        private Transform objectDescriptionHeader;
+        [SerializeField]
+        private Transform objectDescriptionBody;
+
+        [SerializeField]
+        private Sprite emitterIcon;
+        [SerializeField]
+        private Sprite executorIcon;
+
+        [Header("Action Description")]
+        [SerializeField]
+        private Transform actionDescription;
+
+        [Space(20)]
+        [Header("Prefabs")]
+        [SerializeField]
+        private GameObject buttonPrefab;
+
+        [SerializeField]
+        private GameObject enumSelectionPrefab;
+        [SerializeField]
+        private GameObject floatSelectionPrefab;
         
         public static ProgrammableUIManager Instance { get; private set; }
-        public CurrentMenu Menu { get; private set; } = CurrentMenu.Trigger;
 
-        private bool _isEditing = false;
-        private Programmable _currentlyEdited;
-        private TriggerContainer _selectedCondition;
-        private TriggerContainer _selectedAction;
+        private bool _isEditing;
+        private IActionContainer _currentlyEditing;
+        private ActionData _selectedAction;
         
         private void Awake()
         {
-            outerTerminalObject.SetActive(false);
+            terminalObject.SetActive(false);
             
             Instance = this;
         }
 
-        public void OpenFor(Programmable obj)
+        public void OpenFor(IActionContainer obj)
         {
-            PlayerController.Instance.IsDisabled = true;
-            
-            _currentlyEdited = obj;
+            _currentlyEditing = obj;
             _isEditing = true;
-            Menu = CurrentMenu.Trigger;
-            // TODO: some open animation?
-            outerTerminalObject.SetActive(true);
-            _selectedCondition = new TriggerContainer
-            {
-                Index = obj.SelectedTriggerIndex
-            };
-            _selectedAction = new TriggerContainer
-            {
-                Index = obj.SelectedActionIndex,
-                FloatData = obj.SelectedAction is IFloatAction floatAction ? floatAction.FloatData : 0f
-            };
-            RebuildTerminalMenu();
-            
+            terminalObject.SetActive(true);
+            _selectedAction = obj.SelectedAction;
+            BuildInitialTerminalMenu();
+
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             PlayerController.Instance.IsDisabled = true;
@@ -75,164 +86,124 @@ namespace Program.UI
             if (!_isEditing)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                // TODO: some exit animation?
-
-                _isEditing = false;
-                _currentlyEdited.SelectAction(_selectedAction.Index, _selectedAction.FloatData);
-                _currentlyEdited.SelectTrigger(_selectedCondition.Index);
-                outerTerminalObject.SetActive(false);
-                _currentlyEdited = null;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                PlayerController.Instance.IsDisabled = false;
-                var toggleGroup = outerTerminalObject.transform.GetChild(0).GetChild(0);
-                toggleGroup.GetChild(0).GetComponent<Toggle>().isOn = true;
-                toggleGroup.GetChild(1).GetComponent<Toggle>().isOn = false;
-            }
+            if (!Input.GetKeyDown(KeyCode.Escape)) return;
+            
+            _isEditing = false;
+            _currentlyEditing.SelectedAction = _selectedAction;
+            _currentlyEditing.Begin(_selectedAction);
+            terminalObject.SetActive(false);
+            _currentlyEditing = null;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            PlayerController.Instance.IsDisabled = false;
         }
 
-        public void HandleTriggerToggled()
+        private void BuildInitialTerminalMenu()
         {
-            if (!_isEditing)
-                return;
-            Menu = CurrentMenu.Trigger;
-            SfxManager.Instance.Play(buttonClickedSound, 0.2f);
-            RebuildTerminalMenu();
-        }
-
-        public void HandleExecutionToggled()
-        {
-            if (!_isEditing)
-                return;
-            Menu = CurrentMenu.Execution;
-            SfxManager.Instance.Play(buttonClickedSound, 0.2f);
-            RebuildTerminalMenu();
-        }
-
-        private void RebuildTerminalMenu()
-        {
-            var containerTransform = terminalButtonContainerObject.transform;
+            var containerTransform = terminalButtonContainer.transform;
             while (containerTransform.childCount > 0)
             {
                 DestroyImmediate(containerTransform.GetChild(0).gameObject);
             }
 
-            if (Menu == CurrentMenu.Execution)
+            var idx = 0;
+            foreach (var action in _currentlyEditing.SupportedActions)
             {
-                // Rebuilding execution menu
-                var idx = 0;
-                foreach (var action in _currentlyEdited.ApplicableActions)
+                // Handling button creation
+                var newButton = Instantiate(buttonPrefab, containerTransform);
+                var buttonTransform = newButton.transform;
+                
+                // First child is the selection indicator
+                var selectionIndicator = buttonTransform.GetChild(0).GetComponent<Image>();
+                selectionIndicator.sprite = _selectedAction.ActionIndex == idx ? selectedSprite : unselectedSprite;
+
+                // Second child is the text component
+                var text = buttonTransform.GetChild(1).GetComponent<TMP_Text>();
+                text.text = action.ActionName;
+                
+                var buttonCallback = buttonTransform.GetComponent<TerminalCallbackButton>();
+                var idxCl = idx;
+                buttonCallback.ClickHandler = () =>
                 {
-                    var newButton = Instantiate(buttonPrefab, containerTransform);
-                    var buttonTransform = newButton.transform;
+                    if (idxCl == _selectedAction.ActionIndex)
+                        return;
+                    // Handling selection change
+                    var previousBtn = containerTransform.GetChild(_selectedAction.ActionIndex);
+                    var btn = previousBtn.GetChild(0).GetComponent<Image>();
+                    btn.sprite = unselectedSprite;
+                    selectionIndicator.sprite = selectedSprite;
                     
-                    // First child is the selection indicator
-                    var selectionIndicator = buttonTransform.GetChild(0).GetComponent<Image>();
-                    selectionIndicator.sprite = _selectedAction.Index == idx ? selectedSprite : unselectedSprite;
-                    
-                    // Second child is the text component
-                    var text = buttonTransform.GetChild(1).GetComponent<TMP_Text>();
-                    text.text = action.Name;
+                    _selectedAction.ActionIndex = idxCl;
 
-                    if (action is IFloatAction)
+                    // Handling action description change
+                    
+                    // First child is the name
+                    actionDescription.GetChild(0).GetComponent<TMP_Text>().text = action.ActionName;
+
+                    // Second child is the description
+                    actionDescription.GetChild(1).GetComponent<TMP_Text>().text = action.ActionDescription;
+                    
+                    // Third child is the empty parameter selection
+                    var paramSelect = actionDescription.GetChild(2);
+                    while(paramSelect.childCount > 0)
+                        DestroyImmediate(paramSelect.GetChild(0).gameObject);
+                    
+                    switch (action.ValueType)
                     {
-                        // Third child is the float input
-                        var slider = buttonTransform.GetChild(2).GetComponent<Slider>();
-                        slider.value = _selectedAction.Index == idx ? _selectedAction.FloatData : 0f;
-                        
-                        var buttonCallback = buttonTransform.GetComponent<TerminalCallbackButton>();
-                        var idxCl = idx;
-                        buttonCallback.ClickHandler = () =>
-                        {
-                            var previousBtn = containerTransform.GetChild(_selectedAction.Index);
-                            var btn = previousBtn.GetChild(0).GetComponent<Image>();
-                            btn.sprite = unselectedSprite;
-                            _selectedAction = new TriggerContainer
+                        case ActionValueType.Enum:
+                            var enumValues = action.EnumType!.GetEnumValues().Cast<object>().AsEnumerable();
+                            var enumSelection = Instantiate(enumSelectionPrefab, paramSelect);
+                            var enumText = enumSelection.transform.GetChild(0).GetComponent<TMP_Text>();
+                            enumText.text = action.ParameterName!;
+                            var dropdown = enumSelection.transform.GetChild(1).GetComponent<TMP_Dropdown>();
+                            dropdown.options = enumValues
+                                .Select(each => Enum.GetName(action.EnumType!, each))
+                                .Select(each => new TMP_Dropdown.OptionData
+                                {
+                                    text = each
+                                })
+                                .ToList();
+                            dropdown.value = 0;
+                            dropdown.onValueChanged.AddListener(val =>
                             {
-                                Index = idxCl,
-                                FloatData = slider.value
-                            };
-                            containerTransform.GetChild(_selectedAction.Index).GetChild(0).GetComponent<Image>().sprite =
-                                selectedSprite;
-                            SfxManager.Instance.Play(terminalButtonClickedSound, 0.3f);
-                        };
-                    }
-                    else
-                    {
-                        // Third child is the float input by default, removing it
-                        DestroyImmediate(buttonTransform.GetChild(2).gameObject);
-
-                        var buttonCallback = buttonTransform.GetComponent<TerminalCallbackButton>();
-                        var idxCl = idx;
-                        buttonCallback.ClickHandler = () =>
-                        {
-                            var previousBtn = containerTransform.GetChild(_selectedAction.Index);
-                            var btn = previousBtn.GetChild(0).GetComponent<Image>();
-                            btn.sprite = unselectedSprite;
-                            _selectedAction = new TriggerContainer
+                                _selectedAction.StoredValue = Enum.ToObject(action.EnumType, val);
+                            });
+                            break;
+                        case ActionValueType.Float:
+                            var floatSelection = Instantiate(floatSelectionPrefab, paramSelect).transform;
+                            floatSelection.GetChild(0).GetComponent<TMP_Text>().text = action.ParameterName;
+                            var slider = floatSelection.transform.GetChild(2).GetComponent<Slider>();
+                            slider.maxValue = action.MaxFloatValue;
+                            slider.value = 0;
+                            slider.onValueChanged.AddListener(val =>
                             {
-                                Index = idxCl
-                            };
-                            containerTransform.GetChild(_selectedAction.Index).GetChild(0).GetComponent<Image>().sprite =
-                                selectedSprite;
-                            SfxManager.Instance.Play(terminalButtonClickedSound, 0.3f);
-                        };
+                                _selectedAction.StoredValue = val;
+                                floatSelection.GetChild(1).GetComponent<TMP_Text>().text =
+                                    Mathf.RoundToInt(val).ToString();
+                            });
+                            break;
+                        case ActionValueType.Unit:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
-                    idx++;
-                }
-            }
-            else
-            { 
-                // Rebuilding trigger menu
-                var idx = 0;
-                foreach (var trigger in _currentlyEdited.ApplicableTriggers)
-                {
-                    var newButton = Instantiate(buttonPrefab, containerTransform);
-                    var buttonTransform = newButton.transform;
                     
-                    // First child is the selection indicator
-                    var selectionIndicator = buttonTransform.GetChild(0).GetComponent<Image>();
-                    selectionIndicator.sprite = _selectedAction.Index == idx ? selectedSprite : unselectedSprite;
-                    
-                    // Second child is the text component
-                    var text = buttonTransform.GetChild(1).GetComponent<TMP_Text>();
-                    text.text = trigger.Name;
-
-                    // Third child is the float input by default, removing it
-                    DestroyImmediate(buttonTransform.GetChild(2).gameObject);
-
-                    var buttonCallback = buttonTransform.GetComponent<TerminalCallbackButton>();
-                    var idxCl = idx;
-                    buttonCallback.ClickHandler = () =>
-                    {
-                        var previousBtn = containerTransform.GetChild(_selectedCondition.Index);
-                        var btn = previousBtn.GetChild(0).GetComponent<Image>();
-                        btn.sprite = unselectedSprite;
-                        _selectedCondition = new TriggerContainer
-                        {
-                            Index = idxCl
-                        };
-                        containerTransform.GetChild(_selectedCondition.Index).GetChild(0).GetComponent<Image>().sprite =
-                            selectedSprite;
-                        SfxManager.Instance.Play(terminalButtonClickedSound, 0.3f);
-                    };
-                    idx++;
-                }
+                    SfxManager.Instance.Play(terminalButtonClickedSound, 0.3f);
+                };
+                
+                idx++;
             }
-        }
+            
+            var rect = containerTransform.parent.GetComponentInParent<ScrollRect>();
+            rect.verticalNormalizedPosition = 0f;
 
-        public enum CurrentMenu
-        {
-            Trigger,
-            Execution
-        }
-        
-        private struct TriggerContainer
-        {
-            public int Index;
-            public float FloatData;
+            objectDescriptionHeader.GetChild(0).GetComponent<TMP_Text>().text = _currentlyEditing.Name;
+            objectDescriptionHeader.GetChild(1).GetComponent<Image>().sprite =
+                _currentlyEditing.Type == ProgrammableType.Emitter ? emitterIcon : executorIcon;
+            objectDescriptionHeader.GetChild(2).GetComponent<TMP_Text>().text =
+                _currentlyEditing.Type == ProgrammableType.Emitter ? "Эмиттер" : "Исполнитель";
+
+            objectDescriptionBody.GetComponentInChildren<TMP_Text>().text = _currentlyEditing.Description;
         }
     }
 }

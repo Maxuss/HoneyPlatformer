@@ -1,9 +1,7 @@
 using System;
 using Level;
 using Program;
-using Program.Action;
 using Program.Channel;
-using Program.Trigger;
 using UnityEngine;
 using Utils;
 
