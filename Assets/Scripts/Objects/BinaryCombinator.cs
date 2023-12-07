@@ -39,7 +39,6 @@ namespace Objects
 
         public void ReceiveBool(MessageDirection direction, Transform src, bool b)
         {
-            Debug.Log($"RECEIVING BOOLEAN: {direction}");
             if (direction == MessageDirection.Left)
             {
                 _left = b;
