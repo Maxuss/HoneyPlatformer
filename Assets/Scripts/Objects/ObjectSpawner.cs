@@ -62,13 +62,12 @@ namespace Objects
                 
                 SpawnObject();
 
-                yield return new WaitForSeconds(2.4f);
+                yield return new WaitForSeconds(3f);
             }
         }
 
         public IEnumerator DestroyObject()
         {
-            // TODO: disintegration effect
             var objRenderer = _spawnedObject.GetComponent<Renderer>();
 
             var destructionAmount = 0f;
@@ -79,7 +78,7 @@ namespace Objects
             var rb = _spawnedObject.GetComponent<Rigidbody2D>();
             rb.gravityScale = -1f;
 
-            SfxManager.Instance.Play(objectDestroySound);
+            SfxManager.Instance.Play(objectDestroySound, .5f);
             while (destructionAmount < 0.9f)
             {
                 destructionAmount += 0.9f * Time.fixedDeltaTime;
@@ -104,7 +103,7 @@ namespace Objects
 
         private IEnumerator DelayedSpawnObject()
         {
-            SfxManager.Instance.Play(objectCreateSound);
+            SfxManager.Instance.Play(objectCreateSound, .5f);
             
             _spawnedObject = Instantiate(objectPrefab, spawnPosition.position, Quaternion.identity);
             var objRenderer = _spawnedObject.GetComponent<Renderer>();
@@ -126,6 +125,7 @@ namespace Objects
             }
 
             rb.isKinematic = false;
+            rb.velocity += (Vector2) (-transform.up * 6f);
             objRenderer.material.SetFloat(Amount, 0f);
 
             foreach (var particle in particles)
