@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Level;
 using Program.Channel;
 using UnityEngine;
+using Utils;
+using Random = UnityEngine.Random;
 
 namespace Objects
 {
@@ -23,6 +25,8 @@ namespace Objects
         private ParticleSystem[] particles;
         
         private GameObject _spawnedObject;
+        private static readonly int Amount = Shader.PropertyToID("_Amount");
+        private static readonly int StartPosition = Shader.PropertyToID("_StartPosition");
 
         private void Start()
         {
@@ -65,8 +69,29 @@ namespace Objects
         public IEnumerator DestroyObject()
         {
             // TODO: disintegration effect
+            var objRenderer = _spawnedObject.GetComponent<Renderer>();
+
+            var destructionAmount = 0f;
+            objRenderer.material.SetVector(StartPosition, Vector2.zero);
+
+            var objCollider = _spawnedObject.GetComponent<Collider2D>();
+            objCollider.enabled = false;
+            var rb = _spawnedObject.GetComponent<Rigidbody2D>();
+            rb.gravityScale = -1f;
+
             SfxManager.Instance.Play(objectDestroySound);
-            DestroyImmediate(_spawnedObject);
+            while (destructionAmount < 0.9f)
+            {
+                destructionAmount += 0.9f * Time.fixedDeltaTime;
+                objRenderer.material.SetFloat(Amount, destructionAmount);
+
+                yield return null;
+            }
+            
+            _spawnedObject.SetActive(false);
+            var obj = _spawnedObject;
+            // the object blinks for a frame if destroyed immediately, so delay the destruction
+            StartCoroutine(Util.DelayFrames(() => DestroyImmediate(obj), 1));
             yield return null;
         }
         
@@ -80,15 +105,31 @@ namespace Objects
         private IEnumerator DelayedSpawnObject()
         {
             SfxManager.Instance.Play(objectCreateSound);
+            
+            _spawnedObject = Instantiate(objectPrefab, spawnPosition.position, Quaternion.identity);
+            var objRenderer = _spawnedObject.GetComponent<Renderer>();
+            var rb = _spawnedObject.GetComponent<Rigidbody2D>();
+            rb.isKinematic = true;
+            objRenderer.material.SetVector(StartPosition, Vector2.zero);
+            objRenderer.material.SetFloat(Amount, 1f);
+
+            var amount = 1f;
+            
             foreach(var particle in particles)
                 particle.Play();
-            
-            yield return new WaitForSeconds(.8f);
-            
-            foreach(var particle in particles)
-                particle.Stop();
 
-            _spawnedObject = Instantiate(objectPrefab, spawnPosition.position, Quaternion.identity);
+            while (amount >= 0f)
+            {
+                amount -= .8f * Time.fixedDeltaTime;
+                objRenderer.material.SetFloat(Amount, amount);
+                yield return null;
+            }
+
+            rb.isKinematic = false;
+            objRenderer.material.SetFloat(Amount, 0f);
+
+            foreach (var particle in particles)
+                particle.Stop();
         }
     }
 }
