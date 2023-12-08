@@ -10543,6 +10543,7 @@ GameObject:
   - component: {fileID: 207898283}
   - component: {fileID: 207898282}
   - component: {fileID: 207898281}
+  - component: {fileID: 207898285}
   m_Layer: 0
   m_Name: UnaryModifier
   m_TagString: Untagged
@@ -10562,8 +10563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f28567d83c453eb86fac364d3c9f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  op: 1
-  connectedReceiver: {fileID: 570661339}
+  op: 0
+  connectedReceiver: {fileID: 1846000658}
 --- !u!61 &207898282
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10670,12 +10671,24 @@ Transform:
   m_GameObject: {fileID: 207898280}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 1, z: 0}
+  m_LocalPosition: {x: 8, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &207898285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207898280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732cc1737dc54c2294dc5982d63ce589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &217726414
 GameObject:
   m_ObjectHideFlags: 0
@@ -27386,7 +27399,7 @@ PrefabInstance:
     - target: {fileID: 8203691955565342714, guid: 84755002de63cdd348722e4daab4ddc3, type: 3}
       propertyPath: connectedReceiver
       value: 
-      objectReference: {fileID: 1846000658}
+      objectReference: {fileID: 207898284}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
