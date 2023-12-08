@@ -16562,6 +16562,7 @@ MonoBehaviour:
   enterEditModeSound: {fileID: 8300000, guid: f7a71b0b0b7a5177a9cb4aead211e3b2, type: 3}
   exitEditModeSound: {fileID: 8300000, guid: a85079191702066c5b5d7c7e48783299, type: 3}
   visualEditingNotifier: {fileID: 874979561}
+  moreVisualEditingNotifier: {fileID: 1056438596}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22254,10 +22255,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1056438596}
+  - {fileID: 874979561}
   - {fileID: 825981755}
   - {fileID: 1301885196}
-  - {fileID: 874979561}
-  - {fileID: 1056438596}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -28845,6 +28846,10 @@ PrefabInstance:
     - target: {fileID: 3055710435561118059, guid: 84755002de63cdd348722e4daab4ddc3, type: 3}
       propertyPath: m_Name
       value: WallLever
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203691955565342714, guid: 84755002de63cdd348722e4daab4ddc3, type: 3}
+      propertyPath: state
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8203691955565342714, guid: 84755002de63cdd348722e4daab4ddc3, type: 3}
       propertyPath: connectedReceiver

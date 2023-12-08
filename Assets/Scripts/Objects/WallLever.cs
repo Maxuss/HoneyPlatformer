@@ -1,14 +1,13 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Level;
+using Program;
 using Program.Channel;
 using UnityEngine;
 using Utils;
 
 namespace Objects
 {
-    public class WallLever: MonoBehaviour, IInteractable, IChannelSender
+    public class WallLever: MonoBehaviour, IInteractable, IChannelSender, IActionContainer
     {
         [SerializeField]
         private bool state;
@@ -53,6 +52,25 @@ namespace Objects
         public void Disconnect()
         {
             _rx = null;
+        }
+
+        public string Name => "Рычаг";
+        public string Description => "При нажатии выводит сигнал 1/0 в зависимости от нового состояния.";
+
+        public ActionInfo[] SupportedActions { get; } = new[]
+        {
+            new ActionInfo
+            {
+                ActionName = "Активация",
+                ActionDescription = "При активации выводит сигнал 1, при деактивации - 0."
+            }
+        };
+
+        public ProgrammableType Type { get; } = ProgrammableType.Emitter;
+        public ActionData SelectedAction { get; set; }
+        public void Begin(ActionData action)
+        {
+            // its a lever, do nothing
         }
     }
 }

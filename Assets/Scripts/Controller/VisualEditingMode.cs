@@ -131,7 +131,7 @@ namespace Controller
             // changed lines but im tired)
             _linesShown = true;
             if(!_tipsHidden)
-                moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f).OnComplete(() => moreVisualEditingNotifier.gameObject.SetActive(false));
+                moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f);
             ClearLines();
             RenderAllLines();
         }

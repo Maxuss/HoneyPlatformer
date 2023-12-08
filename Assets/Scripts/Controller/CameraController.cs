@@ -28,6 +28,8 @@ namespace Controller
 
         [SerializeField]
         private RectTransform visualEditingNotifier;
+        [SerializeField]
+        private RectTransform moreVisualEditingNotifier;
 
         private Camera _camera;
         private VisualEditingMode _visual;
@@ -179,7 +181,8 @@ namespace Controller
 
         private void HideToast()
         {
-            visualEditingNotifier.DOAnchorPos(new Vector3(-142f, 50f), 1f).OnComplete(() => visualEditingNotifier.gameObject.SetActive(false));
+            visualEditingNotifier.DOAnchorPos(new Vector3(-142f, 50f), 1f);
+            moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f);
         }
 
         private IEnumerator ExitProgramEffect()
