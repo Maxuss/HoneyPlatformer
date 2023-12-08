@@ -116,6 +116,7 @@ namespace Program.UI
             var blacklist = editObj.TryGetComponent<BlacklistActions>(out var bl)
                 ? bl.BlacklistedActions
                 : new int[] { };
+
             foreach (var action in _currentlyEditing.SupportedActions)
             {
                 if (blacklist.Contains(idx))
@@ -156,60 +157,7 @@ namespace Program.UI
                     
                     _selectedAction.ActionIndex = idxCl;
 
-                    // Handling action description change
-                    
-                    // First child is the name
-                    actionDescription.GetChild(0).GetComponent<TMP_Text>().text = action.ActionName;
-
-                    // Second child is the description
-                    actionDescription.GetChild(1).GetComponent<TMP_Text>().text = action.ActionDescription;
-                    
-                    // Third child is the empty parameter selection
-                    var paramSelect = actionDescription.GetChild(2);
-                    while(paramSelect.childCount > 0)
-                        DestroyImmediate(paramSelect.GetChild(0).gameObject);
-                    
-                    switch (action.ValueType)
-                    {
-                        case ActionValueType.Enum:
-                            var enumValues = action.EnumType!.GetEnumValues().Cast<object>().AsEnumerable().ToList();
-                            var enumSelection = Instantiate(enumSelectionPrefab, paramSelect);
-                            var enumText = enumSelection.transform.GetChild(0).GetComponent<TMP_Text>();
-                            enumText.text = action.ParameterName!;
-                            var dropdown = enumSelection.transform.GetChild(1).GetComponent<TMP_Dropdown>();
-                            Debug.Log(enumValues[0]);
-                            dropdown.options = enumValues
-                                .Select(each => Enum.GetName(action.EnumType!, each))
-                                .Select(each => new TMP_Dropdown.OptionData
-                                {
-                                    text = each
-                                })
-                                .ToList();
-                            dropdown.value = 0;
-                            dropdown.onValueChanged.AddListener(val =>
-                            {
-                                Debug.Log(Enum.ToObject(action.EnumType, val));
-                                _selectedAction.StoredValue = Enum.ToObject(action.EnumType, val);
-                            });
-                            break;
-                        case ActionValueType.Float:
-                            var floatSelection = Instantiate(floatSelectionPrefab, paramSelect).transform;
-                            floatSelection.GetChild(0).GetComponent<TMP_Text>().text = action.ParameterName;
-                            var slider = floatSelection.transform.GetChild(2).GetComponent<Slider>();
-                            slider.maxValue = action.MaxFloatValue;
-                            slider.value = 0;
-                            slider.onValueChanged.AddListener(val =>
-                            {
-                                _selectedAction.StoredValue = val;
-                                floatSelection.GetChild(1).GetComponent<TMP_Text>().text =
-                                    Mathf.RoundToInt(val).ToString();
-                            });
-                            break;
-                        case ActionValueType.Unit:
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
+                    BuildSelectedActionSubmenu(action);
                     
                     SfxManager.Instance.Play(terminalButtonClickedSound, 0.3f);
                 };
@@ -225,8 +173,75 @@ namespace Program.UI
                 _currentlyEditing.Type == ProgrammableType.Emitter ? emitterIcon : executorIcon;
             objectDescriptionHeader.GetChild(2).GetComponent<TMP_Text>().text =
                 _currentlyEditing.Type == ProgrammableType.Emitter ? "Эмиттер" : "Исполнитель";
-
+            
             objectDescriptionBody.GetComponentInChildren<TMP_Text>().text = _currentlyEditing.Description;
+            
+            BuildSelectedActionSubmenu(_currentlyEditing.SupportedActions[_currentlyEditing.SelectedAction.ActionIndex]);
+
+            return;
+
+            void BuildSelectedActionSubmenu(ActionInfo action)
+            {
+                // Handling action description change
+                    
+                // First child is the name
+                actionDescription.GetChild(0).GetComponent<TMP_Text>().text = action.ActionName;
+
+                // Second child is the description
+                actionDescription.GetChild(1).GetComponent<TMP_Text>().text = action.ActionDescription;
+                    
+                // Third child is the empty parameter selection
+                var paramSelect = actionDescription.GetChild(2);
+                while(paramSelect.childCount > 0)
+                    DestroyImmediate(paramSelect.GetChild(0).gameObject);
+                    
+                switch (action.ValueType)
+                {
+                    case ActionValueType.Enum:
+                        var enumValues = action.EnumType!.GetEnumValues().Cast<object>().AsEnumerable().ToList();
+                        var enumSelection = Instantiate(enumSelectionPrefab, paramSelect);
+                        var enumText = enumSelection.transform.GetChild(0).GetComponent<TMP_Text>();
+                        enumText.text = action.ParameterName!;
+                        var dropdown = enumSelection.transform.GetChild(1).GetComponent<TMP_Dropdown>();
+                        Debug.Log(enumValues[0]);
+                        dropdown.options = enumValues
+                            .Select(each => Enum.GetName(action.EnumType!, each))
+                            .Select(each => new TMP_Dropdown.OptionData
+                            {
+                                text = each
+                            })
+                            .ToList();
+                        dropdown.value = _currentlyEditing.SelectedAction.StoredValue == null ? 0 : (int) _currentlyEditing.SelectedAction.StoredValue;
+                        _selectedAction.StoredValue = Enum.ToObject(action.EnumType, dropdown.value);
+                        dropdown.onValueChanged.AddListener(val =>
+                        {
+                            Debug.Log(Enum.ToObject(action.EnumType, val));
+                            _selectedAction.StoredValue = Enum.ToObject(action.EnumType, val);
+                        });
+                        break;
+                    case ActionValueType.Float:
+                        var floatSelection = Instantiate(floatSelectionPrefab, paramSelect).transform;
+                        floatSelection.GetChild(0).GetComponent<TMP_Text>().text = action.ParameterName;
+                        var slider = floatSelection.transform.GetChild(2).GetComponent<Slider>();
+                        var max = floatSelection.GetChild(3).GetComponent<TMP_Text>();
+                        max.text = action.MaxFloatValue.ToString();
+                        slider.maxValue = action.MaxFloatValue;
+                        slider.value = _currentlyEditing.SelectedAction.StoredValue == null ? 0f : (float) _currentlyEditing.SelectedAction.StoredValue;
+                        _selectedAction.StoredValue = slider.value;
+                        floatSelection.GetChild(1).GetComponent<TMP_Text>().text = Mathf.RoundToInt(slider.value).ToString();
+                        slider.onValueChanged.AddListener(val =>
+                        {
+                            _selectedAction.StoredValue = val;
+                            floatSelection.GetChild(1).GetComponent<TMP_Text>().text =
+                                Mathf.RoundToInt(val).ToString();
+                        });
+                        break;
+                    case ActionValueType.Unit:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
         }
     }
 }

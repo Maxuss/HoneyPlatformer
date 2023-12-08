@@ -268,11 +268,6 @@ namespace Objects
         {
             // doing nothing with the float for now
         }
-
-        public void NotifyOfDisconnect(IChannelReceiver disconnectedRx)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public enum LaserConfig

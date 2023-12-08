@@ -14,11 +14,11 @@ namespace Program
         private IActionContainer _actionContainer;
         private IChannelSender _tx;
         private IChannelReceiver _rx;
-        
-        private static readonly int ShouldHighlight = Shader.PropertyToID("_ShouldHighlight");
-        private static readonly int HighlightAmount = Shader.PropertyToID("_HighlightAmount");
 
-        private void Start()
+        protected static readonly int ShouldHighlight = Shader.PropertyToID("_ShouldHighlight");
+        protected static readonly int HighlightAmount = Shader.PropertyToID("_HighlightAmount");
+
+        protected virtual void Start()
         {
             _renderer = GetComponent<Renderer>();
             _actionContainer = GetComponent<IActionContainer>();
@@ -27,7 +27,7 @@ namespace Program
             _rx = GetComponent<IChannelReceiver>();
         }
 
-        private IEnumerator OnMouseEnter()
+        public virtual IEnumerator OnMouseEnter()
         {
             if (!CameraController.Instance.VisualEditing.Enabled)
                 yield break;
@@ -44,13 +44,13 @@ namespace Program
             _renderer.material.SetFloat(HighlightAmount, 1f);
         }
 
-        private void OnMouseExit()
+        public  virtual void OnMouseExit()
         {
             _renderer.material.SetFloat(ShouldHighlight, 0f);
             _renderer.material.SetFloat(HighlightAmount, 0f);
         }
 
-        public void OnPointerClick(PointerEventData e)
+        public virtual void OnPointerClick(PointerEventData e)
         {
             if (!CameraController.Instance.VisualEditing.Enabled)
                 return;

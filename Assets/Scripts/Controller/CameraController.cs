@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using Level;
+using Objects;
 using Program;
 using Program.UI;
 using UnityEngine;
@@ -186,12 +187,6 @@ namespace Controller
             _transitioningProgram = true;
             SfxManager.Instance.Play(exitEditModeSound, .7f);
             
-            foreach (var programmable in Util.GetAllComponents<IActionContainer>())
-            {
-                var render = (programmable as MonoBehaviour)?.GetComponent<Renderer>();
-                render!.material.SetFloat(OutlineThickness, 0f);
-            }
-            
             var amount = .9f;
             while (amount > 0f)
             {
@@ -204,6 +199,16 @@ namespace Controller
             
             foreach (var programmable in Util.GetAllComponents<IActionContainer>())
             {
+                if (programmable is ConveyorGroup group)
+                {
+                    // grouped objects go here
+                    foreach (var belt in group.InnerBelts)
+                    {
+                        belt.GetComponent<Renderer>().material.SetFloat(OutlineThickness, 0f);
+                    }
+
+                    continue;
+                }
                 var render = (programmable as MonoBehaviour)?.GetComponent<Renderer>();
                 render!.material.SetFloat(OutlineThickness, 0f);
             }
@@ -229,6 +234,16 @@ namespace Controller
             
             foreach (var programmable in Util.GetAllComponents<IActionContainer>())
             {
+                if (programmable is ConveyorGroup group)
+                {
+                    // grouped objects go here
+                    foreach (var belt in group.InnerBelts)
+                    {
+                        belt.GetComponent<Renderer>().material.SetFloat(OutlineThickness, 1f);
+                    }
+
+                    continue;
+                }
                 var render = (programmable as MonoBehaviour)?.GetComponent<Renderer>();
                 render!.material.SetFloat(OutlineThickness, 1f);
             }
