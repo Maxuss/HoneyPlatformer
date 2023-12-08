@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Level;
+using Program;
+using Program.Channel;
 using UnityEngine;
 using Utils;
 using UnityEngine.Serialization;
 
 namespace Objects
 {
-    public class LaserEmitter: MonoBehaviour
+    public class LaserEmitter: MonoBehaviour, IActionContainer, IChannelReceiver
     {
         [SerializeField]
         private LineRenderer laserLine;
@@ -35,6 +37,8 @@ namespace Objects
         [SerializeField]
         private bool isActive = false;
 
+        private LaserConfig _laserConfig;
+        private bool _stateInner;
         private ParticleSystem[] _particles;
         
         public EmitterColor EmitterType;
@@ -120,7 +124,7 @@ namespace Objects
             RaycastHit2D hit;
             var verts = new List<Vector3>();
             verts.Add(laserPos.position);
-            var currentPoint = transform.position + (-transform.right * 0.5f + transform.up * 0.5f);
+            var currentPoint = transform.position;
             var direction = transform.up;
 
             while(currentLength > 0 && currentBounces >= 0){
@@ -170,5 +174,87 @@ namespace Objects
             Red,
             Purple
         }
+
+        public string Name => $"Источник Лазера ({EmitterType switch { EmitterColor.Blue => "Синий", EmitterColor.Yellow => "Желтый", EmitterColor.Red => "Красный", EmitterColor.Purple => "Фиолетовый" }})";
+        public string Description => "Создает лазерный луч своего цвета в зависимости от настроек.";
+
+        public ActionInfo[] SupportedActions { get; } = {
+            new()
+            {
+                ActionName = "Постоянный луч",
+                ActionDescription = "Выводит постоянный луч когда получает сигнал 1 до тех пор пока не поступает сигнал 0."
+            },
+            new()
+            {
+                ActionName = "Импульс",
+                ActionDescription = "При получении сигнала 1 выводит луч на 1 секунду, затем выключает лазер."
+            }
+        };
+
+        public ProgrammableType Type { get; } = ProgrammableType.Emitter;
+        public ActionData SelectedAction { get; set; }
+        public void Begin(ActionData action)
+        {
+            _laserConfig = (LaserConfig) Enum.ToObject(typeof(LaserConfig), action.ActionIndex);
+            RecalculateState();
+        }
+
+        private void RecalculateState()
+        {
+            switch (_laserConfig)
+            {
+                case LaserConfig.ConstantRay when isActive:
+                    laserLine.gameObject.SetActive(true);
+                    SfxManager.Instance.Play(laserActivate, 0.1f);
+                    RecalculateReflections();
+                    foreach (var ps in _particles)
+                    {
+                        ps.Play();
+                    }
+                    LaserManager.Instance.ActivateLaser();
+                    break;
+                case LaserConfig.ConstantRay or LaserConfig.Impulse when !isActive:
+                    laserLine.gameObject.SetActive(false);
+                    SfxManager.Instance.Play(laserDeactivate, 0.1f);
+                    foreach (var ps in _particles)
+                    {
+                        ps.Stop();
+                    }
+                    LaserManager.Instance.DeactivateLaser();
+                    break;
+                case LaserConfig.Impulse when isActive:
+                    laserLine.gameObject.SetActive(true);
+                    SfxManager.Instance.Play(laserActivate, 0.1f);
+                    RecalculateReflections();
+                    foreach (var ps in _particles)
+                    {
+                        ps.Play();
+                    }
+                    LaserManager.Instance.ActivateLaser();
+                    StartCoroutine(Util.Delay(() =>
+                    {
+                        isActive = false;
+                        RecalculateState();
+                    }, 1));
+                    break;
+            }
+        }
+
+        public void ReceiveBool(Transform source, bool b)
+        {
+            isActive = b;
+            RecalculateState();
+        }
+
+        public void ReceiveFloat(Transform source, float v)
+        {
+            // doing nothing with the float for now
+        }
+    }
+
+    public enum LaserConfig
+    {
+        ConstantRay,
+        Impulse
     }
 }

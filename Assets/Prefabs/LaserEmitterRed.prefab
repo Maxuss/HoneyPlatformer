@@ -25,13 +25,13 @@ Transform:
   m_GameObject: {fileID: 698177833258525791}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.014999926, y: 0.018999755, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2266698591442907807}
   - {fileID: 1275108919424609456}
-  m_Father: {fileID: 3889988290670511138}
+  m_Father: {fileID: 8745126807061309405}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1356876817689175000
 GameObject:
@@ -14684,12 +14684,13 @@ Transform:
   m_GameObject: {fileID: 6562491249969107610}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.15, z: 0}
+  m_LocalPosition: {x: -0.016, y: 0.184, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1330797963155087470}
   - {fileID: 256689546047260531}
+  - {fileID: 1772639081846479439}
   m_Father: {fileID: 3889988290670511138}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7619619168298949304
@@ -14703,7 +14704,8 @@ GameObject:
   - component: {fileID: 3889988290670511138}
   - component: {fileID: 2190785241963380863}
   - component: {fileID: 3157399259766058473}
-  - component: {fileID: -6661281135508805031}
+  - component: {fileID: 7462771408131726721}
+  - component: {fileID: 9095326678891835855}
   m_Layer: 0
   m_Name: LaserEmitterRed
   m_TagString: Untagged
@@ -14726,7 +14728,6 @@ Transform:
   m_Children:
   - {fileID: 8784395592596985658}
   - {fileID: 8745126807061309405}
-  - {fileID: 1772639081846479439}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2190785241963380863
@@ -14749,7 +14750,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 138c43a53c36dba5288c6d827b6b446a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14806,7 +14807,19 @@ MonoBehaviour:
   laserDeactivate: {fileID: 8300000, guid: 70486ff8efc446f9681fc72eb1184910, type: 3}
   isActive: 1
   EmitterType: 2
---- !u!61 &-6661281135508805031
+--- !u!114 &7462771408131726721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7619619168298949304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732cc1737dc54c2294dc5982d63ce589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &9095326678891835855
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14838,18 +14851,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0026693344, y: -0.001383543}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 1, y: 0}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.125, y: 1.125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.0075521, y: 1.0047855}
   m_EdgeRadius: 0
 --- !u!1 &7979802349618490785
 GameObject:
