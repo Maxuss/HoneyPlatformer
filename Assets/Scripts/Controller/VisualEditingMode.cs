@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Program;
 using Program.Channel;
 using UnityEngine;
@@ -18,7 +19,12 @@ namespace Controller
         private GameObject linePrefab;
         [SerializeField]
         private List<Gradient> lineColors;
-        
+        [SerializeField]
+        private RectTransform moreVisualEditingNotifier;
+        [SerializeField]
+        private RectTransform visualEditingNotifier;
+
+        private bool _tipsHidden;
         private List<LineRenderer> _lines = new();
         private LineRenderer _connectingLine;
 
@@ -58,12 +64,37 @@ namespace Controller
                 }
             }
 
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                if (_tipsHidden)
+                {
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(50f, -58f), .5f);
+                    visualEditingNotifier.DOAnchorPos(new Vector2(50f, 50f), .5f);
+                }
+                else
+                {
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f);
+                    visualEditingNotifier.DOAnchorPos(new Vector2(-142f, 50f), .5f);
+                }
+
+                _tipsHidden = !_tipsHidden;
+            }
+
             if (Input.GetKeyDown(KeyCode.C))
             {
-                if(_linesShown)
+                if (_linesShown)
+                {
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f);
+
                     ClearLines();
+                }
                 else
+                {
+                    moreVisualEditingNotifier.gameObject.SetActive(true);
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(50f, -58f), .5f);
                     RenderAllLines();
+                }
+
                 _linesShown = !_linesShown;
             }
 
@@ -88,13 +119,19 @@ namespace Controller
             ConnectingFrom = null;
             ConnectingTo = null;
             IsConnecting = false;
-            
-            DestroyImmediate(_connectingLine.gameObject);
-            _connectingLine = null;
-            
+
+            if (_connectingLine != null)
+            {
+                DestroyImmediate(_connectingLine.gameObject);
+                _connectingLine = null;
+            }
+
             // re-rendering all lines
             // (we can probably optimize this further by only re-rendering
             // changed lines but im tired)
+            _linesShown = true;
+            if(!_tipsHidden)
+                moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f).OnComplete(() => moreVisualEditingNotifier.gameObject.SetActive(false));
             ClearLines();
             RenderAllLines();
         }
@@ -115,6 +152,8 @@ namespace Controller
             var txPos = ((MonoBehaviour)tx).transform.position;
             foreach (var rx in tx.ConnectedRx)
             {
+                if (rx == null)
+                    continue;
                 var rxPos = ((MonoBehaviour)rx).transform.position;
                 var line = Instantiate(linePrefab, renderLineContainer).GetComponent<LineRenderer>();
 

@@ -54,6 +54,14 @@ namespace Program
         {
             if (!CameraController.Instance.VisualEditing.Enabled)
                 return;
+
+            if (CameraController.Instance.VisualEditing.Enabled && Input.GetKey(KeyCode.LeftAlt) && _tx != null)
+            {
+                _tx.Disconnect();
+                CameraController.Instance.VisualEditing.FinishConnection();
+                return;
+            }
+            
             switch (e.button)
             {
                 case PointerEventData.InputButton.Left when CameraController.Instance.VisualEditing.IsConnecting:
