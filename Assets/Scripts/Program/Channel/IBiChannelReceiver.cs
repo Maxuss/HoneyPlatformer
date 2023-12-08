@@ -5,12 +5,12 @@ namespace Program.Channel
 {
     public interface IBiChannelReceiver: IChannelReceiver
     {
-        protected Transform SourceLeft { get; }
-        protected Transform SourceRight { get; }
-
+        Transform SourceLeft { get; set; }
+        Transform SourceRight { get; set; }
+        
         void ReceiveBool(MessageDirection direction, Transform src, bool b);
         void ReceiveFloat(MessageDirection direction, Transform src, float v);
-
+        
         void IChannelReceiver.ReceiveBool(Transform source, bool b)
         {
             // two checks are important here so that a different object is not sending messages

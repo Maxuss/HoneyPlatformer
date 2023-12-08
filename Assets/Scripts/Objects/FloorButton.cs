@@ -8,7 +8,7 @@ using Utils;
 
 namespace Objects
 {
-    public class FloorButton: MonoBehaviour, IParentCollisionHandler, IChannelSender
+    public class FloorButton: MonoBehaviour, IParentCollisionHandler, IActionContainer, IChannelSender
     {
         [SerializeField]
         private FloorButtonCollisionDetection detection;
@@ -50,7 +50,7 @@ namespace Objects
                 )
             {
                 _pressed = other;
-                _rx.ReceiveBool(transform, true);
+                _rx?.ReceiveBool(transform, true);
                 _isPressed = true;
                 _spriteRenderer.sprite = pressedSprite;
                 SfxManager.Instance.Play(pressedSound, 0.2f);
@@ -62,18 +62,60 @@ namespace Objects
             if (!_isPressed || _pressed != other) return;
             
             _isPressed = false;
-            _rx.ReceiveBool(transform, false);
+            _rx?.ReceiveBool(transform, false);
             _spriteRenderer.sprite = unpressedSprite;
             SfxManager.Instance.Play(unpressedSound, 0.2f);
         }
-
-        public enum FloorButtonCollisionDetection
+        
+        public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
+        public bool ConnectionLocked { get; set; }
+        public void Connect(IChannelReceiver rx)
         {
-            Anything,
-            Player,
-            Box,
+            _rx = rx;
+            _rx.ReceiveBool(transform, _isPressed);
         }
 
-        public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
+        public void Disconnect()
+        {
+            _rx = null;
+        }
+
+        public string Name => "Нажимная кнопка";
+
+        public string Description =>
+            "Активируется при нажатии игроком или определенным предметом в зависимости от настройки.";
+
+        public ActionInfo[] SupportedActions { get; } = new[]
+        {
+            new ActionInfo
+            {
+                ActionName = "Любая активация",
+                ActionDescription = "Активируется когда любой объект находится на кнопке"
+            },
+            new ActionInfo
+            {
+                ActionName = "Активация игроком",
+                ActionDescription = "Активируется когда игрок наступает на кнопку",
+            },
+            new ActionInfo
+            {
+                ActionName = "Активация тяж. кубом",
+                ActionDescription = "Активируется когда на кнопке находится утяжеленный куб",
+            },
+        };
+
+        public ProgrammableType Type { get; } = ProgrammableType.Emitter;
+        public ActionData SelectedAction { get; set; }
+        public void Begin(ActionData action)
+        {
+            detection = (FloorButtonCollisionDetection) action.ActionIndex;
+        }
+    }
+    
+    public enum FloorButtonCollisionDetection
+    {
+        Anything,
+        Player,
+        Box,
     }
 }

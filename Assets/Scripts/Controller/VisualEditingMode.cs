@@ -16,17 +16,28 @@ namespace Controller
         private Transform renderLineContainer;
         [SerializeField]
         private GameObject linePrefab;
+        [SerializeField]
+        private List<Gradient> lineColors;
         
         private List<LineRenderer> _lines = new();
+        private LineRenderer _connectingLine;
 
         public bool Enabled { get; set; }
         public bool Editing { get; set; }
+        public bool IsConnecting { get; set; }
+        /// <summary>
+        /// For when a sender was clicked first
+        /// </summary>
+        public IChannelSender ConnectingFrom { get; set; }
+        /// <summary>
+        /// For when a receiver was clicked first
+        /// </summary>
+        public IChannelReceiver ConnectingTo { get; set; }
 
         private Camera _camera;
         private Vector3 _velocity;
         private bool _linesShown;
 
-        // TODO: wire rendering
         private void Start()
         {
             _camera = GetComponent<Camera>();
@@ -36,6 +47,16 @@ namespace Controller
         {
             if (!Enabled || Editing)
                 return;
+
+            if (IsConnecting)
+            {
+                _connectingLine.SetPosition(1, _camera.ScreenToWorldPoint(Input.mousePosition));
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    FinishConnection();
+                }
+            }
 
             if (Input.GetKeyDown(KeyCode.C))
             {
@@ -53,21 +74,51 @@ namespace Controller
                 Vector3.SmoothDamp(transform.position, newPos, ref _velocity, smootheningModifier, Mathf.Infinity);
         }
 
-        public void RenderAllLines()
+        public void SetupConnectingLine(Vector3 start)
         {
+            _connectingLine = Instantiate(linePrefab, renderLineContainer).GetComponent<LineRenderer>();
+            DestroyImmediate(_connectingLine.transform.GetChild(0).gameObject);
+            DestroyImmediate(_connectingLine.transform.GetChild(0).gameObject);
+            _connectingLine.positionCount = 2;
+            _connectingLine.SetPosition(0, start);
+        }
+
+        public void FinishConnection()
+        {
+            ConnectingFrom = null;
+            ConnectingTo = null;
+            IsConnecting = false;
+            
+            DestroyImmediate(_connectingLine.gameObject);
+            _connectingLine = null;
+            
+            // re-rendering all lines
+            // (we can probably optimize this further by only re-rendering
+            // changed lines but im tired)
+            ClearLines();
+            RenderAllLines();
+        }
+
+        private void RenderAllLines()
+        {
+            var groupId = 0;
             foreach(var obj in Util.GetAllComponents<IChannelSender>())
             {
-                RenderLines(obj);
+                groupId %= lineColors.Count;
+                RenderLine(obj, lineColors[groupId]);
+                groupId++;
             }
         }
-        
-        public void RenderLines(IChannelSender tx)
+
+        private void RenderLine(IChannelSender tx, Gradient newGradient)
         {
             var txPos = ((MonoBehaviour)tx).transform.position;
             foreach (var rx in tx.ConnectedRx)
             {
                 var rxPos = ((MonoBehaviour)rx).transform.position;
                 var line = Instantiate(linePrefab, renderLineContainer).GetComponent<LineRenderer>();
+
+                line.colorGradient = newGradient;
                 line.SetPositions(new[] { txPos, rxPos });
                 var center = 0.5f * (rxPos - txPos) + txPos;
                 var arrow = line.transform.GetChild(0);
@@ -76,9 +127,17 @@ namespace Controller
                 quaternion.x = 0;
                 quaternion.y = 0;
                 arrow.rotation = quaternion;
-
                 var sizeModifier = Mathf.Clamp((rxPos - txPos).sqrMagnitude / 64f, 0.58f, 1f);
                 arrow.localScale *= sizeModifier;
+
+                if (!tx.ConnectionLocked)
+                    DestroyImmediate(line.transform.GetChild(1).gameObject);
+                else
+                {
+                    var lockPos = line.transform.GetChild(1);
+                    lockPos.position = 0.7f * (rxPos - txPos) + txPos;
+                }
+
                 _lines.Add(line);
             }
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Level;
 using Program.Channel;
 using UnityEngine;
@@ -37,9 +38,21 @@ namespace Objects
             state = !state;
             _spriteRenderer.sprite = state ? onSprite : offSprite;
             SfxManager.Instance.Play(toggleSound, 0.2f);
-            _rx.ReceiveBool(transform, state);
+            _rx?.ReceiveBool(transform, state);
         }
 
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
+
+        bool IChannelSender.ConnectionLocked { get; set; }
+        public void Connect(IChannelReceiver rx)
+        {
+            _rx = rx;
+            _rx.ReceiveBool(transform, state);
+        }
+
+        public void Disconnect()
+        {
+            _rx = null;
+        }
     }
 }

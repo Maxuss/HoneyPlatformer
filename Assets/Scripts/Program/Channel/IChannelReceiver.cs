@@ -12,5 +12,12 @@ namespace Program.Channel
     public interface IChannelSender
     {
         public List<IChannelReceiver> ConnectedRx { get; }
+        /// <summary>
+        /// If true, the connection can not be modified
+        /// </summary>
+        public bool ConnectionLocked { get; set; }
+
+        public void Connect(IChannelReceiver rx);
+        public void Disconnect();
     }
 }

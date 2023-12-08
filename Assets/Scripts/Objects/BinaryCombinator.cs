@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Program;
 using Program.Channel;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 
 namespace Objects
@@ -14,17 +15,17 @@ namespace Objects
         private BinaryOperation operation;
         
         [SerializeField]
-        private Transform sourceLeft;
-        [SerializeField]
-        private Transform sourceRight;
-
-        [SerializeField]
         private Transform connectedReceiver;
+        
+        
+        [field: SerializeField]
+        [field: FormerlySerializedAs("sourceLeft")]
+        public Transform SourceLeft { get; set; }
+        [field: SerializeField]
+        [field: FormerlySerializedAs("sourceRight")]
+        public Transform SourceRight { get; set; }
 
-        Transform IBiChannelReceiver.SourceLeft => sourceLeft;
-
-        Transform IBiChannelReceiver.SourceRight => sourceRight;
-
+        private bool _swapRight;
         private bool _left;
         private bool _right;
         private bool _state;
@@ -39,7 +40,7 @@ namespace Objects
             _rx = connectedReceiver.GetComponent<IChannelReceiver>();
             _renderer = GetComponent<Renderer>();
         }
-
+        
         public void ReceiveBool(MessageDirection direction, Transform src, bool b)
         {
             if (direction == MessageDirection.Left)
@@ -73,7 +74,7 @@ namespace Objects
                 _ => _state
             };
             
-            _rx.ReceiveBool(transform, _state);
+            _rx?.ReceiveBool(transform, _state);
             _renderer.material.SetFloat(Output, _state ? 1f : 0f);
         }
 
@@ -122,6 +123,17 @@ namespace Objects
         }
 
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
+        public bool ConnectionLocked { get; set; }
+        public void Connect(IChannelReceiver rx)
+        {
+            _rx = rx;
+            _rx.ReceiveBool(transform, _state);
+        }
+
+        public void Disconnect()
+        {
+            _rx = null;
+        }
     }
 
     public enum BinaryOperation

@@ -37,28 +37,27 @@ namespace Objects
         {
             _isConnected = true;
             _connectedColor = laserColor;
-            Debug.Log($"RECEIVING LASER {laserColor} {_chosenColor}");
             switch (_mode)
             {
                 case ReceiverMode.Any:
                     _state = true;
                     _renderer.sprite = enabledSprite;
-                    _rx.ReceiveBool(transform, _state);
+                    _rx?.ReceiveBool(transform, _state);
                     break;
                 case ReceiverMode.OnlyColor when laserColor == _chosenColor:
                     _state = true;
                     _renderer.sprite = enabledSprite;
-                    _rx.ReceiveBool(transform, _state);
+                    _rx?.ReceiveBool(transform, _state);
                     break;
                 case ReceiverMode.ExceptColor when laserColor != _chosenColor:
                     _state = true;
                     _renderer.sprite = enabledSprite;
-                    _rx.ReceiveBool(transform, _state);
+                    _rx?.ReceiveBool(transform, _state);
                     break;
                 default:
                     _state = false;
                     _renderer.sprite = disabledSprite;
-                    _rx.ReceiveBool(transform, _state);
+                    _rx?.ReceiveBool(transform, _state);
                     break;
             }
         }
@@ -121,6 +120,17 @@ namespace Objects
         }
 
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
+        public bool ConnectionLocked { get; set; }
+        public void Connect(IChannelReceiver rx)
+        {
+            _rx = rx;
+            _rx.ReceiveBool(transform, _state);
+        }
+
+        public void Disconnect()
+        {
+            _rx = null;
+        }
     }
 
     public enum ReceiverMode

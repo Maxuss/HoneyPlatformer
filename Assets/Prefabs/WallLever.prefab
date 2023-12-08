@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2603269894605645361}
   - component: {fileID: 4643563629977387424}
   - component: {fileID: 8203691955565342714}
-  - component: {fileID: 1156494196088423992}
   - component: {fileID: 3870353621862151983}
+  - component: {fileID: -5966924745778538300}
   m_Layer: 8
   m_Name: WallLever
   m_TagString: Untagged
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 138c43a53c36dba5288c6d827b6b446a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,22 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  connectedReceiver: {fileID: 2603269894605645361}
+  connectedReceiver: {fileID: 0}
   onSprite: {fileID: 1841297877, guid: 638273fe56e28c958a52ac4989a83224, type: 3}
   offSprite: {fileID: 2000820432, guid: 638273fe56e28c958a52ac4989a83224, type: 3}
   toggleSound: {fileID: 8300000, guid: fa468d40c084fd6839c7a7fed072a348, type: 3}
---- !u!114 &1156494196088423992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3055710435561118059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f439c1e8c8584d10b0ff0a6722ac9d69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &3870353621862151983
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -161,3 +149,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5966924745778538300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055710435561118059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732cc1737dc54c2294dc5982d63ce589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

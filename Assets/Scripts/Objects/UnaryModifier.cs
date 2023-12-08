@@ -33,7 +33,7 @@ namespace Objects
             _state = op == UnaryOperator.Identity ? b : !b;
             _renderer.material.SetFloat(InputData, b ? 1f : 0f);
             _renderer.material.SetFloat(Output, _state ? 1f : 0f);
-            _rx.ReceiveBool(transform, _state);
+            _rx?.ReceiveBool(transform, _state);
         }
         
         public void ReceiveFloat(Transform source, float v)
@@ -71,10 +71,21 @@ namespace Objects
             op = newOperator;
             _state = !_state;
             _renderer.material.SetFloat(Output, _state ? 1f : 0f);
-            _rx.ReceiveBool(transform, _state);
+            _rx?.ReceiveBool(transform, _state);
         }
 
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
+        public bool ConnectionLocked { get; set; }
+        public void Connect(IChannelReceiver rx)
+        {
+            _rx = rx;
+            _rx.ReceiveBool(transform, _state);
+        }
+
+        public void Disconnect()
+        {
+            _rx = null;
+        }
     }
 
     public enum UnaryOperator

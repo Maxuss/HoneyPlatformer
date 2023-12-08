@@ -170,18 +170,18 @@ namespace Controller
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        public void MoveToastInside()
+        private void MoveToastInside()
         {
             visualEditingNotifier.gameObject.SetActive(true);
             visualEditingNotifier.DOAnchorPos(new Vector3(50f, 50f), 1f);
         }
 
-        public void HideToast()
+        private void HideToast()
         {
             visualEditingNotifier.DOAnchorPos(new Vector3(-142f, 50f), 1f).OnComplete(() => visualEditingNotifier.gameObject.SetActive(false));
         }
 
-        public IEnumerator ExitProgramEffect()
+        private IEnumerator ExitProgramEffect()
         {
             _transitioningProgram = true;
             SfxManager.Instance.Play(exitEditModeSound, .7f);
@@ -195,7 +195,7 @@ namespace Controller
             var amount = .9f;
             while (amount > 0f)
             {
-                amount -= 0.4f * Time.fixedDeltaTime;
+                amount -= 0.6f * Time.fixedDeltaTime;
                 effectRenderer.material.SetFloat(StartAnimationProgress, Mathf.Max(0f, amount));
                 yield return null;
             }
@@ -211,27 +211,28 @@ namespace Controller
             _transitioningProgram = false;
         }
 
-        public IEnumerator EnterProgramEffect()
+        private IEnumerator EnterProgramEffect()
         {
             _transitioningProgram = true;
             SfxManager.Instance.Play(enterEditModeSound, .7f);
             effectRenderer.material.SetFloat(Enabled, 1f);
             
             var amount = 0f;
-
+            
+            while (amount < 1f)
+            {
+                amount += 0.5f * Time.fixedDeltaTime;
+                effectRenderer.material.SetFloat(StartAnimationProgress, amount);
+                yield return null;
+            }
+            effectRenderer.material.SetFloat(StartAnimationProgress, 1f);
+            
             foreach (var programmable in Util.GetAllComponents<IActionContainer>())
             {
                 var render = (programmable as MonoBehaviour)?.GetComponent<Renderer>();
                 render!.material.SetFloat(OutlineThickness, 1f);
             }
-
-            while (amount < 1f)
-            {
-                amount += 0.3f * Time.fixedDeltaTime;
-                effectRenderer.material.SetFloat(StartAnimationProgress, amount);
-                yield return null;
-            }
-            effectRenderer.material.SetFloat(StartAnimationProgress, 1f);
+            
             _transitioningProgram = false;
         }
     }
