@@ -39,6 +39,7 @@ namespace Objects
 
         private LaserConfig _laserConfig;
         private bool _stateInner;
+        private LaserReceiver _connectedRx;
         private ParticleSystem[] _particles;
         
         public EmitterColor EmitterType;
@@ -127,6 +128,9 @@ namespace Objects
             var currentPoint = transform.position;
             var direction = transform.up;
 
+            var hitReceiver = false;
+            LaserReceiver tmpRx = null;
+
             while(currentLength > 0 && currentBounces >= 0){
                 hit = Physics2D.Raycast(currentPoint, direction, currentLength, collisionMask);
                 if (hit)
@@ -141,7 +145,14 @@ namespace Objects
                     }
                     else if (hit.collider.CompareTag("LaserConsumer"))
                     {
-                        hit.collider.GetComponent<LaserConsumer>().ReceiveLaser(EmitterType);
+                        var rx = hit.collider.GetComponent<LaserReceiver>();
+                        if (rx != _connectedRx)
+                        {
+                            rx.ReceiveLaser(EmitterType);
+                            hitReceiver = true;
+                            tmpRx = rx;
+                        }
+
                         currentLength = 0;
                     }
                     else
@@ -156,11 +167,15 @@ namespace Objects
                 }
             }
 
+            if (hitReceiver && _connectedRx != null)
+                _connectedRx.Detach();
+            
+            if(hitReceiver)
+                _connectedRx = tmpRx!;
+
             laserLine.positionCount = verts.Count;
             endVfx.transform.position = (Vector2) verts.Last();
             var secondToLast = verts.Count - 2 < 0 ? transform.position : verts[^2];
-            // TODO: fix normals?
-            // TODO: do it!!
             endVfx.transform.rotation = Quaternion.LookRotation(secondToLast - endVfx.transform.position);
             laserLine.SetPositions(verts.ToArray());
         }
@@ -221,6 +236,9 @@ namespace Objects
                         ps.Stop();
                     }
                     LaserManager.Instance.DeactivateLaser();
+                    if(_connectedRx != null)
+                        _connectedRx.Detach();
+                    _connectedRx = null;
                     break;
                 case LaserConfig.Impulse when isActive:
                     laserLine.gameObject.SetActive(true);

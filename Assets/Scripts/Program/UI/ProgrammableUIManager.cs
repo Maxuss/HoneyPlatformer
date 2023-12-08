@@ -172,11 +172,12 @@ namespace Program.UI
                     switch (action.ValueType)
                     {
                         case ActionValueType.Enum:
-                            var enumValues = action.EnumType!.GetEnumValues().Cast<object>().AsEnumerable();
+                            var enumValues = action.EnumType!.GetEnumValues().Cast<object>().AsEnumerable().ToList();
                             var enumSelection = Instantiate(enumSelectionPrefab, paramSelect);
                             var enumText = enumSelection.transform.GetChild(0).GetComponent<TMP_Text>();
                             enumText.text = action.ParameterName!;
                             var dropdown = enumSelection.transform.GetChild(1).GetComponent<TMP_Dropdown>();
+                            Debug.Log(enumValues[0]);
                             dropdown.options = enumValues
                                 .Select(each => Enum.GetName(action.EnumType!, each))
                                 .Select(each => new TMP_Dropdown.OptionData
@@ -187,6 +188,7 @@ namespace Program.UI
                             dropdown.value = 0;
                             dropdown.onValueChanged.AddListener(val =>
                             {
+                                Debug.Log(Enum.ToObject(action.EnumType, val));
                                 _selectedAction.StoredValue = Enum.ToObject(action.EnumType, val);
                             });
                             break;
