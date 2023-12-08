@@ -161,6 +161,7 @@ namespace Controller
             StartCoroutine(ExitProgramEffect());
             StartCoroutine(Util.Delay(HideToast, 0.2f));
             _visual.Enabled = false;
+            _visual.ClearLines();
             PlayerController.Instance.IsDisabled = false;
             ProgrammableUIManager.Instance.Close();
             _visual.Editing = false;

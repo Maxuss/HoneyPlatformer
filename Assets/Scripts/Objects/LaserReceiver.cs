@@ -1,11 +1,14 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Program;
 using Program.Channel;
 using UnityEngine;
+using Utils;
 
 namespace Objects
 {
-    public class LaserReceiver: MonoBehaviour, IActionContainer
+    public class LaserReceiver: MonoBehaviour, IActionContainer, IChannelSender
     {
         [SerializeField]
         private Transform connectedReceiver;
@@ -116,6 +119,8 @@ namespace Objects
             if(_isConnected)
                 ReceiveLaser(_connectedColor);
         }
+
+        public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
     }
 
     public enum ReceiverMode

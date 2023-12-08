@@ -16470,6 +16470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smootheningModifier: 0.1
   renderLineContainer: {fileID: 0}
+  linePrefab: {fileID: 1168906006037071799, guid: cd93ffbe6a9b70e7b825901dbdc406fa, type: 3}
 --- !u!1 &557272999
 GameObject:
   m_ObjectHideFlags: 0

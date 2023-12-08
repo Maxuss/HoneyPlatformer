@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Level;
 using Program.Channel;
 using UnityEngine;
@@ -6,7 +7,7 @@ using Utils;
 
 namespace Objects
 {
-    public class WallLever: MonoBehaviour, IInteractable
+    public class WallLever: MonoBehaviour, IInteractable, IChannelSender
     {
         [SerializeField]
         private bool state;
@@ -38,5 +39,7 @@ namespace Objects
             SfxManager.Instance.Play(toggleSound, 0.2f);
             _rx.ReceiveBool(transform, state);
         }
+
+        public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
     }
 }

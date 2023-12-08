@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Controller;
+using Program.Channel;
 using Program.UI;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ namespace Program
         {
             if (!CameraController.Instance.VisualEditing.Enabled)
                 yield break;
+            
             var amount = 0f;
 
             _renderer.material.SetFloat(ShouldHighlight, 1f);

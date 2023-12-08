@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Program.Channel
@@ -8,4 +9,8 @@ namespace Program.Channel
         public void ReceiveFloat(Transform source, float v);
     }
 
+    public interface IChannelSender
+    {
+        public List<IChannelReceiver> ConnectedRx { get; }
+    }
 }

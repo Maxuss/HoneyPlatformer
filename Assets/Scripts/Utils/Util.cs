@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Program;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -72,5 +73,7 @@ namespace Utils
                     yield return cmp;
             }
         }
+
+        public static List<T> ListOf<T>(params T[] values) => values.ToList();
     }
 }

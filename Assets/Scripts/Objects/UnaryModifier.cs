@@ -1,11 +1,13 @@
 using System;
+using System.Collections.Generic;
 using Program;
 using Program.Channel;
 using UnityEngine;
+using Utils;
 
 namespace Objects
 {
-    public class UnaryModifier: MonoBehaviour, IChannelReceiver, IActionContainer
+    public class UnaryModifier: MonoBehaviour, IChannelReceiver, IActionContainer, IChannelSender
     {
         [SerializeField]
         private UnaryOperator op;
@@ -71,6 +73,8 @@ namespace Objects
             _renderer.material.SetFloat(Output, _state ? 1f : 0f);
             _rx.ReceiveBool(transform, _state);
         }
+
+        public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
     }
 
     public enum UnaryOperator

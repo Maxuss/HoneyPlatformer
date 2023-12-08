@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Level;
 using Program;
 using Program.Channel;
@@ -7,7 +8,7 @@ using Utils;
 
 namespace Objects
 {
-    public class FloorButton: MonoBehaviour, IParentCollisionHandler
+    public class FloorButton: MonoBehaviour, IParentCollisionHandler, IChannelSender
     {
         [SerializeField]
         private FloorButtonCollisionDetection detection;
@@ -72,5 +73,7 @@ namespace Objects
             Player,
             Box,
         }
+
+        public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
     }
 }
