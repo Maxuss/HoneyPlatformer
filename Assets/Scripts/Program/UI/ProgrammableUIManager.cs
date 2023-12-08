@@ -76,9 +76,20 @@ namespace Program.UI
             _selectedAction = obj.SelectedAction;
             BuildInitialTerminalMenu();
 
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            PlayerController.Instance.IsDisabled = true;
+            CameraController.Instance.VisualEditing.Editing = true;
+        }
+
+        public void Close()
+        {
+            if (!_isEditing)
+                return;
+            _isEditing = false;
+            _currentlyEditing.SelectedAction = _selectedAction;
+            _currentlyEditing.Begin(_selectedAction);
+            terminalObject.SetActive(false);
+            _currentlyEditing = null;
+
+            CameraController.Instance.VisualEditing.Editing = false;
         }
 
         private void Update()
@@ -88,14 +99,7 @@ namespace Program.UI
 
             if (!Input.GetKeyDown(KeyCode.Escape)) return;
             
-            _isEditing = false;
-            _currentlyEditing.SelectedAction = _selectedAction;
-            _currentlyEditing.Begin(_selectedAction);
-            terminalObject.SetActive(false);
-            _currentlyEditing = null;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            PlayerController.Instance.IsDisabled = false;
+            Close();
         }
 
         private void BuildInitialTerminalMenu()

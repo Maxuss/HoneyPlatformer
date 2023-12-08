@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Program;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Utils
 {
@@ -56,6 +59,17 @@ namespace Utils
         public static IEnumerable<TK> Select<TK, T>(this IEnumerator<T> e, Func<T, TK> selector) {
             while (e.MoveNext()) {
                 yield return selector.Invoke(e.Current);
+            }
+        }
+        
+        public static IEnumerable<T> GetAllComponents<T>()
+        {
+            var objects = Resources.FindObjectsOfTypeAll<GameObject>();
+
+            foreach (var obj in objects)
+            {
+                if (obj.scene.isLoaded && obj.TryGetComponent<T>(out var cmp))
+                    yield return cmp;
             }
         }
     }

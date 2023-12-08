@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7420397880517635940}
   - component: {fileID: 7968616684333123633}
   - component: {fileID: 1639660863145089261}
+  - component: {fileID: 27116241261822628}
   m_Layer: 8
   m_Name: ExitDoor
   m_TagString: Untagged
@@ -55,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 138c43a53c36dba5288c6d827b6b446a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,11 +166,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9feb233fcab748f499b9bd7b72d62e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerObject: {fileID: 0}
-  selectTrigger: {fileID: 0}
-  selectAction: {fileID: 0}
-  wiredObject: {fileID: 0}
   nextLevel:
     asset: {fileID: 0}
     guid: 00000000000000000000000000000000
   doorOpen: {fileID: 8300000, guid: f8470458b59315d08bd31a00a372a622, type: 3}
+  doorClose: {fileID: 8300000, guid: 7d75f74de576a9483a37f1add5c387fb, type: 3}
+--- !u!114 &27116241261822628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775435063713946463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732cc1737dc54c2294dc5982d63ce589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

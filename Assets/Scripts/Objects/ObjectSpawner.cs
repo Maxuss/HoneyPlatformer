@@ -1,16 +1,19 @@
+using System;
 using System.Collections;
 using Level;
+using Program;
 using Program.Channel;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 
 namespace Objects
 {
-    public class ObjectSpawner : MonoBehaviour, IChannelReceiver
+    public class ObjectSpawner : MonoBehaviour, IChannelReceiver, IActionContainer
     {
-        // TODO: different objects to program!!
+        [FormerlySerializedAs("objectPrefab")] 
         [SerializeField]
-        private GameObject objectPrefab;
+        private GameObject boxPrefab;
         
         [SerializeField]
         private AudioClip objectCreateSound;
@@ -22,6 +25,7 @@ namespace Objects
         private ParticleSystem[] particles;
         
         private GameObject _spawnedObject;
+        private SummonObject _summon;
         private static readonly int Amount = Shader.PropertyToID("_Amount");
         private static readonly int StartPosition = Shader.PropertyToID("_StartPosition");
 
@@ -72,6 +76,7 @@ namespace Objects
         {
             if (_spawnedObject == null) 
                 yield break;
+            
             var objRenderer = _spawnedObject.GetComponent<Renderer>();
 
             var destructionAmount = 0f;
@@ -95,6 +100,7 @@ namespace Objects
             
             _spawnedObject.SetActive(false);
             var obj = _spawnedObject;
+            
             // the object blinks for a frame if destroyed immediately, so delay the destruction
             yield return null;
             DestroyImmediate(obj);
@@ -108,9 +114,12 @@ namespace Objects
 
         private IEnumerator DelayedSpawnObject()
         {
+            if (_summon == SummonObject.Nothing)
+                yield break;
+            
             SfxManager.Instance.Play(objectCreateSound, .5f);
             
-            _spawnedObject = Instantiate(objectPrefab, spawnPosition.position, Quaternion.identity);
+            _spawnedObject = Instantiate(boxPrefab, spawnPosition.position, Quaternion.identity);
             var objRenderer = _spawnedObject.GetComponent<Renderer>();
             var rb = _spawnedObject.GetComponent<Rigidbody2D>();
             rb.isKinematic = true;
@@ -130,6 +139,10 @@ namespace Objects
                 objRenderer.material.SetFloat(Amount, amount);
                 yield return null;
             }
+            
+            foreach (var particle in particles)
+                particle.Stop();
+
 
             if (rb == null)
                 yield break;
@@ -138,8 +151,39 @@ namespace Objects
             rb.velocity += (Vector2) (-transform.up * 6f);
             objRenderer.material.SetFloat(Amount, 0f);
 
-            foreach (var particle in particles)
-                particle.Stop();
         }
+
+        public string Name => "Спавнер объектов";
+
+        public string Description =>
+            "Спавнер объектов создает выбранный объект при получении сигнала 1. При получении сигнала 0 созданный объект уничтожается.";
+        public ActionInfo[] SupportedActions { get; } = new[]
+        {
+            new ActionInfo
+            {
+                ActionName = "Создать тяж. куб",
+                ActionDescription = "Спавнер будет создавать утяжеленные коробки.",
+            },
+            new ActionInfo
+            {
+                ActionName = "Ничего не создавать",
+                ActionDescription = "Спавнер не будет создавать объектов (однако все еще может уничтожать созданные).",
+            },
+
+        };
+
+        public ProgrammableType Type { get; } = ProgrammableType.Executor;
+        public ActionData SelectedAction { get; set; }
+        
+        public void Begin(ActionData action)
+        {
+            _summon = (SummonObject) Enum.ToObject(typeof(SummonObject), action.ActionIndex);
+        }
+    }
+
+    public enum SummonObject
+    {
+        SteelBox,
+        Nothing,
     }
 }

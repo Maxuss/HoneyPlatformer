@@ -5,7 +5,7 @@ using Program.UI;
 
 namespace Program
 {
-    public interface IActionContainer: IInteractable
+    public interface IActionContainer
     {
         public string Name { get; }
         public string Description { get; }
@@ -15,13 +15,6 @@ namespace Program
         public ActionData SelectedAction { get; set; }
 
         public void Begin(ActionData action);
-
-        void IInteractable.OnInteract()
-        {
-            PlayerController.Instance.IsDisabled = true;
-            
-            ProgrammableUIManager.Instance.OpenFor(this);
-        }
     }
 
     public enum ProgrammableType
