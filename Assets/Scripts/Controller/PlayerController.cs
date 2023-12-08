@@ -72,7 +72,7 @@ namespace Controller
         [SerializeField]
         private float airDrag = 0.8f;
         [SerializeField]
-        private LayerMask playerMask;
+        private LayerMask notTerrainMask;
         
         [Space(20)]
         [SerializeField]
@@ -227,8 +227,8 @@ namespace Controller
         {
             Physics2D.queriesStartInColliders = false;
 
-            bool groundHit = Physics2D.BoxCast(_col.bounds.center, _col.size, 0, Vector2.down, groundDistance, ~playerMask);
-            bool ceilingHit = Physics2D.BoxCast(_col.bounds.center, _col.size, 0, Vector2.up, groundDistance, ~playerMask);
+            bool groundHit = Physics2D.BoxCast(_col.bounds.center, _col.size, 0, Vector2.down, groundDistance, ~notTerrainMask);
+            bool ceilingHit = Physics2D.BoxCast(_col.bounds.center, _col.size, 0, Vector2.up, groundDistance, ~notTerrainMask);
 
             if (ceilingHit) _velocity.y = Mathf.Min(0, _velocity.y);
 
