@@ -110,9 +110,22 @@ namespace Program.UI
                 DestroyImmediate(containerTransform.GetChild(0).gameObject);
             }
 
+            var editObj = _currentlyEditing as MonoBehaviour;
+
             var idx = 0;
+            var blacklist = editObj.TryGetComponent<BlacklistActions>(out var bl)
+                ? bl.BlacklistedActions
+                : new int[] { };
             foreach (var action in _currentlyEditing.SupportedActions)
             {
+                if (blacklist.Contains(idx))
+                {
+                    idx++;
+                    // spawning empty object
+                    Instantiate(new GameObject(), containerTransform);
+                    continue;
+                }
+
                 // Handling button creation
                 var newButton = Instantiate(buttonPrefab, containerTransform);
                 var buttonTransform = newButton.transform;
@@ -133,8 +146,12 @@ namespace Program.UI
                         return;
                     // Handling selection change
                     var previousBtn = containerTransform.GetChild(_selectedAction.ActionIndex);
-                    var btn = previousBtn.GetChild(0).GetComponent<Image>();
-                    btn.sprite = unselectedSprite;
+                    if (previousBtn.childCount != 0)
+                    {
+                        var btn = previousBtn.GetChild(0).GetComponent<Image>();
+                        btn.sprite = unselectedSprite;
+                    }
+
                     selectionIndicator.sprite = selectedSprite;
                     
                     _selectedAction.ActionIndex = idxCl;
