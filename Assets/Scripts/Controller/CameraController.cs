@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using Level;
 using Program;
 using Program.UI;
@@ -23,6 +24,9 @@ namespace Controller
         private AudioClip enterEditModeSound;
         [SerializeField]
         private AudioClip exitEditModeSound;
+
+        [SerializeField]
+        private RectTransform visualEditingNotifier;
 
         private Camera _camera;
         private VisualEditingMode _visual;
@@ -140,6 +144,7 @@ namespace Controller
                 return;
             _inProgram = true;
             StartCoroutine(EnterProgramEffect());
+            StartCoroutine(Util.Delay(MoveToastInside, 0.2f));
             _visual.Enabled = true;
             PlayerController.Instance.IsDisabled = true;
             
@@ -154,6 +159,7 @@ namespace Controller
                 return;
             _inProgram = false;
             StartCoroutine(ExitProgramEffect());
+            StartCoroutine(Util.Delay(HideToast, 0.2f));
             _visual.Enabled = false;
             PlayerController.Instance.IsDisabled = false;
             ProgrammableUIManager.Instance.Close();
@@ -161,6 +167,17 @@ namespace Controller
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        public void MoveToastInside()
+        {
+            visualEditingNotifier.gameObject.SetActive(true);
+            visualEditingNotifier.DOAnchorPos(new Vector3(50f, 50f), 1f);
+        }
+
+        public void HideToast()
+        {
+            visualEditingNotifier.DOAnchorPos(new Vector3(-142f, 50f), 1f).OnComplete(() => visualEditingNotifier.gameObject.SetActive(false));
         }
 
         public IEnumerator ExitProgramEffect()

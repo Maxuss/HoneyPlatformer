@@ -8,8 +8,7 @@ namespace Controller
         [SerializeField]
         private float smootheningModifier = 0.1f;
 
-        [SerializeField]
-        private Transform renderLineContainer;
+        [SerializeField] private Transform renderLineContainer;
 
         public bool Enabled { get; set; }
         public bool Editing { get; set; }
