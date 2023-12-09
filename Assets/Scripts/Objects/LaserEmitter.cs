@@ -39,7 +39,7 @@ namespace Objects
 
         private LaserConfig _laserConfig;
         private bool _stateInner;
-        private LaserReceiver _connectedRx;
+        public LaserReceiver ConnectedRx { get; private set; }
         private ParticleSystem[] _particles;
         
         public EmitterColor EmitterType;
@@ -146,7 +146,7 @@ namespace Objects
                     else if (hit.collider.CompareTag("LaserConsumer"))
                     {
                         var rx = hit.collider.GetComponent<LaserReceiver>();
-                        if (rx != _connectedRx)
+                        if (rx != ConnectedRx)
                         {
                             rx.ReceiveLaser(EmitterType);
                             hitReceiver = true;
@@ -167,11 +167,11 @@ namespace Objects
                 }
             }
 
-            if (hitReceiver && _connectedRx != null)
-                _connectedRx.Detach();
+            if (hitReceiver && ConnectedRx != null)
+                ConnectedRx.Detach();
             
             if(hitReceiver)
-                _connectedRx = tmpRx!;
+                ConnectedRx = tmpRx!;
 
             laserLine.positionCount = verts.Count;
             endVfx.transform.position = (Vector2) verts.Last();
@@ -229,6 +229,8 @@ namespace Objects
                     LaserManager.Instance.ActivateLaser();
                     break;
                 case LaserConfig.ConstantRay or LaserConfig.Impulse when !isActive:
+                    if (laserLine == null)
+                        return;
                     laserLine.gameObject.SetActive(false);
                     SfxManager.Instance.Play(laserDeactivate, 0.1f);
                     foreach (var ps in _particles)
@@ -236,9 +238,9 @@ namespace Objects
                         ps.Stop();
                     }
                     LaserManager.Instance.DeactivateLaser();
-                    if(_connectedRx != null)
-                        _connectedRx.Detach();
-                    _connectedRx = null;
+                    if(ConnectedRx != null)
+                        ConnectedRx.Detach();
+                    ConnectedRx = null;
                     break;
                 case LaserConfig.Impulse when isActive:
                     laserLine.gameObject.SetActive(true);

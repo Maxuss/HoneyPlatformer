@@ -123,6 +123,8 @@ namespace Objects
         public bool ConnectionLocked { get; set; }
         public void Connect(IChannelReceiver rx)
         {
+            if (rx is LaserEmitter) // lasers can be pointed into receivers that activate the lasers, we are avoiding it
+                return; 
             _rx = rx;
             _rx.ReceiveBool(transform, _state);
         }
