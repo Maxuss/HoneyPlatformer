@@ -13163,6 +13163,7 @@ MonoBehaviour:
   exitEditModeSound: {fileID: 8300000, guid: a85079191702066c5b5d7c7e48783299, type: 3}
   visualEditingNotifier: {fileID: 874979561}
   moreVisualEditingNotifier: {fileID: 1056438596}
+  globalLight: {fileID: 1082853221}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0

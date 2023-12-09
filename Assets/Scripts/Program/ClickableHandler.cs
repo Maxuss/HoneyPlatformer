@@ -88,7 +88,7 @@ namespace Program
                 case PointerEventData.InputButton.Left when !CameraController.Instance.VisualEditing.Editing:
                     ProgrammableUIManager.Instance.OpenFor(_actionContainer);
                     break;
-                case PointerEventData.InputButton.Right:
+                case PointerEventData.InputButton.Right when !CameraController.Instance.VisualEditing.IsConnecting:
                 {
                     // starting connecting
                     // TODO: mention somewhere in tutorial that if you hold SHIFT it will always select TX only

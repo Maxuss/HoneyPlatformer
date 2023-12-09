@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using Level;
@@ -6,6 +5,7 @@ using Objects;
 using Program;
 using Program.UI;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.U2D;
 using Utils;
 
@@ -28,8 +28,11 @@ namespace Controller
 
         [SerializeField]
         private RectTransform visualEditingNotifier;
+
+        [SerializeField] private RectTransform moreVisualEditingNotifier;
+
         [SerializeField]
-        private RectTransform moreVisualEditingNotifier;
+        private Transform globalLight;
 
         private Camera _camera;
         private VisualEditingMode _visual;
@@ -147,6 +150,7 @@ namespace Controller
                 return;
             _inProgram = true;
             StartCoroutine(EnterProgramEffect());
+            StartCoroutine(IncreaseBrightness());
             StartCoroutine(Util.Delay(MoveToastInside, 0.2f));
             _visual.Enabled = true;
             PlayerController.Instance.IsDisabled = true;
@@ -162,6 +166,7 @@ namespace Controller
                 return;
             _inProgram = false;
             StartCoroutine(ExitProgramEffect());
+            StartCoroutine(DecreaseBrightness());
             StartCoroutine(Util.Delay(HideToast, 0.2f));
             _visual.Enabled = false;
             _visual.ClearLines();
@@ -252,6 +257,32 @@ namespace Controller
             }
             
             _transitioningProgram = false;
+        }
+
+        private IEnumerator IncreaseBrightness()
+        {
+            var amount = .5f;
+            var light2D = globalLight.GetComponent<Light2D>();
+            while (amount < .8f)
+            {
+                amount += .25f * Time.deltaTime;
+                light2D.intensity = amount;
+                yield return null;
+            }
+            light2D.intensity = 1f;
+        }
+        
+        private IEnumerator DecreaseBrightness()
+        {
+            var amount = .8f;
+            var light2D = globalLight.GetComponent<Light2D>();
+            while (amount > .5f)
+            {
+                amount -= .25f * Time.deltaTime;
+                light2D.intensity = amount;
+                yield return null;
+            }
+            light2D.intensity = .5f;
         }
     }
 }

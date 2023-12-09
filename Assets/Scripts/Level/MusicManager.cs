@@ -36,7 +36,7 @@ namespace Level
             StartCoroutine(Crossfade(track, .3f, .05f));
             _currentAmbientTrack++;
             _currentAmbientTrack %= ambientTracks.Length;
-            Invoke(nameof(NextAmbientTrack), 15f);
+            Invoke(nameof(NextAmbientTrack), track.length - 2f);
         }
         
         private IEnumerator Crossfade(AudioClip to, float maxVolume = 1f, float speed = .2f)
