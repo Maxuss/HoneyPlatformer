@@ -32,10 +32,12 @@ namespace Controller
         private bool _consumeJump;
         private bool _coyoteUsable;
         private bool _hasBufferedJump;
+        private float _startedJumping;
 
         private float _time;
         private float _frameLeftGround = float.MinValue;
         private float _lastJumpPressed;
+        private float _defaultGravityScale;
 
         public FacingDirection facingDirection = FacingDirection.Left;
         private float _lastFootstep;
@@ -56,21 +58,21 @@ namespace Controller
         
         [Header("Movement")]
         [SerializeField]
-        private float moveSpeed = 1f;
+        private float moveSpeed = 7f;
         [SerializeField]
-        private float acceleration = 0.5f;
+        private float acceleration = 40f;
         [SerializeField]
-        private float fallAcceleration = 0.7f;
+        private float fallAcceleration = 35f;
         [SerializeField]
-        private float fallSpeed = 2f;
+        private float fallSpeed = 40f;
         [SerializeField]
-        private float jumpForce;
+        private float jumpForce = 13;
         [SerializeField]
         private float groundDistance = 0.05f;
         [SerializeField]
-        private float groundDrag = 1f;
+        private float groundDrag = 200f;
         [SerializeField]
-        private float airDrag = 0.8f;
+        private float airDrag = 150f;
         [SerializeField]
         private LayerMask notTerrainMask;
         
@@ -82,7 +84,7 @@ namespace Controller
         [SerializeField]
         private AudioClip landSound;
         [SerializeField] 
-        private float timeBetweenFootsteps = 0.5f;
+        private float timeBetweenFootsteps = 0.3f;
 
         [Space(20)] 
         [SerializeField]
@@ -96,7 +98,7 @@ namespace Controller
         private static readonly int IsJumping = Animator.StringToHash("IsJumping");
 
         private bool HasBufferedJump => _hasBufferedJump && _time < _lastJumpPressed + .1f;
-        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .15f;
+        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .12f;
 
         public bool IsDisabled { get; set; } = false;
         
@@ -120,6 +122,7 @@ namespace Controller
             _col = GetComponent<BoxCollider2D>();
             _anim = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _defaultGravityScale = _rb.gravityScale;
 
             _queryStartColliderCached = Physics2D.queriesStartInColliders;
 
@@ -146,6 +149,10 @@ namespace Controller
                 // zero x velocity if we are in UI
                 _velocity.x = 0;
             _rb.velocity = _velocity;
+            if (_rb.velocity.y < 0)
+                _rb.gravityScale = _defaultGravityScale * 2f;
+            else
+                _rb.gravityScale = _defaultGravityScale;
             _anim.SetFloat(Speed, Mathf.Abs(_velocity.x));
             _spriteRenderer.flipX = _spriteRenderer.flipX ? _velocity.x <= 0f : _velocity.x < 0f;
         }
@@ -171,7 +178,7 @@ namespace Controller
                 // playing footstep sounds
                 _lastFootstep = Time.time;
                 var clip = footstepSounds[Random.Range(0, footstepSounds.Count)];
-                SfxManager.Instance.Play(clip, 0.2f);
+                SfxManager.Instance.Play(clip, 0.35f);
             }
         }
 
@@ -199,6 +206,11 @@ namespace Controller
 
         private void HandleJump()
         {
+            if (_velocity.y > 0 && !_input.JumpHeld && _time - _startedJumping > .1f)
+            {
+                _velocity.y *= .6f;
+            }
+            
             if (!_earlyJump && !_grounded && !_input.JumpHeld && _rb.velocity.y > 0)
                 _earlyJump = true;
 
@@ -211,13 +223,14 @@ namespace Controller
                 _velocity.y = jumpForce;
                 
                 _anim.SetBool(IsJumping, true);
-                SfxManager.Instance.Play(jumpSound, 0.2f);
+                SfxManager.Instance.Play(jumpSound, 0.1f);
                 jumpParticles.Play();
 
                 _earlyJump = false;
                 _coyoteUsable = false;
                 _hasBufferedJump = false;
                 _lastJumpPressed = 0;
+                _startedJumping = _time;
             }
 
             _consumeJump = false;
@@ -249,7 +262,7 @@ namespace Controller
             if (_grounded && !_groundedLastFrame)
             {
                 _anim.SetBool(IsJumping, false);
-                SfxManager.Instance.Play(landSound, 0.2f);
+                SfxManager.Instance.Play(landSound, 0.1f);
                 landParticles.Play();
             }
 
@@ -304,11 +317,10 @@ namespace Controller
                 GrabHeld = Input.GetKey(KeyCode.LeftShift)
             };
 
-            if (_input.JumpDown)
-            {
-                _consumeJump = true;
-                _lastJumpPressed = _time;
-            }
+            if (!_input.JumpDown) return;
+            
+            _consumeJump = true;
+            _lastJumpPressed = _time;
         }
 
         private struct GatheredInput

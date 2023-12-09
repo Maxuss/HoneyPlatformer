@@ -16860,6 +16860,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   moreVisualEditingNotifier: {fileID: 1056438596}
   visualEditingNotifier: {fileID: 874979561}
+  ioChoicePrefab: {fileID: 0}
 --- !u!114 &519420038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28043,12 +28044,12 @@ MonoBehaviour:
     m_Bits: 128
   moveSpeed: 7
   acceleration: 40
-  fallAcceleration: 30
+  fallAcceleration: 35
   fallSpeed: 40
-  jumpForce: 10
+  jumpForce: 13
   groundDistance: 0.05
-  groundDrag: 120
-  airDrag: 130
+  groundDrag: 200
+  airDrag: 150
   notTerrainMask:
     serializedVersion: 2
     m_Bits: 868

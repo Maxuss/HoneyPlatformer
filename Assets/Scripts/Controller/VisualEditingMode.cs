@@ -23,6 +23,8 @@ namespace Controller
         private RectTransform moreVisualEditingNotifier;
         [SerializeField]
         private RectTransform visualEditingNotifier;
+        [SerializeField]
+        private GameObject ioChoicePrefab;
 
         private bool _tipsHidden;
         private List<LineRenderer> _lines = new();
@@ -39,6 +41,10 @@ namespace Controller
         /// For when a receiver was clicked first
         /// </summary>
         public IChannelReceiver ConnectingTo { get; set; }
+        /// <summary>
+        /// Object for which Input/Output is being chosen
+        /// </summary>
+        public GameObject ChoosingIO { get; set; }
 
         private Camera _camera;
         private Vector3 _velocity;
@@ -103,6 +109,15 @@ namespace Controller
             var newPos = transform.position + (Vector3) (horizontal + vertical);
             transform.position = 
                 Vector3.SmoothDamp(transform.position, newPos, ref _velocity, smootheningModifier, Mathf.Infinity);
+        }
+
+        public void ChooseIO(Vector3 from, GameObject obj)
+        {
+            if (!Enabled || ChoosingIO)
+                return;
+            var choice = Instantiate(ioChoicePrefab, renderLineContainer);
+            choice.transform.position = from;
+            ChoosingIO = obj;
         }
 
         public void SetupConnectingLine(Vector3 start)

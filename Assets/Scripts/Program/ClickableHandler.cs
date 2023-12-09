@@ -94,22 +94,10 @@ namespace Program
                     // TODO: mention somewhere in tutorial that if you hold SHIFT it will always select TX only
                     var rxNull = _rx == null;
                     var txNull = _tx == null;
-                    if (!rxNull && !txNull && _rx is not IBiChannelReceiver)
+                    if (!rxNull && !txNull && _rx is not IBiChannelReceiver && !_tx.ConnectionLocked)
                     {
-                        if (Input.GetKey(KeyCode.LeftShift))
-                        {
-                            if (_tx.ConnectionLocked)
-                                return;
-                            CameraController.Instance.VisualEditing.ConnectingFrom = _tx;
-                            CameraController.Instance.VisualEditing.IsConnecting = true;
-                            CameraController.Instance.VisualEditing.SetupConnectingLine(transform.position);
-                        }
-                        else
-                        {
-                            CameraController.Instance.VisualEditing.ConnectingTo = _rx;
-                            CameraController.Instance.VisualEditing.IsConnecting = true;
-                            CameraController.Instance.VisualEditing.SetupConnectingLine(transform.position);
-                        }
+                        // choosing input and output
+                        CameraController.Instance.VisualEditing.ChooseIO(this.transform.position + Vector3.up, gameObject);
                     }
                     else if (!rxNull && _rx is not IBiChannelReceiver)
                     {
