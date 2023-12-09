@@ -25,10 +25,12 @@ MonoBehaviour:
     characterName: "\u0421\u0430\u043F\u0441\u0430\u043D"
     speedModifier: 1
   - sprites:
-    - {fileID: -905164272, guid: a1dbab1f7987f8b8ca1882ee832dabaa, type: 3}
+    - {fileID: 433273146, guid: 7cba84a0f0f838c5884269f260c0a83f, type: 3}
+    - {fileID: 1822776724, guid: 7cba84a0f0f838c5884269f260c0a83f, type: 3}
+    - {fileID: 1288258584, guid: 7cba84a0f0f838c5884269f260c0a83f, type: 3}
     audioSounds:
     - {fileID: 8300000, guid: ec0012eab26bb5b0c8e89e2ed22ed950, type: 3}
-    text: "\u0430 \u0443 \u043C\u0435\u043D\u044F \u0441\u043F\u0440\u0430\u0439\u0442\u043E\u0432
-      \u043D\u0435\u0442"
+    text: "\u0430 \u0443 \u043C\u0435\u043D\u044F \u0441\u043F\u0440\u0430\u0439\u0442\u044B
+      \u0435\u0441\u0442\u044C \u0442\u0435\u043F\u0435\u0440\u044C"
     characterName: "\u041F\u0430\u0441\u0435\u0447\u043D\u0438\u043A"
     speedModifier: 0.8
