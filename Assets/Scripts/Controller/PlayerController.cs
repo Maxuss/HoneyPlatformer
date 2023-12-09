@@ -92,10 +92,14 @@ namespace Controller
         [SerializeField]
         private ParticleSystem landParticles;
 
+        private GameObject _currentPlatform;
+
         private bool _autonomous;
 
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int IsJumping = Animator.StringToHash("IsJumping");
+        private static readonly int IsPulling = Animator.StringToHash("IsPulling");
+        private static readonly int IsPushing = Animator.StringToHash("IsPushing");
 
         private bool HasBufferedJump => _hasBufferedJump && _time < _lastJumpPressed + .1f;
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .12f;
@@ -162,7 +166,15 @@ namespace Controller
             else
                 _rb.gravityScale = _defaultGravityScale;
             _anim.SetFloat(Speed, Mathf.Abs(_velocity.x));
-            _spriteRenderer.flipX = _spriteRenderer.flipX ? _velocity.x <= 0f : _velocity.x < 0f;
+            if (_isDragging)
+            {
+                var diff = _draggedObject.transform.position - transform.position;
+                _spriteRenderer.flipX = diff.x <= 0; // object is to the left of us
+            }
+            else
+            {
+                _spriteRenderer.flipX = _spriteRenderer.flipX ? _velocity.x <= 0f : _velocity.x < 0f;
+            }
         }
 
         private void HandleHorizontal()
@@ -276,6 +288,25 @@ namespace Controller
 
             _groundedLastFrame = _grounded;
             Physics2D.queriesStartInColliders = _queryStartColliderCached;
+
+            if (!_input.DownPressed || _currentPlatform == null) return;
+            
+            var platformCollider = _currentPlatform.GetComponent<BoxCollider2D>();
+
+            Physics2D.IgnoreCollision(_col, platformCollider);
+            StartCoroutine(Util.Delay(() => Physics2D.IgnoreCollision(_col, platformCollider, false), 1f));
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Platform"))
+                _currentPlatform = other.gameObject;
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Platform"))
+                _currentPlatform = null;
         }
 
         private void HandleGrab()
@@ -287,6 +318,8 @@ namespace Controller
                     _draggedObject.enabled = false;
                     _draggedObject = null;
                     _isDragging = false;
+                    _anim.SetBool(IsPulling, false);
+                    _anim.SetBool(IsPushing, false);
                     break;
                 case true when !_isDragging:
                 {
@@ -302,6 +335,8 @@ namespace Controller
                         _draggedObject.connectedBody = _rb;
                         _draggedObject.enabled = true;
                         _isDragging = true;
+                        
+                        _anim.SetBool(IsPushing, true);
                     }
                     break;
                 }
@@ -322,7 +357,8 @@ namespace Controller
                 JumpDown = Input.GetButtonDown("Jump"),
                 JumpHeld = Input.GetButton("Jump"),
                 HorizontalMove = Input.GetAxisRaw("Horizontal"),
-                GrabHeld = Input.GetKey(KeyCode.LeftShift)
+                GrabHeld = Input.GetKey(KeyCode.LeftShift),
+                DownPressed = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)
             };
 
             if (!_input.JumpDown) return;
@@ -337,6 +373,7 @@ namespace Controller
             internal bool JumpHeld;
             internal float HorizontalMove;
             internal bool GrabHeld;
+            internal bool DownPressed;
         }
 
         public enum FacingDirection

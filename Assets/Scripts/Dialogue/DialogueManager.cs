@@ -82,7 +82,7 @@ namespace Dialogue
                     _speech = null;
                     _inDialogue = false;
                     dialogueObject.SetActive(false);
-                    PlayerController.Instance.IsDisabled = !_doNotEnableMovement;
+                    PlayerController.Instance.IsDisabled = _doNotEnableMovement;
                     _speechIdx = 0;
                     yield break;
                 }

@@ -33,9 +33,17 @@ namespace Cutscenes
         private Image blackCanvas;
         [SerializeField]
         private SpriteRenderer chair;
+        [SerializeField]
+        private bool disabled;
 
         public void Start()
         {
+            if (disabled)
+            {
+                chair.color = Color.white;
+                blackCanvas.gameObject.SetActive(false);
+                return;
+            }
             chair.color = new Color(1f, 1f, 1f, 0f);
             PlayerController.Instance.IsDisabled = true;
             StartCoroutine(Util.Delay(() => StartCoroutine(CombinedCutscene()), 2f));

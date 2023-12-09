@@ -1,5 +1,6 @@
 using System;
 using Controller;
+using Cutscenes;
 using Eflatun.SceneReference;
 using Level;
 using Program;
@@ -49,7 +50,8 @@ namespace Objects
                 {
                     var scene = nextLevel.LoadedScene;
                     // Second object is always the entrance door
-                    var door = scene.GetRootGameObjects()[1];
+                    var rootObjects = scene.GetRootGameObjects();
+                    var door = rootObjects[1];
                     door.GetComponent<Animator>().Play("LockDoor");
                     door.GetComponent<BoxCollider2D>().enabled = true;
                     SfxManager.Instance.Play(doorClose, .5f);
@@ -65,6 +67,13 @@ namespace Objects
                     {
                         LaserManager.Instance.Reload();
                     };
+                    var scene = nextLevel.LoadedScene;
+                    var rootObjects = scene.GetRootGameObjects();
+                    if (rootObjects.Length > 2 &&
+                        rootObjects[2].TryGetComponent<ILevelEntranceCutscene>(out var cutscene))
+                    {
+                        ((MonoBehaviour) cutscene).StartCoroutine(Util.Delay(() => cutscene.StartCutscene(), .5f));
+                    }
                 })
             );
         }
