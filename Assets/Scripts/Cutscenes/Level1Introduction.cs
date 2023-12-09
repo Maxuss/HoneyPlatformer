@@ -100,8 +100,8 @@ namespace Cutscenes
             yield return new WaitForSeconds(1f);
             yield return DialogueManager.Instance.StartDialogue(dialogue2, true);
             StartCoroutine(Util.Delay(() => MusicManager.Instance.NextAmbientTrack(), 2f));
+            StartCoroutine(Util.Delay(() => ToastManager.Instance.ShowToast("E - взаимодействовать с объектом"), 3f));
 
-            ppc.assetsPPU = 16;
             PlayerController.Instance.IsDisabled = false;
             PlayerController.Instance.StillCommitMovement = false;
         }
