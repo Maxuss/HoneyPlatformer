@@ -24,9 +24,6 @@ namespace Dialogue
         private Image speakerSprite;
         [SerializeField]
         private TMP_Text characterName;
-
-        [SerializeField]
-        private DialogueDefinition testDialogue;
         
         private int _currentCharIdx;
         private int _speechIdx;
@@ -34,63 +31,64 @@ namespace Dialogue
         private DialogueDefinition _dialogue;
         private bool _inDialogue;
         private bool _shouldContinue;
+        private bool _doNotEnableMovement;
 
         private void Start()
         {
             Instance = this;
             dialogueObject.SetActive(false);
-            
-            StartCoroutine(Util.Delay(() => StartCoroutine(StartDialogue(testDialogue)), 2f));
         }
         
-        private void Update()
-        {
-            if (!_inDialogue)
-                return;
-
-            if (!Input.GetKeyDown(KeyCode.Return)) return;
-            
-            if (_currentCharIdx < _speech.text.Length)
-            {
-                _currentCharIdx = _speech.text.Length;
-                text.text = _speech.text;
-            }
-            else
-            {
-                if (_speechIdx + 1 >= _dialogue.Speeches.Count)
-                {
-                    text.text = "";
-                    _currentCharIdx = 0;
-                    _dialogue = null;
-                    _speech = null;
-                    _speechIdx = 0;
-                    _inDialogue = false;
-                    dialogueObject.SetActive(false);
-                    PlayerController.Instance.IsDisabled = false;
-                }
-                else
-                {
-                    _shouldContinue = true;
-                }
-            }
-        }
-        
-        public IEnumerator StartDialogue(DialogueDefinition dialogue)
+        public IEnumerator StartDialogue(DialogueDefinition dialogue, bool doNotEnableMovement = false)
         {
             PlayerController.Instance.IsDisabled = true;
             _dialogue = dialogue;
             _inDialogue = true;
             dialogueObject.SetActive(true);
-            for (_speechIdx = 0; _speechIdx < dialogue.Speeches.Count; _speechIdx++)
+            _doNotEnableMovement = doNotEnableMovement;
+            _shouldContinue = true;
+            while (_speechIdx < dialogue.Speeches.Count)
             {
                 _speech = dialogue.Speeches[_speechIdx];
-                yield return StartCoroutine(SingleSpeech(dialogue.Speeches[_speechIdx]));
-                while (!_shouldContinue)
+                StartCoroutine(SingleSpeech(dialogue.Speeches[_speechIdx]));
+                var shouldExitOnPress = _speechIdx + 1 >= dialogue.Speeches.Count;
+                while (_shouldContinue && _inDialogue)
                 {
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        if (_currentCharIdx < _speech.text.Length)
+                        {
+                            _currentCharIdx = _speech.text.Length;
+                            text.text = _speech.text;
+                        }
+                        else
+                        {
+                            if (shouldExitOnPress)
+                            {
+                                _inDialogue = false;
+                            }
+
+                            _shouldContinue = false;
+                        }
+                    }
                     yield return null;
                 }
-
-                _shouldContinue = false;
+                
+                if (!_inDialogue)
+                {
+                    text.text = "";
+                    _currentCharIdx = 0;
+                    _dialogue = null;
+                    _speech = null;
+                    _inDialogue = false;
+                    dialogueObject.SetActive(false);
+                    PlayerController.Instance.IsDisabled = !_doNotEnableMovement;
+                    _speechIdx = 0;
+                    yield break;
+                }
+                
+                _speechIdx++;
+                _shouldContinue = true;
             }
         }
 

@@ -13,7 +13,7 @@ namespace Level
         [SerializeField]
         private AudioClip[] ambientTracks;
         
-        public MusicManager Instance { get; private set; }
+        public static MusicManager Instance { get; private set; }
 
         private void Awake()
         {
@@ -21,12 +21,12 @@ namespace Level
 
             _ambient1 = gameObject.AddComponent<AudioSource>();
             _ambient1.volume = 0f;
+            _ambient1.loop = true;
             _ambient1.playOnAwake = false;
             _ambient2 = gameObject.AddComponent<AudioSource>();
             _ambient2.volume = 0f;
+            _ambient2.loop = true;
             _ambient2.playOnAwake = false;
-
-            StartCoroutine(Util.Delay(NextAmbientTrack, 2f));
         }
         
         [ContextMenu("Next Ambient")]
@@ -38,8 +38,16 @@ namespace Level
             _currentAmbientTrack %= ambientTracks.Length;
             Invoke(nameof(NextAmbientTrack), track.length - 2f);
         }
+
+        public void StopAbruptly()
+        {
+            _ambient1.Stop();
+            _ambient2.Stop();
+            _ambient1.volume = 0f;
+            _ambient2.volume = 0f;
+        }
         
-        private IEnumerator Crossfade(AudioClip to, float maxVolume = 1f, float speed = .2f)
+        public IEnumerator Crossfade(AudioClip to, float maxVolume = 1f, float speed = .2f)
         {
             if (_ambient1.volume > 0)
             {

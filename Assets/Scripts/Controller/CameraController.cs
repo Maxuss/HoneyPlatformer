@@ -261,20 +261,20 @@ namespace Controller
 
         private IEnumerator IncreaseBrightness()
         {
-            var amount = .5f;
+            var amount = .7f;
             var light2D = globalLight.GetComponent<Light2D>();
-            while (amount < .8f)
+            while (amount < .85f)
             {
                 amount += .25f * Time.deltaTime;
                 light2D.intensity = amount;
                 yield return null;
             }
-            light2D.intensity = 1f;
+            light2D.intensity = .85f;
         }
         
         private IEnumerator DecreaseBrightness()
         {
-            var amount = .8f;
+            var amount = .85f;
             var light2D = globalLight.GetComponent<Light2D>();
             while (amount > .5f)
             {
@@ -282,7 +282,7 @@ namespace Controller
                 light2D.intensity = amount;
                 yield return null;
             }
-            light2D.intensity = .5f;
+            light2D.intensity = .7f;
         }
     }
 }

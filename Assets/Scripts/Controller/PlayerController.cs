@@ -101,8 +101,15 @@ namespace Controller
         private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGround + .12f;
 
         public bool IsDisabled { get; set; } = false;
+        public bool StillCommitMovement { get; set; } = false;
         
         public static PlayerController Instance { get; private set; }
+        
+        public Vector2 Velocity
+        {
+            get => _velocity;
+            set => _velocity = value;
+        }
 
         public IEnumerator AutonomousMove(Vector2 towards)
         {
@@ -110,7 +117,8 @@ namespace Controller
             _velocity = Vector2.zero;
             while (Util.SqrDistance(transform.position, towards) > 0.25f)
             {
-                _velocity = Vector2.right * 3f;
+                _velocity = Vector3.right * 3f;
+                _rb.velocity = Vector2.right * 3f;
                 yield return null;
             }
             _autonomous = false;
@@ -145,7 +153,7 @@ namespace Controller
 
         private void CommitMovement()
         {
-            if (IsDisabled)
+            if (IsDisabled && !StillCommitMovement)
                 // zero x velocity if we are in UI
                 _velocity.x = 0;
             _rb.velocity = _velocity;
