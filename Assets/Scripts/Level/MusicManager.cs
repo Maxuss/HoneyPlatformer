@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Utils;
 
 namespace Level
 {
     public class MusicManager: MonoBehaviour
     {
-        private AudioSource _active, _crossfadeTo;
+        private AudioSource _ambient1, _ambient2;
         private int _currentAmbientTrack;
         
         [SerializeField]
@@ -18,60 +19,68 @@ namespace Level
         {
             Instance = this;
 
-            _active = gameObject.AddComponent<AudioSource>();
-            _active.volume = 0f;
-            _active.playOnAwake = false;
-            _crossfadeTo = gameObject.AddComponent<AudioSource>();
-            _crossfadeTo.volume = 0f;
-            _crossfadeTo.playOnAwake = false;
-        }
+            _ambient1 = gameObject.AddComponent<AudioSource>();
+            _ambient1.volume = 0f;
+            _ambient1.playOnAwake = false;
+            _ambient2 = gameObject.AddComponent<AudioSource>();
+            _ambient2.volume = 0f;
+            _ambient2.playOnAwake = false;
 
+            StartCoroutine(Util.Delay(NextAmbientTrack, 2f));
+        }
+        
         [ContextMenu("Next Ambient")]
         public void NextAmbientTrack()
         {
             var track = ambientTracks[_currentAmbientTrack];
-            StartCoroutine(_currentAmbientTrack == 0 ? FadeIn(track, .3f) : Crossfade(track, .3f));
+            StartCoroutine(Crossfade(track, .3f, .05f));
             _currentAmbientTrack++;
             _currentAmbientTrack %= ambientTracks.Length;
+            Invoke(nameof(NextAmbientTrack), 15f);
         }
-
-        public IEnumerator FadeIn(AudioClip to, float maxVolume = 1f, float speed = .2f)
+        
+        private IEnumerator Crossfade(AudioClip to, float maxVolume = 1f, float speed = .2f)
         {
-            Debug.Log($"HERE {_active.clip}");
-            _active.clip = to;
-            Debug.Log($"THERE {_active.clip}");
-            _active.Play();
-            var deltaVolume = 0f;
-
-            while (deltaVolume < maxVolume)
+            if (_ambient1.volume > 0)
             {
-                deltaVolume += speed * Time.deltaTime;
-                _active.volume = deltaVolume;
-                yield return null;
+                _ambient2.clip = to;
+                _ambient2.volume = 0f;
+                _ambient2.Play();
+                var deltaVolume = 0f;
+
+                while (deltaVolume < maxVolume)
+                {
+                    deltaVolume += speed * Time.deltaTime;
+                    _ambient1.volume = maxVolume - deltaVolume;
+                    _ambient2.volume = deltaVolume;
+                    yield return null;
+                }
+
+                _ambient1.Stop();
+
+                _ambient2.volume = maxVolume;
+                _ambient1.volume = 0f;
             }
-
-            _active.volume = maxVolume;
-        }
-
-        public IEnumerator Crossfade(AudioClip to, float maxVolume = 1f, float speed = .2f)
-        {
-            _crossfadeTo.clip = to;
-            var deltaVolume = 0f;
-
-            while (deltaVolume < maxVolume)
+            else
             {
-                deltaVolume += speed * Time.deltaTime;
-                _active.volume = 1 - deltaVolume;
-                _crossfadeTo.volume = 1 + deltaVolume;
-                yield return null;
-            }
+                _ambient1.clip = to;
+                _ambient1.volume = 0f;
+                _ambient1.Play();
+                var deltaVolume = 0f;
 
-            _active.volume = maxVolume;
-            _active.Stop();
-            _active = _crossfadeTo;
-            _active.volume = 1f;
-            _active.Play();
-            _crossfadeTo.Stop();
+                while (deltaVolume < maxVolume)
+                {
+                    deltaVolume += speed * Time.deltaTime;
+                    _ambient2.volume = maxVolume - deltaVolume;
+                    _ambient1.volume = deltaVolume;
+                    yield return null;
+                }
+
+                _ambient2.Stop();
+
+                _ambient1.volume = maxVolume;
+                _ambient2.volume = 0f;
+            }
         }
     }
 }
