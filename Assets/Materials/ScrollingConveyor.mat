@@ -86,7 +86,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _HighlightAmount: 0
     - _OutlineThickness: 0
-    - _ScrollingSpeed: 1
+    - _ScrollingSpeed: 0
     - _ShouldHighlight: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

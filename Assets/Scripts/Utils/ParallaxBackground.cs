@@ -23,7 +23,8 @@ namespace Utils
         {
             var tmp = cameraTransform.position.x * (1 - transformModifier);
             var dist = (cameraTransform.position.x * transformModifier);
-            transform.position = new Vector3(startPos + dist, transform.position.y, transform.position.z);
+
+            transform.position = new Vector3(startPos + dist, cameraTransform.position.y + 5f, transform.position.z);
 
             if (tmp > startPos + length) startPos += length;
             else if (tmp < startPos - length) startPos -= length;

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5e8589763b4e61acf427442650efde, type: 3}
+  m_Name: Level5Cutscene
+  m_EditorClassIdentifier: 
+  Speeches:
+  - sprites:
+    - {fileID: 63520109, guid: 1490f550abd10e6bdb61e5a27ddde82c, type: 3}
+    - {fileID: -464147182, guid: 1490f550abd10e6bdb61e5a27ddde82c, type: 3}
+    - {fileID: -1436131212, guid: 1490f550abd10e6bdb61e5a27ddde82c, type: 3}
+    audioSounds:
+    - {fileID: 8300000, guid: 7b3eedf516be7a0d581eb5c502ddf4d1, type: 3}
+    text: "\u0412\u0441\u0435 \u043E\u0442\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u043B
+      \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0438\u0435 \u044D\u0442\u043E\u0439
+      \u0441\u0445\u0435\u043C\u044B."
+    characterName: "\u0421\u0430\u043F\u0441\u0430\u043D"
+    speedModifier: 0.8
+  - sprites:
+    - {fileID: 63520109, guid: 1490f550abd10e6bdb61e5a27ddde82c, type: 3}
+    - {fileID: -464147182, guid: 1490f550abd10e6bdb61e5a27ddde82c, type: 3}
+    - {fileID: -1436131212, guid: 1490f550abd10e6bdb61e5a27ddde82c, type: 3}
+    audioSounds:
+    - {fileID: 8300000, guid: 7b3eedf516be7a0d581eb5c502ddf4d1, type: 3}
+    text: "\u0412\u0438\u0434\u0438\u043C\u043E \u043F\u0440\u0438\u0434\u0435\u0442\u0441\u044F
+      \u0434\u043E\u0434\u0435\u043B\u0430\u0442\u044C \u0435\u0451 \u0441\u0435\u0439\u0447\u0430\u0441."
+    characterName: "\u0421\u0430\u043F\u0441\u0430\u043D"
+    speedModifier: 0.8

@@ -24,7 +24,8 @@ namespace Objects
 
         private void Start()
         {
-            _rx = connectedReceiver.GetComponent<IChannelReceiver>();
+            if(connectedReceiver != null)
+                _rx = connectedReceiver.GetComponent<IChannelReceiver>();
             _renderer = GetComponent<Renderer>();
         }
 
@@ -54,11 +55,12 @@ namespace Objects
             new ActionInfo
             {
                 ActionName = "Отрицание",
-                ActionDescription = "Выводит сигнал, отрицательный полученному на входе."
+                ActionDescription = "Выводит сигнал, обратный полученному на входе."
             }
         };
 
         public ProgrammableType Type => ProgrammableType.Emitter;
+        [field: SerializeField]
         public ActionData SelectedAction { get; set; }
         public void Begin(ActionData action)
         {

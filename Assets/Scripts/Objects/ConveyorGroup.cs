@@ -22,7 +22,6 @@ namespace Objects
         public void ReceiveBool(Transform source, bool b)
         {
             _enabled = b;
-            Debug.Log($"TOGGLING {_enabled}");
             foreach (var child in InnerBelts)
             {
                 child.Toggle(_enabled);

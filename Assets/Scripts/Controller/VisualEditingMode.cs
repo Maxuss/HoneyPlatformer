@@ -62,7 +62,9 @@ namespace Controller
 
             if (IsConnecting)
             {
-                _connectingLine.SetPosition(1, _camera.ScreenToWorldPoint(Input.mousePosition));
+                var vec3 = _camera.ScreenToWorldPoint(Input.mousePosition);
+                vec3.z = 0;
+                _connectingLine.SetPosition(1, vec3);
 
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {

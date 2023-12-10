@@ -84,7 +84,8 @@ namespace Objects
 
         private void Update()
         {
-            // TODO: remove me, used for testing
+            // TODO: replace me with mirror handling
+            // (ill remove it when mirrors are done)
             RecalculateReflections();
         }
 

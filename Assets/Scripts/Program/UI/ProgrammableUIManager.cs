@@ -12,6 +12,9 @@ namespace Program.UI
 {
     public class ProgrammableUIManager: MonoBehaviour
     {
+        [field: SerializeField]
+        public Transform Canvas { get; set; }
+        
         [SerializeField]
         private AudioClip terminalButtonClickedSound;
 

@@ -29,7 +29,8 @@ namespace Objects
 
         private void Start()
         {
-            _rx = connectedReceiver.GetComponent<IChannelReceiver>();
+            if(connectedReceiver != null)
+                 _rx = connectedReceiver.GetComponent<IChannelReceiver>();
             _renderer = GetComponent<SpriteRenderer>();
         }
 

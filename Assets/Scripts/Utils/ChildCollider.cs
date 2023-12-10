@@ -21,6 +21,11 @@ namespace Utils
         {
             _parent.OnChildTriggerExit(other);
         }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            _parent.OnChildTriggerStay(other);
+        }
     }
 
     public interface IParentCollisionHandler
@@ -31,6 +36,11 @@ namespace Utils
         }
 
         public void OnChildTriggerExit(Collider2D other)
+        {
+            
+        }
+
+        public void OnChildTriggerStay(Collider2D other)
         {
             
         }

@@ -18,7 +18,7 @@ namespace Dialogue
         public AudioClip[] audioSounds;
         public string text;
         public string characterName;
-        [Range(0.5f, 2f)]
+        [Range(0.5f, 3f)]
         public float speedModifier = 1f;
     }
 }

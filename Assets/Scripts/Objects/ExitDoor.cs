@@ -1,13 +1,17 @@
 using System;
+using System.Linq;
 using Controller;
 using Cutscenes;
 using Eflatun.SceneReference;
 using Level;
 using Program;
 using Program.Channel;
+using Program.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using Utils;
 
 namespace Objects
@@ -30,30 +34,27 @@ namespace Objects
         {
             _anim = GetComponent<Animator>();
         }
-        
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag("Player"))
                 return;
+
+            var scene = SceneManager.GetSceneByBuildIndex(nextLevel);
+            var rootObjects = scene.GetRootGameObjects();
+            var grid = rootObjects.First(obj => obj.CompareTag("Grid"));
             
-            // First object is always the grid
-            var grid = SceneManager.GetSceneByBuildIndex(nextLevel).GetRootGameObjects()[0];
             var tilemap = grid.transform.GetChild(0).GetComponent<Tilemap>();
 
-            var playerPos = PlayerController.Instance.transform.position;
-            // TODO: weird behaviour on final builds??
-            Debug.Log($"TILEMAP {tilemap} GRID: {grid}");
-            Debug.Log($"LEVEL MANAGER {LevelManager.Instance}");
             LevelManager.Instance.SwitchLevel(tilemap.GetComponentInChildren<Tilemap>());
 
+                var door = rootObjects.First(obj => obj.CompareTag("EntranceDoor"));
+            var cutscene = rootObjects.FirstOrDefault(obj => obj.CompareTag("Cutscene"));
+            var playerPos = PlayerController.Instance.transform.position;
             StartCoroutine(this.CallbackCoroutine(
                 PlayerController.Instance.AutonomousMove(playerPos + new Vector3(tilemap.cellSize.x * 3f, 0f)),
                 () =>
                 {
-                    var scene = SceneManager.GetSceneByBuildIndex(nextLevel);
-                    // Second object is always the entrance door
-                    var rootObjects = scene.GetRootGameObjects();
-                    var door = rootObjects[1];
                     door.GetComponent<Animator>().Play("LockDoor");
                     door.GetComponent<BoxCollider2D>().enabled = true;
                     SfxManager.Instance.Play(doorClose, .5f);
@@ -69,12 +70,9 @@ namespace Objects
                     {
                         LaserManager.Instance.Reload();
                     };
-                    var scene = SceneManager.GetSceneByBuildIndex(nextLevel);
-                    var rootObjects = scene.GetRootGameObjects();
-                    if (rootObjects.Length > 2 &&
-                        rootObjects[2].TryGetComponent<ILevelEntranceCutscene>(out var cutscene))
+                    if (cutscene != null)
                     {
-                        ((MonoBehaviour) cutscene).StartCoroutine(Util.Delay(() => cutscene.StartCutscene(), .5f));
+                        cutscene.GetComponent<MonoBehaviour>().StartCoroutine(Util.Delay(() => cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene(), .5f));
                     }
                 })
             );
@@ -138,16 +136,20 @@ namespace Objects
             switch (_action)
             {
                 case DoorAction.OpenDoor when _state:
-                    Unlock();
+                    if(gameObject != null)
+                        Unlock();
                     break;
                 case DoorAction.CloseDoor when _state:
-                    Lock();
+                    if(gameObject != null)
+                        Lock();
                     break;
                 case DoorAction.CloseDoor when !_state:
-                    Unlock();
+                    if(gameObject != null)
+                        Unlock();
                     break;
                 case DoorAction.OpenDoor when !_state:
-                    Lock();
+                    if(gameObject != null)
+                        Lock();
                     break;
                 case DoorAction.SwapState when _state:
                     // door unlocked probably
@@ -161,6 +163,8 @@ namespace Objects
 
         public void ReceiveBool(Transform source, bool b)
         {
+            if (this == null || gameObject == null)
+                return;
             _state = b;
             RecalculateState();
         }

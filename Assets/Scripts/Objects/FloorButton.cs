@@ -34,7 +34,8 @@ namespace Objects
         private void Start()
         {
             // TODO: some debug messages here? (like when channel rx is not connected)
-            _rx = connectedReceiver.GetComponent<IChannelReceiver>();
+            if(connectedReceiver != null)
+                _rx = connectedReceiver.GetComponent<IChannelReceiver>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
         
@@ -66,7 +67,26 @@ namespace Objects
             _spriteRenderer.sprite = unpressedSprite;
             SfxManager.Instance.Play(unpressedSound, 0.2f);
         }
-        
+
+        public void OnChildTriggerStay(Collider2D other)
+        {
+            if (_isPressed)
+                return;
+            
+            if (
+                detection == FloorButtonCollisionDetection.Anything ||
+                (detection == FloorButtonCollisionDetection.Box && other.CompareTag("Box")) ||
+                (detection == FloorButtonCollisionDetection.Player && other.CompareTag("Player"))
+            )
+            {
+                _pressed = other;
+                _rx?.ReceiveBool(transform, true);
+                _isPressed = true;
+                _spriteRenderer.sprite = pressedSprite;
+                SfxManager.Instance.Play(pressedSound, 0.2f);
+            }
+        }
+
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
         [field: SerializeField]
         public bool ConnectionLocked { get; set; }

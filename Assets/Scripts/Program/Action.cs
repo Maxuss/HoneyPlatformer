@@ -1,5 +1,7 @@
 using System;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Program
 {
@@ -27,7 +29,9 @@ namespace Program
     [Serializable]
     public struct ActionData: IEquatable<ActionData>
     {
+        [field: SerializeField]
         public int ActionIndex { get; set; }
+        [DoNotSerialize]
         [CanBeNull]
         public object StoredValue { get; set; }
 

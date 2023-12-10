@@ -102,6 +102,7 @@ MonoBehaviour:
   connectedReceiver: {fileID: 0}
   disabledSprite: {fileID: -905164272, guid: a1dbab1f7987f8b8ca1882ee832dabaa, type: 3}
   enabledSprite: {fileID: 656203540, guid: a1dbab1f7987f8b8ca1882ee832dabaa, type: 3}
+  <ConnectionLocked>k__BackingField: 0
 --- !u!114 &6090209306316434302
 MonoBehaviour:
   m_ObjectHideFlags: 0

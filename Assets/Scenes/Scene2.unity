@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1053792042}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2460,6 +2460,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6292946160639617844, guid: de1116970c3d211f1a6a68bc4a022d63, type: 3}
       propertyPath: m_Name
+      value: EntranceDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292946160639617844, guid: de1116970c3d211f1a6a68bc4a022d63, type: 3}
+      propertyPath: m_TagString
       value: EntranceDoor
       objectReference: {fileID: 0}
     m_RemovedComponents: []

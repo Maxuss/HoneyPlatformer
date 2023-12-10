@@ -24,7 +24,7 @@ namespace Objects
         [SerializeField]
         private ParticleSystem[] particles;
         [SerializeField]
-        private SummonObject summon;
+        private SummonObject summon = SummonObject.Nothing;
 
         private GameObject _spawnedObject;
         private static readonly int Amount = Shader.PropertyToID("_Amount");
@@ -162,15 +162,14 @@ namespace Objects
         {
             new ActionInfo
             {
-                ActionName = "Создать тяж. куб",
-                ActionDescription = "Спавнер будет создавать утяжеленные коробки.",
-            },
-            new ActionInfo
-            {
                 ActionName = "Ничего не создавать",
                 ActionDescription = "Спавнер не будет создавать объектов (однако все еще может уничтожать созданные).",
             },
-
+            new ActionInfo
+            {
+                ActionName = "Создать тяж. куб",
+                ActionDescription = "Спавнер будет создавать утяжеленные коробки.",
+            },
         };
 
         public ProgrammableType Type { get; } = ProgrammableType.Executor;
@@ -184,7 +183,7 @@ namespace Objects
 
     public enum SummonObject
     {
-        SteelBox,
         Nothing,
+        SteelBox,
     }
 }

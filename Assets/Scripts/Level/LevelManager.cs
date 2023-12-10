@@ -32,6 +32,7 @@ namespace Level
             var tileSize = levelMap.size;
             TileSize = (tileSize.x, tileSize.y);
             PixelSize = (tileSize.x * TilePixelSize, tileSize.y * TilePixelSize);
+            Debug.Log($"NEW BOUNDS: TL: {TileSize} PX: {PixelSize} MAP: {levelMap.localBounds.min} {levelMap.localBounds.min}");
             MapBounds = levelMap.localBounds;
         }
 

@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using Level;
+using Program.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Utils;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
@@ -153,6 +157,57 @@ namespace Controller
             HandleGravity();
             
             CommitMovement();
+        }
+        
+        private Image _black;
+        private IEnumerator RestartLevel(EntranceDoor obj)
+        {
+            _black = ProgrammableUIManager.Instance.Canvas.GetChild(5).GetComponent<Image>();
+            var active = SceneManager.GetActiveScene();
+            IsDisabled = true;
+            yield return FadeIn();
+            transform.position = obj.GetComponent<EntranceDoor>().restartPosition.position;
+            var load = SceneManager.LoadSceneAsync(active.buildIndex);
+            load.completed += action =>
+            {
+                StartCoroutine(FadeOut());
+                IsDisabled = false;
+                var newDoor = SceneManager.GetSceneAt(0).GetRootGameObjects()
+                    .First(it => it.CompareTag("EntranceDoor"));
+                newDoor.GetComponent<Animator>().Play("LockDoor");
+                newDoor.GetComponent<BoxCollider2D>().enabled = true;
+                Debug.Log($"{newDoor.GetComponent<BoxCollider2D>().enabled}");
+            };
+        }
+
+
+        private IEnumerator FadeIn()
+        {
+            _black.gameObject.SetActive(true);
+            _black.color = new Color(0f, 0f, 0f, 0f);
+            var opacity = 0f;
+            
+            while (opacity < 1f)
+            {
+                opacity += .5f * Time.deltaTime;
+                _black.color = new Color(0f, 0f, 0f, opacity);
+                yield return null;
+            }
+            _black.color = new Color(0f, 0f, 0f, 1f);
+        }
+        
+        private IEnumerator FadeOut()
+        {
+            var opacity = 0f;
+            
+            while (opacity > 0f)
+            {
+                opacity -= .5f * Time.deltaTime;
+                _black.color = new Color(0f, 0f, 0f, opacity);
+                yield return null;
+            }
+            _black.color = new Color(0f, 0f, 0f, 0f);
+            _black.gameObject.SetActive(false);
         }
 
         private void CommitMovement()
@@ -348,6 +403,17 @@ namespace Controller
             _time += Time.deltaTime;
             if(!IsDisabled && !_autonomous)
                 GatherInput();
+            
+            if (!IsDisabled && _input.RestartRequested)
+            {
+                var obj = SceneManager.GetSceneAt(0).GetRootGameObjects().FirstOrDefault(it => it.CompareTag("EntranceDoor"))
+                    ?.GetComponent<EntranceDoor>();
+                if (obj != null && SceneManager.GetSceneAt(0).buildIndex > 0)
+                {
+                    StartCoroutine(RestartLevel(obj));
+                    _input.RestartRequested = false;
+                }
+            }
         }
         
         private void GatherInput()
@@ -358,7 +424,8 @@ namespace Controller
                 JumpHeld = Input.GetButton("Jump"),
                 HorizontalMove = Input.GetAxisRaw("Horizontal"),
                 GrabHeld = Input.GetKey(KeyCode.LeftShift),
-                DownPressed = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)
+                DownPressed = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow),
+                RestartRequested = Input.GetKeyDown(KeyCode.R)
             };
 
             if (!_input.JumpDown) return;
@@ -374,6 +441,7 @@ namespace Controller
             internal float HorizontalMove;
             internal bool GrabHeld;
             internal bool DownPressed;
+            internal bool RestartRequested;
         }
 
         public enum FacingDirection

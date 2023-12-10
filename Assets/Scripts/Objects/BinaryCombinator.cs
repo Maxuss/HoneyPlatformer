@@ -37,7 +37,8 @@ namespace Objects
 
         private void Start()
         {
-            _rx = connectedReceiver.GetComponent<IChannelReceiver>();
+            if(connectedReceiver != null)
+                _rx = connectedReceiver.GetComponent<IChannelReceiver>();
             _renderer = GetComponent<Renderer>();
         }
         
@@ -111,6 +112,7 @@ namespace Objects
         };
 
         public ProgrammableType Type { get; } = ProgrammableType.Emitter;
+        [field: SerializeField]
         public ActionData SelectedAction { get; set; }
         public void Begin(ActionData action)
         {
@@ -123,6 +125,7 @@ namespace Objects
         }
 
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
+        [field: SerializeField]
         public bool ConnectionLocked { get; set; }
         public void Connect(IChannelReceiver rx)
         {

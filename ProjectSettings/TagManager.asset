@@ -8,6 +8,9 @@ TagManager:
   - LaserConsumer
   - Box
   - Platform
+  - Grid
+  - EntranceDoor
+  - Cutscene
   layers:
   - Default
   - TransparentFX
