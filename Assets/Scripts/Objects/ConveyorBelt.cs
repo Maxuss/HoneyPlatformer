@@ -20,7 +20,7 @@ namespace Objects
             set
             {
                 scrollSpeed = value;
-                _mat.SetFloat(ScrollingSpeed, scrollSpeed * (IsCounterClockwise ? -1f : 1f) / 4f);
+                _mat.SetFloat(ScrollingSpeed, scrollSpeed * (IsCounterClockwise ? 1f : -1f) / 4f);
             }
         }
 
@@ -37,7 +37,7 @@ namespace Objects
             Enabled = v;
             if (Enabled)
             {
-                var speed = scrollSpeed * (IsCounterClockwise ? -1f : 1f) / 4f;
+                var speed = scrollSpeed * (IsCounterClockwise ? 1f : -1f) / 4f;
                 _mat.SetFloat(ScrollingSpeed, speed);
             }
             else
@@ -51,7 +51,7 @@ namespace Objects
             if (!Enabled)
                 return;
 
-            var speed = scrollSpeed * (IsCounterClockwise ? -1f : 1f);
+            var speed = scrollSpeed * (IsCounterClockwise ? 1f : -1f);
             Vector3 oldPos = _rb.position;
             _rb.position += transform.right.XY() * (speed * Time.fixedDeltaTime);
             _rb.MovePosition(oldPos);

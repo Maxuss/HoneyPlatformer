@@ -24,9 +24,9 @@ namespace Cutscenes
         private Animator _bkAnim;
         private SpriteRenderer _bkSpr;
         
-        [ContextMenu("START")]
         public void StartCutscene()
         {
+            PlayerController.Instance.IsDisabled = true;
             _bkAnim = beekeeper.gameObject.GetComponent<Animator>();
             _bkAnim.Play("Beekeeper");
             _bkSpr = beekeeper.gameObject.GetComponent<SpriteRenderer>();
@@ -35,7 +35,6 @@ namespace Cutscenes
 
         private IEnumerator CutsceneManaged()
         {
-            PlayerController.Instance.IsDisabled = true;
             yield return new WaitForSeconds(1.5f);
             yield return DialogueManager.Instance.StartDialogue(dialogueBefore, true);
             yield return new WaitForSeconds(1.5f);
