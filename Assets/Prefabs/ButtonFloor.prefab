@@ -241,10 +241,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.7988879, y: 0.124496356}
+    - - {x: -0.49848753, y: 0.10319136}
       - {x: -1, y: 0}
       - {x: 1, y: 0}
-      - {x: 0.80193055, y: 0.12551604}
+      - {x: 0.5334877, y: 0.10208055}
   m_UseDelaunayMesh: 0
 --- !u!114 &-1842550982465035032
 MonoBehaviour:

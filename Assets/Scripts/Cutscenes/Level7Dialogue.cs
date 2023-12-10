@@ -43,7 +43,7 @@ namespace Cutscenes
             var amountToMove = 0f;
             _bkSpr.flipX = true;
             _bkAnim.Play("BeekeeperWalk");
-            while (amountToMove < 5f)
+            while (amountToMove < 3f)
             {
                 amountToMove += 1.5f * Time.deltaTime;
                 beekeeper.transform.position = originalPos - new Vector3(amountToMove, 0f);

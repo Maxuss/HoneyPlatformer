@@ -376,7 +376,7 @@ namespace Controller
                     _anim.SetBool(IsPulling, false);
                     _anim.SetBool(IsPushing, false);
                     break;
-                case true when !_isDragging:
+                case true when !_isDragging && _grounded:
                 {
                     var hit = Physics2D.Raycast(
                         handGrabTransform.position,
