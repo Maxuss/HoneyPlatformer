@@ -23,9 +23,10 @@ namespace Objects
         private Transform spawnPosition;
         [SerializeField]
         private ParticleSystem[] particles;
-        
+        [SerializeField]
+        private SummonObject summon;
+
         private GameObject _spawnedObject;
-        private SummonObject _summon;
         private static readonly int Amount = Shader.PropertyToID("_Amount");
         private static readonly int StartPosition = Shader.PropertyToID("_StartPosition");
 
@@ -114,7 +115,7 @@ namespace Objects
 
         private IEnumerator DelayedSpawnObject()
         {
-            if (_summon == SummonObject.Nothing)
+            if (summon == SummonObject.Nothing)
                 yield break;
             
             SfxManager.Instance.Play(objectCreateSound, .5f);
@@ -177,7 +178,7 @@ namespace Objects
         
         public void Begin(ActionData action)
         {
-            _summon = (SummonObject) Enum.ToObject(typeof(SummonObject), action.ActionIndex);
+            summon = (SummonObject) Enum.ToObject(typeof(SummonObject), action.ActionIndex);
         }
     }
 

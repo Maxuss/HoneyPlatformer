@@ -68,6 +68,7 @@ namespace Objects
         }
         
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
+        [field: SerializeField]
         public bool ConnectionLocked { get; set; }
         public void Connect(IChannelReceiver rx)
         {

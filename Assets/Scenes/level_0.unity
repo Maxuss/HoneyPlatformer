@@ -684,6 +684,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1639660863145089261, guid: 88e86d4c7d95136269da9376a18cf427, type: 3}
+      propertyPath: nextLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1639660863145089261, guid: 88e86d4c7d95136269da9376a18cf427, type: 3}
       propertyPath: nextLevel.guid
       value: db8d62592749ea0368832e22476e0b23
       objectReference: {fileID: 0}
@@ -3441,7 +3445,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -10, y: -6, z: 0}
-  m_Size: {x: 20, y: 12, z: 1}
+  m_Size: {x: 42, y: 12, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -3732,7 +3736,7 @@ MonoBehaviour:
   - {fileID: 1940297706}
   blackCanvas: {fileID: 1183279677}
   chair: {fileID: 1965413392}
-  disabled: 1
+  disabled: 0
 --- !u!1001 &1940297705
 PrefabInstance:
   m_ObjectHideFlags: 0

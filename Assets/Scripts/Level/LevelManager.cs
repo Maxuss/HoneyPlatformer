@@ -16,13 +16,16 @@ namespace Level
         public static LevelManager Instance { get; private set; }
         public const int TilePixelSize = 16;
 
-        public void Start()
+        public void Awake()
         {
-            RecalculateBounds();
-
             Instance = this;
         }
-        
+
+        private void Start()
+        {
+            RecalculateBounds();
+        }
+
         private void RecalculateBounds()
         {
             levelMap.CompressBounds();

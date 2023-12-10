@@ -16,7 +16,7 @@ namespace Objects
     public class ExitDoor: MonoBehaviour, IActionContainer, IChannelReceiver
     {
         [SerializeField]
-        private SceneReference nextLevel;
+        private int nextLevel;
         [SerializeField]
         private AudioClip doorOpen;
         [SerializeField]
@@ -37,18 +37,20 @@ namespace Objects
                 return;
             
             // First object is always the grid
-            var grid = nextLevel.LoadedScene.GetRootGameObjects()[0];
-            var tilemap = grid.GetComponentInChildren<Tilemap>();
+            var grid = SceneManager.GetSceneByBuildIndex(nextLevel).GetRootGameObjects()[0];
+            var tilemap = grid.transform.GetChild(0).GetComponent<Tilemap>();
 
             var playerPos = PlayerController.Instance.transform.position;
-            
+            // TODO: weird behaviour on final builds??
+            Debug.Log($"TILEMAP {tilemap} GRID: {grid}");
+            Debug.Log($"LEVEL MANAGER {LevelManager.Instance}");
             LevelManager.Instance.SwitchLevel(tilemap.GetComponentInChildren<Tilemap>());
 
             StartCoroutine(this.CallbackCoroutine(
                 PlayerController.Instance.AutonomousMove(playerPos + new Vector3(tilemap.cellSize.x * 3f, 0f)),
                 () =>
                 {
-                    var scene = nextLevel.LoadedScene;
+                    var scene = SceneManager.GetSceneByBuildIndex(nextLevel);
                     // Second object is always the entrance door
                     var rootObjects = scene.GetRootGameObjects();
                     var door = rootObjects[1];
@@ -67,7 +69,7 @@ namespace Objects
                     {
                         LaserManager.Instance.Reload();
                     };
-                    var scene = nextLevel.LoadedScene;
+                    var scene = SceneManager.GetSceneByBuildIndex(nextLevel);
                     var rootObjects = scene.GetRootGameObjects();
                     if (rootObjects.Length > 2 &&
                         rootObjects[2].TryGetComponent<ILevelEntranceCutscene>(out var cutscene))
@@ -86,7 +88,7 @@ namespace Objects
             GetComponent<BoxCollider2D>().isTrigger = true;
             _anim.Play("UnlockDoor");
             SfxManager.Instance.Play(doorOpen, .5f);
-            SceneManager.LoadSceneAsync(nextLevel.BuildIndex, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(nextLevel, LoadSceneMode.Additive);
         }
 
         public void Lock()
@@ -97,7 +99,7 @@ namespace Objects
             GetComponent<BoxCollider2D>().isTrigger = false;
             _anim.Play("LockDoor");
             SfxManager.Instance.Play(doorClose, .5f);
-            SceneManager.UnloadSceneAsync(nextLevel.BuildIndex);
+            SceneManager.UnloadSceneAsync(nextLevel);
         }
 
         public string Name => "Дверь выхода";

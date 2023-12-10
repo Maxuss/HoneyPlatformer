@@ -189,7 +189,7 @@ namespace Controller
                 else
                 {
                     var lockPos = line.transform.GetChild(1);
-                    lockPos.position = 0.7f * (rxPos - txPos) + txPos;
+                    lockPos.position = 0.3f * (rxPos - txPos) + txPos;
                 }
 
                 _lines.Add(line);
