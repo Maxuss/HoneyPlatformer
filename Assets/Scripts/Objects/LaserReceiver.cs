@@ -101,6 +101,7 @@ namespace Objects
         };
 
         public ProgrammableType Type => ProgrammableType.Emitter;
+        [field: SerializeField]
         public ActionData SelectedAction { get; set; }
         public void Begin(ActionData action)
         {
