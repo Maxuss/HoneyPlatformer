@@ -4,6 +4,7 @@ using Dialogue;
 using Program.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utils;
 
@@ -59,12 +60,14 @@ namespace Cutscenes
             StartCoroutine(MoveTowards(new Vector3(50f, 0f, 0f)));
             yield return FadeOut();
             ProgrammableUIManager.Instance.Canvas.GetChild(6).gameObject.SetActive(true);
+            yield return new WaitForSeconds(4f);
         }
 
         private IEnumerator FadeOut()
         {
             var black = ProgrammableUIManager.Instance.Canvas.GetChild(5);
             var img = black.gameObject.GetComponent<Image>();
+            img.gameObject.SetActive(true);
             img.color = new Color(0f, 0f, 0f, 0f);
             var opacity = 0f;
             

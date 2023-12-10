@@ -39,7 +39,9 @@ MonoBehaviour:
     audioSounds:
     - {fileID: 8300000, guid: 7b3eedf516be7a0d581eb5c502ddf4d1, type: 3}
     text: "\u0412\u0430\u0448\u0438 \u0440\u0430\u0431\u043E\u0447\u0438\u0435 \u043C\u0435\u0441\u0442\u0430
-      \u0436\u0435 \u0431\u043B\u0438\u0437\u043A\u043E \u043A \u043A\u0430\u043F\u0441\u0443\u043B\u044C\u043D\u043E\u0439."
+      \u0431\u043B\u0438\u0437\u043A\u043E \u043A \u043A\u0430\u043F\u0441\u0443\u043B\u044C\u043D\u043E\u0439!
+      \u041F\u043E\u043C\u043E\u0436\u0435\u0448\u044C \u043D\u0430\u0439\u0442\u0438
+      \u0438\u0445?"
     characterName: "\u0421\u0430\u043F\u0441\u0430\u043D"
     speedModifier: 0.6
   - sprites:
@@ -47,7 +49,7 @@ MonoBehaviour:
     - {fileID: 1822776724, guid: 7cba84a0f0f838c5884269f260c0a83f, type: 3}
     - {fileID: 1288258584, guid: 7cba84a0f0f838c5884269f260c0a83f, type: 3}
     audioSounds:
-    - {fileID: 8300000, guid: 7b3eedf516be7a0d581eb5c502ddf4d1, type: 3}
+    - {fileID: 8300000, guid: 3b0b74866785e69babf50def3ad25369, type: 3}
     text: ...
     characterName: "\u041F\u0430\u0441\u0435\u0447\u043D\u0438\u043A"
     speedModifier: 2

@@ -22,7 +22,7 @@ namespace Level
         public void ShowToast(string text)
         {
             toastText.text = text;
-            toast.DOAnchorPos(new Vector2(-342f, -63f), 1f);
+            toast.DOAnchorPos(new Vector2(-338f, -63f), 1f);
             toast.DOAnchorPos(new Vector2(-50f, -63f), 1f).SetDelay(4f);
         }
 

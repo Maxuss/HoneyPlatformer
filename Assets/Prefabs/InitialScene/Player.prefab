@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6625671288750041905}
   - component: {fileID: 6520422653231687218}
   - component: {fileID: 8980064792414932760}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LandParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4915,7 +4915,7 @@ GameObject:
   - component: {fileID: 1514341159318818672}
   - component: {fileID: 8315937247863083972}
   - component: {fileID: 3804038352035592543}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5148,7 +5148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2583728022607510039}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HandTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5181,7 +5181,7 @@ GameObject:
   - component: {fileID: 7140587615492802156}
   - component: {fileID: 142037808761528429}
   - component: {fileID: 5722922485457435594}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: JumpParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

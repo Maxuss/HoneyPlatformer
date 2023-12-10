@@ -648,7 +648,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 0d429e2bc7cf1b43eb91a9cff04b19b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3778,7 +3778,7 @@ MonoBehaviour:
   - {fileID: 1940297706}
   blackCanvas: {fileID: 1753230398}
   chair: {fileID: 1965413392}
-  disabled: 1
+  disabled: 0
 --- !u!1001 &1940297705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3934,7 +3934,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 7bc678dabbf2a80e8b244fcf1e15d3c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -189,7 +189,7 @@ namespace Controller
             
             while (opacity < 1f)
             {
-                opacity += .5f * Time.deltaTime;
+                opacity += Time.deltaTime;
                 _black.color = new Color(0f, 0f, 0f, opacity);
                 yield return null;
             }
@@ -202,7 +202,7 @@ namespace Controller
             
             while (opacity > 0f)
             {
-                opacity -= .5f * Time.deltaTime;
+                opacity -= Time.deltaTime;
                 _black.color = new Color(0f, 0f, 0f, opacity);
                 yield return null;
             }

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 2000820432, guid: 638273fe56e28c958a52ac4989a83224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   onSprite: {fileID: 1841297877, guid: 638273fe56e28c958a52ac4989a83224, type: 3}
   offSprite: {fileID: 2000820432, guid: 638273fe56e28c958a52ac4989a83224, type: 3}
   toggleSound: {fileID: 8300000, guid: fa468d40c084fd6839c7a7fed072a348, type: 3}
+  <ConnectionLocked>k__BackingField: 0
 --- !u!61 &3870353621862151983
 BoxCollider2D:
   m_ObjectHideFlags: 0

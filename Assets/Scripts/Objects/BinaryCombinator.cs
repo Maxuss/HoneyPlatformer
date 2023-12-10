@@ -80,7 +80,7 @@ namespace Objects
         }
 
         public string Name => "Логический Комбинатор";
-        public string Description => "Применяет бинарную операцию к двум сигналам на входе и выводит результат.";
+        public string Description => "Применяет логическую операцию к двум сигналам на входе и выводит результат.";
 
         public ActionInfo[] SupportedActions { get; } = new[]
         {
