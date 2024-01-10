@@ -704,6 +704,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 955677368137232744, guid: b13d665441580b171a9deafc37f8ebf0, type: 3}
+      propertyPath: connectedReceiver
+      value: 
+      objectReference: {fileID: 1908432380}
     - target: {fileID: 2603269894605645361, guid: b13d665441580b171a9deafc37f8ebf0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.5
@@ -752,6 +756,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4643563629977387424, guid: b13d665441580b171a9deafc37f8ebf0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: ad137bfe6c331baad8402050fda4776f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4564,6 +4572,11 @@ MonoBehaviour:
   blackCanvas: {fileID: 1753230398}
   chair: {fileID: 1965413392}
   disabled: 1
+--- !u!4 &1908432380 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5732394731131331430, guid: 5f31f790295130bfd9f8e036152f4ea2, type: 3}
+  m_PrefabInstance: {fileID: 781269900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1940297706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5448911115769074203, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
