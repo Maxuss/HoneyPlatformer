@@ -16,8 +16,8 @@ MonoBehaviour:
   material: {fileID: 6244930133691420287}
   materialHashCode: 883406118
   m_Version: 1.1.0
-  m_SourceFontFileGUID: 81a092398d94dc64f864a4b64a1ea8c3
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 81a092398d94dc64f864a4b64a1ea8c3, type: 3}
+  m_SourceFontFileGUID: ffc4232f41148b7beb12e456f96d4bbc
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: ffc4232f41148b7beb12e456f96d4bbc, type: 3}
   m_SourceFontFile: {fileID: 12800000, guid: 81a092398d94dc64f864a4b64a1ea8c3, type: 3}
   m_AtlasPopulationMode: 1
   m_FaceInfo:
@@ -3785,7 +3785,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hardpixel Atlas Material
-  m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
+  m_Shader: {fileID: 4800000, guid: 047758d10a5999715a0df4a92fa0e27d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -3848,6 +3848,7 @@ Material:
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
     - _OutlineWidth: 0
+    - _Padding: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9

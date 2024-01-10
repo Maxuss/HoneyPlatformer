@@ -590,6 +590,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1796917807}
     m_Modifications:
+    - target: {fileID: 1311465662475201989, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: 0.07435
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311465662475201989, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -1.08045
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311465662475201989, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 2.2070498
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311465662475201989, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 2.58455
+      objectReference: {fileID: 0}
     - target: {fileID: 3469395838451908404, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
       propertyPath: m_Name
       value: LampWarm (1)
@@ -759,7 +775,7 @@ PrefabInstance:
     - target: {fileID: 4643563629977387424, guid: b13d665441580b171a9deafc37f8ebf0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: ad137bfe6c331baad8402050fda4776f, type: 3}
+      objectReference: {fileID: 2100000, guid: 7b9207bc8c02f46b69627807c8bbca72, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1059,7 +1075,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7547025eb563d1ea88d59dd5ee58882e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d715efb4f9135067a9966ab8ed4115b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1067,7 +1083,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &338514261
@@ -1079,9 +1095,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 338514258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4357c76d668422889a4988cdd128d1d, type: 3}
+  m_Script: {fileID: 11500000, guid: d1d457d9d23a8557791c49b8cba92f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  light1: {fileID: 878275591}
+  light2: {fileID: 14663393}
+  rotationSpeed: 90
 --- !u!1 &369732812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5732394731131331430, guid: 5f31f790295130bfd9f8e036152f4ea2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5732394731131331430, guid: 5f31f790295130bfd9f8e036152f4ea2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1294,6 +1313,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7420397880517635940, guid: 5f31f790295130bfd9f8e036152f4ea2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 33db428b3e4d8f897a812d420a2c0b84, type: 2}
+    - target: {fileID: 7613027161945006614, guid: 5f31f790295130bfd9f8e036152f4ea2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7b9207bc8c02f46b69627807c8bbca72, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1506,6 +1533,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1796917807}
     m_Modifications:
+    - target: {fileID: 1311465662475201989, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: 0.08674991
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311465662475201989, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -1.06815
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311465662475201989, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 2.21005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311465662475201989, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 2.58555
+      objectReference: {fileID: 0}
     - target: {fileID: 3469395838451908404, guid: 2cb94b9a708f63e89b9cb8dbb039f841, type: 3}
       propertyPath: m_Name
       value: LampWarm
@@ -2075,7 +2118,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7547025eb563d1ea88d59dd5ee58882e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d715efb4f9135067a9966ab8ed4115b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2083,7 +2126,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1486938255
@@ -2095,9 +2138,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486938252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4357c76d668422889a4988cdd128d1d, type: 3}
+  m_Script: {fileID: 11500000, guid: d1d457d9d23a8557791c49b8cba92f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  light1: {fileID: 1328414497}
+  light2: {fileID: 74848398}
+  rotationSpeed: -90
 --- !u!224 &1511246034 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3472428930370758262, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
