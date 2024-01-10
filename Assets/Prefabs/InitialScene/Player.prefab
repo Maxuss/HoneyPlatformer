@@ -4911,10 +4911,10 @@ GameObject:
   - component: {fileID: 4502778650365455417}
   - component: {fileID: 7982113370721938606}
   - component: {fileID: 308404387675031485}
-  - component: {fileID: 5322669940373441045}
-  - component: {fileID: 1514341159318818672}
   - component: {fileID: 8315937247863083972}
   - component: {fileID: 3804038352035592543}
+  - component: {fileID: 1884051931161696105}
+  - component: {fileID: 5855337482893227413}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -4989,7 +4989,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &308404387675031485
@@ -5019,60 +5019,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &5322669940373441045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3162673685217606723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40f5055580809039ea414e4a70f50591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingDirection: 1
-  handGrabTransform: {fileID: 2583728022607510039}
-  grabLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  moveSpeed: 7
-  acceleration: 40
-  fallAcceleration: 35
-  fallSpeed: 40
-  jumpForce: 11
-  groundDistance: 0.05
-  groundDrag: 200
-  airDrag: 150
-  notTerrainMask:
-    serializedVersion: 2
-    m_Bits: 868
-  footstepSounds:
-  - {fileID: 8300000, guid: 0746bfe442d3584b9a4845f1229b78ff, type: 3}
-  - {fileID: 8300000, guid: 64a9aca6626eb37f4a347fc417dab7e8, type: 3}
-  - {fileID: 8300000, guid: 25e0d50b9a4cf7891a8556e6930662d3, type: 3}
-  - {fileID: 8300000, guid: 156d1556edc0d63028cf987422b70a94, type: 3}
-  jumpSound: {fileID: 8300000, guid: 5a03bbae046b54c9b8113a857c68c72a, type: 3}
-  landSound: {fileID: 8300000, guid: 930dba4e8df9094f5b90ca93ec4653f4, type: 3}
-  timeBetweenFootsteps: 0.3
-  jumpParticles: {fileID: 142037808761528429}
-  landParticles: {fileID: 6520422653231687218}
---- !u!114 &1514341159318818672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3162673685217606723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d177d2c95e7d429cb742e65914b404ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handTransform: {fileID: 2583728022607510039}
-  interactLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!95 &8315937247863083972
 Animator:
   serializedVersion: 5
@@ -5139,6 +5085,56 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.69859743, y: 1.375}
   m_EdgeRadius: 0
+--- !u!114 &1884051931161696105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3162673685217606723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a94c8422c7b48a728ec2dfa9ff5e120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5855337482893227413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3162673685217606723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d061c9f8bad2130629287dd428fddbbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingDirection: 0
+  handGrabTransform: {fileID: 2583728022607510039}
+  grabLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  moveSpeed: 7
+  acceleration: 40
+  fallAcceleration: 35
+  fallSpeed: 40
+  jumpForce: 13
+  groundDistance: 0.05
+  groundDrag: 200
+  airDrag: 150
+  notTerrainMask:
+    serializedVersion: 2
+    m_Bits: 1015
+  footstepSounds:
+  - {fileID: 8300000, guid: 9311ceee37a6bbdf3a690d05e2349429, type: 3}
+  - {fileID: 8300000, guid: 78de2ac1294fc6a32b81ddee43665563, type: 3}
+  - {fileID: 8300000, guid: cab709d38e0d500629e491663a0e0ebf, type: 3}
+  - {fileID: 8300000, guid: 869a31542b3bfdb05810e17ad38070b5, type: 3}
+  jumpSound: {fileID: 8300000, guid: efaad6456badb0c579a3af28de95ec4a, type: 3}
+  landSound: {fileID: 8300000, guid: 0dd2dcd95ba811f92853c6cc31c1bba1, type: 3}
+  timeBetweenFootsteps: 0.3
+  jumpParticles: {fileID: 142037808761528429}
+  landParticles: {fileID: 6520422653231687218}
 --- !u!1 &5762282007668574589
 GameObject:
   m_ObjectHideFlags: 0

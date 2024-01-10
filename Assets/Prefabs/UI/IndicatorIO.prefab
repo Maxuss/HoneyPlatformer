@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4521458009199760979}
   - component: {fileID: 8829896511209697925}
-  - component: {fileID: 113172664796635173}
+  - component: {fileID: 9107284775532745868}
   m_Layer: 0
   m_Name: ChooseOutput
   m_TagString: Untagged
@@ -78,7 +78,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.291381, y: 0.6948159}
   m_EdgeRadius: 0
---- !u!114 &113172664796635173
+--- !u!114 &9107284775532745868
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3866582693620048478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00374b7ebb9446eb871a9fc64b8a796, type: 3}
+  m_Script: {fileID: 11500000, guid: 632dcefdd8668984a9805aee573bca62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Preference>k__BackingField: 1
@@ -166,12 +166,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d22c5cfc248ae57e78d711232939d2f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7762e323d684605faa76e7f0358fba0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.25, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4451288539426117249}
   - component: {fileID: 8472897668686269388}
-  - component: {fileID: 6037863415736169646}
+  - component: {fileID: 5829746637397412027}
   m_Layer: 0
   m_Name: ChooseInput
   m_TagString: Untagged
@@ -255,7 +255,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.291381, y: 0.6559437}
   m_EdgeRadius: 0
---- !u!114 &6037863415736169646
+--- !u!114 &5829746637397412027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9196422839236775559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00374b7ebb9446eb871a9fc64b8a796, type: 3}
+  m_Script: {fileID: 11500000, guid: 632dcefdd8668984a9805aee573bca62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Preference>k__BackingField: 0

@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 5775441473478477155}
   - component: {fileID: 8388710599323074023}
   - component: {fileID: 2853695772256014818}
-  - component: {fileID: 6048303642934878209}
-  - component: {fileID: 5139715832072420568}
   - component: {fileID: 5567412270042517495}
   - component: {fileID: 756794538145748843}
   - component: {fileID: 4100771013862886367}
+  - component: {fileID: 183711026593383695}
+  - component: {fileID: 4143968363268729737}
+  - component: {fileID: 5290164877897739287}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -66,10 +67,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.00052083336
+    y: 0.0009259259
+    width: 0.8229167
+    height: 0.34814814
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -98,248 +99,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2670301656049803856}
   m_Enabled: 1
---- !u!114 &6048303642934878209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2670301656049803856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6443119791914d9bbe6444fe727fb76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  smoothingModifier: 5
-  effectRenderer: {fileID: 9218618160617486699}
-  enterEditModeSound: {fileID: 8300000, guid: f7a71b0b0b7a5177a9cb4aead211e3b2, type: 3}
-  exitEditModeSound: {fileID: 8300000, guid: a85079191702066c5b5d7c7e48783299, type: 3}
-  visualEditingNotifier: {fileID: 0}
-  moreVisualEditingNotifier: {fileID: 0}
-  globalLight: {fileID: 0}
---- !u!114 &5139715832072420568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2670301656049803856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fbbda59246a44488a9e60ece4f56c89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smootheningModifier: 0.1
-  renderLineContainer: {fileID: 0}
-  linePrefab: {fileID: 1168906006037071799, guid: cd93ffbe6a9b70e7b825901dbdc406fa, type: 3}
-  lineColors:
-  - serializedVersion: 2
-    key0: {r: 0.6179246, g: 0.9298776, b: 1, a: 1}
-    key1: {r: 0.8066038, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  - serializedVersion: 2
-    key0: {r: 0.2253453, g: 1, b: 0.16509432, a: 1}
-    key1: {r: 0.6500872, g: 1, b: 0.6231902, a: 1}
-    key2: {r: 0.8743743, g: 1, b: 0.8632076, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 36044
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  - serializedVersion: 2
-    key0: {r: 0.83505154, g: 1, b: 0, a: 1}
-    key1: {r: 0.94321233, g: 0.9998152, b: 0.63891584, a: 1}
-    key2: {r: 1, g: 0.9976734, b: 0.8627451, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 39128
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  - serializedVersion: 2
-    key0: {r: 1, g: 0.47310832, b: 0.07075471, a: 1}
-    key1: {r: 1, g: 0.798685, b: 0.6446367, a: 1}
-    key2: {r: 1, g: 0.9275322, b: 0.8627451, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 38936
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  - serializedVersion: 2
-    key0: {r: 1, g: 0.23113209, b: 0.34210283, a: 1}
-    key1: {r: 1, g: 0.6553633, b: 0.71052873, a: 1}
-    key2: {r: 1, g: 0.8627451, b: 0.9147334, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 46838
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  - serializedVersion: 2
-    key0: {r: 1, g: 0.61960787, b: 0.93946415, a: 1}
-    key1: {r: 1, g: 0.8627451, b: 0.98008054, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  - serializedVersion: 2
-    key0: {r: 0.43179464, g: 0.17528482, b: 0.9528302, a: 1}
-    key1: {r: 0.7816552, g: 0.672526, b: 1, a: 1}
-    key2: {r: 0.91468024, g: 0.8627451, b: 1, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 35273
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  moreVisualEditingNotifier: {fileID: 0}
-  visualEditingNotifier: {fileID: 0}
-  ioChoicePrefab: {fileID: 7670880982435833101, guid: 060d8640b39ae8e199708c2e03eaa2b4, type: 3}
 --- !u!114 &5567412270042517495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +183,57 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &183711026593383695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670301656049803856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a9ef4d7c9ab4d3ea97f7ccceeeb699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smootheningModifier: 0.1
+  renderLineContainer: {fileID: 0}
+  linePrefab: {fileID: 0}
+  lineColors: []
+  moreVisualEditingNotifier: {fileID: 0}
+  visualEditingNotifier: {fileID: 0}
+  ioChoicePrefab: {fileID: 0}
+--- !u!114 &4143968363268729737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670301656049803856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e77761f689cf2f0a2edbf432764484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  smoothingModifier: 3.5
+  effectRenderer: {fileID: 0}
+  enterEditModeSound: {fileID: 0}
+  exitEditModeSound: {fileID: 0}
+  visualEditingNotifier: {fileID: 0}
+  moreVisualEditingNotifier: {fileID: 0}
+  globalLight: {fileID: 0}
+--- !u!114 &5290164877897739287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670301656049803856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a94c8422c7b48a728ec2dfa9ff5e120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3274028164263210189
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +286,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 63d0502d50cb652139bfc80a49513751, type: 3}
+  - {fileID: -876546973899608171, guid: 08a51466e7486fd56ac168a91f3cc04d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

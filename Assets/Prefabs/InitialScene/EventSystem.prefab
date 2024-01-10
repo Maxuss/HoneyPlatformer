@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4490402710427135986}
   - component: {fileID: 3751114871817508109}
   - component: {fileID: 3518008858006129149}
-  - component: {fileID: 861724444185722846}
+  - component: {fileID: 8931455405663470930}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &861724444185722846
+--- !u!114 &8931455405663470930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,6 +78,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1296487598662148820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eedba754b79b4962971d8535523fe75f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a94c8422c7b48a728ec2dfa9ff5e120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

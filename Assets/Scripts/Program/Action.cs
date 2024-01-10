@@ -1,6 +1,5 @@
 using System;
 using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Program
@@ -31,7 +30,6 @@ namespace Program
     {
         [field: SerializeField]
         public int ActionIndex { get; set; }
-        [DoNotSerialize]
         [CanBeNull]
         public object StoredValue { get; set; }
 

@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 2b6fbbd9898403457ae2f70af2abeca6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c5716b6a3c1d003280af851f004ecd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -157,12 +157,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: 2afd28822a6202ef7972177a49ee178b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 303f16d2956d5d57195e03d108011c22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -241,12 +241,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: 2afd28822a6202ef7972177a49ee178b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 303f16d2956d5d57195e03d108011c22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -261,7 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1633743703559196897}
-  - component: {fileID: 7773020755082380365}
+  - component: {fileID: 1878239150435164165}
   m_Layer: 0
   m_Name: BackdropParallax
   m_TagString: Untagged
@@ -287,7 +287,7 @@ Transform:
   - {fileID: 6999961332533334502}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7773020755082380365
+--- !u!114 &1878239150435164165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2601939632837030429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eedba754b79b4962971d8535523fe75f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a94c8422c7b48a728ec2dfa9ff5e120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3015800110508519250
@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8912335920538061236}
   - component: {fileID: 3292270821651402501}
-  - component: {fileID: 8077951736219827280}
+  - component: {fileID: 4344705163491003031}
   m_Layer: 0
   m_Name: BackdropMid
   m_TagString: Untagged
@@ -375,18 +375,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 2afd28822a6202ef7972177a49ee178b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 303f16d2956d5d57195e03d108011c22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8077951736219827280
+--- !u!114 &4344705163491003031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,11 +395,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3015800110508519250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120bfbf528474d3994f4d9efca4cfaa7, type: 3}
+  m_Script: {fileID: 11500000, guid: 445bdf72a9558118aa9041f490364624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  transformModifier: 1.3
+  transformModifier: 0
 --- !u!1 &4053544738265403357
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,12 +473,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -6
-  m_Sprite: {fileID: 21300000, guid: 2783d9ea27f79b20ea7a281ec3b12aad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e1d2dba5cb79e014ad3c444703c1065, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -557,12 +557,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 2b6fbbd9898403457ae2f70af2abeca6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c5716b6a3c1d003280af851f004ecd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -578,7 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6999961332533334502}
   - component: {fileID: 9145036370271982685}
-  - component: {fileID: 1380366801998065256}
+  - component: {fileID: 6602197297853309662}
   m_Layer: 0
   m_Name: BackdropFront
   m_TagString: Untagged
@@ -644,18 +644,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: 2b6fbbd9898403457ae2f70af2abeca6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c5716b6a3c1d003280af851f004ecd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1380366801998065256
+--- !u!114 &6602197297853309662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -664,11 +664,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8161254830144310412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120bfbf528474d3994f4d9efca4cfaa7, type: 3}
+  m_Script: {fileID: 11500000, guid: 445bdf72a9558118aa9041f490364624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  transformModifier: 1.5
+  transformModifier: 0
 --- !u!1 &8166232204838323409
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,12 +742,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -6
-  m_Sprite: {fileID: 21300000, guid: 2783d9ea27f79b20ea7a281ec3b12aad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e1d2dba5cb79e014ad3c444703c1065, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -763,7 +763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651074957046279056}
   - component: {fileID: 8427577333510606668}
-  - component: {fileID: 6478025827035408237}
+  - component: {fileID: 7242222675945522805}
   m_Layer: 0
   m_Name: BackdropLast
   m_TagString: Untagged
@@ -829,18 +829,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 21300000, guid: 2783d9ea27f79b20ea7a281ec3b12aad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e1d2dba5cb79e014ad3c444703c1065, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6478025827035408237
+--- !u!114 &7242222675945522805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -849,8 +849,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9078757631974065393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120bfbf528474d3994f4d9efca4cfaa7, type: 3}
+  m_Script: {fileID: 11500000, guid: 445bdf72a9558118aa9041f490364624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  transformModifier: 1
+  transformModifier: 0
