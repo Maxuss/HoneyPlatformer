@@ -52,16 +52,18 @@ namespace Program
 
         public virtual void OnPointerClick(PointerEventData e)
         {
+            Debug.Log("POINTER CLICK");
             if (!CameraController.Instance.VisualEditing.Enabled)
                 return;
 
-            if (CameraController.Instance.VisualEditing.Enabled && Input.GetKey(KeyCode.LeftAlt) && _tx != null)
+            if (Input.GetKey(KeyCode.LeftAlt) && _tx != null)
             {
                 _tx.Disconnect();
                 CameraController.Instance.VisualEditing.FinishConnection();
                 return;
             }
             
+            Debug.Log($"CLICKED {e.button}");
             switch (e.button)
             {
                 case PointerEventData.InputButton.Left when CameraController.Instance.VisualEditing.IsConnecting:
@@ -86,11 +88,13 @@ namespace Program
                 case PointerEventData.InputButton.Left when _actionContainer == null:
                     return;
                 case PointerEventData.InputButton.Left when !CameraController.Instance.VisualEditing.Editing:
+                    Debug.Log("ENTERING EDIT MODE");
                     ProgrammableUIManager.Instance.OpenFor(_actionContainer);
                     break;
                 case PointerEventData.InputButton.Right when !CameraController.Instance.VisualEditing.IsConnecting:
                 {
                     // starting connecting
+                    Debug.Log("BEGINNING CONNECT");
                     // TODO: mention somewhere in tutorial that if you hold SHIFT it will always select TX only
                     var rxNull = _rx == null;
                     var txNull = _tx == null;
@@ -110,6 +114,7 @@ namespace Program
                         if (_tx.ConnectionLocked)
                             return;
                         
+                        Debug.Log("SETUP CONNECTING FROM");
                         CameraController.Instance.VisualEditing.ConnectingFrom = _tx;
                         CameraController.Instance.VisualEditing.IsConnecting = true;
                         CameraController.Instance.VisualEditing.SetupConnectingLine(transform.position);

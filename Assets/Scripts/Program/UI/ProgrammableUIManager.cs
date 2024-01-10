@@ -73,6 +73,7 @@ namespace Program.UI
 
         public void OpenFor(IActionContainer obj)
         {
+            Debug.Log("OPENING");
             _currentlyEditing = obj;
             _isEditing = true;
             terminalObject.SetActive(true);

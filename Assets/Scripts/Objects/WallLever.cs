@@ -35,6 +35,7 @@ namespace Objects
 
         public void OnInteract()
         {
+            Debug.Log("INTERACTED!!!");
             state = !state;
             _spriteRenderer.sprite = state ? onSprite : offSprite;
             SfxManager.Instance.Play(toggleSound, 0.2f);
