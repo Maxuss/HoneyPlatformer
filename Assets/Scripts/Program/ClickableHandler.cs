@@ -5,10 +5,11 @@ using Program.Channel;
 using Program.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.LowLevel;
 
 namespace Program
 {
-    public class ClickableHandler: MonoBehaviour, IPointerClickHandler
+    public class ClickableHandler: MonoBehaviour
     {
         private Renderer _renderer;
         private IActionContainer _actionContainer;
@@ -50,7 +51,25 @@ namespace Program
             _renderer.material.SetFloat(HighlightAmount, 0f);
         }
 
-        public virtual void OnPointerClick(PointerEventData e)
+        private void OnMouseOver()
+        {
+
+            if (Input.GetMouseButton((int) MouseButton.Left))
+            {
+                OnPointerClick(new ClickData
+                {
+                    Button = PointerEventData.InputButton.Left
+                });
+            } else if (Input.GetMouseButton((int)MouseButton.Right))
+            {
+                OnPointerClick(new ClickData
+                {
+                    Button = PointerEventData.InputButton.Right
+                });
+            }
+        }
+
+        public virtual void OnPointerClick(ClickData e)
         {
             Debug.Log("POINTER CLICK");
             if (!CameraController.Instance.VisualEditing.Enabled)
@@ -63,8 +82,8 @@ namespace Program
                 return;
             }
             
-            Debug.Log($"CLICKED {e.button}");
-            switch (e.button)
+            Debug.Log($"CLICKED {e.Button}");
+            switch (e.Button)
             {
                 case PointerEventData.InputButton.Left when CameraController.Instance.VisualEditing.IsConnecting:
                 {
@@ -126,5 +145,10 @@ namespace Program
                     return;
             }
         } 
+    }
+
+    public struct ClickData
+    {
+        public PointerEventData.InputButton Button;
     }
 }

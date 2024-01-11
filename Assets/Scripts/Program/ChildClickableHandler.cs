@@ -14,7 +14,7 @@ namespace Program
             _parent = transform.parent.GetComponent<GroupedClickable>();
         }
 
-        public override void OnPointerClick(PointerEventData e)
+        public override void OnPointerClick(ClickData e)
         {
             _parent.OnPointerClick(e);
         }
