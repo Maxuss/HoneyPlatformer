@@ -5,7 +5,7 @@ using Program.Channel;
 using Program.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UIElements;
 
 namespace Program
 {
@@ -54,13 +54,13 @@ namespace Program
         private void OnMouseOver()
         {
 
-            if (Input.GetMouseButton((int) MouseButton.Left))
+            if (Input.GetMouseButton((int) MouseButton.LeftMouse))
             {
                 OnPointerClick(new ClickData
                 {
                     Button = PointerEventData.InputButton.Left
                 });
-            } else if (Input.GetMouseButton((int)MouseButton.Right))
+            } else if (Input.GetMouseButton((int)MouseButton.RightMouse))
             {
                 OnPointerClick(new ClickData
                 {
