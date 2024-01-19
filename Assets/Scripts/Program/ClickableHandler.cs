@@ -71,7 +71,6 @@ namespace Program
 
         public virtual void OnPointerClick(ClickData e)
         {
-            Debug.Log("POINTER CLICK");
             if (!CameraController.Instance.VisualEditing.Enabled)
                 return;
 
@@ -82,7 +81,6 @@ namespace Program
                 return;
             }
             
-            Debug.Log($"CLICKED {e.Button}");
             switch (e.Button)
             {
                 case PointerEventData.InputButton.Left when CameraController.Instance.VisualEditing.IsConnecting:
@@ -107,13 +105,11 @@ namespace Program
                 case PointerEventData.InputButton.Left when _actionContainer == null:
                     return;
                 case PointerEventData.InputButton.Left when !CameraController.Instance.VisualEditing.Editing:
-                    Debug.Log("ENTERING EDIT MODE");
                     ProgrammableUIManager.Instance.OpenFor(_actionContainer);
                     break;
                 case PointerEventData.InputButton.Right when !CameraController.Instance.VisualEditing.IsConnecting:
                 {
                     // starting connecting
-                    Debug.Log("BEGINNING CONNECT");
                     // TODO: mention somewhere in tutorial that if you hold SHIFT it will always select TX only
                     var rxNull = _rx == null;
                     var txNull = _tx == null;

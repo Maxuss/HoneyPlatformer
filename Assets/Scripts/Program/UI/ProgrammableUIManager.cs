@@ -147,6 +147,7 @@ namespace Program.UI
                 var idxCl = idx;
                 buttonCallback.ClickHandler = () =>
                 {
+                    Debug.Log("CLICK HANDLER");
                     if (idxCl == _selectedAction.ActionIndex)
                         return;
                     // Handling selection change

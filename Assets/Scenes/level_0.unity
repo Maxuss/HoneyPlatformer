@@ -434,7 +434,7 @@ PrefabInstance:
     - target: {fileID: 2839271357499072240, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: buttonPrefab
       value: 
-      objectReference: {fileID: 1368044327690149588, guid: 5d38c9975b8c3900eb87378979845952, type: 3}
+      objectReference: {fileID: 4047079110540286074, guid: 0031530de0be95392bef758a4e66b04e, type: 3}
     - target: {fileID: 2839271357499072240, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: executorIcon
       value: 
@@ -930,7 +930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 756794538145748843, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_CropFrame
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 756794538145748843, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_GridSnapping
@@ -1028,11 +1028,20 @@ PrefabInstance:
       propertyPath: m_NormalizedViewPortRect.height
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 756794538145748843, guid: 1099ddccfe60e03649202142705d007b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2670301656049803856, guid: 1099ddccfe60e03649202142705d007b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1230378323}
   m_SourcePrefab: {fileID: 100100000, guid: 1099ddccfe60e03649202142705d007b, type: 3}
+--- !u!1 &321512060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2670301656049803856, guid: 1099ddccfe60e03649202142705d007b, type: 3}
+  m_PrefabInstance: {fileID: 321512059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &338514258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,17 +1542,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1290114560}
   m_SourcePrefab: {fileID: 100100000, guid: 777453790021f1485b2a9a03ac1e0b18, type: 3}
---- !u!114 &960081936 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 756794538145748843, guid: 1099ddccfe60e03649202142705d007b, type: 3}
-  m_PrefabInstance: {fileID: 321512059}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1068051291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1622,6 +1620,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5775441473478477155, guid: 1099ddccfe60e03649202142705d007b, type: 3}
   m_PrefabInstance: {fileID: 321512059}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1230378323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321512060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_AssetsPPU: 16
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_CropFrame: 0
+  m_GridSnapping: 2
+  m_FilterMode: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1001 &1282750622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4489,7 +4511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alarmClip: {fileID: 8300000, guid: b50f6f047170277c4a020747afb261ce, type: 3}
   playerAnimator: {fileID: 53950835}
-  ppc: {fileID: 960081936}
+  ppc: {fileID: 0}
   dialogue1: {fileID: 0}
   dialogue2: {fileID: 0}
   toggleSound: {fileID: 8300000, guid: ad2f0c2374942b86cb9b423b06307b82, type: 3}
@@ -5667,7 +5689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5900,7 +5922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.02745098}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
