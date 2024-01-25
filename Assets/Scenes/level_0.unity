@@ -1014,7 +1014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.001710864
+      value: 0.047169812
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -1022,7 +1022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.99572283
+      value: 0.9056604
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
@@ -1636,7 +1636,7 @@ MonoBehaviour:
   m_AssetsPPU: 16
   m_RefResolutionX: 320
   m_RefResolutionY: 180
-  m_CropFrame: 2
+  m_CropFrame: 3
   m_GridSnapping: 2
   m_FilterMode: 0
   m_UpscaleRT: 0
