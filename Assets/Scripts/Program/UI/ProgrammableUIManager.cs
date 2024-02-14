@@ -73,7 +73,6 @@ namespace Program.UI
 
         public void OpenFor(IActionContainer obj)
         {
-            Debug.Log("OPENING");
             _currentlyEditing = obj;
             _isEditing = true;
             terminalObject.SetActive(true);
@@ -147,7 +146,6 @@ namespace Program.UI
                 var idxCl = idx;
                 buttonCallback.ClickHandler = () =>
                 {
-                    Debug.Log("CLICK HANDLER");
                     if (idxCl == _selectedAction.ActionIndex)
                         return;
                     // Handling selection change
@@ -208,7 +206,6 @@ namespace Program.UI
                         var enumText = enumSelection.transform.GetChild(0).GetComponent<TMP_Text>();
                         enumText.text = action.ParameterName!;
                         var dropdown = enumSelection.transform.GetChild(1).GetComponent<TMP_Dropdown>();
-                        Debug.Log(enumValues[0]);
                         dropdown.options = enumValues
                             .Select(each => Enum.GetName(action.EnumType!, each))
                             .Select(each => new TMP_Dropdown.OptionData
@@ -220,7 +217,6 @@ namespace Program.UI
                         _selectedAction.StoredValue = Enum.ToObject(action.EnumType, dropdown.value);
                         dropdown.onValueChanged.AddListener(val =>
                         {
-                            Debug.Log(Enum.ToObject(action.EnumType, val));
                             _selectedAction.StoredValue = Enum.ToObject(action.EnumType, val);
                         });
                         break;
