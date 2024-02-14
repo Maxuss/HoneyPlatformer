@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,9 @@ namespace Menu
         {
             aboutContainer.SetActive(false);
             mainContainer.SetActive(true);
+
+            SaveManager.CurrentState.LevelIndex = 13;
+            SaveManager.SaveGame();
         }
 
         private void Start()
