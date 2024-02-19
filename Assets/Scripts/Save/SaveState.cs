@@ -6,5 +6,7 @@ namespace Save
     {
         public int SaveIndex { get; set; }
         public int LevelIndex { get; set; }
+        
+        public int Currency { get; set; }
     }
 }
