@@ -47,11 +47,11 @@ namespace Dialogue
             dialogueObject.SetActive(true);
             _doNotEnableMovement = doNotEnableMovement;
             _shouldContinue = true;
-            while (_speechIdx < dialogue.Speeches.Count)
+            while (_speechIdx < dialogue.speeches.Count)
             {
-                _speech = dialogue.Speeches[_speechIdx];
-                StartCoroutine(SingleSpeech(dialogue.Speeches[_speechIdx]));
-                var shouldExitOnPress = _speechIdx + 1 >= dialogue.Speeches.Count;
+                _speech = dialogue.speeches[_speechIdx];
+                StartCoroutine(SingleSpeech(dialogue.speeches[_speechIdx]));
+                var shouldExitOnPress = _speechIdx + 1 >= dialogue.speeches.Count;
                 while (_shouldContinue && _inDialogue)
                 {
                     if (Input.GetKeyDown(KeyCode.Return))
