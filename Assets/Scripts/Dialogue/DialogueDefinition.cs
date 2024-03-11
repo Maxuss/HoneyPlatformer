@@ -16,7 +16,7 @@ namespace Dialogue
     public class DialogueSpeech
     {
         public Sprite[] sprites;
-        public AudioClip[] audioSounds;
+        public AudioClip audio;
         public string text;
         public string characterName;
         [Range(0.5f, 3f)]

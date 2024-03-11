@@ -15,7 +15,7 @@ namespace Dialogue
     public class DialogueManager: MonoBehaviour
     {
         public static DialogueManager Instance { get; set; }
-
+        
         [SerializeField]
         private GameObject dialogueObject;
         [SerializeField]
@@ -24,6 +24,9 @@ namespace Dialogue
         private Image speakerSprite;
         [SerializeField]
         private TMP_Text characterName;
+
+        
+        private AudioSource _as;
         
         private int _currentCharIdx;
         private int _speechIdx;
@@ -35,7 +38,9 @@ namespace Dialogue
 
         private void Start()
         {
+            _as = GetComponent<AudioSource>();
             Instance = this;
+
             dialogueObject.SetActive(false);
         }
         
@@ -98,6 +103,8 @@ namespace Dialogue
             characterName.text = dialogue.characterName;
             text.text = "";
             _currentCharIdx = 0;
+            _as.clip = dialogue.audio;
+            _as.Play();
             while (_currentCharIdx < dialogue.text.Length && _inDialogue)
             {
                 var ch = dialogue.text[_currentCharIdx];
@@ -111,11 +118,11 @@ namespace Dialogue
                     ch = dialogue.text[_currentCharIdx];
                 }
                 text.text = dialogue.text.Substring(0, _currentCharIdx + 1);
-                var sound = dialogue.audioSounds[Random.Range(0, dialogue.audioSounds.Length)];
-                SfxManager.Instance.Play(sound);
                 _currentCharIdx += 1;
                 yield return new WaitForSeconds(0.06f * dialogue.speedModifier);
             }
+
+            yield return new WaitUntil(() => !_as.isPlaying);
             StopCoroutine(animationCoroutine);
             speakerSprite.sprite = dialogue.sprites[0];
         }
