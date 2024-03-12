@@ -46,7 +46,7 @@ namespace Objects
 
             LevelManager.Instance.SwitchLevel(tilemap.GetComponentInChildren<Tilemap>());
 
-                var door = rootObjects.First(obj => obj.CompareTag("EntranceDoor"));
+            var door = rootObjects.First(obj => obj.CompareTag("EntranceDoor"));
             var cutscene = rootObjects.FirstOrDefault(obj => obj.CompareTag("Cutscene"));
             var playerPos = PlayerController.Instance.transform.position;
             StartCoroutine(this.CallbackCoroutine(
