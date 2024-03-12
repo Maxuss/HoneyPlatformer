@@ -53,7 +53,7 @@ namespace Objects
                 PlayerController.Instance.AutonomousMove(playerPos + new Vector3(tilemap.cellSize.x * 3f, 0f)),
                 () =>
                 {
-                    door.GetComponent<Animator>().Play("LockDoor");
+                    door.GetComponent<Animator>().Play("EntranceDoor");
                     door.GetComponent<BoxCollider2D>().enabled = true;
                     SfxManager.Instance.Play(doorClose, .5f);
                 }

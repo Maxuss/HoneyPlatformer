@@ -24,8 +24,7 @@ namespace Controller
             var isNotNull = hit.collider != null;
             switch (isNotNull)
             {
-                case true when hit.collider.gameObject.TryGetComponent<IInteractable>(out var interactable):
-                    Debug.Log("INTERACTABLE");
+                case true when hit.collider.gameObject.TryGetComponent<IInteractable>(out var interactable): 
                     interactable.OnInteract();
                     break;
             }
