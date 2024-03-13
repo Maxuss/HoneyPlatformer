@@ -584,7 +584,7 @@ PrefabInstance:
     - target: {fileID: 5701711194092218363, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: toast
       value: 
-      objectReference: {fileID: 8250860688942565522}
+      objectReference: {fileID: 2080015704886718337}
     - target: {fileID: 5701711194092218363, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: toastText
       value: 
@@ -1029,11 +1029,11 @@ PrefabInstance:
     - target: {fileID: 183711026593383695, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: visualEditingNotifier
       value: 
-      objectReference: {fileID: 3472428929450978839}
+      objectReference: {fileID: 3343828651967421436}
     - target: {fileID: 183711026593383695, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: moreVisualEditingNotifier
       value: 
-      objectReference: {fileID: 8798788618928268690}
+      objectReference: {fileID: 7550265490273925002}
     - target: {fileID: 183711026593383695, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: lineColors.Array.data[0].atime1
       value: 65535
@@ -1157,11 +1157,11 @@ PrefabInstance:
     - target: {fileID: 4143968363268729737, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: visualEditingNotifier
       value: 
-      objectReference: {fileID: 3472428929450978839}
+      objectReference: {fileID: 3343828651967421436}
     - target: {fileID: 4143968363268729737, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: moreVisualEditingNotifier
       value: 
-      objectReference: {fileID: 8798788618928268690}
+      objectReference: {fileID: 7550265490273925002}
     - target: {fileID: 5775441473478477155, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1204,19 +1204,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.047125354
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.046901174
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9048068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9045226
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 756794538145748843, guid: 1099ddccfe60e03649202142705d007b, type: 3}
@@ -8335,8 +8335,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -123.48004, y: 64.3125}
-  m_SizeDelta: {x: 192, y: 100}
+  m_AnchoredPosition: {x: -103.408905, y: 64.3125}
+  m_SizeDelta: {x: 160.7912, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3827839842412887168
 CanvasRenderer:
@@ -9215,8 +9215,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -123.48004, y: -60.524}
-  m_SizeDelta: {x: 192, y: 78.109}
+  m_AnchoredPosition: {x: -103.42157, y: -60.524}
+  m_SizeDelta: {x: 160.8109, y: 78.109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8932362756194468618
 CanvasRenderer:

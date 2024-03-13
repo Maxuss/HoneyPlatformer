@@ -181,13 +181,13 @@ namespace Controller
         private void MoveToastInside()
         {
             visualEditingNotifier.gameObject.SetActive(true);
-            visualEditingNotifier.DOAnchorPos(new Vector3(50f, 50f), 1f);
+            visualEditingNotifier.DOAnchorPos(new Vector3(80f, 40f), 1f);
         }
 
         private void HideToast()
         {
-            visualEditingNotifier.DOAnchorPos(new Vector3(-142f, 50f), 1f);
-            moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f);
+            visualEditingNotifier.DOAnchorPos(new Vector3(-80f, 40f), 1f);
+            moreVisualEditingNotifier.DOAnchorPos(new Vector2(-80f, 80f), .5f);
         }
 
         private IEnumerator ExitProgramEffect()

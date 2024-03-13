@@ -22,8 +22,8 @@ namespace Level
         public void ShowToast(string text)
         {
             toastText.text = text;
-            toast.DOAnchorPos(new Vector2(-338f, -63f), 1f);
-            toast.DOAnchorPos(new Vector2(-50f, -63f), 1f).SetDelay(4f);
+            toast.DOAnchorPos(new Vector2(-120f, -47.5f), 1f);
+            toast.DOAnchorPos(new Vector2(120f, -47.5f), 1f).SetDelay(4f);
         }
 
         public void HideToast()

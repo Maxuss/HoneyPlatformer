@@ -76,13 +76,13 @@ namespace Controller
             {
                 if (_tipsHidden)
                 {
-                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(50f, -58f), .5f);
-                    visualEditingNotifier.DOAnchorPos(new Vector2(50f, 50f), .5f);
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(80f, 80f), .5f);
+                    visualEditingNotifier.DOAnchorPos(new Vector2(80f, 40f), .5f);
                 }
                 else
                 {
-                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f);
-                    visualEditingNotifier.DOAnchorPos(new Vector2(-142f, 50f), .5f);
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-80f, 80f), .5f);
+                    visualEditingNotifier.DOAnchorPos(new Vector2(-80f, 40f), .5f);
                 }
 
                 _tipsHidden = !_tipsHidden;
@@ -92,14 +92,13 @@ namespace Controller
             {
                 if (_linesShown)
                 {
-                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f);
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-80f, 80f), .5f);
 
                     ClearLines();
                 }
                 else
                 {
-                    moreVisualEditingNotifier.gameObject.SetActive(true);
-                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(50f, -58f), .5f);
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(80f, 80f), .5f);
                     RenderAllLines();
                 }
 
@@ -148,7 +147,7 @@ namespace Controller
             // changed lines but im tired)
             _linesShown = true;
             if(!_tipsHidden)
-                moreVisualEditingNotifier.DOAnchorPos(new Vector2(-142f, -58f), .5f);
+                moreVisualEditingNotifier.DOAnchorPos(new Vector2(-80f, 80f), .5f);
             ClearLines();
             RenderAllLines();
         }
