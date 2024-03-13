@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -8,7 +9,7 @@ namespace Save
 {
     public static class SaveManager
     {
-        public static SaveState CurrentState;
+        public static SaveState CurrentState { get; set; }
 
         private static readonly string SavePath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BRZ");
@@ -17,6 +18,11 @@ namespace Save
         {
             if (!Directory.Exists(SavePath))
                 Directory.CreateDirectory(SavePath);
+        }
+
+        public static Dictionary<int, SaveState?> AllSaves()
+        {
+            return new[] { 0, 1, 2 }.Select(each => (each, LoadGame(each))).ToDictionary(x => x.each, x => x.Item2);
         }
 
         public static void SaveGame()
@@ -40,8 +46,7 @@ namespace Save
             
             var binaryFormatter = new BinaryFormatter();
             var save = (SaveState) binaryFormatter.Deserialize(fileStream);
-            CurrentState = save;
-            return CurrentState;
+            return save;
         }
     }
 }
