@@ -6,9 +6,10 @@ using UnityEngine;
 
 namespace Cutscenes
 {
-    public class Terminal: MonoBehaviour, IInteractable
+    public class NoteTerminal: MonoBehaviour, IInteractable
     {
         [SerializeField]
+        [TextArea]
         private string text;
 
         public void OnInteract()
