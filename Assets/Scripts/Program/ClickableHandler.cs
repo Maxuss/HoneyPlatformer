@@ -104,7 +104,7 @@ namespace Program
                 }
                 case PointerEventData.InputButton.Left when _actionContainer == null:
                     return;
-                case PointerEventData.InputButton.Left when !CameraController.Instance.VisualEditing.Editing:
+                case PointerEventData.InputButton.Left when !CameraController.Instance.VisualEditing.IsConnecting:
                     ProgrammableUIManager.Instance.OpenFor(_actionContainer);
                     break;
                 case PointerEventData.InputButton.Right when !CameraController.Instance.VisualEditing.IsConnecting:

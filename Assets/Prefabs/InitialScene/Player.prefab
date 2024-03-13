@@ -5125,7 +5125,7 @@ MonoBehaviour:
   airDrag: 150
   notTerrainMask:
     serializedVersion: 2
-    m_Bits: 1015
+    m_Bits: 887
   footstepSounds:
   - {fileID: 8300000, guid: 9311ceee37a6bbdf3a690d05e2349429, type: 3}
   - {fileID: 8300000, guid: 78de2ac1294fc6a32b81ddee43665563, type: 3}

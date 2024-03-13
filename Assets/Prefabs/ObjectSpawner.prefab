@@ -4786,7 +4786,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a95217284acf85ef29d4a5210e7c9179, type: 2}
+  - {fileID: 2100000, guid: d6dd22e6b9b0cba9cb0c3943eaac3a77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4849,9 +4849,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6575393039534870890}
   - component: {fileID: 6305407242475775319}
-  - component: {fileID: 1945662230087398774}
-  - component: {fileID: 31404503693149309}
   - component: {fileID: 6226753520492116904}
+  - component: {fileID: 2530976702376096815}
+  - component: {fileID: 4827482683227380570}
   m_Layer: 0
   m_Name: ObjectSpawner
   m_TagString: Untagged
@@ -4897,7 +4897,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 138c43a53c36dba5288c6d827b6b446a, type: 2}
+  - {fileID: 2100000, guid: 7b9207bc8c02f46b69627807c8bbca72, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4918,48 +4918,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3e354cf6110310984b2f3d9cb823c7bf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bfb24e466e80fd3b6b478e7a6c7499c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.125, y: 1.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1945662230087398774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241839803363415368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 477c3226c9464d669576c4e5cc25d767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxPrefab: {fileID: 1450249295603584, guid: c9bf36a98b79c75b0bff0045b50a5c9f, type: 3}
-  objectCreateSound: {fileID: 8300000, guid: a422519613b483c98a16c1ca6ee498a3, type: 3}
-  objectDestroySound: {fileID: 8300000, guid: 0577ae8d5e49f7903b5bfbdc4b99ec2e, type: 3}
-  spawnPosition: {fileID: 8400423022235642938}
-  particles:
-  - {fileID: 1100975088849623200}
-  summon: 0
---- !u!114 &31404503693149309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241839803363415368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 732cc1737dc54c2294dc5982d63ce589, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &6226753520492116904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4992,19 +4961,50 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00329113, y: -0.44022846}
+  m_Offset: {x: 0.00329113, y: -0.027984858}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0.0625}
-    pivot: {x: 0.5, y: 0.9411765}
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.125, y: 1.0625}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 2.125, y: 1.0625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0043316, y: 1.0054569}
+  m_Size: {x: 2.0043316, y: 0.9967046}
   m_EdgeRadius: 0
+--- !u!114 &2530976702376096815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241839803363415368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcb22a6cbb3c7fa99791387cf4efa82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4827482683227380570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241839803363415368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825cc8d39104a8987a606165939d9f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxPrefab: {fileID: 1450249295603584, guid: e1f66e229a4661ae58ab95c358b606a4, type: 3}
+  objectCreateSound: {fileID: 8300000, guid: e8274dd1208f6d7ed905da17bc1f191e, type: 3}
+  objectDestroySound: {fileID: 8300000, guid: 5741de1b721d96be491b0609509bad57, type: 3}
+  spawnPosition: {fileID: 8400423022235642938}
+  particles:
+  - {fileID: 1100975088849623200}
+  summon: 1
 --- !u!1 &6804469674715534166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5071,8 +5071,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.06395, y: 0.43755, z: 0}
-    m_Extent: {x: 2.03945, y: 1.4131501, z: 0}
+    m_Center: {x: 0.05645001, y: 0.443, z: 0}
+    m_Extent: {x: 2.04065, y: 1.4125, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
