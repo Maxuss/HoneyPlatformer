@@ -11,6 +11,7 @@ TagManager:
   - Grid
   - EntranceDoor
   - Cutscene
+  - SpawnPos
   layers:
   - Default
   - TransparentFX

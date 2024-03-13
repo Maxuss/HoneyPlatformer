@@ -968,14 +968,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1922492993}
-        m_TargetAssemblyTypeName: Menu.MainMenuManager, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
+      - m_Target: {fileID: 1922492994}
+        m_TargetAssemblyTypeName: Save.LevelLoader, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1643,6 +1643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1922492992}
   - component: {fileID: 1922492993}
+  - component: {fileID: 1922492994}
   m_Layer: 0
   m_Name: MainMenuManager
   m_TagString: Untagged
@@ -1680,6 +1681,19 @@ MonoBehaviour:
   aboutContainer: {fileID: 1652438907}
   mainContainer: {fileID: 1007912977}
   title: {fileID: 576963914}
+--- !u!114 &1922492994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922492990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5e15146e9d4a2486a25a569043c1e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  everythingPrefab: {fileID: 4979130267683255535, guid: 60402cb4fe5a9396680772edc0e1e5de, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -12,14 +12,14 @@ GameObject:
   - component: {fileID: 8388710599323074023}
   - component: {fileID: 2853695772256014818}
   - component: {fileID: 5567412270042517495}
-  - component: {fileID: 756794538145748843}
   - component: {fileID: 4100771013862886367}
   - component: {fileID: 183711026593383695}
   - component: {fileID: 4143968363268729737}
   - component: {fileID: 5290164877897739287}
+  - component: {fileID: 4759279847194756014}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,10 +67,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00052083336
-    y: 0.0009259259
-    width: 0.8229167
-    height: 0.34814814
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -143,30 +143,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &756794538145748843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2670301656049803856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 1
-  m_AssetsPPU: 16
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
-  m_CropFrame: 0
-  m_GridSnapping: 2
-  m_FilterMode: 0
-  m_UpscaleRT: 0
-  m_PixelSnapping: 0
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
 --- !u!114 &4100771013862886367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,11 +173,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smootheningModifier: 0.1
   renderLineContainer: {fileID: 0}
-  linePrefab: {fileID: 0}
-  lineColors: []
+  linePrefab: {fileID: 1168906006037071799, guid: f78c6f1b8c92efa6482bbf0812694a48, type: 3}
+  lineColors:
+  - serializedVersion: 2
+    key0: {r: 0.9811321, g: 0.7236183, b: 0.54147387, a: 1}
+    key1: {r: 1, g: 0.5587921, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   moreVisualEditingNotifier: {fileID: 0}
   visualEditingNotifier: {fileID: 0}
-  ioChoicePrefab: {fileID: 0}
+  ioChoicePrefab: {fileID: 7670880982435833101, guid: 1c8efa7516a35a051904a7a4fd08d515, type: 3}
 --- !u!114 &4143968363268729737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,9 +221,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   smoothingModifier: 3.5
-  effectRenderer: {fileID: 0}
-  enterEditModeSound: {fileID: 0}
-  exitEditModeSound: {fileID: 0}
+  effectRenderer: {fileID: 9218618160617486699}
+  enterEditModeSound: {fileID: 8300000, guid: 66872254cbcf80240a1f6ffa6fed930e, type: 3}
+  exitEditModeSound: {fileID: 8300000, guid: c626c585fd953ed1b8e4767d2da26def, type: 3}
   visualEditingNotifier: {fileID: 0}
   moreVisualEditingNotifier: {fileID: 0}
   globalLight: {fileID: 0}
@@ -234,6 +239,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a94c8422c7b48a728ec2dfa9ff5e120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4759279847194756014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670301656049803856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_AssetsPPU: 16
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_CropFrame: 3
+  m_GridSnapping: 2
+  m_FilterMode: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &3274028164263210189
 GameObject:
   m_ObjectHideFlags: 0
