@@ -141,6 +141,8 @@ namespace Controller
             _defaultGravityScale = _rb.gravityScale;
 
             _queryStartColliderCached = Physics2D.queriesStartInColliders;
+            
+            _black = ProgrammableUIManager.Instance.Canvas.Find("Black").GetComponent<Image>();
 
             Instance = this;
             
@@ -162,7 +164,6 @@ namespace Controller
         private Image _black;
         private IEnumerator RestartLevel(EntranceDoor obj)
         {
-            _black = ProgrammableUIManager.Instance.Canvas.GetChild(5).GetComponent<Image>();
             var active = SceneManager.GetActiveScene();
             IsDisabled = true;
             yield return FadeIn();
@@ -181,7 +182,7 @@ namespace Controller
         }
 
 
-        private IEnumerator FadeIn()
+        public IEnumerator FadeIn()
         {
             _black.gameObject.SetActive(true);
             _black.color = new Color(0f, 0f, 0f, 0f);
@@ -195,8 +196,19 @@ namespace Controller
             }
             _black.color = new Color(0f, 0f, 0f, 1f);
         }
+
+        public void BlackOut()
+        {     
+            _black.gameObject.SetActive(true);
+            _black.color = new Color(0f, 0f, 0f, 1f);
+        }
+
+        public void ShowTBC()
+        {
+            _black.transform.parent.Find("ToBeContinued").gameObject.SetActive(true);
+        }
         
-        private IEnumerator FadeOut()
+        public IEnumerator FadeOut()
         {
             var opacity = 0f;
             

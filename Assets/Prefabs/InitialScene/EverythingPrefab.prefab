@@ -2299,7 +2299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.57996327
+      value: 0.57311535
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -2307,7 +2307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.29411766
+      value: 0.29064488
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
@@ -2618,6 +2618,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 683413518557541094, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349367869309696511, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764443022506365597, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_text
+      value: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0435\u043D\u0438\u0435
+        \u0441\u043B\u0435\u0434\u0443\u0435\u0442...\n(\u043E\u0447\u0435\u043D\u044C
+        \u0441\u043A\u043E\u0440\u043E)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764443022506365597, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 09ba81951249d73d99b649949d34c6cc, type: 2}
+    - target: {fileID: 5764443022506365597, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6890195875087177810, guid: 09ba81951249d73d99b649949d34c6cc, type: 2}
+    - target: {fileID: 5764443022506365597, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5871478749221551918, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
