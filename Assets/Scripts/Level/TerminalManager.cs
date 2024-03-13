@@ -2,6 +2,7 @@ using System;
 using Controller;
 using TMPro;
 using UnityEngine;
+using Utils;
 
 namespace Level
 {
@@ -12,7 +13,7 @@ namespace Level
         [SerializeField]
         private TMP_Text text;
 
-        private bool _inTerminal;
+        public bool InTerminal { get; private set; }
 
         public static TerminalManager Instance { get; set; }
 
@@ -23,23 +24,24 @@ namespace Level
 
         private void Update()
         {
-            if (!_inTerminal)
+            if (!InTerminal)
                 return;
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _inTerminal = false;
                 // TODO: some edge case when we are in dialogue/editing?
-                PlayerController.Instance.IsDisabled = false;
                 terminal.gameObject.SetActive(false);
                 // TODO: some close sound?
+                PlayerController.Instance.IsDisabled = false;
+                // dont even ask,,.
+                StartCoroutine(Util.DelayFrames(() => InTerminal = false, 1));
             }
         }
 
         public void OpenTerminal(string terminalText)
         {
             text.text = terminalText;
-            _inTerminal = true;
+            InTerminal = true;
             terminal.gameObject.SetActive(true);
         }
     }

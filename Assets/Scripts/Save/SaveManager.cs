@@ -9,7 +9,7 @@ namespace Save
 {
     public static class SaveManager
     {
-        public static SaveState CurrentState { get; set; }
+        public static SaveState CurrentState;
 
         private static readonly string SavePath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BRZ");

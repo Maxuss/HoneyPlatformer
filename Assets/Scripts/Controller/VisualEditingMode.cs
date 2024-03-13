@@ -49,10 +49,17 @@ namespace Controller
         private Camera _camera;
         private Vector3 _velocity;
         private bool _linesShown;
+        
+        public static VisualEditingMode Instance { get; private set; }
 
         private void Start()
         {
             _camera = GetComponent<Camera>();
+        }
+
+        private void Awake()
+        {
+            Instance = this;
         }
 
         private void Update()
