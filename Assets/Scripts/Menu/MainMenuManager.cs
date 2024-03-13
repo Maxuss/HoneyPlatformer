@@ -89,6 +89,7 @@ namespace Menu
                 else
                 {
                     var sSave = save.Value;
+                    Debug.Log(sSave);
                     saveLevel.text = $"{LevelLoader.LEVEL_NAMES[sSave.LevelIndex - 1]} (УР. {sSave.LevelIndex})";
                     currency.text = sSave.Currency.ToString();
                 }

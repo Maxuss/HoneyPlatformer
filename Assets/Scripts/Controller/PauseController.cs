@@ -2,6 +2,7 @@ using System;
 using Level;
 using Save;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Controller
 {
@@ -57,6 +58,7 @@ namespace Controller
         {
             saveChoice.SetActive(false);
             SaveManager.CurrentState.SaveIndex = idx;
+            SaveManager.CurrentState.LevelIndex = SceneManager.GetActiveScene().buildIndex;
             SaveManager.SaveGame();
             Unpause();
             ToastManager.Instance.ShowToast($"Игра сохранена в слот {idx + 1}");
