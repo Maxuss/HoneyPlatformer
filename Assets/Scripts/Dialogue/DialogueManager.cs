@@ -75,6 +75,7 @@ namespace Dialogue
 
                             _shouldContinue = false;
                         }
+                        speakerSprite.sprite = _dialogue.speeches[_speechIdx].sprites[0];
                     }
                     yield return null;
                 }

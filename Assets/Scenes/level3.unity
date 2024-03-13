@@ -5223,6 +5223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alarmClip: {fileID: 8300000, guid: b50f6f047170277c4a020747afb261ce, type: 3}
+  explosion: {fileID: 8300000, guid: 31e7ad8923701b8a69c18b9c68ef33b4, type: 3}
   dialogue: {fileID: 11400000, guid: b3350622353766bb6b3ff24470665400, type: 2}
 --- !u!4 &1944486692
 Transform:
