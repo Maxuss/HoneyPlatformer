@@ -36,7 +36,7 @@ namespace Menu
 
         private void Start()
         {
-            title.transform.DOLocalMoveY(-90f, 1f).Play();
+            title.transform.DOLocalMoveY(-110f, 1f).Play();
         }
 
         public void StartGame()
