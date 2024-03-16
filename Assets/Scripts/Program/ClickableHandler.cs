@@ -90,7 +90,7 @@ namespace Program
                     {
                         // a sender was clicked first, so we are trying to attach a receiver
                         CameraController.Instance.VisualEditing.ConnectingFrom.Connect(_rx);
-                        StartCoroutine(Util.DelayFrames(() => CameraController.Instance.VisualEditing.FinishConnection(), 15));
+                        StartCoroutine(Util.DelayFrames(() => CameraController.Instance.VisualEditing.FinishConnection(), 10));
                     } else if (CameraController.Instance.VisualEditing.ConnectingTo != null && _tx != null)
                     {
                         // a receiver was clicked first so we are trying to attach a sender
@@ -98,7 +98,7 @@ namespace Program
                             return;
                         
                         _tx.Connect(CameraController.Instance.VisualEditing.ConnectingTo);
-                        StartCoroutine(Util.DelayFrames(() => CameraController.Instance.VisualEditing.FinishConnection(), 15));
+                        StartCoroutine(Util.DelayFrames(() => CameraController.Instance.VisualEditing.FinishConnection(), 10));
                     }
 
                     break;
