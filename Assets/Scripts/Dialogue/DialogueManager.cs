@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Controller;
 using Level;
@@ -25,6 +26,20 @@ namespace Dialogue
         [SerializeField]
         private TMP_Text characterName;
 
+        [SerializeField]
+        private Sprite[] mefodiySprites;
+        [SerializeField]
+        private Sprite[] olegSprites;
+        [SerializeField]
+        private Sprite[] captainSprites;
+        [SerializeField]
+        private Sprite[] donSprites;
+        [SerializeField]
+        private Sprite[] krisSprites;
+        [SerializeField]
+        private Sprite[] sashaSprites;
+        [SerializeField]
+        private Sprite[] sapsanSprites;
         
         private AudioSource _as;
         
@@ -35,6 +50,24 @@ namespace Dialogue
         private bool _inDialogue;
         private bool _shouldContinue;
         private bool _doNotEnableMovement;
+
+        private Sprite[] CurrentSprites
+        { 
+            get 
+            {
+                return _dialogue.speeches[_speechIdx].speaker switch
+                {
+                    SpeakingPerson.Sapsan => sapsanSprites,
+                    SpeakingPerson.Mefodiy => mefodiySprites,
+                    SpeakingPerson.Sasha => sashaSprites,
+                    SpeakingPerson.Kris => krisSprites,
+                    SpeakingPerson.Oleg => olegSprites,
+                    SpeakingPerson.Captain => captainSprites,
+                    SpeakingPerson.Don => donSprites,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            }
+        }
 
         private void Start()
         {
@@ -65,6 +98,7 @@ namespace Dialogue
                         {
                             _currentCharIdx = _speech.text.Length;
                             text.text = _speech.text;
+                            _as.Stop();
                         }
                         else
                         {
@@ -75,7 +109,7 @@ namespace Dialogue
 
                             _shouldContinue = false;
                         }
-                        speakerSprite.sprite = _dialogue.speeches[_speechIdx].sprites[0];
+                        speakerSprite.sprite = CurrentSprites[0];
                     }
                     yield return null;
                 }
@@ -100,11 +134,12 @@ namespace Dialogue
 
         private IEnumerator SingleSpeech(DialogueSpeech dialogue)
         {
-            var animationCoroutine = StartCoroutine(StartAnimation(dialogue.sprites));
+            var animationCoroutine = StartCoroutine(StartAnimation(CurrentSprites));
             characterName.text = dialogue.characterName;
             text.text = "";
             _currentCharIdx = 0;
             _as.clip = dialogue.audio;
+            _as.time = 0f;
             _as.Play();
             while (_currentCharIdx < dialogue.text.Length && _inDialogue)
             {
@@ -125,7 +160,7 @@ namespace Dialogue
 
             yield return new WaitUntil(() => !_as.isPlaying);
             StopCoroutine(animationCoroutine);
-            speakerSprite.sprite = dialogue.sprites[0];
+            speakerSprite.sprite = CurrentSprites[0];
         }
 
         private IEnumerator StartAnimation(Sprite[] frames)

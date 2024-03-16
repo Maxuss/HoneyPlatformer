@@ -15,11 +15,22 @@ namespace Dialogue
     [Serializable]
     public class DialogueSpeech
     {
-        public Sprite[] sprites;
+        public SpeakingPerson speaker;
         public AudioClip audio;
         public string text;
         public string characterName;
         [Range(0.5f, 3f)]
         public float speedModifier = 1f;
+    }
+
+    public enum SpeakingPerson
+    {
+        Sapsan,
+        Mefodiy,
+        Sasha,
+        Kris,
+        Oleg,
+        Captain,
+        Don
     }
 }
