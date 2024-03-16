@@ -33,6 +33,7 @@ namespace Level
         public void NextAmbientTrack()
         {
             var track = ambientTracks[_currentAmbientTrack];
+            Debug.Log($"PLAYING TRACK {track}");
             StartCoroutine(Crossfade(track, .3f, .05f));
             _currentAmbientTrack++;
             _currentAmbientTrack %= ambientTracks.Length;

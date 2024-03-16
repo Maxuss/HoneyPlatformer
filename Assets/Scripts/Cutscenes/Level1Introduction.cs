@@ -41,7 +41,6 @@ namespace Cutscenes
             if (disabled)
             {
                 chair.color = Color.white;
-                blackCanvas.gameObject.SetActive(false);
                 StartCoroutine(Util.Delay(() => MusicManager.Instance.NextAmbientTrack(), 2f));
                 StartCoroutine(Util.Delay(() => ToastManager.Instance.ShowToast("E - взаимодействовать с объектом"), 3f));
                 return;

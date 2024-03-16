@@ -817,7 +817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000014305, y: -15.808823}
+  m_AnchoredPosition: {x: 0.000014305, y: -15.808838}
   m_SizeDelta: {x: 444.6962, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &397106386768403687
@@ -2303,7 +2303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.15285452
+      value: 0.056514915
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
@@ -2311,7 +2311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.3314917
+      value: 0.28257456
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5290164877897739287, guid: 1099ddccfe60e03649202142705d007b, type: 3}
@@ -2721,6 +2721,27 @@ PrefabInstance:
     - target: {fileID: 5871478749221551918, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171416539900358000, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_text
+      value: "C - \u0432\u0441\u0435 \u0441\u043E\u0435\u0434\u0438\u043D\u0435\u043D\u0438\u044F\nV
+        - \u0432\u044B\u0439\u0442\u0438 \u0438\u0437 \u0440\u0435\u0436\u0438\u0430"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171416539900358000, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_fontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171416539900358000, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_margin.x
+      value: -0.9033699
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171416539900358000, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_margin.z
+      value: -1.5056076
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171416539900358000, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6894126939013865692, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}

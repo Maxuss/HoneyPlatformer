@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Save;
@@ -24,6 +25,7 @@ namespace Menu
         private Transform[] saveContainers;
 
         private Dictionary<int, SaveState?> _saveStates;
+        private AudioSource _as;
 
         private void Awake()
         {
@@ -32,11 +34,26 @@ namespace Menu
             mainContainer.SetActive(true);
             
             _saveStates = SaveManager.AllSaves();
+
+            _as = GetComponent<AudioSource>();
         }
 
         private void Start()
         {
             title.transform.DOLocalMoveY(-110f, 1f).Play();
+
+            StartCoroutine(AudioFadeIn());
+        }
+
+        private IEnumerator AudioFadeIn()
+        {
+            _as.volume = 0f;
+            _as.Play();
+            while (_as.volume < 1)
+            {
+                _as.volume += .1f;
+                yield return new WaitForSeconds(.5f);
+            }
         }
 
         public void StartGame()
