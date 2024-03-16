@@ -6,6 +6,7 @@ using Program.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using Utils;
 
 namespace Program
 {
@@ -89,7 +90,7 @@ namespace Program
                     {
                         // a sender was clicked first, so we are trying to attach a receiver
                         CameraController.Instance.VisualEditing.ConnectingFrom.Connect(_rx);
-                        CameraController.Instance.VisualEditing.FinishConnection();
+                        StartCoroutine(Util.DelayFrames(() => CameraController.Instance.VisualEditing.FinishConnection(), 15));
                     } else if (CameraController.Instance.VisualEditing.ConnectingTo != null && _tx != null)
                     {
                         // a receiver was clicked first so we are trying to attach a sender
@@ -97,7 +98,7 @@ namespace Program
                             return;
                         
                         _tx.Connect(CameraController.Instance.VisualEditing.ConnectingTo);
-                        CameraController.Instance.VisualEditing.FinishConnection();
+                        StartCoroutine(Util.DelayFrames(() => CameraController.Instance.VisualEditing.FinishConnection(), 15));
                     }
 
                     break;
@@ -105,6 +106,7 @@ namespace Program
                 case PointerEventData.InputButton.Left when _actionContainer == null:
                     return;
                 case PointerEventData.InputButton.Left when !CameraController.Instance.VisualEditing.IsConnecting:
+                    Debug.Log("TRYING TO OPEN WHEN NOT CONNECTING");
                     ProgrammableUIManager.Instance.OpenFor(_actionContainer);
                     break;
                 case PointerEventData.InputButton.Right when !CameraController.Instance.VisualEditing.IsConnecting:

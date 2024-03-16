@@ -40,6 +40,8 @@ namespace Controller
             IsPaused = true;
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         public void Unpause()
@@ -47,6 +49,8 @@ namespace Controller
             IsPaused = false;
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void ChooseSave()
