@@ -48,6 +48,7 @@ namespace Controller
         {
             IsPaused = false;
             pauseMenu.SetActive(false);
+            saveChoice.SetActive(false);
             Time.timeScale = 1f;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -60,7 +61,6 @@ namespace Controller
 
         public void Save(int idx)
         {
-            saveChoice.SetActive(false);
             SaveManager.CurrentState.SaveIndex = idx;
             SaveManager.CurrentState.LevelIndex = SceneManager.GetActiveScene().buildIndex;
             SaveManager.SaveGame();
