@@ -75,11 +75,14 @@ namespace Program
             if (!CameraController.Instance.VisualEditing.Enabled)
                 return;
 
-            if (Input.GetKey(KeyCode.LeftAlt) && _tx != null)
+            if (Input.GetKey(KeyCode.LeftAlt))
             {
-                _tx.Disconnect();
-                CameraController.Instance.VisualEditing.FinishConnection();
-                return;
+                if (_tx is { ConnectionLocked: false })
+                {
+                    _tx.Disconnect();
+                    CameraController.Instance.VisualEditing.FinishConnection();
+                    return;
+                }
             }
             
             switch (e.Button)
