@@ -110,6 +110,7 @@ namespace Controller
 
         public bool IsDisabled { get; set; } = false;
         public bool StillCommitMovement { get; set; } = false;
+        public bool InCutscene { get; set; } = false;
         
         public static PlayerController Instance { get; private set; }
         
@@ -430,6 +431,11 @@ namespace Controller
         
         private void GatherInput()
         {
+            if (InCutscene)
+            {
+                _input = new GatheredInput();
+                return;
+            }
             _input = new GatheredInput
             {
                 JumpDown = Input.GetButtonDown("Jump"),
