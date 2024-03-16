@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
+using Cutscenes;
 using Level;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using Utils;
 
 namespace Save
 {
@@ -75,6 +77,12 @@ namespace Save
                 var tilemap = grid.transform.GetChild(0).GetComponent<Tilemap>();
 
                 LevelManager.Instance.SwitchLevel(tilemap.GetComponentInChildren<Tilemap>());
+                
+                var cutscene = rootObjects.FirstOrDefault(oobj => oobj.CompareTag("Cutscene"));
+                if (cutscene != null)
+                {
+                    cutscene.GetComponent<MonoBehaviour>().StartCoroutine(Util.Delay(() => cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene(), .5f));
+                }
             };
         }
     }
