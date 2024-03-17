@@ -3,6 +3,7 @@ using Controller;
 using Dialogue;
 using Level;
 using NPC;
+using Save;
 using UnityEngine;
 using Utils;
 
@@ -43,14 +44,12 @@ namespace Cutscenes
             yield return beekeeper.Walk(-5, .3f);
             yield return new WaitForSeconds(2);
             yield return DialogueManager.Instance.StartDialogue(dialogue, true);
-            // bee.Escape();
-            // yield return DialogueManager.Instance.StartDialogue(dialogue, true);
-            // MusicManager.Instance.StopAbruptly();
-            // yield return MusicManager.Instance.Crossfade(alarmClip, .2f, .05f);
-            // PlayerController.Instance.BlackOut();
-            // yield return new WaitForSeconds(1f);
-            // SfxManager.Instance.Play(explosion);
-            // PlayerController.Instance.ShowTBC();
+            yield return new WaitForSeconds(0.5f);
+            yield return LevelLoader.Instance.TransitionLevel(5);
+            Debug.Log("FINISHED");
+            PlayerController.Instance.InCutscene = false;
+            PlayerController.Instance.StillCommitMovement = true;
+            PlayerController.Instance.IsDisabled = false;
         }
     }
 }

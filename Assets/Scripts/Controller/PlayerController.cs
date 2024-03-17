@@ -211,7 +211,7 @@ namespace Controller
         
         public IEnumerator FadeOut()
         {
-            var opacity = 0f;
+            var opacity = 1f;
             
             while (opacity > 0f)
             {

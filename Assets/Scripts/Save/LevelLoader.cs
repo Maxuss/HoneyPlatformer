@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Linq;
+using Controller;
 using Cutscenes;
 using Level;
 using UnityEngine;
@@ -82,6 +84,41 @@ namespace Save
                 if (cutscene != null)
                 {
                     cutscene.GetComponent<MonoBehaviour>().StartCoroutine(Util.Delay(() => cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene(), .5f));
+                }
+            };
+        }
+
+        public IEnumerator TransitionLevel(int levelIdx)
+        {
+            yield return PlayerController.Instance.FadeIn();
+            var task = SceneManager.LoadSceneAsync(levelIdx, LoadSceneMode.Single);
+            task.completed += op =>
+            {
+                PlayerController.Instance.BlackOut();
+                var scene = SceneManager.GetActiveScene();
+                var rootObjects = scene.GetRootGameObjects();
+                var spawnPosObj = rootObjects.First(obj => obj.CompareTag("SpawnPos") || obj.CompareTag("EntranceDoor"))
+                    .GetComponent<ISpawnPos>();
+                var spawnPos = spawnPosObj.SpawnPosition;
+                if (spawnPosObj is EntranceDoor door)
+                {
+                    door.GetComponent<Animator>().Play("EntranceDoor");
+                    door.GetComponent<BoxCollider2D>().enabled = true;
+                }
+
+                var player = PlayerController.Instance.transform;
+                player.position = spawnPos.position;
+                PlayerController.Instance.StartCoroutine(PlayerController.Instance.FadeOut());
+                var grid = rootObjects.First(oobj => oobj.CompareTag("Grid"));
+            
+                var tilemap = grid.transform.GetChild(0).GetComponent<Tilemap>();
+
+                LevelManager.Instance.SwitchLevel(tilemap.GetComponentInChildren<Tilemap>());
+                
+                var cutscene = rootObjects.FirstOrDefault(oobj => oobj.CompareTag("Cutscene"));
+                if (cutscene != null)
+                {
+                    cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene();
                 }
             };
         }

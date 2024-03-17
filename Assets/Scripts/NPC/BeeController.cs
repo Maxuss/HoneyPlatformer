@@ -1,4 +1,5 @@
 using System;
+using Objects;
 using UnityEngine;
 
 namespace NPC
@@ -9,6 +10,8 @@ namespace NPC
         private float radius = 1.5f;
         [SerializeField]
         private float rotationSpeed = 120f;
+        [SerializeField]
+        private ExposedWires ravagedWires;
 
         private SpriteRenderer _sr;
         private float _rotationCycle;
@@ -45,6 +48,7 @@ namespace NPC
         public void Escape()
         {
             _escaping = true;
+            ravagedWires.BeeLeaving();
         }
     }
 }
