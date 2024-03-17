@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2585546414190192124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.085, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -213,7 +213,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.71428573}
     oldSize: {x: 2.125, y: 0.4375}
     newSize: {x: 2.125, y: 0.4375}
     adaptiveTilingThreshold: 0.5
@@ -222,10 +222,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.57050276, y: -0.03962784}
-      - {x: -0.99284184, y: -0.15325245}
-      - {x: 0.9971572, y: -0.15406401}
-      - {x: 0.62761474, y: -0.039367534}
+    - - {x: -0.70149755, y: -0.1108706}
+      - {x: -0.99284184, y: -0.24288043}
+      - {x: 1.0040517, y: -0.24599014}
+      - {x: 0.6827704, y: -0.10601398}
   m_UseDelaunayMesh: 0
 --- !u!114 &959356642445989429
 MonoBehaviour:
@@ -258,3 +258,5 @@ MonoBehaviour:
   pressedSound: {fileID: 8300000, guid: 85af07dfc1f051627bab35068a80e060, type: 3}
   unpressedSound: {fileID: 8300000, guid: b0096dc726d1532f1978e4f089583797, type: 3}
   <ConnectionLocked>k__BackingField: 0
+  <SelectedAction>k__BackingField:
+    <ActionIndex>k__BackingField: 0

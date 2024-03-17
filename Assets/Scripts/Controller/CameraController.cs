@@ -47,6 +47,7 @@ namespace Controller
 
         public static CameraController Instance { get; private set; }
         public VisualEditingMode VisualEditing => _visual;
+        public bool DisableFollow { get; set; }
 
         private void Start()
         {
@@ -85,6 +86,8 @@ namespace Controller
 
         private void FollowPlayer()
         {
+            if (DisableFollow)
+                return;
             var targetPos = player.position;
             var currentPos = transform.position;
             if (currentPos == targetPos)
@@ -129,14 +132,14 @@ namespace Controller
                 );
         }
 
-        public IEnumerator TransitionToPoint(Vector2 towards)
+        public IEnumerator TransitionToPoint(Vector2 towards, float speed = 1f)
         {
             _inTransition = true;
             var velocity = Vector2.zero;
             while (Util.SqrDistance(transform.position, towards) > 0.5f)
             {
                 var pos = transform.position;
-                transform.position = Vector2.SmoothDamp(pos, towards, ref velocity, 0.4f).ToVec3(pos.z);
+                transform.position = Vector2.SmoothDamp(pos, towards, ref velocity, 0.4f * speed).ToVec3(pos.z);
                 yield return null;
             }
 
