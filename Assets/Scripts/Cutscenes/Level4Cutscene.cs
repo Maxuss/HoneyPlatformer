@@ -43,6 +43,7 @@ namespace Cutscenes
             yield return beekeeper.Walk(-5, .3f);
             yield return new WaitForSeconds(2);
             yield return DialogueManager.Instance.StartDialogue(dialogue, true);
+            // bee.Escape();
             // yield return DialogueManager.Instance.StartDialogue(dialogue, true);
             // MusicManager.Instance.StopAbruptly();
             // yield return MusicManager.Instance.Crossfade(alarmClip, .2f, .05f);
