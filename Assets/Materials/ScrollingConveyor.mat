@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ScrollingConveyor
-  m_Shader: {fileID: -6465566751694194690, guid: b500a5ed14e51a4d785aed531e3627a5, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 0abea589d5be91530b57a6ef49bbe867, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2e3cbae159f2724cd8a16f66d991b424, type: 3}
+        m_Texture: {fileID: 2800000, guid: 94aa6bf1d4088f3af8e840691f414485, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -53,15 +53,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_19ef4b63f98c45f28c294e727831d279_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: c7b6d680041bd9ad89c1802d757f51e7, type: 3}
+        m_Texture: {fileID: 2800000, guid: adca67aa9239b60eea3a0d0b8f6c9b00, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_37820acadb5f46d08196f8cf373b2856_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: c7b6d680041bd9ad89c1802d757f51e7, type: 3}
+        m_Texture: {fileID: 2800000, guid: adca67aa9239b60eea3a0d0b8f6c9b00, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_5050ded53c6b48daa350b804fd6b2370_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: a493fc68b5ecc6f3cbdc7f4676b5f2a2, type: 3}
+        m_Texture: {fileID: 2800000, guid: b5d364f2a78530cfeb817e79b04cb33b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ScrollTexture:

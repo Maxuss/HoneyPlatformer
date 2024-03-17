@@ -12,6 +12,7 @@ TagManager:
   - EntranceDoor
   - Cutscene
   - SpawnPos
+  - Bee
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FullScreenVisualEditing
-  m_Shader: {fileID: -6465566751694194690, guid: 63d0502d50cb652139bfc80a49513751, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 08a51466e7486fd56ac168a91f3cc04d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -58,9 +58,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _Enabled: 0
     - _RippleCount: 2
     - _RippleSpeed: 0.4
+    - _StartAnimationProgress: 0
     m_Colors:
+    - _Center: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

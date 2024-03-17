@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3171000101537515072}
   - component: {fileID: 5791162341695616512}
-  - component: {fileID: 2665056281785778504}
-  - component: {fileID: 6090209306316434302}
   - component: {fileID: 254978470569317673}
+  - component: {fileID: 1704716739320620095}
+  - component: {fileID: 9089843255519608305}
   m_Layer: 3
   m_Name: LaserReceiver
   m_TagString: LaserConsumer
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 138c43a53c36dba5288c6d827b6b446a, type: 2}
+  - {fileID: 2100000, guid: 7b9207bc8c02f46b69627807c8bbca72, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,45 +76,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -905164272, guid: a1dbab1f7987f8b8ca1882ee832dabaa, type: 3}
+  m_Sprite: {fileID: 403627786, guid: 8a631940e1c28b36ea2934291ef0b7b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.125, y: 1.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2665056281785778504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6036274665712558766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6171b42ef9f445bb7bedc1f43935574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectedReceiver: {fileID: 0}
-  disabledSprite: {fileID: -905164272, guid: a1dbab1f7987f8b8ca1882ee832dabaa, type: 3}
-  enabledSprite: {fileID: 656203540, guid: a1dbab1f7987f8b8ca1882ee832dabaa, type: 3}
-  <ConnectionLocked>k__BackingField: 0
---- !u!114 &6090209306316434302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6036274665712558766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 732cc1737dc54c2294dc5982d63ce589, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &254978470569317673
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -151,8 +123,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.875, y: 0.875}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1.125, y: 1.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -168,3 +140,33 @@ PolygonCollider2D:
       - {x: 0.4375, y: 0.25}
       - {x: 0.25, y: 0.4375}
   m_UseDelaunayMesh: 0
+--- !u!114 &1704716739320620095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036274665712558766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcb22a6cbb3c7fa99791387cf4efa82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9089843255519608305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036274665712558766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe67c6550b0b7390b9cc121d5a1116b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectedReceiver: {fileID: 0}
+  disabledSprite: {fileID: 403627786, guid: 8a631940e1c28b36ea2934291ef0b7b9, type: 3}
+  enabledSprite: {fileID: 1875449861, guid: 8a631940e1c28b36ea2934291ef0b7b9, type: 3}
+  <SelectedAction>k__BackingField:
+    <ActionIndex>k__BackingField: 0
+  <ConnectionLocked>k__BackingField: 0

@@ -9736,9 +9736,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1192908684772200776}
   - component: {fileID: 2544052972637667464}
-  - component: {fileID: 8878667185196731388}
   - component: {fileID: -2980730132911000784}
-  - component: {fileID: -3453138047779576206}
+  - component: {fileID: 6500002084781788179}
+  - component: {fileID: 5926311386419813877}
   m_Layer: 0
   m_Name: LaserEmitterBlue
   m_TagString: Untagged
@@ -9784,7 +9784,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 138c43a53c36dba5288c6d827b6b446a, type: 2}
+  - {fileID: 2100000, guid: 7b9207bc8c02f46b69627807c8bbca72, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9805,42 +9805,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6e01e8fe6d874148b9a39603c2642c02, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 175c108e499c8249cb4a69db3ed6b52a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.125, y: 1.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8878667185196731388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4287343889861914866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945619d94dfa4c41913d0987258cbb55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  laserLine: {fileID: 1097082748873554775}
-  laserPos: {fileID: 5389900053543110555}
-  startVfx: {fileID: 2530283785095095125}
-  endVfx: {fileID: 1007704184628599314}
-  laserColorA: {r: 5.8292885, g: 4.882138, b: 9.67302, a: 0}
-  laserColorB: {r: 0.9245283, g: 3.5013843, b: 3.9999998, a: 0}
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 8
-  laserActivate: {fileID: 8300000, guid: 29be97a3f9357c780a272328427ab072, type: 3}
-  laserDeactivate: {fileID: 8300000, guid: 70486ff8efc446f9681fc72eb1184910, type: 3}
-  isActive: 1
-  EmitterType: 0
 --- !u!61 &-2980730132911000784
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9878,7 +9853,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.125, y: 1.125}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.125, y: 1.125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -9886,7 +9861,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-3453138047779576206
+--- !u!114 &6500002084781788179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9895,9 +9870,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 4287343889861914866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 732cc1737dc54c2294dc5982d63ce589, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dcb22a6cbb3c7fa99791387cf4efa82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5926311386419813877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4287343889861914866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bfe620f734421c1480611553f8cf35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserLine: {fileID: 1097082748873554775}
+  laserPos: {fileID: 5389900053543110555}
+  startVfx: {fileID: 2530283785095095125}
+  endVfx: {fileID: 1007704184628599314}
+  laserColorA: {r: 0.44676158, g: 1.9083345, b: 4.1179757, a: 0}
+  laserColorB: {r: 0, g: 0.2310618, b: 0.5201653, a: 0}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 8
+  laserActivate: {fileID: 8300000, guid: 02ab5227978514e9ea02de117d1bb1af, type: 3}
+  laserDeactivate: {fileID: 8300000, guid: e00e0b5a156e6a13b9e503943abc28e6, type: 3}
+  isActive: 0
+  EmitterType: 0
 --- !u!1 &4877201795342750362
 GameObject:
   m_ObjectHideFlags: 0

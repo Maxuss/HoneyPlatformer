@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2664014372045322097}
   - component: {fileID: 2621432888384787105}
   - component: {fileID: 6159642096344429688}
-  - component: {fileID: 6156618110858691864}
-  - component: {fileID: 8431659992943815163}
+  - component: {fileID: 579093375833566532}
+  - component: {fileID: 1185976679678753631}
   m_Layer: 0
   m_Name: ConveyorPartMid (1)
   m_TagString: Untagged
@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 127df993344dd9b94a599b2a44d32183, type: 2}
+  - {fileID: 2100000, guid: f531bdd6c473d52a78203abe4a4b199a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1987519364, guid: 07ee00de71cb903d7b94dba33ae09bd2, type: 3}
+  m_Sprite: {fileID: 1737034215, guid: 94aa6bf1d4088f3af8e840691f414485, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.125, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -151,8 +151,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 0.5}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.125, y: 1}
+    newSize: {x: 1.125, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -160,7 +160,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.3753838}
   m_EdgeRadius: 0
---- !u!114 &6156618110858691864
+--- !u!114 &579093375833566532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,11 +169,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3386587282470493430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8aeb10c2d84d959d31c3d2be91b7d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dba28d55ff648202a588afe79770413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 1
---- !u!114 &8431659992943815163
+--- !u!114 &1185976679678753631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3386587282470493430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33391b120d4f40c2941d111d332e4850, type: 3}
+  m_Script: {fileID: 11500000, guid: 475fa6caa31c29359ab65ccf1da38119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3828088062765323039
@@ -194,8 +194,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3628218112905305345}
-  - component: {fileID: 4467645343510461872}
-  - component: {fileID: 1211228504308924709}
+  - component: {fileID: 5904664835850062143}
+  - component: {fileID: 7667978563247988866}
   m_Layer: 0
   m_Name: ConveyorGroup
   m_TagString: Untagged
@@ -222,7 +222,7 @@ Transform:
   - {fileID: 4486313851996976815}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4467645343510461872
+--- !u!114 &5904664835850062143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,10 +231,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3828088062765323039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aae0d8dfb1644b786431e3f67f19d31, type: 3}
+  m_Script: {fileID: 11500000, guid: 066a4d978659e085e9c8223f221ace1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1211228504308924709
+--- !u!114 &7667978563247988866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3828088062765323039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e89b2ead26f4929b95ce2a766416bbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dcb22a6cbb3c7fa99791387cf4efa82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7671277114940608887
@@ -258,8 +258,8 @@ GameObject:
   - component: {fileID: 1139389626771374515}
   - component: {fileID: 442493437018003402}
   - component: {fileID: 3512713489916313971}
-  - component: {fileID: 8270405434107244665}
-  - component: {fileID: 5569853093812036579}
+  - component: {fileID: 8268455543230110428}
+  - component: {fileID: 2082194441880755408}
   m_Layer: 0
   m_Name: ConveyorPartRight
   m_TagString: Untagged
@@ -302,7 +302,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 127df993344dd9b94a599b2a44d32183, type: 2}
+  - {fileID: -876546973899608171, guid: 0abea589d5be91530b57a6ef49bbe867, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -323,12 +323,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 640778713, guid: 07ee00de71cb903d7b94dba33ae09bd2, type: 3}
+  m_Sprite: {fileID: -426548970, guid: 94aa6bf1d4088f3af8e840691f414485, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.0625, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -397,8 +397,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 0.5}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.0625, y: 1}
+    newSize: {x: 1.0625, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -406,7 +406,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.37538373}
   m_EdgeRadius: 0
---- !u!114 &8270405434107244665
+--- !u!114 &8268455543230110428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -415,22 +415,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7671277114940608887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8aeb10c2d84d959d31c3d2be91b7d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 475fa6caa31c29359ab65ccf1da38119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2082194441880755408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7671277114940608887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dba28d55ff648202a588afe79770413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 1
---- !u!114 &5569853093812036579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7671277114940608887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33391b120d4f40c2941d111d332e4850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8722122447466886475
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,8 +443,8 @@ GameObject:
   - component: {fileID: 4509529652430448871}
   - component: {fileID: 1976377545275495773}
   - component: {fileID: 7979776562636239777}
-  - component: {fileID: 4464871131604733181}
-  - component: {fileID: 7488304544360307881}
+  - component: {fileID: 4193752385976224091}
+  - component: {fileID: 7048422430043363987}
   m_Layer: 0
   m_Name: ConveyorPartLeft
   m_TagString: Untagged
@@ -487,7 +487,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 127df993344dd9b94a599b2a44d32183, type: 2}
+  - {fileID: 2100000, guid: f531bdd6c473d52a78203abe4a4b199a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -508,12 +508,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -26539314, guid: 07ee00de71cb903d7b94dba33ae09bd2, type: 3}
+  m_Sprite: {fileID: 1425894810, guid: 94aa6bf1d4088f3af8e840691f414485, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.0625, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -582,8 +582,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 0.5}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.0625, y: 1}
+    newSize: {x: 1.0625, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -591,7 +591,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0020924, y: 0.37538373}
   m_EdgeRadius: 0
---- !u!114 &4464871131604733181
+--- !u!114 &4193752385976224091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -600,22 +600,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8722122447466886475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8aeb10c2d84d959d31c3d2be91b7d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 475fa6caa31c29359ab65ccf1da38119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7048422430043363987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722122447466886475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dba28d55ff648202a588afe79770413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 1
---- !u!114 &7488304544360307881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8722122447466886475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33391b120d4f40c2941d111d332e4850, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9130979437156188132
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,8 +628,8 @@ GameObject:
   - component: {fileID: 5952659622573041099}
   - component: {fileID: 3076221383428879312}
   - component: {fileID: 815287340970782616}
-  - component: {fileID: 8145573112146652628}
-  - component: {fileID: 2989737197425383420}
+  - component: {fileID: 156881201549315600}
+  - component: {fileID: 5460248807572245877}
   m_Layer: 0
   m_Name: ConveyorPartMid
   m_TagString: Untagged
@@ -672,7 +672,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 127df993344dd9b94a599b2a44d32183, type: 2}
+  - {fileID: 2100000, guid: f531bdd6c473d52a78203abe4a4b199a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -693,12 +693,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1987519364, guid: 07ee00de71cb903d7b94dba33ae09bd2, type: 3}
+  m_Sprite: {fileID: 1737034215, guid: 94aa6bf1d4088f3af8e840691f414485, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.125, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -767,8 +767,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 0.5}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.125, y: 1}
+    newSize: {x: 1.125, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -776,7 +776,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.3753838}
   m_EdgeRadius: 0
---- !u!114 &8145573112146652628
+--- !u!114 &156881201549315600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -785,11 +785,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9130979437156188132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8aeb10c2d84d959d31c3d2be91b7d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dba28d55ff648202a588afe79770413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 1
---- !u!114 &2989737197425383420
+--- !u!114 &5460248807572245877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -798,6 +798,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9130979437156188132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33391b120d4f40c2941d111d332e4850, type: 3}
+  m_Script: {fileID: 11500000, guid: 475fa6caa31c29359ab65ccf1da38119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

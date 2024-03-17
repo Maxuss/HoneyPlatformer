@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1298964400586827546}
   - component: {fileID: 2967312910397273917}
   - component: {fileID: 9062106687288183121}
-  - component: {fileID: 426950724986063859}
-  - component: {fileID: 9103368767970929843}
+  - component: {fileID: 4790546227947939279}
+  - component: {fileID: 7749672459525398218}
   m_Layer: 9
   m_Name: BinaryCombinator
   m_TagString: Untagged
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 21ec836f4fea972a2813c80f534854c2, type: 2}
+  - {fileID: 2100000, guid: 0480a25009f42c8f9aea89db76a341cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: a0662de92e9ae4ba8859a51b21973c32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65244d4781bc40078a2d5c255b403a10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &426950724986063859
+--- !u!114 &4790546227947939279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,22 +141,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 133436528008925121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed92ac9de23849f08838b698d74efd25, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dcb22a6cbb3c7fa99791387cf4efa82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7749672459525398218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133436528008925121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab038d2a70ea9221cab4a9f39511cbe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   operation: 0
   connectedReceiver: {fileID: 0}
   <SourceLeft>k__BackingField: {fileID: 0}
   <SourceRight>k__BackingField: {fileID: 0}
---- !u!114 &9103368767970929843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133436528008925121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 732cc1737dc54c2294dc5982d63ce589, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  <SelectedAction>k__BackingField:
+    <ActionIndex>k__BackingField: 0
+  <ConnectionLocked>k__BackingField: 0
