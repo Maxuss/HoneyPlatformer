@@ -72,6 +72,8 @@ namespace Objects
                 BinaryOperation.Xor => _left ^ _right,
                 BinaryOperation.Implication => !_left || _right,
                 BinaryOperation.Equality => _left == _right,
+                BinaryOperation.Nand => !(_left && _right),
+                BinaryOperation.Nor => !(_left || _right),
                 _ => _state
             };
             
@@ -108,6 +110,16 @@ namespace Objects
             {
                 ActionName = "Эквиваленция",
                 ActionDescription = "Применяет логическую операцию эквиваленции (приравнивания)."
+            },
+            new ActionInfo
+            {
+                ActionName = "NAND",
+                ActionDescription = "Применяет логическую операцию отрицания И"
+            },
+            new ActionInfo
+            {
+                ActionName = "NOR",
+                ActionDescription = "Применяет логическую операцию отрицания ИЛИ"
             }
         };
 
@@ -145,6 +157,8 @@ namespace Objects
         And,
         Xor,
         Implication,
-        Equality
+        Equality,
+        Nand,
+        Nor
     }
 }
