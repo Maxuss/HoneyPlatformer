@@ -4843,7 +4843,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d0c061010d3d695a7bbd28375fdf4a4d, type: 2}
+  - {fileID: 2100000, guid: d6dd22e6b9b0cba9cb0c3943eaac3a77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9673,7 +9673,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d0c061010d3d695a7bbd28375fdf4a4d, type: 2}
+  - {fileID: 2100000, guid: d6dd22e6b9b0cba9cb0c3943eaac3a77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14675,7 +14675,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d0c061010d3d695a7bbd28375fdf4a4d, type: 2}
+  - {fileID: 2100000, guid: d6dd22e6b9b0cba9cb0c3943eaac3a77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14738,7 +14738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5389900053543110555}
   - component: {fileID: 1097082748873554775}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LaserLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14781,7 +14781,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 44b1113d2432b1debabf977490738549, type: 2}
+  - {fileID: 2100000, guid: 2f9dedf8389a621c9a11e0edf378a471, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19641,7 +19641,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d0c061010d3d695a7bbd28375fdf4a4d, type: 2}
+  - {fileID: 2100000, guid: d6dd22e6b9b0cba9cb0c3943eaac3a77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

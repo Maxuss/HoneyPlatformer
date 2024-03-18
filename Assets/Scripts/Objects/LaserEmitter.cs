@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Controller;
 using Level;
 using Program;
 using Program.Channel;
@@ -75,13 +76,9 @@ namespace Objects
             {
                 ps.Stop();
             }
+            
+            RecalculateState();
         }
-
-        private void Awake()
-        {
-            RecalculateReflections();
-        }
-
         private void Update()
         {
             // TODO: replace me with mirror handling
@@ -227,6 +224,14 @@ namespace Objects
                     {
                         ps.Play();
                     }
+                    if (!laserLine.TryGetComponent<MeshCollider>(out _))
+                    {
+                        var col = laserLine.gameObject.AddComponent<MeshCollider>();
+                        var mesh = new Mesh();
+                        
+                        laserLine.BakeMesh(mesh, CameraController.Instance.gameObject.GetComponent<Camera>(), true);
+                        col.sharedMesh = mesh;
+                    }
                     LaserManager.Instance.ActivateLaser();
                     break;
                 case LaserConfig.ConstantRay or LaserConfig.Impulse when !isActive:
@@ -250,6 +255,14 @@ namespace Objects
                     foreach (var ps in _particles)
                     {
                         ps.Play();
+                    }
+                    if (!laserLine.TryGetComponent<MeshCollider>(out _))
+                    {
+                        var col = laserLine.gameObject.AddComponent<MeshCollider>();
+                        var mesh = new Mesh();
+                        
+                        laserLine.BakeMesh(mesh, CameraController.Instance.gameObject.GetComponent<Camera>(), true);
+                        col.sharedMesh = mesh;
                     }
                     LaserManager.Instance.ActivateLaser();
                     StartCoroutine(Util.Delay(() =>
