@@ -19,7 +19,7 @@ namespace Objects
         
         public static LaserManager Instance { get; private set; }
         
-        public void Start()
+        public void Awake()
         {
             _as = GetComponent<AudioSource>();
             _as.volume = 0.05f;

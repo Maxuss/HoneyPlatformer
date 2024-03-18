@@ -76,7 +76,8 @@ namespace Objects
             {
                 ps.Stop();
             }
-            
+
+            StartCoroutine(Util.Delay(RecalculateState, 1f));
             RecalculateState();
         }
         private void Update()

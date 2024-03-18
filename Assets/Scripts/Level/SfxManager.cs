@@ -10,7 +10,7 @@ namespace Level
 
         public static SfxManager Instance { get; private set; }
         
-        public void Start()
+        public void Awake()
         {
             _as = GetComponent<AudioSource>();
 

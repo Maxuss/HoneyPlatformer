@@ -67,7 +67,7 @@ namespace Objects
         {
             _isConnected = false;
             _state = false;
-            _rx.ReceiveBool(transform, _state);
+            _rx?.ReceiveBool(transform, _state);
             // TODO: sounds?
             _renderer.sprite = disabledSprite;
         }
