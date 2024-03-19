@@ -132,9 +132,13 @@ namespace Dialogue
             }
         }
 
+        // FIXED BUG HERE
+        private Coroutine _animationCoroutine;
         private IEnumerator SingleSpeech(DialogueSpeech dialogue)
         {
-            var animationCoroutine = StartCoroutine(StartAnimation(CurrentSprites));
+            if(_animationCoroutine != null)
+                StopCoroutine(_animationCoroutine);
+            _animationCoroutine = StartCoroutine(StartAnimation(CurrentSprites));
             characterName.text = dialogue.characterName;
             text.text = "";
             _currentCharIdx = 0;
@@ -159,7 +163,8 @@ namespace Dialogue
             }
 
             yield return new WaitUntil(() => !_as.isPlaying);
-            StopCoroutine(animationCoroutine);
+            StopCoroutine(_animationCoroutine);
+            _animationCoroutine = null;
             speakerSprite.sprite = CurrentSprites[0];
         }
 
