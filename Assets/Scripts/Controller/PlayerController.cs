@@ -444,9 +444,6 @@ namespace Controller
                 DownPressed = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow),
                 RestartRequested = Input.GetKey(KeyCode.R)
             };
-            
-            Debug.Log(_input.RestartRequested);
-            Debug.Log($"PRESSED {Input.GetKey(KeyCode.R)} {Input.GetKeyDown(KeyCode.R)}");
 
             if (!_input.JumpDown) return;
             
