@@ -21,7 +21,7 @@ namespace Cutscenes
         {
             PlayerController.Instance.Velocity = new Vector2();
             PlayerController.Instance.IsDisabled = true;
-            PlayerController.Instance.StillCommitMovement = true;
+            PlayerController.Instance.StillCommitMovement = false;
             PlayerController.Instance.InCutscene = true;
             StartCoroutine(Util.Delay(() => StartCoroutine(Cutscene()), 2f));
         }

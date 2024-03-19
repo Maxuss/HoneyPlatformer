@@ -23,6 +23,7 @@ namespace Cutscenes
             PlayerController.Instance.IsDisabled = true;
             PlayerController.Instance.InCutscene = true;
             CameraController.Instance.DisableFollow = true;
+            PlayerController.Instance.StillCommitMovement = false;
             yield return new WaitForSeconds(1f);
             yield return CameraController.Instance.TransitionToPoint(beePos.position.XY(), 2f);
             ToastManager.Instance.ShowToast("Генераторы щитов отгоняют ос!");
@@ -31,6 +32,7 @@ namespace Cutscenes
             yield return new WaitForSeconds(1f);
             CameraController.Instance.DisableFollow = false;
             PlayerController.Instance.IsDisabled = false;
+            PlayerController.Instance.StillCommitMovement = true;
             PlayerController.Instance.InCutscene = false;
         }
     }

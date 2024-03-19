@@ -3131,7 +3131,7 @@ PrefabInstance:
       objectReference: {fileID: -1907571186, guid: 0db5f1fd48df24cc8a6751da4d96cef0, type: 3}
     - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: sapsanSprites.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: captainSprites.Array.size
@@ -3196,15 +3196,19 @@ PrefabInstance:
     - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: sapsanSprites.Array.data[0]
       value: 
-      objectReference: {fileID: 1969888410, guid: 352354fa39b1d744bac683e7d5a579a1, type: 3}
+      objectReference: {fileID: 1419790820, guid: 352354fa39b1d744bac683e7d5a579a1, type: 3}
     - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: sapsanSprites.Array.data[1]
       value: 
-      objectReference: {fileID: 597831885, guid: 352354fa39b1d744bac683e7d5a579a1, type: 3}
+      objectReference: {fileID: 600630365, guid: 352354fa39b1d744bac683e7d5a579a1, type: 3}
     - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: sapsanSprites.Array.data[2]
       value: 
-      objectReference: {fileID: 732510725, guid: 352354fa39b1d744bac683e7d5a579a1, type: 3}
+      objectReference: {fileID: -1654675494, guid: 352354fa39b1d744bac683e7d5a579a1, type: 3}
+    - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
+      propertyPath: sapsanSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: -1741300573, guid: 352354fa39b1d744bac683e7d5a579a1, type: 3}
     - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: captainSprites.Array.data[0]
       value: 

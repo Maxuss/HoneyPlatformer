@@ -163,12 +163,12 @@ namespace Controller
         }
         
         private Image _black;
-        private IEnumerator RestartLevel(EntranceDoor obj)
+        private IEnumerator RestartLevel(ISpawnPos obj)
         {
             var active = SceneManager.GetActiveScene();
             IsDisabled = true;
             yield return FadeIn();
-            transform.position = obj.GetComponent<EntranceDoor>().restartPosition.position;
+            transform.position = obj.SpawnPosition.position;
             var load = SceneManager.LoadSceneAsync(active.buildIndex);
             load.completed += action =>
             {
@@ -178,7 +178,6 @@ namespace Controller
                     .First(it => it.CompareTag("EntranceDoor"));
                 newDoor.GetComponent<Animator>().Play("LockDoor");
                 newDoor.GetComponent<BoxCollider2D>().enabled = true;
-                Debug.Log($"{newDoor.GetComponent<BoxCollider2D>().enabled}");
             };
         }
 
@@ -419,8 +418,8 @@ namespace Controller
             
             if (!IsDisabled && _input.RestartRequested)
             {
-                var obj = SceneManager.GetSceneAt(0).GetRootGameObjects().FirstOrDefault(it => it.CompareTag("EntranceDoor"))
-                    ?.GetComponent<EntranceDoor>();
+                var obj = SceneManager.GetSceneAt(0).GetRootGameObjects().FirstOrDefault(it => it.CompareTag("EntranceDoor") || it.CompareTag("SpawnPos"))
+                    ?.GetComponent<ISpawnPos>();
                 if (obj != null && SceneManager.GetSceneAt(0).buildIndex > 0)
                 {
                     StartCoroutine(RestartLevel(obj));
@@ -443,8 +442,11 @@ namespace Controller
                 HorizontalMove = Input.GetAxisRaw("Horizontal"),
                 GrabHeld = Input.GetKey(KeyCode.LeftShift),
                 DownPressed = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow),
-                RestartRequested = Input.GetKeyDown(KeyCode.R)
+                RestartRequested = Input.GetKey(KeyCode.R)
             };
+            
+            Debug.Log(_input.RestartRequested);
+            Debug.Log($"PRESSED {Input.GetKey(KeyCode.R)} {Input.GetKeyDown(KeyCode.R)}");
 
             if (!_input.JumpDown) return;
             

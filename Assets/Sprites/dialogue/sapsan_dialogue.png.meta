@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: d_programmer_neutral_0
+      name: sapsan_dialogue_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9acd3554e8589db24a53bb835a7a6979
-      internalID: 1969888410
+      spriteID: f6beb589edf160b87bde47792f748fe9
+      internalID: 1419790820
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: d_programmer_neutral_1
+      name: sapsan_dialogue_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a679bfc4e8e99eba28c8a1a4ba1a3986
-      internalID: 597831885
+      spriteID: 1d7cfb9d7dbccf26aaf81d255959a4e0
+      internalID: 600630365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: d_programmer_neutral_2
+      name: sapsan_dialogue_2
       rect:
         serializedVersion: 2
         x: 64
@@ -166,8 +166,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41b2348fc77c9bf15942b518ca350347
-      internalID: 732510725
+      spriteID: 2ca5ce92b5e8acda79aeab3780f36092
+      internalID: -1654675494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sapsan_dialogue_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aa477263e8a63b90850e7f389388972
+      internalID: -1741300573
       vertices: []
       indices: 
       edges: []
@@ -183,9 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      d_programmer_neutral_0: 1969888410
-      d_programmer_neutral_1: 597831885
-      d_programmer_neutral_2: 732510725
+      sapsan_dialogue_0: 1419790820
+      sapsan_dialogue_1: 600630365
+      sapsan_dialogue_2: -1654675494
+      sapsan_dialogue_3: -1741300573
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

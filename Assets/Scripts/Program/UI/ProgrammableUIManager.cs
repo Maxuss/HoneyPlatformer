@@ -64,6 +64,8 @@ namespace Program.UI
         private IActionContainer _currentlyEditing;
         private ActionData _selectedAction;
         
+        public bool Editing { get; set; }
+        
         private void Awake()
         {
             terminalObject.SetActive(false);
@@ -73,6 +75,8 @@ namespace Program.UI
 
         public void OpenFor(IActionContainer obj)
         {
+            if (_isEditing)
+                return;
             _currentlyEditing = obj;
             _isEditing = true;
             terminalObject.SetActive(true);
@@ -87,6 +91,7 @@ namespace Program.UI
             if (!_isEditing)
                 return;
             _isEditing = false;
+            Editing = false;
             _currentlyEditing.SelectedAction = _selectedAction;
             _currentlyEditing.Begin(_selectedAction);
             terminalObject.SetActive(false);
