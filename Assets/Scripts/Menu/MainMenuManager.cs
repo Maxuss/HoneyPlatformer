@@ -188,8 +188,6 @@ namespace Menu
 
         public void ConfirmationPreReplace(int saveIdx)
         {
-            if(!SaveManager.HasCloudSave())
-                return;
             confirmation.transform.GetChild(0).GetComponent<TMP_Text>().text = $"Вы уверены что хотите заменить сохранение в слоте {saveIdx} на облачное?";
             var btn = confirmation.transform.GetChild(1).GetComponent<UnityEngine.UI.Button>();
             btn.onClick.RemoveAllListeners();

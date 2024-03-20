@@ -5366,10 +5366,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1535308482398139155, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 773717251, guid: 47bdacc15ab1d62ef8e891c606ee40c6, type: 3}
     - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
       propertyPath: detection
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
+      propertyPath: pressedSprite
+      value: 
+      objectReference: {fileID: 773717251, guid: 47bdacc15ab1d62ef8e891c606ee40c6, type: 3}
+    - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
+      propertyPath: unpressedSprite
+      value: 
+      objectReference: {fileID: -1157295845, guid: 47bdacc15ab1d62ef8e891c606ee40c6, type: 3}
     - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
       propertyPath: <ConnectionLocked>k__BackingField
       value: 0

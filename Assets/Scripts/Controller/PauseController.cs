@@ -23,7 +23,7 @@ namespace Controller
 
         private void Update()
         {
-            if (!TerminalManager.Instance.InTerminal && !VisualEditingMode.Instance.Enabled)
+            if (!TerminalManager.Instance.InTerminal && !VisualEditingMode.Instance.Enabled && !CallController.Instance.inMenu)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {

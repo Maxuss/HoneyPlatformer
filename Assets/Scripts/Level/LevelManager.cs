@@ -1,4 +1,5 @@
 using System;
+using Save;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -38,6 +39,7 @@ namespace Level
 
         public void SwitchLevel(Tilemap newTilemap)
         {
+            SaveManager.CurrentState.Currency += (int) Math.Round(newTilemap.size.magnitude / 5f);
             levelMap = newTilemap;
             RecalculateBounds();
         }

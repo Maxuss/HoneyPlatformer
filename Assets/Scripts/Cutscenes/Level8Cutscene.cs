@@ -3,6 +3,7 @@ using Controller;
 using Dialogue;
 using Level;
 using NPC;
+using Save;
 using UnityEngine;
 using Utils;
 
@@ -53,6 +54,8 @@ namespace Cutscenes
             yield return DialogueManager.Instance.StartDialogue(dialogue2);
             
             ToastManager.Instance.ShowToast("B - позвонить Дону");
+
+            SaveManager.CurrentState.MetDon = true;
             
             PlayerController.Instance.IsDisabled = false;
             PlayerController.Instance.StillCommitMovement = true;
