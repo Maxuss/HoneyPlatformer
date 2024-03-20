@@ -8811,7 +8811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7749672459525398218, guid: e82bd31acd7d68ef4bafc41b299030e6, type: 3}
       propertyPath: operation
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7749672459525398218, guid: e82bd31acd7d68ef4bafc41b299030e6, type: 3}
       propertyPath: connectedReceiver
@@ -8827,6 +8827,10 @@ PrefabInstance:
       objectReference: {fileID: 1059101939}
     - target: {fileID: 7749672459525398218, guid: e82bd31acd7d68ef4bafc41b299030e6, type: 3}
       propertyPath: <ConnectionLocked>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7749672459525398218, guid: e82bd31acd7d68ef4bafc41b299030e6, type: 3}
+      propertyPath: <SelectedAction>k__BackingField.<ActionIndex>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8859,7 +8863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4a573dea48358d29671f0a173ebe88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlacklistedActions: 000000000100000002000000040000000500000006000000
+  BlacklistedActions: 000000000200000003000000040000000500000006000000
 --- !u!1001 &1997063196
 PrefabInstance:
   m_ObjectHideFlags: 0

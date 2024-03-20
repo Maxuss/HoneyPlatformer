@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using Utils;
 
 namespace Save
 {
@@ -47,6 +49,38 @@ namespace Save
             var binaryFormatter = new BinaryFormatter();
             var save = (SaveState) binaryFormatter.Deserialize(fileStream);
             return save;
+        }
+
+        public static SaveState? LoadCloud()
+        {
+            CheckSaveDir();
+            var path = Path.Combine(SavePath, $"cloud.don");
+            if (!File.Exists(path))
+                return null;
+            
+            using var fileStream = File.OpenRead(path);
+            
+            var binaryFormatter = new BinaryFormatter();
+            var save = (SaveState) binaryFormatter.Deserialize(fileStream);
+            return save;
+        }
+
+        public static bool HasCloudSave()
+        {
+            return File.Exists(Path.Combine(SavePath, $"cloud.don"));
+        }
+
+        public static void ReplaceWithCloud(int toReplace)
+        {
+            File.Delete(Path.Combine(SavePath, $"game{toReplace}.don"));
+            File.Copy(Path.Combine(SavePath, $"cloud.don"), Path.Combine(SavePath, $"game{toReplace}.don"));
+        }
+
+        public static IEnumerator UploadToCloud(int toUpload)
+        {
+            File.Delete(Path.Combine(SavePath, "cloud.don"));
+            File.Copy(Path.Combine(SavePath, $"game{toUpload}.don"), Path.Combine(SavePath, "cloud.don"));
+            yield return ApiManager.Instance.UploadSave(Path.Combine(SavePath, $"game{toUpload}.don"));
         }
     }
 }

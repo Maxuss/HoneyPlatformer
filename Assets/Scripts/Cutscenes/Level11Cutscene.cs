@@ -49,24 +49,25 @@ namespace Cutscenes
         private IEnumerator MoveTowards(Vector3 pos)
         {
             var endPos = PlayerController.Instance.transform.position + pos;
-            while (Util.SqrDistance(PlayerController.Instance.transform.position, endPos) > .5f)
+            while (Util.SqrDistance(PlayerController.Instance.transform.position, endPos) > .5f && (endPos - PlayerController.Instance.transform.position).x > 0)
             {
                 PlayerController.Instance.Velocity = new Vector2(9f, 0f);
                 yield return null;
             }
+            PlayerController.Instance.Velocity = Vector2.zero;
         }
 
         private IEnumerator Cutscene()
         {
-            PlayerController.Instance.Velocity = Vector2.zero;
+            // PlayerController.Instance.Velocity = Vector2.zero;
             PlayerController.Instance.IsDisabled = true;
             PlayerController.Instance.StillCommitMovement = true;
             PlayerController.Instance.InCutscene = true;
             
             doorLeft.Open();
-            
+
             StartCoroutine(this.CallbackCoroutine(sasha.Walk(9f, .5f), () => sasha.GetComponent<SpriteRenderer>().flipX = true));
-            yield return MoveTowards(new Vector3(15f, 0, 0));
+            yield return MoveTowards(new Vector3(14f, 0, 0));
             
             doorLeft.Close();
 
@@ -114,7 +115,7 @@ namespace Cutscenes
             darkRight.color = new Color(0f, 0f, 0f, 0f);
 
             StartCoroutine(this.CallbackCoroutine(sasha.Walk(7f, .4f), () => sasha.GetComponent<SpriteRenderer>().flipX = true));
-            yield return MoveTowards(new Vector3(6f, 0f, 0f));
+            yield return MoveTowards(new Vector3(8f, 0f, 0f));
 
             yield return DialogueManager.Instance.StartDialogue(dialogue3);
             

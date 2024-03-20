@@ -21,9 +21,9 @@ namespace Cutscenes
         {
             PlayerController.Instance.Velocity = new Vector2();
             PlayerController.Instance.IsDisabled = true;
-            PlayerController.Instance.StillCommitMovement = false;
+            PlayerController.Instance.StillCommitMovement = true;
             PlayerController.Instance.InCutscene = true;
-            StartCoroutine(Util.Delay(() => StartCoroutine(Cutscene()), 2f));
+            StartCoroutine(Cutscene());
         }
         
         private IEnumerator MoveTowards(Vector3 pos)
@@ -38,6 +38,7 @@ namespace Cutscenes
 
         private IEnumerator Cutscene()
         {
+            yield return new WaitForSeconds(2f);
             yield return MoveTowards(new Vector3(5f, 0f));
             yield return beekeeper.Walk(5, .3f);
             yield return new WaitForSeconds(2);

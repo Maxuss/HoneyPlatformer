@@ -47,7 +47,7 @@ namespace Utils
 
         public static IEnumerator CallbackCoroutine(this MonoBehaviour self, IEnumerator first, Action callback)
         {
-            yield return self.StartCoroutine(first);
+            yield return first;
             callback.Invoke();
         }
 

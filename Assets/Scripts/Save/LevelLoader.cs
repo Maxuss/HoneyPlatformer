@@ -108,7 +108,7 @@ namespace Save
 
                 var player = PlayerController.Instance.transform;
                 player.position = spawnPos.position;
-                PlayerController.Instance.StartCoroutine(PlayerController.Instance.FadeOut());
+                LevelManager.Instance.StartCoroutine(PlayerController.Instance.FadeOut());
                 var grid = rootObjects.First(oobj => oobj.CompareTag("Grid"));
             
                 var tilemap = grid.transform.GetChild(0).GetComponent<Tilemap>();

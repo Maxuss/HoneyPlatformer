@@ -124,12 +124,15 @@ namespace Controller
         {
             _autonomous = true;
             _velocity = Vector2.zero;
-            while (Util.SqrDistance(transform.position, towards) > 0.25f)
+            Debug.Log("PRE");
+            while (Util.SqrDistance(transform.position, towards) > 0.5f)
             {
-                _velocity = Vector3.right * 3f;
-                _rb.velocity = Vector2.right * 3f;
+                Debug.Log(Util.SqrDistance(transform.position, towards));
+                _velocity = Vector3.right * 7f;
+                _rb.velocity = Vector2.right * 7f;
                 yield return null;
             }
+            Debug.Log($"POST {Util.SqrDistance(transform.position, towards)}");
             _autonomous = false;
         }
         
@@ -227,6 +230,7 @@ namespace Controller
             if (IsDisabled && !StillCommitMovement)
                 // zero x velocity if we are in UI
                 _velocity.x = 0;
+            
             _rb.velocity = _velocity;
             if (_rb.velocity.y < 0)
                 _rb.gravityScale = _defaultGravityScale * 2f;
@@ -415,6 +419,10 @@ namespace Controller
             _time += Time.deltaTime;
             if(!IsDisabled && !_autonomous)
                 GatherInput();
+            else
+            {
+                _input = new GatheredInput();
+            }
             
             if (!IsDisabled && _input.RestartRequested)
             {
@@ -432,7 +440,10 @@ namespace Controller
         {
             if (InCutscene)
             {
-                _input = new GatheredInput();
+                _input = new GatheredInput
+                {
+                    HorizontalMove = 0f
+                };
                 return;
             }
             _input = new GatheredInput

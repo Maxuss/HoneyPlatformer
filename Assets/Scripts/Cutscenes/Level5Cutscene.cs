@@ -22,9 +22,10 @@ namespace Cutscenes
         {
             PlayerController.Instance.IsDisabled = true;
             PlayerController.Instance.InCutscene = true;
-            CameraController.Instance.DisableFollow = true;
-            PlayerController.Instance.StillCommitMovement = false;
+            CameraController.Instance.DisableFollow = false;
+            // PlayerController.Instance.StillCommitMovement = false;
             yield return new WaitForSeconds(1f);
+            CameraController.Instance.DisableFollow = true;
             yield return CameraController.Instance.TransitionToPoint(beePos.position.XY(), 2f);
             ToastManager.Instance.ShowToast("Генераторы щитов отгоняют ос!");
             yield return new WaitForSeconds(0.5f);
@@ -32,7 +33,7 @@ namespace Cutscenes
             yield return new WaitForSeconds(1f);
             CameraController.Instance.DisableFollow = false;
             PlayerController.Instance.IsDisabled = false;
-            PlayerController.Instance.StillCommitMovement = true;
+            // PlayerController.Instance.StillCommitMovement = true;
             PlayerController.Instance.InCutscene = false;
         }
     }

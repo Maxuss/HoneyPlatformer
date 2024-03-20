@@ -36,7 +36,7 @@ namespace Cutscenes
         private IEnumerator Cutscene()
         {
             PlayerController.Instance.IsDisabled = true;
-            PlayerController.Instance.StillCommitMovement = false;
+            PlayerController.Instance.StillCommitMovement = true;
             PlayerController.Instance.InCutscene = true;
             
             StartCoroutine(MoveTowards(new Vector2(13, 0)));

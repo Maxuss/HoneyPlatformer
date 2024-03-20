@@ -19,7 +19,7 @@ namespace Cutscenes
             _activated = true;
 
             PlayerController.Instance.IsDisabled = true;
-            PlayerController.Instance.StillCommitMovement = false;
+            PlayerController.Instance.StillCommitMovement = true;
             PlayerController.Instance.InCutscene = true;
             PlayerController.Instance.Velocity = Vector2.zero;
 
