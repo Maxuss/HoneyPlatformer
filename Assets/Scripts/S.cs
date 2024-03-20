@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -24,21 +23,6 @@ namespace DefaultNamespace
         };
 
         private static long[] vector = { 31, 28, 30, 76, 29, 78, 73, 30, 29, 79, 28, 26, 78, 24, 25, 29, };
-
-        // public static void G()
-        // {
-        //     Debug.Log(IMPORTANT_DO_NOT_LOOK);
-        //     
-        //     var saltt = IlIllIl11IIII111("0abd47746d1ef1569c9dad09d8545c89142034a473a1a1b7872d1f75b81b52ac");
-        //
-        //     var vectort = IlIllIl11IIII111("564f7dc47e60d237");
-        //
-        //     var pwdt = IlIllIl11IIII111("ed400ed6da44fb29f0c42c0699dbeeab94c0c920301f01bd85c0e185d46c4389");
-        //
-        //     Debug.Log($"PATH2 {Enc("brz-sens", pwdt, saltt, vectort)}");
-        //     Debug.Log($"PATH2 {Enc("logindata", pwdt, saltt, vectort)}");
-        //     Debug.Log($"API URL {Enc("https://api.nti-gamedev.ru/", pwdt, saltt, vectort)}");
-        // }
         
         public static string D(string val)
         {
@@ -140,7 +124,7 @@ namespace DefaultNamespace
             return b;
         }
 
-        public static long[] I1111Il1llIllI11(long[] x)
+        private static long[] I1111Il1llIllI11(long[] x)
         {
             var xc = new long[x.Length];
             Array.Copy(x, xc, x.Length);
@@ -148,14 +132,44 @@ namespace DefaultNamespace
             return xc;
         }
         
-        // DECODE
-        public static void IlI1lIl1llIllI11(long[] x)
+        private static void IlI1lI11llIllI11(long[] x)
+        {
+            for (var i = 0; i < x.Length; i++)
+            {
+                x[i] ^= 51;
+            }
+        }
+        
+        private static void Il11lI11llIllI11(long[] x)
+        {
+            for (var i = 0; i < x.Length; i++)
+            {
+                x[i] ^= 39;
+            }
+        }
+        
+        private static void IlI1lIl1llIllI11(long[] x)
         {
             for (var i = 0; i < x.Length; i++)
             {
                 x[i] ^= 42;
             }
         }
+
+        private static void IlI1lI11llIlll11(long[] x)
+        {
+            for (var i = 0; i < x.Length; i++)
+            {
+                x[i] ^= 22;
+            }
+        }
         
+        private static void IlI1lI1IllIllI11(long[] x)
+        {
+            for (var i = 0; i < x.Length; i++)
+            {
+                x[i] ^= 3;
+            }
+        }
     }
 }
