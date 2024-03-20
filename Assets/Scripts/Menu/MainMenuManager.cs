@@ -193,7 +193,7 @@ namespace Menu
             confirmation.transform.GetChild(0).GetComponent<TMP_Text>().text = $"Вы уверены что хотите заменить сохранение в слоте {saveIdx} на облачное?";
             var btn = confirmation.transform.GetChild(1).GetComponent<UnityEngine.UI.Button>();
             btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => ReplaceWithCloudSave(saveIdx));
+            btn.onClick.AddListener(() => StartCoroutine(ReplaceWithCloudSave(saveIdx)));
 
             confirmation.SetActive(true);
         }
@@ -207,12 +207,10 @@ namespace Menu
             confirmation.SetActive(true);
         }
 
-        public void ReplaceWithCloudSave(int saveIdx)
+        public IEnumerator ReplaceWithCloudSave(int saveIdx)
         {
-            if(!SaveManager.HasCloudSave())
-                return;
             confirmation.SetActive(false);
-            SaveManager.ReplaceWithCloud(saveIdx);
+            yield return SaveManager.ReplaceWithCloud(saveIdx);
             _saveStates = SaveManager.AllSaves(); // TODO: can actually be heavily optimized
             _cloudSave = SaveManager.LoadCloud();
             ReloadSaves();

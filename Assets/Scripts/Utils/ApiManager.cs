@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using DefaultNamespace;
@@ -42,9 +43,9 @@ namespace Utils
         }
 
         [Serializable]
-        private struct DownloadResponse
+        private class DownloadResponse
         {
-            internal string save_file;
+            public string save_file;
         }
         
         public IEnumerator Login(string name, string pwd)
@@ -75,12 +76,13 @@ namespace Utils
 
         public IEnumerator UploadSave(string path)
         {
-            var request = new UnityWebRequest(
-                new Uri($"{ApiUrl}cloud-saving/save/"),
-                "POST",
-                new DownloadHandlerBuffer(),
-                new UploadHandlerFile(path)
-            );
+            var form = new WWWForm();
+            form.AddBinaryData("save_file", File.ReadAllBytes(Path.Combine(SaveManager.SavePath, "cloud.don")), "cloud.don");
+
+            var request = UnityWebRequest.Post($"{ApiUrl}cloud-saving/save/", form);
+
+            request.SetRequestHeader("Authorization", $"Token {LoginToken}");
+            Debug.Log("UPLOADING");
             yield return request.SendWebRequest();
         }
 
@@ -91,19 +93,29 @@ namespace Utils
                 "GET",
                 new DownloadHandlerBuffer(),
                 new UploadHandlerRaw(Array.Empty<byte>()));
+            request.SetRequestHeader("Authorization", $"Token {LoginToken}");
             yield return request.SendWebRequest();
 
             var resp = JsonUtility.FromJson<DownloadResponse>(request.downloadHandler.text);
             
             Debug.Log(resp.save_file);
+            Debug.Log($"{ApiUrl.Substring(0, ApiUrl.Length - 1)}{resp.save_file}");
 
             var request2 = new UnityWebRequest(
-                new Uri($"{ApiUrl}cloud-saving/{resp.save_file}"),
+                new Uri($"{ApiUrl.Substring(0, ApiUrl.Length - 1)}{resp.save_file}"),
                 "GET",
-                new DownloadHandlerFile(Path.Combine(SaveManager.SavePath, "cloud.don")),
+                new DownloadHandlerBuffer(),
                 new UploadHandlerRaw(Array.Empty<byte>()));
 
             yield return request2.SendWebRequest();
+
+            if (request2.downloadedBytes == 0)
+                yield break;
+            
+            var savePath = Path.Combine(SaveManager.SavePath, "cloud.don");
+            File.Delete(savePath);
+            using var file = File.Create(savePath);
+            file.Write(request2.downloadHandler.data);
         }
 
         private void SaveToken()

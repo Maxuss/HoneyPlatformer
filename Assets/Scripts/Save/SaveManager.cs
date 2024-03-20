@@ -70,10 +70,11 @@ namespace Save
             return File.Exists(Path.Combine(SavePath, $"cloud.don"));
         }
 
-        public static void ReplaceWithCloud(int toReplace)
+        public static IEnumerator ReplaceWithCloud(int toReplace)
         {
+            yield return ApiManager.Instance.DownloadSave();
             File.Delete(Path.Combine(SavePath, $"game{toReplace}.don"));
-            File.Copy(Path.Combine(SavePath, $"cloud.don"), Path.Combine(SavePath, $"game{toReplace}.don"));
+            File.Copy(Path.Combine(SavePath, "cloud.don"), Path.Combine(SavePath, $"game{toReplace}.don"));
         }
 
         public static IEnumerator UploadToCloud(int toUpload)
