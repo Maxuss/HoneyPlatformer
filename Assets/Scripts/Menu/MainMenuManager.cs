@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using DG.Tweening;
 using Save;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 namespace Menu
 {
@@ -20,6 +22,14 @@ namespace Menu
         [SerializeField]
         private GameObject loadContainer;
         [SerializeField]
+        private GameObject loginContainer;
+        [SerializeField]
+        private TMP_InputField username;
+        [SerializeField]
+        private TMP_InputField password;
+        [SerializeField]
+        private Transform failedToLogin;
+        [SerializeField]
         private Transform title;
         [SerializeField]
         private Transform[] saveContainers;
@@ -31,7 +41,7 @@ namespace Menu
         {
             loadContainer.SetActive(false);
             aboutContainer.SetActive(false);
-            mainContainer.SetActive(true);
+            loginContainer.SetActive(false);
             
             _saveStates = SaveManager.AllSaves();
 
@@ -40,8 +50,24 @@ namespace Menu
 
         private void Start()
         {
-            title.transform.DOLocalMoveY(-110f, 1f).Play();
+            if (ApiManager.Instance.LoggedIn)
+            {
+                MainBegin();
+            }
+            else
+            {
+                mainContainer.SetActive(false);
+                loginContainer.SetActive(true);
+            }
+        }
 
+        private void MainBegin()
+        {
+            loginContainer.SetActive(false);
+            mainContainer.SetActive(true);
+            
+            title.transform.DOLocalMoveY(-110f, 1f).Play();
+            // StartCoroutine(ApiManager.Instance.Login("513771", "SK4kes83ehfcW3"));
             StartCoroutine(AudioFadeIn());
         }
 
@@ -56,14 +82,28 @@ namespace Menu
             }
         }
 
-        public void StartGame()
+        public void TryLogin()
         {
-            if (_loading)
-                return;
-            _loading = true;
-            SceneManager.LoadSceneAsync("level_0");
+            StartCoroutine(LoginCoroutine());
         }
 
+        private IEnumerator LoginCoroutine()
+        {
+            yield return ApiManager.Instance.Login(username.text, password.text);
+
+            if (!ApiManager.Instance.LoggedIn)
+            {
+                failedToLogin.DOLocalMoveX(280, 1f);
+
+                yield return new WaitForSeconds(3f);
+                failedToLogin.DOLocalMoveX(520, 1f);
+            }
+            else
+            {
+                MainBegin();
+            }
+        }
+        
         public void About()
         {
             mainContainer.SetActive(false);

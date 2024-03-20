@@ -11,7 +11,7 @@ namespace Save
     {
         public static SaveState CurrentState;
 
-        private static readonly string SavePath =
+        public static readonly string SavePath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BRZ");
         
         private static void CheckSaveDir()
