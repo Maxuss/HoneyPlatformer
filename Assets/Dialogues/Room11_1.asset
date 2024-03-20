@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Room11_1
   m_EditorClassIdentifier: 
   speeches:
+  - speaker: 0
+    audio: {fileID: 8300000, guid: a7fb6c9261215ae49a96540d9fa335ee, type: 3}
+    text: "\u0427\u0442\u043E \u044D\u0442\u043E \u0437\u0430 \u0437\u0432\u0443\u043A\u0438?"
+    characterName: "\u0421\u0430\u043F\u0441\u0430\u043D"
+    speedModifier: 1
   - speaker: 2
     audio: {fileID: 8300000, guid: 14dc443fd4a7702f981758bc5dd712c3, type: 3}
     text: "... \u044F \u043F\u043E\u043D\u044F\u0442\u0438\u044F \u043D\u0435 \u0438\u043C\u0435\u044E..."

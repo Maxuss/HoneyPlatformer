@@ -132,13 +132,13 @@ namespace Dialogue
             }
         }
 
-        // FIXED BUG HERE
         private Coroutine _animationCoroutine;
         private IEnumerator SingleSpeech(DialogueSpeech dialogue)
         {
             if(_animationCoroutine != null)
                 StopCoroutine(_animationCoroutine);
-            _animationCoroutine = StartCoroutine(StartAnimation(CurrentSprites));
+            _animationCoroutine = 
+                StartCoroutine(StartAnimation(CurrentSprites));
             characterName.text = dialogue.characterName;
             text.text = "";
             _currentCharIdx = 0;

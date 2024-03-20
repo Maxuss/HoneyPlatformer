@@ -1,5 +1,6 @@
 using System.Collections;
 using Controller;
+using Dialogue;
 using Level;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ namespace Cutscenes
 {
     public class TestDialogueLevelCutscene: MonoBehaviour, ILevelEntranceCutscene
     {
+        [SerializeField]
+        private DialogueDefinition dialogue;
+        
         public void StartCutscene()
         {
             StartCoroutine(Cutscene());
@@ -14,12 +18,11 @@ namespace Cutscenes
 
         private IEnumerator Cutscene()
         {
-            ToastManager.Instance.ShowToast("Игрок не должен двигаться");
             PlayerController.Instance.IsDisabled = true;
             PlayerController.Instance.StillCommitMovement = false;
             PlayerController.Instance.InCutscene = true;
 
-            yield return new WaitForSeconds(3f);
+            yield return DialogueManager.Instance.StartDialogue(dialogue);
             
             PlayerController.Instance.IsDisabled = false;
             PlayerController.Instance.StillCommitMovement = true;
