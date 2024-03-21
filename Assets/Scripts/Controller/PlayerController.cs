@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using Level;
 using Program.UI;
+using Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -261,7 +262,7 @@ namespace Controller
                 facingDirection = _input.HorizontalMove > 0 ? FacingDirection.Right : FacingDirection.Left;
                 if (oldDir != facingDirection)
                     HandleDirectionChange();
-                _velocity.x = Mathf.MoveTowards(_velocity.x, _input.HorizontalMove * moveSpeed * (_isDragging ? 0.8f : 1f),
+                _velocity.x = Mathf.MoveTowards(_velocity.x, _input.HorizontalMove * moveSpeed * (_isDragging ? 0.8f : 1f) * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.FasterSpeed) ? 1.5f : 1f),
                     acceleration * Time.fixedDeltaTime);
                 
                 if (!_grounded || Time.time - _lastFootstep < timeBetweenFootsteps) return;
@@ -278,7 +279,7 @@ namespace Controller
             // changing grab transform position
             var position = handGrabTransform.position;
             position =
-                new Vector3(transform.position.x + (facingDirection == FacingDirection.Left ? -.5f : .5f),
+                new Vector3(transform.position.x + (facingDirection == FacingDirection.Left ? -.25f : .25f),
                     position.y, position.z);
             handGrabTransform.position = position;
         }
@@ -299,7 +300,7 @@ namespace Controller
         {
             if (_velocity.y > 0 && !_input.JumpHeld && _time - _startedJumping > .1f)
             {
-                _velocity.y *= .6f;
+                _velocity.y *= .6f * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.HigherJumps) ? 1.25f : 1f);
             }
             
             if (!_earlyJump && !_grounded && !_input.JumpHeld && _rb.velocity.y > 0)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Program;
 using Program.Channel;
+using Save;
 using UnityEngine;
 using Utils;
 
@@ -114,7 +115,7 @@ namespace Controller
 
             var horizontal = Vector2.right * Input.GetAxisRaw("Horizontal");
             var vertical = Vector2.up * Input.GetAxisRaw("Vertical");
-            var newPos = transform.position + (Vector3) (horizontal + vertical);
+            var newPos = transform.position + (Vector3) (horizontal + vertical) * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.FasterCamera) ? 1.5f : 1f);
             transform.position = 
                 Vector3.SmoothDamp(transform.position, newPos, ref _velocity, smootheningModifier, Mathf.Infinity);
         }

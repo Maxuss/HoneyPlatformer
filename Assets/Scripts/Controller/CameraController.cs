@@ -1,5 +1,6 @@
 using System.Collections;
 using DG.Tweening;
+using Dialogue;
 using Level;
 using Objects;
 using Program;
@@ -67,7 +68,7 @@ namespace Controller
             {
                 if(_inProgram)
                     ExitProgramMode();
-                else
+                else if(!PlayerController.Instance.IsDisabled)
                     EnterProgramMode();
             }
         }

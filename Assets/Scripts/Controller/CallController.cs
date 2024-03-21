@@ -6,6 +6,7 @@ using Save;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utils;
 using Random = UnityEngine.Random;
 
 namespace Controller
@@ -65,8 +66,8 @@ namespace Controller
             if (inMenu && Input.GetKeyDown(KeyCode.Escape))
             {
                 donMenu.SetActive(false);
-                PlayerController.Instance.InCutscene = false;
-                inMenu = false;
+                PlayerController.Instance.IsDisabled = false;
+                StartCoroutine(Util.DelayFrames(() => inMenu = false, 1));
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 return;
@@ -87,7 +88,7 @@ namespace Controller
             // TODO: call sfx??
             var randomDialogue = possibleDialogues[Random.Range(0, possibleDialogues.Length)];
             yield return DialogueManager.Instance.StartDialogue(randomDialogue);
-            PlayerController.Instance.InCutscene = true;
+            PlayerController.Instance.IsDisabled = true;
             currencyText.text = SaveManager.CurrentState.Currency.ToString();
             donMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -110,7 +111,6 @@ namespace Controller
                 DonUpgrade.FasterCamera => 1500,
                 _ => throw new ArgumentOutOfRangeException(nameof(upg), upg, null)
             };
-            Debug.Log($"PURCHASING {upgIdx} {upg} {cost}");
             if (SaveManager.CurrentState.Currency < cost)
                 return;
             // TODO: purchase sound??
@@ -121,7 +121,7 @@ namespace Controller
             inMenu = false;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            PlayerController.Instance.InCutscene = false;
+            PlayerController.Instance.IsDisabled = false;
             switch (upg)
             {
                 case DonUpgrade.HigherJumps:

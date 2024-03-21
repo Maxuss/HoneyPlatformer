@@ -33,13 +33,12 @@ namespace Level
             var tileSize = levelMap.size;
             TileSize = (tileSize.x, tileSize.y);
             PixelSize = (tileSize.x * TilePixelSize, tileSize.y * TilePixelSize);
-            Debug.Log($"NEW BOUNDS: TL: {TileSize} PX: {PixelSize} MAP: {levelMap.localBounds.min} {levelMap.localBounds.min}");
             MapBounds = levelMap.localBounds;
         }
 
         public void SwitchLevel(Tilemap newTilemap)
         {
-            SaveManager.CurrentState.Currency += (int) Math.Round(newTilemap.size.magnitude / 5f);
+            SaveManager.CurrentState.Currency += (int) Math.Round(newTilemap.size.magnitude / 3.5f);
             levelMap = newTilemap;
             RecalculateBounds();
         }
