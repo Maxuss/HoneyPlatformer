@@ -398,7 +398,7 @@ namespace Controller
                     var hit = Physics2D.Raycast(
                         handGrabTransform.position,
                         facingDirection == FacingDirection.Left ? Vector3.left : Vector3.right,
-                        0.1f, grabLayer
+                        0.2f, grabLayer
                     );
                     
                     if (hit.collider != null)

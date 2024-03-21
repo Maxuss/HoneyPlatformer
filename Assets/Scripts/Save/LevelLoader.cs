@@ -18,8 +18,7 @@ namespace Save
 
         public static LevelLoader Instance { get; private set; }
 
-        public static string[] LEVEL_NAMES = new []
-        {
+        public static string[] LEVEL_NAMES = {
             "Кабина Сапсана",
             "Тусклый коридор",
             "Заевшая дверь",
@@ -34,8 +33,9 @@ namespace Save
             "Сверхзвуковой лифт",
             "Цех конструкторов",
             "Непредвиденные последствия",
-            "Яркий коридор",
-            "Лазерный мост",
+            "Платформенный Конундрум",
+            "Помощь Олега",
+            "Запутанность",
             "В столовой",
             "Капитанский мостик",
             "ГАЛИЛЕО x 3",
