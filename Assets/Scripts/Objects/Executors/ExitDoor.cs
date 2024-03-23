@@ -5,14 +5,12 @@ using Cutscenes;
 using Level;
 using Program;
 using Program.Channel;
-using Program.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 using Utils;
 
-namespace Objects
+namespace Objects.Executors
 {
     [RequireComponent(typeof(Animator))]
     public class ExitDoor: MonoBehaviour, IActionContainer, IChannelReceiver

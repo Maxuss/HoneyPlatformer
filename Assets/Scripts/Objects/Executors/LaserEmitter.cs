@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Controller;
 using Level;
+using Objects.Emitters;
 using Program;
 using Program.Channel;
 using UnityEngine;
 using Utils;
-using UnityEngine.Serialization;
 
-namespace Objects
+namespace Objects.Executors
 {
     public class LaserEmitter: MonoBehaviour, IActionContainer, IChannelReceiver
     {

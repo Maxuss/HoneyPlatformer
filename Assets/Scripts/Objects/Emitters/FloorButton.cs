@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Level;
 using Program;
@@ -6,7 +5,7 @@ using Program.Channel;
 using UnityEngine;
 using Utils;
 
-namespace Objects
+namespace Objects.Emitters
 {
     public class FloorButton: MonoBehaviour, IParentCollisionHandler, IActionContainer, IChannelSender
     {

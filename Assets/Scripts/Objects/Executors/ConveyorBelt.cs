@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utils;
 
-namespace Objects
+namespace Objects.Executors
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class ConveyorBelt: MonoBehaviour

@@ -4,7 +4,6 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using DefaultNamespace;
 using Save;
 using UnityEngine;
 using UnityEngine.Networking;

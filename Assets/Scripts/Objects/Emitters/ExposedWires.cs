@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using Program;
 using Program.Channel;
 using UnityEngine;
 using Utils;
 
-namespace Objects
+namespace Objects.Emitters
 {
     public class ExposedWires: MonoBehaviour, IChannelSender, IActionContainer
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Objects
+namespace Cutscenes
 {
     public class ElevatorDoor: MonoBehaviour
     {

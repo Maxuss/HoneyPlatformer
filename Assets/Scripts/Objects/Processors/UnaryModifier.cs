@@ -5,7 +5,7 @@ using Program.Channel;
 using UnityEngine;
 using Utils;
 
-namespace Objects
+namespace Objects.Processors
 {
     public class UnaryModifier: MonoBehaviour, IChannelReceiver, IActionContainer, IChannelSender
     {
@@ -59,7 +59,7 @@ namespace Objects
             }
         };
 
-        public ProgrammableType Type => ProgrammableType.Emitter;
+        public ProgrammableType Type => ProgrammableType.Processor;
         [field: SerializeField]
         public ActionData SelectedAction { get; set; }
         public void Begin(ActionData action)

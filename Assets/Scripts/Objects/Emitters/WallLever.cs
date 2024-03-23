@@ -5,7 +5,7 @@ using Program.Channel;
 using UnityEngine;
 using Utils;
 
-namespace Objects
+namespace Objects.Emitters
 {
     public class WallLever: MonoBehaviour, IInteractable, IChannelSender, IActionContainer
     {

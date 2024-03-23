@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Objects
+namespace Cutscenes
 {
     public class AlarmLight: MonoBehaviour
     {

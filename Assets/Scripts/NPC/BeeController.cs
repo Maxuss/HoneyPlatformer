@@ -1,5 +1,6 @@
 using System;
 using Objects;
+using Objects.Emitters;
 using UnityEngine;
 
 namespace NPC

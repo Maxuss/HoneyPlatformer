@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using NPC;
@@ -7,7 +6,7 @@ using Program.Channel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Objects
+namespace Objects.Executors
 {
     public class ShieldGenerator: MonoBehaviour, IChannelReceiver, IActionContainer
     {

@@ -1,8 +1,7 @@
-using System;
+using Objects.Executors;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace Objects
+namespace Controller
 {
     public delegate void MirrorChanged();
     

@@ -2,9 +2,8 @@ using System;
 using Program;
 using Program.Channel;
 using UnityEngine;
-using Utils;
 
-namespace Objects
+namespace Objects.Executors
 {
     public class ConveyorGroup: MonoBehaviour, IChannelReceiver, IActionContainer
     {

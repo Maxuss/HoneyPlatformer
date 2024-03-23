@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;
 
-namespace Objects
+namespace Objects.Processors
 {
     public class BinaryCombinator: MonoBehaviour, IBiChannelReceiver, IActionContainer, IChannelSender
     {
@@ -123,7 +123,7 @@ namespace Objects
             }
         };
 
-        public ProgrammableType Type { get; } = ProgrammableType.Emitter;
+        public ProgrammableType Type { get; } = ProgrammableType.Processor;
         [field: SerializeField]
         public ActionData SelectedAction { get; set; }
         public void Begin(ActionData action)

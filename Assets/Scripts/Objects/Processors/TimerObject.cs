@@ -7,7 +7,7 @@ using UnityEngine;
 using Utils;
 using Debug = System.Diagnostics.Debug;
 
-namespace Objects
+namespace Objects.Processors
 {
     public class TimerObject: MonoBehaviour, IChannelReceiver, IActionContainer, IChannelSender
     {

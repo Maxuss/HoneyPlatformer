@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;
 
-namespace Objects
+namespace Objects.Executors
 {
     public class ObjectSpawner : MonoBehaviour, IChannelReceiver, IActionContainer
     {
