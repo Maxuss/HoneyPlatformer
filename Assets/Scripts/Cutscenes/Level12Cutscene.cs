@@ -21,6 +21,9 @@ namespace Cutscenes
         private DialogueDefinition dialogue2;
 
         [SerializeField]
+        private AudioClip olegAppearance;
+
+        [SerializeField]
         private GameObject bee1;
         [SerializeField]
         private GameObject bee2;
@@ -52,7 +55,8 @@ namespace Cutscenes
             StartCoroutine(MoveTowards(new Vector3(8f, 0f, 0f)));
             yield return sasha.Walk(6f, .6f);
 
-            yield return new WaitForSeconds(1f);
+            SfxManager.Instance.Play(olegAppearance);
+            yield return new WaitForSeconds(3f);
             yield return DialogueManager.Instance.StartDialogue(dialogue1);
 
             bee1.transform.DOMoveX(266, 1f);

@@ -31,6 +31,7 @@ namespace Dialogue
         Kris,
         Oleg,
         Captain,
-        Don
+        Don,
+        Capybara
     }
 }

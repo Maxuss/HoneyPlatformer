@@ -40,6 +40,8 @@ namespace Dialogue
         private Sprite[] sashaSprites;
         [SerializeField]
         private Sprite[] sapsanSprites;
+        [SerializeField]
+        private Sprite[] capybaraSprites;
         
         private AudioSource _as;
         
@@ -64,6 +66,7 @@ namespace Dialogue
                     SpeakingPerson.Oleg => olegSprites,
                     SpeakingPerson.Captain => captainSprites,
                     SpeakingPerson.Don => donSprites,
+                    SpeakingPerson.Capybara => capybaraSprites,
                     _ => throw new ArgumentOutOfRangeException()
                 };
             }
@@ -163,8 +166,12 @@ namespace Dialogue
             }
 
             yield return new WaitUntil(() => !_as.isPlaying);
-            StopCoroutine(_animationCoroutine);
-            _animationCoroutine = null;
+            if (_animationCoroutine != null)
+            {
+                StopCoroutine(_animationCoroutine);
+                _animationCoroutine = null;
+            }
+
             speakerSprite.sprite = CurrentSprites[0];
         }
 

@@ -151,6 +151,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: id_sigils_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f530ad2ee2449e304aae3b93ed67903c
+      internalID: -1895113721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -164,6 +185,7 @@ TextureImporter:
     nameFileIdTable:
       id_sigils_0: 1417087351
       id_sigils_1: 1206502535
+      id_sigils_2: -1895113721
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

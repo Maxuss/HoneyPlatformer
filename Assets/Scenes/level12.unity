@@ -7252,6 +7252,7 @@ MonoBehaviour:
   sasha: {fileID: 743923475}
   dialogue1: {fileID: 11400000, guid: bd5862a3b56367bac9eed3e36b864611, type: 2}
   dialogue2: {fileID: 11400000, guid: 1580cc42f6f7118b9a1fc301edcd8245, type: 2}
+  olegAppearance: {fileID: 8300000, guid: a460c1f5e9f84cac4a0dd5734cc0ae95, type: 3}
   bee1: {fileID: 1060903232}
   bee2: {fileID: 300226852}
 --- !u!1660057539 &9223372036854775807

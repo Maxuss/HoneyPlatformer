@@ -54,7 +54,6 @@ namespace Program
 
         private void OnMouseOver()
         {
-
             if (Input.GetMouseButton((int) MouseButton.LeftMouse))
             {
                 OnPointerClick(new ClickData

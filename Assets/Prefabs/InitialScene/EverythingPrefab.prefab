@@ -4658,19 +4658,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.57311535
+      value: 0.5444349
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.045234248
+      value: 0.042944785
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.29064488
+      value: 0.2761001
       objectReference: {fileID: 0}
     - target: {fileID: 8388710599323074023, guid: 1099ddccfe60e03649202142705d007b, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.2907916
+      value: 0.2760736
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5290164877897739287, guid: 1099ddccfe60e03649202142705d007b, type: 3}
@@ -5119,7 +5119,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6894126939013865692, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2378463719392741629, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5871478749221551918, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
       insertIndex: -1
@@ -5339,6 +5340,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1417087351, guid: 32da8c14ac7c1c9c493181a32343b963, type: 3}
     - target: {fileID: 2839271357499072240, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
+      propertyPath: processorIcon
+      value: 
+      objectReference: {fileID: -1895113721, guid: 32da8c14ac7c1c9c493181a32343b963, type: 3}
+    - target: {fileID: 2839271357499072240, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: selectedSprite
       value: 
       objectReference: {fileID: 1722014400, guid: a7372e582e26a13b0b2629b195199902, type: 3}
@@ -5555,6 +5560,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -22050027, guid: f8713e2fd3186abe091c230fce6a8d4f, type: 3}
     - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
+      propertyPath: capybaraSprites.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
       propertyPath: sashaSprites.Array.data[0]
       value: 
       objectReference: {fileID: 1184195485, guid: 7988d6e1e0d4d11ccb82747ae7519969, type: 3}
@@ -5614,6 +5623,26 @@ PrefabInstance:
       propertyPath: mefodiySprites.Array.data[2]
       value: 
       objectReference: {fileID: 364910147, guid: 685124427c7dd6587b8b8bff38aef9b9, type: 3}
+    - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
+      propertyPath: capybaraSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 1876365248, guid: d478b61ee4342bf708ff5720c1e37480, type: 3}
+    - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
+      propertyPath: capybaraSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: -877440875, guid: d478b61ee4342bf708ff5720c1e37480, type: 3}
+    - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
+      propertyPath: capybaraSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 1140821472, guid: d478b61ee4342bf708ff5720c1e37480, type: 3}
+    - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
+      propertyPath: capybaraSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 1743454820, guid: d478b61ee4342bf708ff5720c1e37480, type: 3}
+    - target: {fileID: 8815296056914236288, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
+      propertyPath: capybaraSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: -149237156, guid: d478b61ee4342bf708ff5720c1e37480, type: 3}
     m_RemovedComponents:
     - {fileID: 4177684440323393658, guid: 435a2445b5236e0a3b71f8b4f6396057, type: 3}
     m_RemovedGameObjects: []

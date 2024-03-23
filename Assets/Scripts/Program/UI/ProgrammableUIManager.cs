@@ -43,6 +43,8 @@ namespace Program.UI
         private Sprite emitterIcon;
         [SerializeField]
         private Sprite executorIcon;
+        [SerializeField]
+        private Sprite processorIcon;
 
         [Header("Action Description")]
         [SerializeField]
@@ -178,9 +180,21 @@ namespace Program.UI
 
             objectDescriptionHeader.GetChild(0).GetComponent<TMP_Text>().text = _currentlyEditing.Name;
             objectDescriptionHeader.GetChild(1).GetComponent<Image>().sprite =
-                _currentlyEditing.Type == ProgrammableType.Emitter ? emitterIcon : executorIcon;
+                _currentlyEditing.Type switch
+                {
+                    ProgrammableType.Emitter => emitterIcon,
+                    ProgrammableType.Executor => executorIcon,
+                    ProgrammableType.Processor => processorIcon,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
             objectDescriptionHeader.GetChild(2).GetComponent<TMP_Text>().text =
-                _currentlyEditing.Type == ProgrammableType.Emitter ? "Эмиттер" : "Исполнитель";
+                _currentlyEditing.Type switch
+                {
+                    ProgrammableType.Emitter => "Эмиттер",
+                    ProgrammableType.Executor => "Исполнитель",
+                    ProgrammableType.Processor => "Обработчик",
+                    _ => throw new ArgumentOutOfRangeException()
+                };
             
             objectDescriptionBody.GetComponentInChildren<TMP_Text>().text = _currentlyEditing.Description;
             

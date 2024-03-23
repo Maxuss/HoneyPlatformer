@@ -20,6 +20,7 @@ namespace Program
     public enum ProgrammableType
     {
         Emitter,
-        Executor
+        Executor,
+        Processor,
     }
 }
