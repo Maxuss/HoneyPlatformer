@@ -71,10 +71,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _HighlightAmount: 0
+    - _OutlineThickness: 0
+    - _ShouldHighlight: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TpColor1: {r: 0.4131858, g: 0, b: 0.7633303, a: 0}
-    - _TpColor2: {r: 7.049219, g: 1.771549, b: 8, a: 0}
+    - _TpColor1: {r: 0.22185013, g: 0.22185013, b: 0.22185013, a: 0}
+    - _TpColor2: {r: 9.474747, g: 9.474747, b: 9.474747, a: 0}
   m_BuildTextureStacks: []

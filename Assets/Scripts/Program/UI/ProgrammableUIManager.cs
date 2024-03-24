@@ -221,6 +221,8 @@ namespace Program.UI
                 {
                     case ActionValueType.Enum:
                         var enumValues = action.EnumType!.GetEnumValues().Cast<object>().AsEnumerable().ToList();
+                        if (action.BlacklistedEnumTypes != null)
+                            enumValues.RemoveAll(it => action.BlacklistedEnumTypes.Contains((int) it));
                         var enumSelection = Instantiate(enumSelectionPrefab, paramSelect);
                         var enumText = enumSelection.transform.GetChild(0).GetComponent<TMP_Text>();
                         enumText.text = action.ParameterName!;
@@ -232,7 +234,7 @@ namespace Program.UI
                                 text = each
                             })
                             .ToList();
-                        dropdown.value = _currentlyEditing.SelectedAction.StoredValue == null ? 0 : (int) _currentlyEditing.SelectedAction.StoredValue;
+                        dropdown.value = _currentlyEditing.SelectedAction.StoredValue == null ? (int) enumValues.First() : (int) _currentlyEditing.SelectedAction.StoredValue;
                         _selectedAction.StoredValue = Enum.ToObject(action.EnumType, dropdown.value);
                         dropdown.onValueChanged.AddListener(val =>
                         {

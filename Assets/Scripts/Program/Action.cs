@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace Program
         public int MaxFloatValue { get; set; }
         [CanBeNull]
         public string ParameterName { get; set; }
+        [CanBeNull]
+        public List<int> BlacklistedEnumTypes { get; set; }
     }
 
     [Serializable]

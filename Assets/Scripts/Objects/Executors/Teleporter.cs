@@ -27,6 +27,9 @@ namespace Objects.Executors
         [SerializeField]
         [ColorUsage(false, true)]
         private Color[] electroColors;
+        [SerializeField]
+        [ColorUsage(false, true)]
+        private Color[] platinumColors;
 
         [SerializeField] private ParticleSystem tpParticles;
         [SerializeField]
@@ -45,6 +48,11 @@ namespace Objects.Executors
 
         [SerializeField]
         private BoxCollider2D collider;
+        
+        [Space(50)]
+        [SerializeField]
+        private TeleporterChannel[] blacklistedChannels;
+        
         private bool _state;
         private static readonly int TpColor1 = Shader.PropertyToID("_TpColor1");
         private static readonly int TpColor2 = Shader.PropertyToID("_TpColor2");
@@ -53,7 +61,7 @@ namespace Objects.Executors
         public string Name => "Телепорт";
         public string Description => "Используется для (практически) мгновенного перемещения объектов по разным каналам";
 
-        public ActionInfo[] SupportedActions { get; } =
+        public ActionInfo[] SupportedActions => new ActionInfo[]
         {
             new()
             {
@@ -61,18 +69,19 @@ namespace Objects.Executors
                 ActionDescription = "Производит телепортацию объект в другой телепорт канала. Если в канале более двух телепортов, перемещение не удастся",
                 ValueType = ActionValueType.Enum,
                 EnumType = typeof(TeleporterChannel),
-                ParameterName = "Канал"
-            }
+                ParameterName = "Канал",
+                BlacklistedEnumTypes = blacklistedChannels.Cast<int>().ToList()
+            },
         };
         public ProgrammableType Type { get; }
         public ActionData SelectedAction { get; set; }
-        
+
+        private TeleporterChannel[] _blacklistedChannels;
+         
         public void Begin(ActionData action)
         {
-            channel = (TeleporterChannel) Enum.ToObject(typeof(TeleporterChannel), (int) action.StoredValue!);
-            Debug.Log($"NEW CHANNEL {channel}");
+            channel = _blacklistedChannels[(int) action.StoredValue!];
             var colors = Channel2Colors();
-            Debug.Log($"NEW COLOR {colors.Item1}");
             _renderer.material.SetColor(TpColor1, colors.Item1);
             _renderer.material.SetColor(TpColor2, colors.Item2);
         }
@@ -125,6 +134,9 @@ namespace Objects.Executors
             _renderer.material.SetColor(TpColor1, colors.Item1);
             _renderer.material.SetColor(TpColor2, colors.Item2);
             tpParticles.Stop();
+            _blacklistedChannels = Enum.GetValues(typeof(TeleporterChannel)).Cast<TeleporterChannel>()
+                .Where(it => !blacklistedChannels.Contains(it)).ToArray();
+            
         }
 
         private (Color, Color) Channel2Colors()
@@ -136,17 +148,20 @@ namespace Objects.Executors
                 TeleporterChannel.Pyro => (pyroColors[0], pyroColors[1]),
                 TeleporterChannel.Scarlet => (scarletColors[0], scarletColors[1]),
                 TeleporterChannel.Electro => (electroColors[0], electroColors[1]),
+                TeleporterChannel.Platinum => (platinumColors[0], platinumColors[1]),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
     }
 
+    [Serializable]
     public enum TeleporterChannel
     {
         Void,
         Azure,
         Pyro,
         Scarlet,
-        Electro
+        Electro,
+        Platinum,
     }
 }

@@ -183,14 +183,14 @@ namespace Controller
 
                 line.colorGradient = newGradient;
                 line.SetPositions(new[] { txPos, rxPos });
-                var center = 0.5f * (rxPos - txPos) + txPos;
+                var center = 0.6f * (rxPos - txPos) + txPos;
                 var arrow = line.transform.GetChild(0);
                 arrow.position = center;
                 var quaternion = Quaternion.LookRotation(Vector3.forward, rxPos - txPos);
                 quaternion.x = 0;
                 quaternion.y = 0;
                 arrow.rotation = quaternion;
-                var sizeModifier = Mathf.Clamp((rxPos - txPos).sqrMagnitude / 64f, 0.58f, 1f);
+                var sizeModifier = Mathf.Clamp((rxPos - txPos).sqrMagnitude / 64f, 0.58f, 0.71f);
                 arrow.localScale *= sizeModifier;
 
                 if (!tx.ConnectionLocked)
