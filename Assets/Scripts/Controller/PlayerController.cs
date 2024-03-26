@@ -125,15 +125,14 @@ namespace Controller
         {
             _autonomous = true;
             _velocity = Vector2.zero;
-            Debug.Log("PRE");
+            Debug.Log($"TRYING TO MOVE TOWARDS {towards}");
             while (Util.SqrDistance(transform.position, towards) > 0.5f)
             {
-                Debug.Log(Util.SqrDistance(transform.position, towards));
                 _velocity = Vector3.right * 7f;
                 _rb.velocity = Vector2.right * 7f;
                 yield return null;
             }
-            Debug.Log($"POST {Util.SqrDistance(transform.position, towards)}");
+            Debug.Log($"DONE MOVING TOWARDS {towards}");
             _autonomous = false;
         }
         

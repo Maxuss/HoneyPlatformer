@@ -10,8 +10,8 @@ namespace Level
         [SerializeField]
         private Tilemap levelMap;
 
-        public (int, int) TileSize { get; private set; }
-        public (int, int) PixelSize { get; private set; }
+        public (float, float) TileSize { get; private set; }
+        public (float, float) PixelSize { get; private set; }
         public Bounds MapBounds { get; private set; }
         
         public static LevelManager Instance { get; private set; }
@@ -31,8 +31,10 @@ namespace Level
         {
             levelMap.CompressBounds();
             var tileSize = levelMap.size;
-            TileSize = (tileSize.x, tileSize.y);
-            PixelSize = (tileSize.x * TilePixelSize, tileSize.y * TilePixelSize);
+            var transform1 = levelMap.transform.parent;
+            var position = transform1.position;
+            TileSize = (tileSize.x + position.x, tileSize.y + position.y);
+            PixelSize = (TileSize.Item1 * TilePixelSize, TileSize.Item2 * TilePixelSize);
             MapBounds = levelMap.localBounds;
         }
 

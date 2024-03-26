@@ -17,7 +17,7 @@ namespace Objects.Processors
         
         private IChannelReceiver _rx;
         private Renderer _renderer;
-
+        
         private bool _state;
         private static readonly int Output = Shader.PropertyToID("_Output");
         private static readonly int InputData = Shader.PropertyToID("_Input");

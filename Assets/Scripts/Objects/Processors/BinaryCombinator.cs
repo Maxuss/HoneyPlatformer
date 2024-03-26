@@ -10,7 +10,6 @@ namespace Objects.Processors
 {
     public class BinaryCombinator: MonoBehaviour, IBiChannelReceiver, IActionContainer, IChannelSender
     {
-        // TODO: program the operation
         [SerializeField]
         private BinaryOperation operation;
         

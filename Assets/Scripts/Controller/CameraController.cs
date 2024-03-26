@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Dialogue;
 using Level;
@@ -200,15 +202,7 @@ namespace Controller
             _transitioningProgram = true;
             SfxManager.Instance.Play(exitEditModeSound, .7f);
             
-            var amount = .9f;
-            while (amount > 0f)
-            {
-                amount -= 0.6f * Time.fixedDeltaTime;
-                effectRenderer.material.SetFloat(StartAnimationProgress, Mathf.Max(0f, amount));
-                yield return null;
-            }
-            effectRenderer.material.SetFloat(Enabled, 0f);
-            effectRenderer.material.SetFloat(StartAnimationProgress, 0f);
+            var mats = new List<Material>();
             
             foreach (var programmable in Util.GetAllComponents<IActionContainer>())
             {
@@ -223,8 +217,20 @@ namespace Controller
                     continue;
                 }
                 var render = (programmable as MonoBehaviour)?.GetComponent<Renderer>();
-                render!.material.SetFloat(OutlineThickness, 0f);
+                mats.Add(render!.material);
             }
+
+            StartCoroutine(DecreaseObjectOutline(mats));
+            
+            var amount = .9f;
+            while (amount > 0f)
+            {
+                amount -= 0.9f * Time.fixedDeltaTime;
+                effectRenderer.material.SetFloat(StartAnimationProgress, Mathf.Max(0f, amount));
+                yield return null;
+            }
+            effectRenderer.material.SetFloat(Enabled, 0f);
+            effectRenderer.material.SetFloat(StartAnimationProgress, 0f);
 
             _transitioningProgram = false;
         }
@@ -235,16 +241,7 @@ namespace Controller
             SfxManager.Instance.Play(enterEditModeSound, .7f);
             effectRenderer.material.SetFloat(Enabled, 1f);
             
-            var amount = 0f;
-            
-            while (amount < 1f)
-            {
-                amount += 0.5f * Time.fixedDeltaTime;
-                effectRenderer.material.SetFloat(StartAnimationProgress, amount);
-                yield return null;
-            }
-            effectRenderer.material.SetFloat(StartAnimationProgress, 1f);
-            
+            var materials = new List<Material>();
             foreach (var programmable in Util.GetAllComponents<IActionContainer>())
             {
                 if (programmable is ConveyorGroup group)
@@ -258,11 +255,49 @@ namespace Controller
                     continue;
                 }
                 var render = (programmable as MonoBehaviour)?.GetComponent<Renderer>();
-                render!.material.SetFloat(OutlineThickness, 1f);
+                materials.Add(render!.material);
             }
+
+            StartCoroutine(IncreaseObjectsOutline(materials));
+            
+            var amount = 0f;
+            
+            while (amount < 1f)
+            {
+                amount += 0.5f * Time.fixedDeltaTime;
+                effectRenderer.material.SetFloat(StartAnimationProgress, amount);
+                yield return null;
+            }
+            effectRenderer.material.SetFloat(StartAnimationProgress, 1f);
+
             
             _transitioningProgram = false;
         }
+
+        private IEnumerator IncreaseObjectsOutline(List<Material> mats)
+        {
+            var i = 0f;
+            while (i < 1f)
+            {
+                i += 0.9f * Time.deltaTime;
+                mats.ForEach(each => each.SetFloat(OutlineThickness, i));
+                yield return null;
+            }
+            mats.ForEach(each => each.SetFloat(OutlineThickness, 1f));
+        }
+        
+        private IEnumerator DecreaseObjectOutline(List<Material> mats)
+        {
+            var i = 1f;
+            while (i > 0f)
+            {
+                i -= 0.9f * Time.deltaTime;
+                mats.ForEach(each => each.SetFloat(OutlineThickness, i));
+                yield return null;
+            }
+            mats.ForEach(each => each.SetFloat(OutlineThickness, 0f));
+        }
+
 
         private IEnumerator IncreaseBrightness()
         {
