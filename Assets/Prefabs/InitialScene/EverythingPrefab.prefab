@@ -4971,6 +4971,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 644202667405679965, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 196.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 644202667405679965, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00027847
+      objectReference: {fileID: 0}
     - target: {fileID: 683413518557541094, guid: 470038cb6fa8070c78025bdba083d0bb, type: 3}
       propertyPath: m_IsActive
       value: 0

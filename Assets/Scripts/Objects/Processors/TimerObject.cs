@@ -20,7 +20,6 @@ namespace Objects.Processors
         
         private IChannelReceiver _rx;
         private bool _state;
-        private float _delay = 0f;
 
         private Coroutine delayedSend;
         
@@ -43,7 +42,7 @@ namespace Objects.Processors
         private IEnumerator SendCoroutine()
         {
             Debug.Assert(SelectedAction.StoredValue != null, "SelectedAction.StoredValue != null");
-            yield return new WaitForSeconds(_delay);
+            yield return new WaitForSeconds(selectedTime);
             _rx.ReceiveBool(transform, _state);
             delayedSend = null;
         }
@@ -74,9 +73,9 @@ namespace Objects.Processors
         public void Begin(ActionData action)
         {
             var newDelay = (float)action.StoredValue!;
-            if (Math.Abs(_delay - newDelay) < 0.1)
+            if (Math.Abs(selectedTime - newDelay) < 0.1)
                 return;
-            _delay = newDelay;
+            selectedTime = newDelay;
 
             if (delayedSend != null)
             {

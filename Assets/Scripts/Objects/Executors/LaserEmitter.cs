@@ -119,7 +119,7 @@ namespace Objects.Executors
             if (!isActive)
                 return;
             
-            var currentLength = 18f;
+            var currentLength = 36f;
             var currentBounces = 6;
             RaycastHit2D hit;
             var verts = new List<Vector3>();

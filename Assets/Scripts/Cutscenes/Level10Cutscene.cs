@@ -50,15 +50,8 @@ namespace Cutscenes
             yield return DialogueManager.Instance.StartDialogue(dialogue1);
             yield return new WaitForSeconds(1f);
             
-            mefodiy.gameObject.SetActive(true);
-            mefodiy.gameObject.GetComponent<Animator>().Play("BeekeeperWalk");
-            entranceDoor.Play("UnlockedDoor");
-            yield return mefodiy.Walk(5f, .4f);
-            PlayerController.Instance.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            entranceDoor.Play("EntranceDoor");
             yield return new WaitForSeconds(.5f);
             yield return DialogueManager.Instance.StartDialogue(dialogue2);
-            PlayerController.Instance.gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
             yield return new WaitForSeconds(.5f);
 
