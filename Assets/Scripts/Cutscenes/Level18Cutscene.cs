@@ -1,8 +1,3 @@
-using System.Collections;
-using Controller;
-using Dialogue;
-using Level;
-using Save;
 using UnityEngine;
 
 namespace Cutscenes
@@ -11,7 +6,6 @@ namespace Cutscenes
     {        
         public void StartCutscene()
         {
-            ToastManager.Instance.ShowToast("Телепорты позволяют перемещать объекты на разные расстояния.");
         }
     }
 }

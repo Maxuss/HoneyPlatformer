@@ -88,6 +88,7 @@ namespace Save
                 {
                     cutscene.GetComponent<MonoBehaviour>().StartCoroutine(Util.Delay(() => cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene(), .5f));
                 }
+                MusicManager.Instance.NextAmbientTrack();
             };
         }
 
