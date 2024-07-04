@@ -41,6 +41,7 @@ namespace Objects.Processors
             _rx?.ReceiveBool(transform, _state);
             _renderer.material.SetColor(ColorGlow, calibratedColor);
             NodeManager.Instance.Close();
+            ToastManager.Instance.ShowToast("Калибровка успешна!");
         }
 
         private void Start()

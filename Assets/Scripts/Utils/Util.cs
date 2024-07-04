@@ -77,7 +77,7 @@ namespace Utils
 
         public static List<T> ListOf<T>(params T[] values) => values.ToList();
         
-        private static System.Random _rng = new System.Random();
+        public static System.Random Rng = new System.Random();
 
         public static IList<T> Shuffle<T>(this IEnumerable<T> sequence)
         {
@@ -86,7 +86,7 @@ namespace Utils
             var currentlySelecting = values.Count;
             while (currentlySelecting > 1)
             {
-                var selectedElement = _rng.Next(currentlySelecting);
+                var selectedElement = Rng.Next(currentlySelecting);
                 currentlySelecting--;
                 if (currentlySelecting == selectedElement) continue;
                 swapTemp = values[currentlySelecting];

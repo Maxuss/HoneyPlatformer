@@ -159,7 +159,7 @@ namespace Nodes.Memory
                 btn.image.sprite = sprites[(int)chosenRow[i]];
             }
 
-            yield return new WaitForSeconds(0.5f + Random.Range(-0.2f, 0.3f));
+            yield return new WaitForSeconds(0.4f + Random.Range(-0.1f, 0.1f));
         }
 
         private void HideAll()

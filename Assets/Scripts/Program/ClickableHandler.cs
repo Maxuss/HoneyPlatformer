@@ -114,11 +114,10 @@ namespace Program
                     {
                         NodeManager.Instance.OpenFor(node);
                     }
-                    else
+                    else if(_actionContainer is not BrokenNode)
                     {
                         ProgrammableUIManager.Instance.OpenFor(_actionContainer);
                     }
-
                     break;
                 case PointerEventData.InputButton.Right when !CameraController.Instance.VisualEditing.IsConnecting:
                 {
