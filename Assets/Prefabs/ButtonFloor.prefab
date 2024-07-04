@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 539450681930606294}
   - component: {fileID: 769694166207783195}
   - component: {fileID: 6053897142909841899}
+  - component: {fileID: 6834841548220470222}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -90,6 +91,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ad11bf6879ffa5d9662fd5fd6eb425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6834841548220470222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585546414190192124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475fa6caa31c29359ab65ccf1da38119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7826852365702886761
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +116,7 @@ GameObject:
   - component: {fileID: 4410426129036194036}
   - component: {fileID: 959356642445989429}
   - component: {fileID: 1604963936414861267}
+  - component: {fileID: 861627696962346683}
   m_Layer: 3
   m_Name: ButtonFloor
   m_TagString: Untagged
@@ -260,3 +274,15 @@ MonoBehaviour:
   <ConnectionLocked>k__BackingField: 0
   <SelectedAction>k__BackingField:
     <ActionIndex>k__BackingField: 0
+--- !u!114 &861627696962346683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7826852365702886761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1104175b917bf912a0a28dea213d5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

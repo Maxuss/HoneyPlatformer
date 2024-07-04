@@ -67,10 +67,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.5904405
+    y: 0.046666667
+    width: 0.29990628
+    height: 0.3
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smootheningModifier: 0.1
-  renderLineContainer: {fileID: 0}
+  renderLineContainer: {fileID: 5775441473478477155}
   linePrefab: {fileID: 1168906006037071799, guid: f78c6f1b8c92efa6482bbf0812694a48, type: 3}
   lineColors:
   - serializedVersion: 2

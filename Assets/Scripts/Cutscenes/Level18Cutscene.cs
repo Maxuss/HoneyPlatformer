@@ -1,3 +1,4 @@
+using Level;
 using UnityEngine;
 
 namespace Cutscenes
@@ -6,6 +7,7 @@ namespace Cutscenes
     {        
         public void StartCutscene()
         {
+            // ToastManager.Instance.ShowToast("Телепорты позволяют ");
         }
     }
 }

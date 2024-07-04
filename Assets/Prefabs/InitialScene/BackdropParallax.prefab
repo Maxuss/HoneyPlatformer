@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  transformModifier: 0
+  transformModifier: 0.9
 --- !u!1 &4053544738265403357
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  transformModifier: 0
+  transformModifier: 1
 --- !u!1 &8166232204838323409
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,4 +853,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  transformModifier: 0
+  transformModifier: 0.6

@@ -77,6 +77,8 @@ namespace Objects.Executors
         public ActionData SelectedAction { get; set; }
 
         private TeleporterChannel[] _blacklistedChannels;
+        
+        
          
         public void Begin(ActionData action)
         {
@@ -136,7 +138,10 @@ namespace Objects.Executors
             tpParticles.Stop();
             _blacklistedChannels = Enum.GetValues(typeof(TeleporterChannel)).Cast<TeleporterChannel>()
                 .Where(it => !blacklistedChannels.Contains(it)).ToArray();
-            
+
+            var act = SelectedAction;
+            act.StoredValue = (int)channel;
+            SelectedAction = act;
         }
 
         private (Color, Color) Channel2Colors()

@@ -26,7 +26,7 @@ TagManager:
   - Interact
   - Program
   - OnlyPlayer
-  - 
+  - Distort
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3456058885
+    locked: 0
+  - name: DistortEffect
+    uniqueID: 4259175545
     locked: 0
   - name: VisualEditingEffect
     uniqueID: 3208560775

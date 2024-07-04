@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using Controller;
+using Nodes;
+using Objects.Processors;
 using Program.Channel;
 using Program.UI;
 using UnityEngine;
@@ -107,8 +109,16 @@ namespace Program
                 }
                 case PointerEventData.InputButton.Left when _actionContainer == null:
                     return;
-                case PointerEventData.InputButton.Left when !CameraController.Instance.VisualEditing.IsConnecting:
-                    ProgrammableUIManager.Instance.OpenFor(_actionContainer);
+                case PointerEventData.InputButton.Left when !CameraController.Instance.VisualEditing.IsConnecting && !CameraController.Instance.VisualEditing.Editing:
+                    if (_actionContainer is BrokenNode { IsCalibrated: false } node)
+                    {
+                        NodeManager.Instance.OpenFor(node);
+                    }
+                    else
+                    {
+                        ProgrammableUIManager.Instance.OpenFor(_actionContainer);
+                    }
+
                     break;
                 case PointerEventData.InputButton.Right when !CameraController.Instance.VisualEditing.IsConnecting:
                 {
@@ -119,6 +129,7 @@ namespace Program
                     if (!rxNull && !txNull && _rx is not IBiChannelReceiver && !_tx.ConnectionLocked)
                     {
                         // choosing input and output
+                        // TODO: do something about it
                         CameraController.Instance.VisualEditing.ChooseIO(this.transform.position + Vector3.up, gameObject);
                     }
                     else if (!rxNull && _rx is not IBiChannelReceiver)
