@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Level;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,9 @@ namespace Nodes.Memory
 
         [SerializeField]
         private TMP_Text countdown;
+
+        [SerializeField]
+        private AudioClip incorrectSfx;
         
         private Button[][] _buttonBoard = { new Button[4], new Button[4], new Button[4], new Button[4] };
 
@@ -77,8 +81,6 @@ namespace Nodes.Memory
             _chosenMatrix = _variants[Random.Range(0, _variants.Length)];
             
             _btn.onClick.AddListener(Begin);
-            Debug.Log("CHOSEN MATRIX");
-            Debug.Log(_chosenMatrix);
         }
 
         private ButtonType[][] _chosenMatrix;
@@ -99,11 +101,12 @@ namespace Nodes.Memory
             {
                 // TODO: mark node as completed
                 NodeManager.Instance.SelectedNode.MarkCalibrated();
-                Debug.Log("NODE COMPLETED");
             }
             else
             {
-                Debug.Log("NODE STILL NOT COMPLETED");
+                NodeManager.Instance.Close();
+                SfxManager.Instance.Play(incorrectSfx, .4f);
+                ToastManager.Instance.ShowToast("Калибровка не удалась!");
             }
         }
 
