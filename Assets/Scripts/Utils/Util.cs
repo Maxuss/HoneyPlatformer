@@ -6,6 +6,7 @@ using Program;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Utils
 {
@@ -75,5 +76,26 @@ namespace Utils
         }
 
         public static List<T> ListOf<T>(params T[] values) => values.ToList();
+        
+        private static System.Random _rng = new System.Random();
+
+        public static IList<T> Shuffle<T>(this IEnumerable<T> sequence)
+        {
+            T swapTemp;
+            var values = sequence.ToList();
+            var currentlySelecting = values.Count;
+            while (currentlySelecting > 1)
+            {
+                var selectedElement = _rng.Next(currentlySelecting);
+                currentlySelecting--;
+                if (currentlySelecting == selectedElement) continue;
+                swapTemp = values[currentlySelecting];
+                values[currentlySelecting] = values[selectedElement];
+                values[selectedElement] = swapTemp;
+            }
+
+            return values;
+        }
+        
     }
 }

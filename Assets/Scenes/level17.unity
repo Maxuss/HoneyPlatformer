@@ -3261,7 +3261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedReceiver: {fileID: 232164221}
-  terminalPrefab: {fileID: 4499262961117560302, guid: 27fa44aaab048ca749191a9332faabde, type: 3}
+  successSfx: {fileID: 8300000, guid: 5876cfe0335b9c68a9919ebb7c7fe9f8, type: 3}
+  terminalPrefab: {fileID: 6982243055135043653, guid: a5fec9fc19e98457d982e43abb1fda1b, type: 3}
   calibratedColor: {r: 0.527592, g: 3.0071063, b: 0.69729286, a: 1}
 --- !u!65 &1276131985
 BoxCollider:

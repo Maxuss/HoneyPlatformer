@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Level;
 using Nodes;
 using Program;
 using Program.Channel;
@@ -15,6 +16,9 @@ namespace Objects.Processors
         
         [SerializeField]
         private Transform connectedReceiver;
+
+        [SerializeField]
+        private AudioClip successSfx;
 
         [SerializeField]
         public GameObject terminalPrefab;
@@ -33,6 +37,7 @@ namespace Objects.Processors
         {
             // TODO: maybe some sound here?
             _calibrated = true;
+            SfxManager.Instance.Play(successSfx, .4f);
             _rx?.ReceiveBool(transform, _state);
             _renderer.material.SetColor(ColorGlow, calibratedColor);
             NodeManager.Instance.Close();
