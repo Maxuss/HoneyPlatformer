@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core;
+using Level;
 using Save;
 using TMPro;
 using UnityEngine;
@@ -43,14 +44,14 @@ namespace MainMenu
         private SpriteRenderer[] areas;
         
         private Dictionary<int, SaveState?> _saveStates;
-        private AudioSource _as;
+        public AudioSource AudioSource;
 
         private void Start()
         {
             _saveStates = SaveManager.AllSaves();
             ReloadSaves();
-            _as = GetComponent<AudioSource>();
-            _as.DOFade(1f, 2.5f);
+            AudioSource = GetComponent<AudioSource>();
+            AudioSource.DOFade(1f * SettingManager.Instance.MusicVolume, 2.5f);
         }
 
         private void ReloadSaves()
@@ -101,7 +102,7 @@ namespace MainMenu
             if (!save.HasValue)
                 return;
             var img = areas[(int)LevelLoader.LEVEL_LOCS[save.Value.LevelIndex - 1]];
-            img.DOColor(new Color(1f, 1f, 1f, 1f), .5f);
+            img.DOColor(new Color(1f, 1f, 1f, 0.14f), .5f);
             
         }
 
@@ -159,6 +160,7 @@ namespace MainMenu
 
         public void Info2Main()
         {
+            SettingManager.Instance.Save();
             var tweener = infoContainer.DOAnchorPosY(275f, .5f); 
             tweener.OnComplete(() =>
             {

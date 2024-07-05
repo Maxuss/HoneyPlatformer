@@ -50,6 +50,7 @@ namespace Level
         
         public IEnumerator Crossfade(AudioClip to, float maxVolume = 1f, float speed = .2f)
         {
+            maxVolume *= SettingManager.Instance.MusicVolume;
             if (_ambient1.volume > 0)
             {
                 _ambient2.clip = to;

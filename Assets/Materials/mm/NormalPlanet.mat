@@ -74,15 +74,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 0.03
+    - _Amplitude: 0
     - _EnableExternalAlpha: 0
-    - _NoiseScale: 1.4
-    - _Pixelation: 0.308
+    - _NoiseScale: 1
+    - _Pixelation: 0.449
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _NoiseOffset: {r: 2, g: 2, b: 1, a: 0}
+    - _NoiseOffset: {r: 1, g: 1, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

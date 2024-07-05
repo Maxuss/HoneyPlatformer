@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utils;
 
 namespace Level
 {
@@ -17,6 +18,6 @@ namespace Level
             Instance = this;
         }
 
-        public void Play(AudioClip clip, float volumeScale = 1f) => _as.PlayOneShot(clip, volumeScale);
+        public void Play(AudioClip clip, float volumeScale = 1f) => _as.PlayOneShot(clip, volumeScale * SettingManager.Instance.SfxVolume);
     }
 }
