@@ -18,6 +18,51 @@ namespace Save
 
         public static LevelLoader Instance { get; private set; }
 
+        public enum LevelLocation
+        {
+            LivingQuarters,
+            MainArea,
+            OldArea,
+            OldestArea,
+            CaptainArea,
+            TopArea,
+            HiveArea
+        }
+
+        public static LevelLocation[] LEVEL_LOCS =
+        {
+            LevelLocation.LivingQuarters,
+            LevelLocation.LivingQuarters,
+            LevelLocation.LivingQuarters,
+            LevelLocation.LivingQuarters,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.OldArea,
+            LevelLocation.OldArea,
+            LevelLocation.OldArea,
+            LevelLocation.OldArea,
+            LevelLocation.OldArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.MainArea,
+            LevelLocation.OldestArea,
+            LevelLocation.OldestArea,
+            LevelLocation.OldestArea,
+            LevelLocation.OldestArea,
+            LevelLocation.OldestArea,
+            LevelLocation.OldestArea,
+            LevelLocation.OldestArea,
+            // TODO: finish
+        };
+
         public static string[] LEVEL_NAMES = {
             "Кабина Сапсана",
             "Тусклый коридор",
@@ -76,7 +121,9 @@ namespace Save
                 var obj = Instantiate(everythingPrefab);
                 var player=  obj.transform.Find("Player");
                 player.position = spawnPos.position;
-                
+                var controller = player.GetComponent<PlayerController>();
+                controller.BlackOut();
+                controller.StartCoroutine(controller.FadeOut());
                 var grid = rootObjects.First(oobj => oobj.CompareTag("Grid"));
             
                 var tilemap = grid.transform.GetChild(0).GetComponent<Tilemap>();
