@@ -50,7 +50,7 @@ namespace Cutscenes
             yield return CameraController.Instance.TransitionToPoint(captainPos.position, 3f);
             yield return new WaitForSeconds(.8f);
             yield return DialogueManager.Instance.StartDialogue(dialogue);
-            yield return MusicManager.Instance.Crossfade(bossMusic, 1f, .3f);
+            yield return MusicManager.Instance.Crossfade(bossMusic, 1f, .3f, true);
             MusicManager.Instance.dontPlayAmbient = true;
 
             CameraController.Instance.DisableFollow = false;

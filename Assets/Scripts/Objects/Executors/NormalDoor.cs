@@ -69,6 +69,7 @@ namespace Objects.Executors
         };
 
         public ProgrammableType Type => ProgrammableType.Executor;
+        [field: SerializeField]
         public ActionData SelectedAction { get; set; }
         public void Begin(ActionData action)
         {

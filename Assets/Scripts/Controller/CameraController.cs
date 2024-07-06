@@ -177,6 +177,7 @@ namespace Controller
             StartCoroutine(DecreaseBrightness());
             StartCoroutine(Util.Delay(HideToast, 0.2f));
             _visual.Enabled = false;
+            _visual.FinishConnection();
             _visual.ClearLines();
             PlayerController.Instance.IsDisabled = false;
             ProgrammableUIManager.Instance.Close();

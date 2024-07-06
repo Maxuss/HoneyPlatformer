@@ -40,14 +40,10 @@ namespace Cutscenes
         {
             yield return new WaitForSeconds(2f);
             yield return MoveTowards(new Vector3(5f, 0f));
-            yield return beekeeper.Walk(5, .3f);
-            yield return new WaitForSeconds(2);
-            yield return beekeeper.Walk(-5, .3f);
             yield return new WaitForSeconds(2);
             yield return DialogueManager.Instance.StartDialogue(dialogue, true);
             yield return new WaitForSeconds(0.5f);
             yield return LevelLoader.Instance.TransitionLevel(5);
-            Debug.Log("FINISHED");
             PlayerController.Instance.InCutscene = false;
             PlayerController.Instance.StillCommitMovement = true;
             PlayerController.Instance.IsDisabled = false;
