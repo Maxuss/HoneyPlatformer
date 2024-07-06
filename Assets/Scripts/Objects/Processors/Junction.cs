@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Program;
 using Program.Channel;
@@ -16,6 +17,15 @@ namespace Objects.Processors
         
         private bool _state;
         private static readonly int InputData = Shader.PropertyToID("_Input");
+
+        private void OnDrawGizmosSelected()
+        {
+            if (connectedReceiver != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, connectedReceiver.position);
+            }
+        }
 
         private void Start()
         {

@@ -73,7 +73,8 @@ namespace Objects.Executors
                 BlacklistedEnumTypes = blacklistedChannels.Cast<int>().ToList()
             },
         };
-        public ProgrammableType Type { get; }
+
+        public ProgrammableType Type => ProgrammableType.Executor;
         public ActionData SelectedAction { get; set; }
 
         private TeleporterChannel[] _blacklistedChannels;

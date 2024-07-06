@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Level;
 using Program;
@@ -29,6 +30,15 @@ namespace Objects.Emitters
         private SpriteRenderer _spriteRenderer;
         private bool _isPressed;
         private Collider2D _pressed;
+
+        private void OnDrawGizmosSelected()
+        {
+            if (connectedReceiver != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, connectedReceiver.position);
+            }
+        }
 
         private void Start()
         {

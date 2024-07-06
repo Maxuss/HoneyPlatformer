@@ -64,7 +64,7 @@ namespace Nodes.Minesweeper
             else
             {
                 NodeManager.Instance.Close();
-                SfxManager.Instance.Play(incorrectSfx, .4f);
+                SfxManager.Instance.Play(incorrectSfx);
                 ToastManager.Instance.ShowToast("Калибровка не удалась!");
             }
         }

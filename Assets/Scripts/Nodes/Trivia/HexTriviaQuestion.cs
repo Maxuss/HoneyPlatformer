@@ -11,7 +11,7 @@ namespace Nodes.Trivia
         {
             var randomNumber = Random.Range(100, 600);
             var correctHex = randomNumber.ToString("X");
-            var incorrect1 = Convert.ToString(Random.Range(120, 500), 7);
+            var incorrect1 = Convert.ToString(Random.Range(120, 500), 2);
             var incorrect2 = correctHex.ToCharArray();
             incorrect2[Random.Range(0, 3)] = new[] { 'G', '0', 'E', '9', 'I' }[Random.Range(0, 5)];
             var incorrect3 = (randomNumber + 24).ToString("X").Replace('7', 'F');

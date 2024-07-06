@@ -141,7 +141,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 839c9d0aceee0686aaf7172fc8aa595f, type: 3}
   - {fileID: 21300000, guid: 5c2865804a2f40614ab682629e2a3a6b, type: 3}
   countdown: {fileID: 4587908103195930014}
-  incorrectSfx: {fileID: 8300000, guid: b7e9fadc7065d02e19925549a5a611fb, type: 3}
+  incorrectSfx: {fileID: 8300000, guid: f617443000a59f1cc8af1f9bb0d1a2c1, type: 3}
 --- !u!1 &1120477701570002735
 GameObject:
   m_ObjectHideFlags: 0

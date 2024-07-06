@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using Cutscenes;
 using Level;
 using Program.UI;
 using Save;
@@ -169,6 +170,7 @@ namespace Controller
         
         public IEnumerator RestartLevel(ISpawnPos obj)
         {
+            CameraController.Instance.ExitProgramMode();
             var active = SceneManager.GetActiveScene();
             IsDisabled = true;
             yield return FadeIn();
@@ -178,10 +180,15 @@ namespace Controller
             {
                 StartCoroutine(FadeOut());
                 IsDisabled = false;
-                var newDoor = SceneManager.GetSceneAt(0).GetRootGameObjects()
-                    .First(it => it.CompareTag("EntranceDoor"));
-                newDoor.GetComponent<Animator>().Play("LockDoor");
+                var rootObjects = SceneManager.GetSceneAt(0).GetRootGameObjects();
+                var newDoor = rootObjects.First(it => it.CompareTag("EntranceDoor"));
+                newDoor.GetComponent<Animator>().Play("EntranceDoor");
                 newDoor.GetComponent<BoxCollider2D>().enabled = true;
+                var cutscene = rootObjects.FirstOrDefault(oobj => oobj.CompareTag("Cutscene"));
+                if (cutscene != null)
+                {
+                    cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene();
+                }
             };
         }
 

@@ -34,6 +34,28 @@ namespace Objects.Processors
         private static readonly int Left = Shader.PropertyToID("_Left");
         private static readonly int Right = Shader.PropertyToID("_Right");
 
+        private void OnDrawGizmosSelected()
+        {
+            if (SourceLeft != null)
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawLine(SourceLeft.position, transform.position);
+            }
+
+            if (SourceRight != null)
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawLine(SourceRight.position, transform.position);
+            }
+
+            if (connectedReceiver != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, connectedReceiver.position);
+            }
+
+        }
+
         private void Start()
         {
             if(connectedReceiver != null)

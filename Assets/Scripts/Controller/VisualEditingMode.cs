@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Nodes;
 using Program;
 using Program.Channel;
 using Save;
@@ -80,7 +81,7 @@ namespace Controller
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && !NodeManager.Instance.isEditing)
             {
                 if (_tipsHidden)
                 {
@@ -96,7 +97,7 @@ namespace Controller
                 _tipsHidden = !_tipsHidden;
             }
 
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.C) && !NodeManager.Instance.isEditing)
             {
                 if (_linesShown)
                 {

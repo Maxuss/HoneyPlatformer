@@ -136,21 +136,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textGradient:
     serializedVersion: 2
-    key0: {r: 0.42470306, g: 0.42470306, b: 0.42470306, a: 1}
+    key0: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
     key1: {r: 0.70772195, g: 0.70772195, b: 0.70772195, a: 1}
-    key2: {r: 0.8066038, g: 0.9633349, b: 1, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
+    key2: {r: 1, g: 0.8608177, b: 0.504717, a: 0}
+    key3: {r: 0.9504364, g: 0.6, b: 0.9607843, a: 0}
+    key4: {r: 0.9155404, g: 0.972549, b: 0.7176471, a: 0}
+    key5: {r: 0.96862745, g: 0.8946845, b: 0.8, a: 0}
+    key6: {r: 0.8066038, g: 0.9633349, b: 1, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 46067
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
+    ctime1: 6168
+    ctime2: 15998
+    ctime3: 25636
+    ctime4: 35466
+    ctime5: 50308
+    ctime6: 65535
     ctime7: 0
     atime0: 0
     atime1: 65535
@@ -162,13 +162,13 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 3
+    m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   captchaContainer: {fileID: 6904668452399619866}
   input: {fileID: 6182510916439993887}
   textTemplate: {fileID: 3029688624044233255, guid: 6240dd6e47c75a4c49c5a5dc4312cb2e, type: 3}
   letterTemplate: {fileID: 7715995107991623758, guid: 358d8e2c4e57abed0b030ae408cb9d7d, type: 3}
-  incorrectSfx: {fileID: 8300000, guid: b7e9fadc7065d02e19925549a5a611fb, type: 3}
+  incorrectSfx: {fileID: 8300000, guid: f617443000a59f1cc8af1f9bb0d1a2c1, type: 3}
 --- !u!1 &3300377708775227162
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,9 @@ namespace Level
         
         public static MusicManager Instance { get; private set; }
 
+        [SerializeField]
+        public bool dontPlayAmbient;
+
         private void Awake()
         {
             Instance = this;
@@ -32,6 +35,8 @@ namespace Level
         [ContextMenu("Next Ambient")]
         public void NextAmbientTrack()
         {
+            if (dontPlayAmbient)
+                return;
             var track = ambientTracks[_currentAmbientTrack];
             Debug.Log($"PLAYING TRACK {track}");
             StartCoroutine(Crossfade(track, .18f, .05f));
@@ -47,8 +52,8 @@ namespace Level
             _ambient1.volume = 0f;
             _ambient2.volume = 0f;
         }
-        
-        public IEnumerator Crossfade(AudioClip to, float maxVolume = 1f, float speed = .2f)
+
+        public IEnumerator Crossfade(AudioClip to, float maxVolume = 1f, float speed = .2f, bool repeat = false)
         {
             maxVolume *= SettingManager.Instance.MusicVolume;
             if (_ambient1.volume > 0)
@@ -70,6 +75,7 @@ namespace Level
 
                 _ambient2.volume = maxVolume;
                 _ambient1.volume = 0f;
+                _ambient1.loop = repeat;
             }
             else
             {
@@ -90,6 +96,7 @@ namespace Level
 
                 _ambient1.volume = maxVolume;
                 _ambient2.volume = 0f;
+                _ambient2.loop = repeat;
             }
         }
     }

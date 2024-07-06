@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Program;
 using Program.Channel;
@@ -16,12 +17,21 @@ namespace Objects.Emitters
         private Transform _ps;
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
         public bool ConnectionLocked { get; set; } = true;
+
+        private void OnDrawGizmosSelected()
+        {
+            if (connectedReceiver != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, connectedReceiver.position);
+            }
+        }
+
         public void Connect(IChannelReceiver rx)
         {
             _rx = rx;
             _rx.ReceiveBool(transform, _state);
         }
-
         public void Disconnect()
         {
             _rx = null;

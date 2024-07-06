@@ -67,7 +67,6 @@ namespace Dialogue
                     SpeakingPerson.Captain => captainSprites,
                     SpeakingPerson.Don => donSprites,
                     SpeakingPerson.Capybara => capybaraSprites,
-                    _ => throw new ArgumentOutOfRangeException()
                 };
             }
         }
@@ -82,6 +81,7 @@ namespace Dialogue
         
         public IEnumerator StartDialogue(DialogueDefinition dialogue, bool doNotEnableMovement = false)
         {
+            
             PlayerController.Instance.IsDisabled = true;
             _dialogue = dialogue;
             _inDialogue = true;

@@ -4,6 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using Dialogue;
 using Level;
+using Nodes;
 using Objects;
 using Objects.Executors;
 using Program;
@@ -67,7 +68,7 @@ namespace Controller
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetKeyDown(KeyCode.V) && !NodeManager.Instance.isEditing)
             {
                 if(_inProgram)
                     ExitProgramMode();
@@ -153,7 +154,7 @@ namespace Controller
         [ContextMenu("Enter Program")]
         public void EnterProgramMode()
         {
-            if (_transitioningProgram)
+            if (_transitioningProgram || _inProgram)
                 return;
             _inProgram = true;
             StartCoroutine(EnterProgramEffect());
@@ -169,7 +170,7 @@ namespace Controller
         [ContextMenu("Exit Program")]
         public void ExitProgramMode()
         {
-            if (_transitioningProgram)
+            if (_transitioningProgram || !_inProgram)
                 return;
             _inProgram = false;
             StartCoroutine(ExitProgramEffect());

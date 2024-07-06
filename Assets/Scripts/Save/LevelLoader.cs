@@ -63,8 +63,6 @@ namespace Save
             LevelLocation.OldestArea,
             LevelLocation.OldestArea,
             LevelLocation.OldestArea,
-            LevelLocation.OldestArea,
-            LevelLocation.OldestArea,
             // TODO: finish
         };
 
@@ -96,12 +94,10 @@ namespace Save
             "Неожиданная встреча",
             "В столовой",
             "Сломанные узлы",
-            "ГАЛИЛЕО x 3",
             "Капитанский ужас",
             "Капитанский кошмар",
             "Капитанское безумие",
             "Капитанское принятие",
-            "Только вверх"
         };
 
         private void Awake()

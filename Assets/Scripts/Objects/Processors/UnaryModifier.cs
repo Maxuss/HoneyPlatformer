@@ -22,6 +22,15 @@ namespace Objects.Processors
         private static readonly int Output = Shader.PropertyToID("_Output");
         private static readonly int InputData = Shader.PropertyToID("_Input");
 
+        private void OnDrawGizmosSelected()
+        {
+            if (connectedReceiver != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, connectedReceiver.position);
+            }
+        }
+
         private void Start()
         {
             if(connectedReceiver != null)

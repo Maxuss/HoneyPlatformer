@@ -86,7 +86,7 @@ namespace Nodes.Trivia
                 {
                     ansBtn.onClick.AddListener(() =>
                     {
-                        SfxManager.Instance.Play(incorrectSfx, .4f);
+                        SfxManager.Instance.Play(incorrectSfx);
                         NodeManager.Instance.Close();
                         ToastManager.Instance.ShowToast("Неверный ответ!");
                     });

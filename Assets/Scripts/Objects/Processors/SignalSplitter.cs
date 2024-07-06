@@ -29,6 +29,21 @@ namespace Objects.Processors
             _renderer.material.SetFloat(Input, b ? 1f : 0f);
         }
 
+        private void OnDrawGizmosSelected()
+        {
+            if (receiver1 != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, receiver1.position);
+            }
+
+            if (receiver2 != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, receiver2.position);
+            }
+        }
+
         private void Start()
         {
             _rx1 = receiver1.GetComponent<IChannelReceiver>();

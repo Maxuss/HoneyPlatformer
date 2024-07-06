@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Level;
 using Program;
@@ -24,6 +25,15 @@ namespace Objects.Emitters
         
         private IChannelReceiver _rx;
         private SpriteRenderer _spriteRenderer;
+
+        private void OnDrawGizmosSelected()
+        {
+            if (connectedReceiver != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, connectedReceiver.position);
+            }
+        }
 
         public void Start()
         {

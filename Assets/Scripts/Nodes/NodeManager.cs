@@ -3,6 +3,7 @@ using Controller;
 using Objects.Processors;
 using Program.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Nodes
 {
@@ -16,7 +17,7 @@ namespace Nodes
         public BrokenNode SelectedNode { get; set; }
 
         private GameObject _terminal;
-        private bool _isEditing;
+        [FormerlySerializedAs("_isEditing")] public bool isEditing;
 
         private void Awake()
         {
@@ -25,10 +26,10 @@ namespace Nodes
 
         public void OpenFor(BrokenNode node)
         {
-            if (_isEditing)
+            if (isEditing)
                 return;
             SelectedNode = node;
-            _isEditing = true;
+            isEditing = true;
             _terminal = Instantiate(node.terminalPrefab, container);
             _terminal.SetActive(true);
             // BuildInitialTerminalMenu();
@@ -38,9 +39,9 @@ namespace Nodes
 
         public void Close()
         {
-            if (!_isEditing)
+            if (!isEditing)
                 return;
-            _isEditing = false;
+            isEditing = false;
             Destroy(_terminal);
             SelectedNode = null;
 
@@ -49,7 +50,7 @@ namespace Nodes
 
         private void Update()
         {
-            if (!_isEditing)
+            if (!isEditing)
                 return;
 
             if (!Input.GetKeyDown(KeyCode.Escape)) return;

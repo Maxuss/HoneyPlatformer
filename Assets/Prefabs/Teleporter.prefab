@@ -123,8 +123,8 @@ MonoBehaviour:
   - {r: 0.6537493, g: 0.6537493, b: 0.6537493, a: 0}
   - {r: 5.9921565, g: 5.9921565, b: 5.9921565, a: 0}
   tpParticles: {fileID: 2279149303158161668}
-  tpSound: {fileID: 8300000, guid: 93221932d4e8aa64aa6d7ab20980dd87, type: 3}
-  tpChargeSound: {fileID: 8300000, guid: cdba16af97cabe1b790f7a0ba0edde58, type: 3}
+  tpSound: {fileID: 8300000, guid: 0e0c4677e88afb1f69d8e84ec25802ab, type: 3}
+  tpChargeSound: {fileID: 8300000, guid: 366987979b3f0c180bf99d9df4c921ac, type: 3}
   teleportMask:
     serializedVersion: 2
     m_Bits: 192

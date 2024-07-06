@@ -17,7 +17,7 @@ namespace NPC
 
         [SerializeField]
         private bool animate = true;
-
+        
         private void Awake()
         {
             _animator = GetComponent<Animator>();
@@ -33,8 +33,11 @@ namespace NPC
 
         public IEnumerator Walk(float x, float speed = 1f)
         {
-            if(animate)
+            if (animate)
+            {
                 _animator.Play("Walk");
+            }
+            
             _sr.flipX = x < 0;
             var destination = transform.position + new Vector3(x, 0, 0);
             while (Util.SqrDistance(transform.position, destination) > .5)

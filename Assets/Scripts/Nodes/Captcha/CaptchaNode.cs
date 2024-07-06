@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Linq;
 using Level;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils;
 using Random = UnityEngine.Random;
 
 namespace Nodes.Captcha
@@ -83,7 +81,7 @@ namespace Nodes.Captcha
             else
             {
                 NodeManager.Instance.Close();
-                SfxManager.Instance.Play(incorrectSfx, .4f);
+                SfxManager.Instance.Play(incorrectSfx);
                 ToastManager.Instance.ShowToast("Неверная капча!");
             }
         }

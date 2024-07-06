@@ -99,14 +99,11 @@ namespace Nodes.Memory
 
             if (_chosenMatrix.SelectMany(x => x).SequenceEqual(_currentMatrix.SelectMany(x => x)))
             {
-                // TODO: mark node as completed
                 NodeManager.Instance.SelectedNode.MarkCalibrated();
             }
             else
             {
-                NodeManager.Instance.Close();
-                SfxManager.Instance.Play(incorrectSfx, .4f);
-                ToastManager.Instance.ShowToast("Калибровка не удалась!");
+                // still not done
             }
         }
 

@@ -22,11 +22,24 @@ namespace Objects.Processors
         private bool _state;
 
         private Coroutine delayedSend;
-        
+
+        private void OnDrawGizmosSelected()
+        {
+            if (connectedReceiver != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, connectedReceiver.position);
+            }
+        }
+
         private void Start()
         {
             if(connectedReceiver != null)
                 _rx = connectedReceiver.GetComponent<IChannelReceiver>();
+            var act = SelectedAction;
+            act.StoredValue = selectedTime;
+            SelectedAction = act;
+
         }
         
         public void ReceiveBool(Transform source, bool b)

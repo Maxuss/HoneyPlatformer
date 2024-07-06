@@ -26,3 +26,8 @@ MonoBehaviour:
     text: "\u0414\u0430 \u044D\u0442\u043E\u0436 \u043A\u0440\u0443\u0442\u043E!"
     characterName: "\u041A\u0440\u0438\u0441"
     speedModifier: 1.2
+  - speaker: 0
+    audio: {fileID: 8300000, guid: e4a6f3b62442e553cada3a02046cfac0, type: 3}
+    text: "\u0417\u0430 \u0440\u0430\u0431\u043E\u0442\u0443!"
+    characterName: "\u0421\u0430\u043F\u0441\u0430\u043D"
+    speedModifier: 1.2

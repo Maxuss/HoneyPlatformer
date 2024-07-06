@@ -27,6 +27,15 @@ namespace Objects.Emitters
         private bool _state;
         private bool _isConnected;
 
+        private void OnDrawGizmosSelected()
+        {
+            if (connectedReceiver != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, connectedReceiver.position);
+            }
+        }
+
         private void Start()
         {
             if(connectedReceiver != null)

@@ -466,7 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellGrid: {fileID: 3962725680453702321}
   cellPrefab: {fileID: 2997445013333541213, guid: 4cd7087386927237ba0f61989386e216, type: 3}
-  incorrectSfx: {fileID: 8300000, guid: b7e9fadc7065d02e19925549a5a611fb, type: 3}
+  incorrectSfx: {fileID: 8300000, guid: f617443000a59f1cc8af1f9bb0d1a2c1, type: 3}
 --- !u!1 &6312040740008845502
 GameObject:
   m_ObjectHideFlags: 0

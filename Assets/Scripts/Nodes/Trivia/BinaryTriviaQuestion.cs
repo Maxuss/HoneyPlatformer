@@ -13,7 +13,7 @@ namespace Nodes.Trivia
             var correctHex = Convert.ToString(randomNumber, 2);
             var incorrect1 = Convert.ToString(Random.Range(120, 500), 2);
             var incorrect2 = Convert.ToString(randomNumber + 3, 16);
-            var incorrect3 = Convert.ToString(randomNumber - 24, 13);
+            var incorrect3 = Convert.ToString(randomNumber - 24, 16);
             var answers = new[] { incorrect1, incorrect2, incorrect3, correctHex };
             var shuffled = answers.ToList().Shuffle();
             var ans = shuffled.IndexOf(correctHex);
