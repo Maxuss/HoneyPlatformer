@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 5739185449868165514}
   - component: {fileID: 514156681125767265}
   m_Layer: 0
-  m_Name: Display
+  m_Name: CountdownDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

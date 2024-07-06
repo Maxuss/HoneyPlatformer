@@ -166,7 +166,8 @@ namespace Controller
         }
         
         private Image _black;
-        private IEnumerator RestartLevel(ISpawnPos obj)
+        
+        public IEnumerator RestartLevel(ISpawnPos obj)
         {
             var active = SceneManager.GetActiveScene();
             IsDisabled = true;

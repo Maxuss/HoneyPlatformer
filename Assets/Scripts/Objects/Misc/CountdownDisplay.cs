@@ -1,6 +1,11 @@
 using System;
+using System.Linq;
+using Controller;
+using Level;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Utils;
 
 namespace Objects.Misc
 {
@@ -60,6 +65,11 @@ namespace Objects.Misc
             _textMaterial.SetColor(OutlineColor, Color.Lerp(beginColor, endColor, 1 - _count / totalCount));
 
             if (!(_count <= 0f) || _played) return;
+            
+            var obj = SceneManager.GetSceneAt(0).GetRootGameObjects().FirstOrDefault(it => it.CompareTag("EntranceDoor") || it.CompareTag("SpawnPos"))
+                ?.GetComponent<ISpawnPos>();
+            
+            PlayerController.Instance.StartCoroutine(Util.CallbackCoroutine(PlayerController.Instance.RestartLevel(obj), () => ToastManager.Instance.ShowToast("Время на выход из опасной зоны истекло.")));
             
             _played = true;
             OnReachEnd();

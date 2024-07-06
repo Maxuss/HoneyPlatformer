@@ -29,6 +29,7 @@ namespace Level
 
         private void RecalculateBounds()
         {
+            
             levelMap.CompressBounds();
             var tileSize = levelMap.size;
             var transform1 = levelMap.transform.parent;

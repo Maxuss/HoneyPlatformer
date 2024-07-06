@@ -66,7 +66,7 @@ namespace Cutscenes
             
             doorLeft.Open();
 
-            StartCoroutine(this.CallbackCoroutine(sasha.Walk(9f, .5f), () => sasha.GetComponent<SpriteRenderer>().flipX = true));
+            StartCoroutine(Util.CallbackCoroutine(sasha.Walk(9f, .5f), () => sasha.GetComponent<SpriteRenderer>().flipX = true));
             yield return MoveTowards(new Vector3(14f, 0, 0));
             
             doorLeft.Close();
@@ -114,7 +114,7 @@ namespace Cutscenes
             }
             darkRight.color = new Color(0f, 0f, 0f, 0f);
 
-            StartCoroutine(this.CallbackCoroutine(sasha.Walk(7f, .4f), () => sasha.GetComponent<SpriteRenderer>().flipX = true));
+            StartCoroutine(Util.CallbackCoroutine(sasha.Walk(7f, .4f), () => sasha.GetComponent<SpriteRenderer>().flipX = true));
             yield return MoveTowards(new Vector3(8f, 0f, 0f));
 
             yield return DialogueManager.Instance.StartDialogue(dialogue3);

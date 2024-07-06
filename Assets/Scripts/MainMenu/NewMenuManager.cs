@@ -93,7 +93,7 @@ namespace MainMenu
             loadContainer.DOAnchorPosX(0f, .5f); 
             camera.DOMove(beginCameraPos.position, 4f);
             camera.DORotate(beginCameraPos.eulerAngles, 4f);
-            StartCoroutine(this.CallbackCoroutine(FadeOut(), () => LevelLoader.Instance.LoadLevel(save.Value.LevelIndex)));
+            StartCoroutine(Util.CallbackCoroutine(FadeOut(), () => LevelLoader.Instance.LoadLevel(save.Value.LevelIndex)));
         }
 
         public void HighlightSave(int idx)
@@ -123,7 +123,7 @@ namespace MainMenu
             mainContainer.DOAnchorPosX(-180, .5f);
             camera.DOMove(beginCameraPos.position, 4f);
             camera.DORotate(beginCameraPos.eulerAngles, 4f);
-            StartCoroutine(this.CallbackCoroutine(FadeOut(), () => LevelLoader.Instance.LoadLevel(level)));
+            StartCoroutine(Util.CallbackCoroutine(FadeOut(), () => LevelLoader.Instance.LoadLevel(level)));
         }
 
         private IEnumerator FadeOut()

@@ -47,7 +47,7 @@ namespace Objects.Executors
             var door = rootObjects.First(obj => obj.CompareTag("EntranceDoor"));
             var cutscene = rootObjects.FirstOrDefault(obj => obj.CompareTag("Cutscene"));
             var playerPos = PlayerController.Instance.transform.position;
-            LevelManager.Instance.StartCoroutine(LevelManager.Instance.CallbackCoroutine(
+            LevelManager.Instance.StartCoroutine(Util.CallbackCoroutine(
                 PlayerController.Instance.AutonomousMove(playerPos + new Vector3(tilemap.cellSize.x * 3f, 0f)),
                 () =>
                 {
@@ -56,7 +56,7 @@ namespace Objects.Executors
                     SfxManager.Instance.Play(doorClose, .5f);
                 }
             ));
-            PlayerController.Instance.StartCoroutine(LevelManager.Instance.CallbackCoroutine(
+            PlayerController.Instance.StartCoroutine(Util.CallbackCoroutine(
                 CameraController.Instance.TransitionToPoint(playerPos + new Vector3(tilemap.cellSize.x * 11f, 0f)),
                 () =>
                 {

@@ -46,7 +46,7 @@ namespace Utils
             return num1 * num1 + num2 * num2;
         }
 
-        public static IEnumerator CallbackCoroutine(this MonoBehaviour self, IEnumerator first, Action callback)
+        public static IEnumerator CallbackCoroutine(IEnumerator first, Action callback)
         {
             yield return first;
             callback.Invoke();

@@ -95,7 +95,7 @@ namespace Dialogue
                 var shouldExitOnPress = _speechIdx + 1 >= dialogue.speeches.Count;
                 while (_shouldContinue && _inDialogue)
                 {
-                    if (Input.GetKeyDown(KeyCode.Return))
+                    if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                     {
                         if (_currentCharIdx < _speech.text.Length)
                         {
