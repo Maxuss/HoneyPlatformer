@@ -241,6 +241,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f31f790295130bfd9f8e036152f4ea2, type: 3}
+--- !u!4 &825555103 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5732394731131331430, guid: 5f31f790295130bfd9f8e036152f4ea2, type: 3}
+  m_PrefabInstance: {fileID: 825555102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &854673514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4553,6 +4558,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
+      propertyPath: connectedReceiver
+      value: 
+      objectReference: {fileID: 825555103}
+    - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
+      propertyPath: <ConnectionLocked>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7826852365702886761, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
       propertyPath: m_Name
       value: ButtonFloor

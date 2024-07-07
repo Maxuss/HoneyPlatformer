@@ -12130,6 +12130,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f31f790295130bfd9f8e036152f4ea2, type: 3}
+--- !u!4 &1635611131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5732394731131331430, guid: 5f31f790295130bfd9f8e036152f4ea2, type: 3}
+  m_PrefabInstance: {fileID: 1635611130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1669269884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12355,6 +12360,14 @@ PrefabInstance:
     - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
       propertyPath: detection
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
+      propertyPath: connectedReceiver
+      value: 
+      objectReference: {fileID: 1635611131}
+    - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
+      propertyPath: <ConnectionLocked>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
       propertyPath: <SelectedAction>k__BackingField.<ActionIndex>k__BackingField

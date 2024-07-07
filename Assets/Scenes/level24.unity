@@ -375,6 +375,10 @@ PrefabInstance:
       propertyPath: <SourceRight>k__BackingField
       value: 
       objectReference: {fileID: 1135758999}
+    - target: {fileID: 7749672459525398218, guid: e82bd31acd7d68ef4bafc41b299030e6, type: 3}
+      propertyPath: <SelectedAction>k__BackingField.<ActionIndex>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -912,7 +916,7 @@ PrefabInstance:
     - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
       propertyPath: connectedReceiver
       value: 
-      objectReference: {fileID: 903242892}
+      objectReference: {fileID: 2121443188}
     - target: {fileID: 1604963936414861267, guid: 8436feb50b7758207bc6df3fecd088ab, type: 3}
       propertyPath: <ConnectionLocked>k__BackingField
       value: 1
@@ -987,80 +991,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlacklistedActions: 0000000001000000
---- !u!1001 &903242891
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 803774776736375051, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_Name
-      value: Timer
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 444
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -7.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434260998788695313, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: selectedTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434260998788695313, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: connectedReceiver
-      value: 
-      objectReference: {fileID: 2121443188}
-    - target: {fileID: 6434260998788695313, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-      propertyPath: <ConnectionLocked>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
---- !u!4 &903242892 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5599062467871665402, guid: 29287129ff5a8ec7fb1cc805350eb8bf, type: 3}
-  m_PrefabInstance: {fileID: 903242891}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &907246818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11173,7 +11103,6 @@ SceneRoots:
   - {fileID: 907246818}
   - {fileID: 1571885336}
   - {fileID: 2055703900}
-  - {fileID: 903242891}
   - {fileID: 1395854229}
   - {fileID: 12490674}
   - {fileID: 1135758998}

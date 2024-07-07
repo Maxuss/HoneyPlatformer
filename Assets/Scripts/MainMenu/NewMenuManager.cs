@@ -70,7 +70,7 @@ namespace MainMenu
                 {
                     saveContainer.GetComponent<Button>().interactable = false;
                     saveLevel.text = "Сохранения нет";
-                    currency.transform.parent.gameObject.SetActive(false);
+                    currency.transform.gameObject.SetActive(false);
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace MainMenu
             if (!save.HasValue)
                 return;
             var img = areas[(int)LevelLoader.LEVEL_LOCS[save.Value.LevelIndex - 1]];
-            img.DOColor(new Color(1f, 1f, 1f, 0.14f), .5f);
+            img.DOColor(new Color(1f, 1f, 1f, 0.5f), .5f);
             
         }
 
