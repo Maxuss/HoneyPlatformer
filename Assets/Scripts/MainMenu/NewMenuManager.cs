@@ -46,6 +46,11 @@ namespace MainMenu
         private Dictionary<int, SaveState?> _saveStates;
         public AudioSource AudioSource;
 
+        public void PlaySound(AudioClip clip)
+        {
+            AudioSource.PlayOneShot(clip);
+        }
+
         private void Start()
         {
             _saveStates = SaveManager.AllSaves();
