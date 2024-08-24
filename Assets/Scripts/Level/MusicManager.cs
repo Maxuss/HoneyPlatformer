@@ -75,7 +75,7 @@ namespace Level
 
                 _ambient2.volume = maxVolume;
                 _ambient1.volume = 0f;
-                _ambient1.loop = repeat;
+                _ambient2.loop = repeat;
             }
             else
             {
@@ -96,7 +96,7 @@ namespace Level
 
                 _ambient1.volume = maxVolume;
                 _ambient2.volume = 0f;
-                _ambient2.loop = repeat;
+                _ambient1.loop = repeat;
             }
         }
     }

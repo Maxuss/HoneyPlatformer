@@ -68,6 +68,7 @@ namespace Objects.Executors
                     };
                     if (cutscene != null)
                     {
+                        CameraController.Instance.ExitProgramMode();
                         cutscene.GetComponent<MonoBehaviour>().StartCoroutine(Util.Delay(() => cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene(), .5f));
                     }
                 })

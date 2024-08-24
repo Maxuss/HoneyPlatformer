@@ -172,6 +172,7 @@ namespace Save
                 var cutscene = rootObjects.FirstOrDefault(oobj => oobj.CompareTag("Cutscene"));
                 if (cutscene != null)
                 {
+                    CameraController.Instance.ExitProgramMode();
                     cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene();
                 }
             };

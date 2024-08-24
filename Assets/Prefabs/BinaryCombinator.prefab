@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   operation: 0
   connectedReceiver: {fileID: 0}
+  visualTextPrefab: {fileID: 1640215148898857802, guid: a54257c9855caea4abc96d2ca6ac579b, type: 3}
   <SourceLeft>k__BackingField: {fileID: 0}
   <SourceRight>k__BackingField: {fileID: 0}
   <SelectedAction>k__BackingField:

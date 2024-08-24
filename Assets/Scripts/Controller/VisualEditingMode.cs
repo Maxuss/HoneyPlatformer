@@ -10,6 +10,10 @@ using Utils;
 
 namespace Controller
 {
+    public delegate void VisualModeEnter();
+
+    public delegate void VisualModeExit();
+    
     public class VisualEditingMode: MonoBehaviour
     {
         [SerializeField]
@@ -27,7 +31,7 @@ namespace Controller
         private RectTransform visualEditingNotifier;
         [SerializeField]
         private GameObject ioChoicePrefab;
-
+        
         private bool _tipsHidden;
         private List<LineRenderer> _lines = new();
         private LineRenderer _connectingLine;
@@ -47,6 +51,8 @@ namespace Controller
         /// Object for which Input/Output is being chosen
         /// </summary>
         public GameObject ChoosingIO { get; set; }
+        
+        public static event CameraMovement OnVisualCameraMove;
 
         private Camera _camera;
         private Vector3 _velocity;
@@ -101,13 +107,13 @@ namespace Controller
             {
                 if (_linesShown)
                 {
-                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-80f, 80f), .5f);
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-48f, 80f), .5f);
 
                     ClearLines();
                 }
                 else
                 {
-                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(80f, 80f), .5f);
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(48f, 80f), .5f);
                     RenderAllLines();
                 }
 
@@ -117,8 +123,16 @@ namespace Controller
             var horizontal = Vector2.right * Input.GetAxisRaw("Horizontal");
             var vertical = Vector2.up * Input.GetAxisRaw("Vertical");
             var newPos = transform.position + (Vector3) (horizontal + vertical) * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.FasterCamera) ? 1.5f : 1f);
+            OnVisualCameraMove?.Invoke();
             transform.position = 
                 Vector3.SmoothDamp(transform.position, newPos, ref _velocity, smootheningModifier, Mathf.Infinity);
+        }
+
+        public void ShowAllLines()
+        {
+            moreVisualEditingNotifier.DOAnchorPos(new Vector2(48f, 80f), .5f);
+            RenderAllLines();
+            _linesShown = true;
         }
 
         public void ChooseIO(Vector3 from, GameObject obj)
@@ -181,7 +195,7 @@ namespace Controller
                     continue;
                 var rxPos = ((MonoBehaviour)rx).transform.position;
                 var line = Instantiate(linePrefab, renderLineContainer).GetComponent<LineRenderer>();
-
+                
                 line.colorGradient = newGradient;
                 line.SetPositions(new[] { txPos, rxPos });
                 var center = 0.6f * (rxPos - txPos) + txPos;
@@ -203,6 +217,33 @@ namespace Controller
                 }
 
                 _lines.Add(line);
+                line.gameObject.SetActive(false);
+                StartCoroutine(Util.Delay(() =>
+                {
+                    if(line != null)
+                        line.gameObject?.SetActive(true);
+                }, 0.1f));
+                StartCoroutine(Util.Delay(() =>
+                {
+                    if(line != null)
+                        line.gameObject?.SetActive(false);
+                }, 0.19f));
+                StartCoroutine(Util.Delay(() =>
+                {
+                    if(line != null)
+                        line.gameObject?.SetActive(true);
+                }, 0.23f));
+                StartCoroutine(Util.Delay(() =>
+                {
+                    if(line != null)
+                        line.gameObject?.SetActive(false);
+                }, 0.27f));
+                StartCoroutine(Util.Delay(() =>
+                {
+                    if(line != null)
+                        line.gameObject?.SetActive(true);
+                }, 0.32f));
+
             }
         }
 

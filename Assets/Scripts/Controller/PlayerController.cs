@@ -1,15 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using Cutscenes;
 using Level;
 using Program.UI;
 using Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
 using Random = UnityEngine.Random;
@@ -187,6 +184,7 @@ namespace Controller
                 var cutscene = rootObjects.FirstOrDefault(oobj => oobj.CompareTag("Cutscene"));
                 if (cutscene != null)
                 {
+                    CameraController.Instance.ExitProgramMode();
                     cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene();
                 }
             };
@@ -286,7 +284,7 @@ namespace Controller
             // changing grab transform position
             var position = handGrabTransform.position;
             position =
-                new Vector3(transform.position.x + (facingDirection == FacingDirection.Left ? -.25f : .25f),
+                new Vector3(transform.position.x + (facingDirection == FacingDirection.Left ? -.55f : .25f),
                     position.y, position.z);
             handGrabTransform.position = position;
         }
@@ -405,7 +403,7 @@ namespace Controller
                     var hit = Physics2D.Raycast(
                         handGrabTransform.position,
                         facingDirection == FacingDirection.Left ? Vector3.left : Vector3.right,
-                        0.2f, grabLayer
+                        0.25f, grabLayer
                     );
                     
                     if (hit.collider != null)

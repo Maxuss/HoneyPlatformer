@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Controller;
+using JetBrains.Annotations;
 using Program;
 using Program.Channel;
+using TMPro;
 using UnityEngine;
 using Utils;
 
@@ -21,6 +24,31 @@ namespace Objects.Processors
         private bool _state;
         private static readonly int Output = Shader.PropertyToID("_Output");
         private static readonly int InputData = Shader.PropertyToID("_Input");
+        
+        [SerializeField]
+        private TMP_Text visualTextPrefab;
+
+        [CanBeNull] [SerializeField] private Transform visualTextPos;
+        
+        private GameObject _visualText;
+
+        private void OnEnterVisualMode()
+        {
+            var text = Instantiate(visualTextPrefab, transform);
+            text.text = SelectedAction.ActionIndex == 0 ? "SELF" : "NOT";
+            if (visualTextPos != null)
+                text.transform.position = visualTextPos.position;
+            else
+                text.transform.localPosition = new Vector3(0, 1.5f, 0);
+            var rot = transform.rotation.eulerAngles;
+            text.transform.localRotation = Quaternion.Euler(-rot.x, -rot.y, -rot.z);
+            _visualText = text.gameObject;
+        }
+
+        private void OnExitVisualMode()
+        {
+            Destroy(_visualText);
+        }
 
         private void OnDrawGizmosSelected()
         {
@@ -36,6 +64,14 @@ namespace Objects.Processors
             if(connectedReceiver != null)
                 _rx = connectedReceiver.GetComponent<IChannelReceiver>();
             _renderer = GetComponent<Renderer>();
+            CameraController.OnEnterMode += OnEnterVisualMode;
+            CameraController.OnExitMode += OnExitVisualMode;
+        }
+
+        private void OnDestroy()
+        {
+            CameraController.OnEnterMode -= OnEnterVisualMode;
+            CameraController.OnExitMode -= OnExitVisualMode;
         }
 
         public void ReceiveBool(Transform source, bool b)
@@ -83,6 +119,7 @@ namespace Objects.Processors
             _state = !_state;
             _renderer.material.SetFloat(Output, _state ? 1f : 0f);
             _rx?.ReceiveBool(transform, _state);
+            _visualText.GetComponent<TMP_Text>().text = SelectedAction.ActionIndex == 0 ? "SELF" : "NOT";
         }
 
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);

@@ -18,7 +18,7 @@ namespace Controller
             var hit = Physics2D.Raycast(
                 handTransform.position,
                 PlayerController.Instance.facingDirection == PlayerController.FacingDirection.Left ? Vector3.left : Vector3.right,
-                0.15f, interactLayer
+                0.17f, interactLayer
             );
             
             var isNotNull = hit.collider != null;

@@ -96,6 +96,13 @@ namespace Utils
 
             return values;
         }
-        
+
+        public static Vector2 RandInsideTorusTainted(float range, float innerRange)
+        {
+            var circle = Random.insideUnitCircle * range;
+            var newX = circle.x > -innerRange && circle.x < innerRange ? innerRange * Mathf.Sign(circle.x) : circle.x;
+            var newY = circle.y > -innerRange && circle.y < innerRange ? innerRange * Mathf.Sign(circle.y) : circle.y;
+            return new Vector2(newX, newY);
+        }
     }
 }

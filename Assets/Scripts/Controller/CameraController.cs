@@ -13,12 +13,21 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.U2D;
 using Utils;
+using PixelPerfectCamera = UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera;
 
 namespace Controller
 {
+    public delegate void CameraMovement();
+    
     [RequireComponent(typeof(Camera), typeof(VisualEditingMode))]
     public class CameraController: MonoBehaviour
     {
+        [SerializeField]
+        public Camera Camera;
+
+        [SerializeField]
+        public PixelPerfectCamera PPCamera;
+        
         [SerializeField]
         private Transform player;
         [SerializeField]
@@ -53,12 +62,17 @@ namespace Controller
         public static CameraController Instance { get; private set; }
         public VisualEditingMode VisualEditing => _visual;
         public bool DisableFollow { get; set; }
+        
+        public static event VisualModeEnter OnEnterMode;
+        public static event VisualModeEnter OnExitMode;
 
         private void Start()
         {
             _camera = GetComponent<Camera>();
             _visual = GetComponent<VisualEditingMode>();
             Instance = this;
+            PPCamera = GetComponent<PixelPerfectCamera>();
+            Camera = GetComponent<Camera>();
         }
 
         private void Awake()
@@ -156,6 +170,7 @@ namespace Controller
         {
             if (_transitioningProgram || _inProgram)
                 return;
+            OnEnterMode?.Invoke();
             _inProgram = true;
             StartCoroutine(EnterProgramEffect());
             StartCoroutine(IncreaseBrightness());
@@ -172,6 +187,7 @@ namespace Controller
         {
             if (_transitioningProgram || !_inProgram)
                 return;
+            OnExitMode?.Invoke();
             _inProgram = false;
             StartCoroutine(ExitProgramEffect());
             StartCoroutine(DecreaseBrightness());
@@ -190,13 +206,13 @@ namespace Controller
         private void MoveToastInside()
         {
             visualEditingNotifier.gameObject.SetActive(true);
-            visualEditingNotifier.DOAnchorPos(new Vector3(80f, 40f), 1f);
+            visualEditingNotifier.DOAnchorPos(new Vector3(80f * 0.6f, 40f), 1f);
         }
 
         private void HideToast()
         {
-            visualEditingNotifier.DOAnchorPos(new Vector3(-80f, 40f), 1f);
-            moreVisualEditingNotifier.DOAnchorPos(new Vector2(-80f, 80f), .5f);
+            visualEditingNotifier.DOAnchorPos(new Vector3(-80f * 0.6f, 40f), 1f);
+            moreVisualEditingNotifier.DOAnchorPos(new Vector2(-48, 80f), .5f);
         }
 
         private IEnumerator ExitProgramEffect()
@@ -271,7 +287,8 @@ namespace Controller
                 yield return null;
             }
             effectRenderer.material.SetFloat(StartAnimationProgress, 1f);
-
+            
+            _visual.ShowAllLines();
             
             _transitioningProgram = false;
         }

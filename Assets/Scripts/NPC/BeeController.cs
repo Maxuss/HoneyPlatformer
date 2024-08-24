@@ -1,7 +1,11 @@
 using System;
+using System.Linq;
+using DG.Tweening;
 using Objects;
 using Objects.Emitters;
 using UnityEngine;
+using Utils;
+using Random = UnityEngine.Random;
 
 namespace NPC
 {
@@ -20,30 +24,46 @@ namespace NPC
         private Vector3 _center;
         private bool _escaping;
 
+        private Vector3[] _stopPositions;
+        private Quaternion[] _rotations;
+        private Sequence _tween;
+
         public bool Active => !_escaping;
 
         private void Start()
         {
             _center = transform.position;
             _sr = GetComponent<SpriteRenderer>();
+            _stopPositions = new[]
+            {
+                Random.insideUnitCircle.ToVec3(0f) * 2.5f, Random.insideUnitCircle.ToVec3(0f) * 2.5f,
+                Random.insideUnitCircle.ToVec3(0f) * 2.5f
+            };
+
+            var tf = transform;
+            
+            var s = DOTween.Sequence();
+            foreach (var pos in _stopPositions)
+            {
+                s.Append(tf.DOMove(_center + pos, 1).SetDelay(0.3f + Util.Rng.Next(10, 50) / 100f).SetEase(Ease.InOutCubic).OnComplete(() =>
+                {
+                    _sr.flipX = pos.x > 0;
+                }));
+            }
+
+            s.Append(tf.DOMove(_center, 1).SetEase(Ease.InOutCubic));
+            _tween = s.SetRecyclable().OnComplete(() => s.Restart()).Play();
+
         }
 
         public void FixedUpdate()
         {
             if (_escaping)
             {
+                _tween.Kill();
                 _escapeCycle += 2 * Time.fixedDeltaTime;
                 transform.position += 0.025f * Mathf.Max(_escapeCycle, 8f) * new Vector3(0, 1f);
-                return;
             }
-            _rotationCycle += rotationSpeed * Time.fixedDeltaTime;
-
-            var y = Mathf.Sin(Mathf.Deg2Rad * (_rotationCycle % 360f));
-            var x = Mathf.Cos(Mathf.Deg2Rad * (_rotationCycle % 360f));
-            var tf = transform;
-            tf.position = _center + new Vector3(x * radius, y * radius, 0);
-            var euler = Quaternion.LookRotation(tf.position - _center).eulerAngles;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, euler.x));
         }
         
         public void Escape()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cutscenes;
 using Level;
 using Program;
 using Program.Channel;

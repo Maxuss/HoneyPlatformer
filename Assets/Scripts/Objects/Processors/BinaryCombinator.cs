@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Controller;
+using JetBrains.Annotations;
 using Program;
 using Program.Channel;
+using Program.UI;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Serialization;
 using Utils;
 
@@ -15,7 +20,6 @@ namespace Objects.Processors
         
         [SerializeField]
         private Transform connectedReceiver;
-        
         
         [field: SerializeField]
         [field: FormerlySerializedAs("sourceLeft")]
@@ -34,6 +38,30 @@ namespace Objects.Processors
         private static readonly int Left = Shader.PropertyToID("_Left");
         private static readonly int Right = Shader.PropertyToID("_Right");
 
+        [SerializeField]
+        private TMP_Text visualTextPrefab;
+        [CanBeNull] [SerializeField] private Transform visualTextPos;
+
+        private GameObject _visualText;
+
+        private void OnEnterVisualMode()
+        {
+            var text = Instantiate(visualTextPrefab, transform);
+            text.text = SupportedActions[SelectedAction.ActionIndex].ActionName;
+            if (visualTextPos != null)
+                text.transform.position = visualTextPos.position;
+            else
+                text.transform.localPosition = new Vector3(0, 1.5f, 0);
+            var rot = transform.rotation.eulerAngles;
+            text.transform.localRotation = Quaternion.Euler(-rot.x, -rot.y, -rot.z);
+            _visualText = text.gameObject;
+        }
+
+        private void OnExitVisualMode()
+        {
+            Destroy(_visualText);
+        }
+        
         private void OnDrawGizmosSelected()
         {
             if (SourceLeft != null)
@@ -61,8 +89,17 @@ namespace Objects.Processors
             if(connectedReceiver != null)
                 _rx = connectedReceiver.GetComponent<IChannelReceiver>();
             _renderer = GetComponent<Renderer>();
+
+            CameraController.OnEnterMode += OnEnterVisualMode;
+            CameraController.OnExitMode += OnExitVisualMode;
+       }
+
+        private void OnDestroy()
+        {
+            CameraController.OnEnterMode -= OnEnterVisualMode;
+            CameraController.OnExitMode -= OnExitVisualMode;
         }
-        
+
         public void ReceiveBool(MessageDirection direction, Transform src, bool b)
         {
             if (direction == MessageDirection.Left)
@@ -155,6 +192,8 @@ namespace Objects.Processors
 
             operation = newOp;
             RecalculateOutput();
+
+            _visualText.GetComponent<TMP_Text>().text = SupportedActions[SelectedAction.ActionIndex].ActionName;
         }
 
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);
