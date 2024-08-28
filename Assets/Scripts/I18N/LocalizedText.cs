@@ -13,7 +13,12 @@ namespace I18N
         public void Start()
         {
             var tmp = GetComponent<TMP_Text>();
-            tmp.text = LocalizationManager.Instance.Translated(tmp.text.StartsWith("#") ? tmp.text.Substring(1) : str);
+            var translateString = tmp.text.StartsWith("#") ? tmp.text.Substring(1) : str;
+            LocalizationManager.OnLanguageChange += _ =>
+            {
+                tmp.text = LocalizationManager.Instance.Translated(translateString);
+            };
+            tmp.text = LocalizationManager.Instance.Translated(translateString);
         }
     }
 }

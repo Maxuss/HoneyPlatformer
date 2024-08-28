@@ -1,3 +1,4 @@
+using I18N;
 using Level;
 using Program;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Cutscenes
     {
         public void StartCutscene()
         {
-            ToastManager.Instance.ShowToast("Телепорты также могут перемещать объекты");
+            ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("toast.level19"));
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using Controller;
+using I18N;
 using Level;
 using UnityEngine;
 using Utils;
@@ -27,7 +28,7 @@ namespace Cutscenes
             yield return new WaitForSeconds(1f);
             CameraController.Instance.DisableFollow = true;
             yield return CameraController.Instance.TransitionToPoint(beePos.position.XY(), 2f);
-            ToastManager.Instance.ShowToast("Генераторы щитов отгоняют ос!");
+            ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("toast.level3"));
             yield return new WaitForSeconds(0.5f);
             yield return CameraController.Instance.TransitionToPoint(shieldPos.position.XY(), 2f);
             yield return new WaitForSeconds(1f);

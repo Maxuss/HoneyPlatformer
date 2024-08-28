@@ -1,6 +1,7 @@
 using System.Collections;
 using Controller;
 using Dialogue;
+using I18N;
 using Level;
 using NPC;
 using Objects.Misc;
@@ -58,7 +59,7 @@ namespace Cutscenes
             PlayerController.Instance.IsDisabled = false;
             PlayerController.Instance.InCutscene = false;
             
-            ToastManager.Instance.ShowToast("Покиньте комнату до того как истечет время!");
+            ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("toast.level23"));
             display.IsActive = true;
         }
     }

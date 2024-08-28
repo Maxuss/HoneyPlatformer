@@ -1,3 +1,4 @@
+using I18N;
 using Level;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Cutscenes
     {
         public void StartCutscene()
         {
-            ToastManager.Instance.ShowToast("R - перезапуск уровня");
+            ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("toast.level17"));
         }
     }
 }

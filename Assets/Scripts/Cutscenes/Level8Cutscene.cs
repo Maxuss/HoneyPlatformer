@@ -1,6 +1,7 @@
 using System.Collections;
 using Controller;
 using Dialogue;
+using I18N;
 using Level;
 using NPC;
 using Save;
@@ -53,7 +54,7 @@ namespace Cutscenes
 
             yield return DialogueManager.Instance.StartDialogue(dialogue2);
             
-            ToastManager.Instance.ShowToast("B - позвонить Дону");
+            ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("toast.level8"));
 
             SaveManager.CurrentState.MetDon = true;
             

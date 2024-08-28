@@ -61,7 +61,7 @@ namespace MainMenu
             AudioSource.DOFade(1f * SettingManager.Instance.MusicVolume, 2.5f);
         }
 
-        private void ReloadSaves()
+        public void ReloadSaves()
         {
             var idx = 0;
             var containerInner = loadContainer.GetChild(0);

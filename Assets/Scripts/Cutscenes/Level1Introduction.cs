@@ -1,6 +1,7 @@
 using System.Collections;
 using Controller;
 using Dialogue;
+using I18N;
 using Level;
 using Objects;
 using UnityEngine;
@@ -73,7 +74,7 @@ namespace Cutscenes
             yield return new WaitForSeconds(1f);
             yield return DialogueManager.Instance.StartDialogue(dialogue, true);
             StartCoroutine(Util.Delay(() => MusicManager.Instance.NextAmbientTrack(), 2f));
-            StartCoroutine(Util.Delay(() => ToastManager.Instance.ShowToast("E - взаимодействовать с объектом"), 3f));
+            StartCoroutine(Util.Delay(() => ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("toast.level1")), 3f));
 
             PlayerController.Instance.IsDisabled = false;
             PlayerController.Instance.StillCommitMovement = false;

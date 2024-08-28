@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Controller;
+using I18N;
 using Level;
 using TMPro;
 using UnityEngine;
@@ -69,7 +70,7 @@ namespace Objects.Misc
             var obj = SceneManager.GetSceneAt(0).GetRootGameObjects().FirstOrDefault(it => it.CompareTag("EntranceDoor") || it.CompareTag("SpawnPos"))
                 ?.GetComponent<ISpawnPos>();
             
-            PlayerController.Instance.StartCoroutine(Util.CallbackCoroutine(PlayerController.Instance.RestartLevel(obj), () => ToastManager.Instance.ShowToast("Время на выход из опасной зоны истекло.")));
+            PlayerController.Instance.StartCoroutine(Util.CallbackCoroutine(PlayerController.Instance.RestartLevel(obj), () => ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("toast.timeout"))));
             
             _played = true;
             OnReachEnd();

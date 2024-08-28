@@ -1,6 +1,8 @@
 ﻿using System;
+using I18N;
 using TMPro;
 using UnityEngine;
+using Utils;
 
 namespace MainMenu
 {
@@ -12,7 +14,13 @@ namespace MainMenu
         private void Start()
         {
             var dd = GetComponent<TMP_Dropdown>();
-            dd.onValueChanged.AddListener(menu.ChangeLanguage);
+            dd.value = (int) SettingManager.Instance.ChosenLanguage;
+            dd.onValueChanged.AddListener(lang =>
+            {
+                menu.ChangeLanguage(lang);
+                SettingManager.Instance.ChosenLanguage = (Language) lang;
+                menu.ReloadSaves();
+            });
         }
     }
 }

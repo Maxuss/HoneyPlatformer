@@ -11,22 +11,23 @@ namespace I18N
     {
         private Dictionary<string, string> _localization;
         private Language _currentLanguage;
+
+        public static event Action<Language> OnLanguageChange;
         
         public static LocalizationManager Instance { get; private set; }
 
         public void Awake()
         {
+            Instance = this;
             DontDestroyOnLoad(this);
             LoadLocalization(SettingManager.Instance.ChosenLanguage);
-            Instance = this;
         }
 
         public void LoadLocalization(Language lang)
         {
             _currentLanguage = lang;
-            var dialogues = (TextAsset) AssetDatabase.LoadAssetAtPath($"Assets/Dialogues/Localized/localized_{lang}.json", typeof(TextAsset));
-            var extra = (TextAsset) AssetDatabase.LoadAssetAtPath($"Assets/Dialogues/Localized/extra_{lang}.json", typeof(TextAsset));
-            Debug.Log(extra.text);
+            var dialogues = Resources.Load<TextAsset>($"Localized/localized_{lang}");
+            var extra = Resources.Load<TextAsset>($"Localized/extra_{lang}");
 
             var dg = JsonConvert.DeserializeObject<Dictionary<string, string>>(dialogues.text);
 
@@ -39,6 +40,7 @@ namespace I18N
             }
 
             _localization = dg;
+            OnLanguageChange?.Invoke(lang);
         }
 
         public string Translated(string str)

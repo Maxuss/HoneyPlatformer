@@ -9,10 +9,23 @@ using DialogueDefinition = Dialogue.DialogueDefinition;
 
 namespace I18N
 {
+    #if UNITY_EDITOR
     [CreateAssetMenu(fileName = "ScriptableObjects", menuName = "Localization Metafile")]
     public class LocalizationScript: ScriptableObject
     {
         public string localizationCode;
+    }
+    
+    public class CreateAssetBundles
+    {
+        [MenuItem("Assets/Build Bundles")]
+        static void BuildBundles()
+        {
+            BuildPipeline.BuildAssetBundles(new BuildAssetBundlesParameters
+            {
+                outputPath = "Assets/AssetBundles", options = BuildAssetBundleOptions.None,
+            });
+        }
     }
     
     [CustomEditor(typeof(LocalizationScript))]
@@ -104,5 +117,5 @@ namespace I18N
             AssetDatabase.SaveAssets();
         }
     }
-    
+    #endif
 }
