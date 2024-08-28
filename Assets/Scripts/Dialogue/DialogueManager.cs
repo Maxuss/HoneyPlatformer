@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Controller;
+using I18N;
 using Level;
 using TMPro;
 using UnityEditor;
@@ -48,6 +49,7 @@ namespace Dialogue
         private int _currentCharIdx;
         private int _speechIdx;
         private DialogueSpeech _speech;
+        private string _speechText;
         private DialogueDefinition _dialogue;
         private bool _inDialogue;
         private bool _shouldContinue;
@@ -97,10 +99,10 @@ namespace Dialogue
                 {
                     if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                     {
-                        if (_currentCharIdx < _speech.text.Length)
+                        if (_currentCharIdx < _speechText.Length)
                         {
-                            _currentCharIdx = _speech.text.Length;
-                            text.text = _speech.text;
+                            _currentCharIdx = _speechText.Length;
+                            text.text = _speechText;
                             _as.Stop();
                         }
                         else
@@ -120,6 +122,7 @@ namespace Dialogue
                 if (!_inDialogue)
                 {
                     text.text = "";
+                    _speechText = "";
                     _currentCharIdx = 0;
                     _dialogue = null;
                     _speech = null;
@@ -142,25 +145,29 @@ namespace Dialogue
                 StopCoroutine(_animationCoroutine);
             _animationCoroutine = 
                 StartCoroutine(StartAnimation(CurrentSprites));
-            characterName.text = dialogue.characterName;
+            // LOCALIZATION
+            var splt = LocalizationManager.Instance.Translated(dialogue.text).Split("/");
+            var txt = splt[1];
+            _speechText = txt;
+            characterName.text = splt[0];
             text.text = "";
             _currentCharIdx = 0;
             _as.clip = dialogue.audio;
             _as.time = 0f;
             _as.Play();
-            while (_currentCharIdx < dialogue.text.Length && _inDialogue)
+            while (_currentCharIdx < txt.Length && _inDialogue)
             {
-                var ch = dialogue.text[_currentCharIdx];
+                var ch = txt[_currentCharIdx];
                 while (ch == ' ')
                 {
                     _currentCharIdx += 1;
-                    if (_currentCharIdx > dialogue.text.Length)
+                    if (_currentCharIdx > txt.Length)
                     {
-                        text.text = dialogue.text;
+                        text.text = txt;
                     }
-                    ch = dialogue.text[_currentCharIdx];
+                    ch = txt[_currentCharIdx];
                 }
-                text.text = dialogue.text.Substring(0, _currentCharIdx + 1);
+                text.text = txt.Substring(0, _currentCharIdx + 1);
                 _currentCharIdx += 1;
                 yield return new WaitForSeconds(0.06f * dialogue.speedModifier);
             }

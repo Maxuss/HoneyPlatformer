@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using I18N;
 using Level;
 using TMPro;
 using UnityEngine;
@@ -41,7 +42,7 @@ namespace Nodes.Minesweeper
         private void Check()
         {
             _btn.interactable = false;
-            _btn.GetComponentInChildren<TMP_Text>().text = "Идет проверка...";
+            _btn.GetComponentInChildren<TMP_Text>().text = LocalizationManager.Instance.Translated("ui.node.checking");
             StartCoroutine(CheckCoroutine());
         }
 
@@ -65,7 +66,7 @@ namespace Nodes.Minesweeper
             {
                 NodeManager.Instance.Close();
                 SfxManager.Instance.Play(incorrectSfx);
-                ToastManager.Instance.ShowToast("Калибровка не удалась!");
+                ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("ui.node.fail"));
             }
         }
 

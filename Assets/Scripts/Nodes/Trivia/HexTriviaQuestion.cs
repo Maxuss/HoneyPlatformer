@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using I18N;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -20,7 +21,7 @@ namespace Nodes.Trivia
             var ans = shuffled.IndexOf(correctHex);
             return new PreparedTriviaQuestion()
             {
-                Question = $"Переведите <color=yellow>{randomNumber}</color> в шестнадцатеричную систему счисления",
+                Question = LocalizationManager.Instance.Translated("ui.node.trivia.question.hex").Replace("%num%", randomNumber.ToString()),
                 Answers = shuffled.ToArray(),
                 CorrectAnswer = ans,
                 Reward = 144f * (randomNumber / 250f),

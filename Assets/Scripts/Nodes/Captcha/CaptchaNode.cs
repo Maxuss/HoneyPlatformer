@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using I18N;
 using Level;
 using TMPro;
 using UnityEngine;
@@ -66,7 +67,7 @@ namespace Nodes.Captcha
             if (_chosenCaptcha == "")
                 return;
             _btn.interactable = false;
-            _btn.GetComponentInChildren<TMP_Text>().text = "Идет проверка...";
+            _btn.GetComponentInChildren<TMP_Text>().text = LocalizationManager.Instance.Translated("ui.node.checking");
             StartCoroutine(CheckCoroutine());
         }
 
@@ -82,7 +83,7 @@ namespace Nodes.Captcha
             {
                 NodeManager.Instance.Close();
                 SfxManager.Instance.Play(incorrectSfx);
-                ToastManager.Instance.ShowToast("Неверная капча!");
+                ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("ui.node.captcha.wrong"));
             }
         }
     }

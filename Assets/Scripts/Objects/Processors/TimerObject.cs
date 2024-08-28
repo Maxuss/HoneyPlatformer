@@ -64,8 +64,8 @@ namespace Objects.Processors
         {
         }
 
-        public string Name => "Таймер";
-        public string Description => "Задерживает получаемый сигнал на N секунд";
+        public string Name => "obj.timer.name";
+        public string Description => "obj.timer.desc";
 
         public ActionInfo[] SupportedActions { get; } =
         {

@@ -55,8 +55,8 @@ namespace Objects.Processors
         {
         }
 
-        public string Name => "Разделитель сигнала";
-        public string Description => "Разделяет сигнал со входа и передает его двум подключенным объектам";
+        public string Name => "obj.splitter.name";
+        public string Description => "obj.splitter.desc";
 
         public ActionInfo[] SupportedActions { get; } = new[]
         {

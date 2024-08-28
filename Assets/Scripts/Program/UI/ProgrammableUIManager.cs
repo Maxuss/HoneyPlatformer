@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Controller;
+using I18N;
 using Level;
 using TMPro;
 using UnityEngine;
@@ -126,7 +127,8 @@ namespace Program.UI
             var blacklist = editObj.TryGetComponent<BlacklistActions>(out var bl)
                 ? bl.BlacklistedActions
                 : new int[] { };
-
+            var objName = _currentlyEditing.Name.Replace(".name", "");
+            
             foreach (var action in _currentlyEditing.SupportedActions)
             {
                 if (blacklist.Contains(idx))
@@ -147,7 +149,7 @@ namespace Program.UI
 
                 // Second child is the text component
                 var text = buttonTransform.GetChild(1).GetComponent<TMP_Text>();
-                text.text = action.ActionName;
+                text.text = LocalizationManager.Instance.Translated($"{objName}.act.{idx + 1}");
                 
                 var buttonCallback = buttonTransform.GetComponent<TerminalCallbackButton>();
                 var idxCl = idx;
@@ -167,7 +169,7 @@ namespace Program.UI
                     
                     _selectedAction.ActionIndex = idxCl;
 
-                    BuildSelectedActionSubmenu(action);
+                    BuildSelectedActionSubmenu(action, idxCl);
                     
                     SfxManager.Instance.Play(terminalButtonClickedSound, 0.3f);
                 };
@@ -178,7 +180,7 @@ namespace Program.UI
             var rect = containerTransform.parent.GetComponentInParent<ScrollRect>();
             rect.verticalNormalizedPosition = 0f;
 
-            objectDescriptionHeader.GetChild(0).GetComponent<TMP_Text>().text = _currentlyEditing.Name;
+            objectDescriptionHeader.GetChild(0).GetComponent<TMP_Text>().text = LocalizationManager.Instance.Translated(_currentlyEditing.Name);
             objectDescriptionHeader.GetChild(1).GetComponent<Image>().sprite =
                 _currentlyEditing.Type switch
                 {
@@ -188,29 +190,23 @@ namespace Program.UI
                     _ => throw new ArgumentOutOfRangeException()
                 };
             objectDescriptionHeader.GetChild(2).GetComponent<TMP_Text>().text =
-                _currentlyEditing.Type switch
-                {
-                    ProgrammableType.Emitter => "Эмиттер",
-                    ProgrammableType.Executor => "Исполнитель",
-                    ProgrammableType.Processor => "Обработчик",
-                    _ => throw new ArgumentOutOfRangeException()
-                };
+                LocalizationManager.Instance.Translated($"program.{_currentlyEditing.Type}".ToLower());
             
-            objectDescriptionBody.GetComponentInChildren<TMP_Text>().text = _currentlyEditing.Description;
+            objectDescriptionBody.GetComponentInChildren<TMP_Text>().text = LocalizationManager.Instance.Translated(_currentlyEditing.Description);
             
-            BuildSelectedActionSubmenu(_currentlyEditing.SupportedActions[_currentlyEditing.SelectedAction.ActionIndex]);
+            BuildSelectedActionSubmenu(_currentlyEditing.SupportedActions[_currentlyEditing.SelectedAction.ActionIndex], _currentlyEditing.SelectedAction.ActionIndex);
 
             return;
 
-            void BuildSelectedActionSubmenu(ActionInfo action)
+            void BuildSelectedActionSubmenu(ActionInfo action, int idx)
             {
                 // Handling action description change
                     
                 // First child is the name
-                actionDescription.GetChild(0).GetComponent<TMP_Text>().text = action.ActionName;
+                actionDescription.GetChild(0).GetComponent<TMP_Text>().text = LocalizationManager.Instance.Translated($"{objName}.act.{idx + 1}");
 
                 // Second child is the description
-                actionDescription.GetChild(1).GetComponent<TMP_Text>().text = action.ActionDescription;
+                actionDescription.GetChild(1).GetComponent<TMP_Text>().text = LocalizationManager.Instance.Translated($"{objName}.act.{idx + 1}.desc");
                     
                 // Third child is the empty parameter selection
                 var paramSelect = actionDescription.GetChild(2);
@@ -225,13 +221,13 @@ namespace Program.UI
                             enumValues.RemoveAll(it => action.BlacklistedEnumTypes.Contains((int) it));
                         var enumSelection = Instantiate(enumSelectionPrefab, paramSelect);
                         var enumText = enumSelection.transform.GetChild(0).GetComponent<TMP_Text>();
-                        enumText.text = action.ParameterName!;
+                        enumText.text = LocalizationManager.Instance.Translated($"{objName}.act.{idx + 1}.enum");
                         var dropdown = enumSelection.transform.GetChild(1).GetComponent<TMP_Dropdown>();
                         dropdown.options = enumValues
                             .Select(each => Enum.GetName(action.EnumType!, each))
                             .Select(each => new TMP_Dropdown.OptionData
                             {
-                                text = each
+                                text = LocalizationManager.Instance.Translated($"{objName}.act.{idx + 1}.enum.{each}")
                             })
                             .ToList();
                         dropdown.value = _currentlyEditing.SelectedAction.StoredValue == null ? (int) enumValues.First() : (int) _currentlyEditing.SelectedAction.StoredValue;
@@ -243,7 +239,7 @@ namespace Program.UI
                         break;
                     case ActionValueType.Float:
                         var floatSelection = Instantiate(floatSelectionPrefab, paramSelect).transform;
-                        floatSelection.GetChild(0).GetComponent<TMP_Text>().text = action.ParameterName;
+                        floatSelection.GetChild(0).GetComponent<TMP_Text>().text = LocalizationManager.Instance.Translated($"{objName}.act.{idx + 1}.float");
                         var slider = floatSelection.transform.GetChild(2).GetComponent<Slider>();
                         var max = floatSelection.GetChild(3).GetComponent<TMP_Text>();
                         max.text = action.MaxFloatValue.ToString();

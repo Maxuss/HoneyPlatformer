@@ -46,8 +46,8 @@ namespace Objects.Processors
             throw new System.NotImplementedException();
         }
 
-        public string Name => "Распределитель";
-        public string Description => "Проводит сигнал сквозь себя без преобразований";
+        public string Name => "obj.junction.name";
+        public string Description => "obj.junction.desc";
 
         public ActionInfo[] SupportedActions { get; } = {
             new ActionInfo

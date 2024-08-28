@@ -155,10 +155,9 @@ namespace Objects.Executors
 
         }
 
-        public string Name => "Спавнер объектов";
+        public string Name => "obj.spawner.name";
 
-        public string Description =>
-            "Спавнер объектов создает выбранный объект при получении сигнала 1. При получении сигнала 0 созданный объект уничтожается.";
+        public string Description => "obj.spawner.desc";
         public ActionInfo[] SupportedActions { get; } = new[]
         {
             new ActionInfo

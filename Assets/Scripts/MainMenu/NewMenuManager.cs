@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core;
+using I18N;
 using Level;
 using Save;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utils;
 
@@ -74,14 +76,15 @@ namespace MainMenu
                 if (!save.HasValue)
                 {
                     saveContainer.GetComponent<Button>().interactable = false;
-                    saveLevel.text = "Сохранения нет";
+                    saveLevel.text = LocalizationManager.Instance.Translated("menu.main.no_save");;
                     currency.transform.gameObject.SetActive(false);
                 }
                 else
                 {
                     var sSave = save.Value;
 
-                    saveLevel.text = LevelLoader.LEVEL_NAMES[sSave.LevelIndex - 1];
+                    var sName = SceneManager.GetSceneAt(sSave.LevelIndex).name.Replace("level", "");
+                    saveLevel.text = LocalizationManager.Instance.Translated($"levels.{sName}");
                     currency.text = sSave.Currency.ToString();
                 }
 
@@ -101,6 +104,12 @@ namespace MainMenu
             StartCoroutine(Util.CallbackCoroutine(FadeOut(), () => LevelLoader.Instance.LoadLevel(save.Value.LevelIndex)));
         }
 
+        public void ChangeLanguage(int idx)
+        {
+            var lang = (Language)idx;
+            LocalizationManager.Instance.LoadLocalization(lang);
+        }
+
         public void HighlightSave(int idx)
         {
             var save = _saveStates[idx];
@@ -108,7 +117,6 @@ namespace MainMenu
                 return;
             var img = areas[(int)LevelLoader.LEVEL_LOCS[save.Value.LevelIndex - 1]];
             img.DOColor(new Color(1f, 1f, 1f, 0.5f), .5f);
-            
         }
 
         public void UnhighlightSave(int idx)

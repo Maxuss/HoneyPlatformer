@@ -162,7 +162,7 @@ namespace Menu
                 else
                 {
                     var sSave = save.Value;
-                    saveLevel.text = $"{LevelLoader.LEVEL_NAMES[sSave.LevelIndex - 1]} (УР. {sSave.LevelIndex})";
+                    saveLevel.text = "deleted";
                     currency.text = sSave.Currency.ToString();
                 }
 

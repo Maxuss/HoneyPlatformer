@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using I18N;
 using Save;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Utils
         
         public float MusicVolume = 1f;
         public float SfxVolume = 1f;
+        public Language ChosenLanguage = Language.ru_RU;
 
         private void Awake()
         {
@@ -24,6 +26,7 @@ namespace Utils
             var obj = JsonUtility.FromJson<PrefObject>(text);
             MusicVolume = obj.MusicVolume;
             SfxVolume = obj.SfxVolume;
+            ChosenLanguage = obj.ChosenLanguage;
         }
 
         public void Save()
@@ -39,6 +42,7 @@ namespace Utils
         {
             public float MusicVolume;
             public float SfxVolume;
+            public Language ChosenLanguage;
         }
     }
 }

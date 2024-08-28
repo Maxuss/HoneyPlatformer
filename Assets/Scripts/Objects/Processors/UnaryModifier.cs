@@ -87,8 +87,8 @@ namespace Objects.Processors
             // We don't support floats yet
         }
 
-        public string Name => "Модификатор сигнала";
-        public string Description => "Модификатор применяет определенную операцию к получаемому сигналу и выводит его.";
+        public string Name => "obj.unary.name";
+        public string Description => "obj.unary.desc";
 
         public ActionInfo[] SupportedActions => new[]
         {

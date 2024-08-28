@@ -15,11 +15,11 @@ MonoBehaviour:
   speeches:
   - speaker: 0
     audio: {fileID: 8300000, guid: b50f6f047170277c4a020747afb261ce, type: 3}
-    text: "\u0430\u0430\u0430."
+    text: Testt.0
     characterName: "\u0430\u0430\u0430"
     speedModifier: 0
   - speaker: 2
     audio: {fileID: 8300000, guid: 00f1cfff9e10d34179a8f618ae8124a5, type: 3}
-    text: "\u0431\u0431\u0431"
+    text: Testt.1
     characterName: "\u0430\u0430\u0430"
     speedModifier: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Controller;
+using I18N;
 using Level;
 using Save;
 using TMPro;
@@ -29,8 +30,14 @@ namespace Nodes.Trivia
             new PreparedTriviaQuestion()
             {
                 TimeGiven = 3f,
-                Question = "Где вы находитесь?",
-                Answers = new[] {"Станция МКС", "Станция 'Академия'", "Станция BRZ", "Корабль Гигапасека"},
+                Question = LocalizationManager.Instance.Translated("trivia.questions.1"),
+                Answers = new[]
+                {
+                    LocalizationManager.Instance.Translated("trivia.answers.1.1"),
+                    LocalizationManager.Instance.Translated("trivia.answers.1.2"),
+                    LocalizationManager.Instance.Translated("trivia.answers.1.3"),
+                    LocalizationManager.Instance.Translated("trivia.answers.1.4"),
+                },
                 CorrectAnswer = 2,
                 Reward = 50f
             },
@@ -39,16 +46,26 @@ namespace Nodes.Trivia
             new PreparedTriviaQuestion
             {
                 TimeGiven = 3f,
-                Question = "Как зовут единственного творца на станции?",
-                Answers = new[] {"Дониил", "Марсель", "Мефодий", "Сапсан"},
+                Question = LocalizationManager.Instance.Translated("trivia.questions.2"),
+                Answers = new[] {                    
+                    LocalizationManager.Instance.Translated("trivia.answers.2.1"),
+                    LocalizationManager.Instance.Translated("trivia.answers.2.2"),
+                    LocalizationManager.Instance.Translated("trivia.answers.2.3"),
+                    LocalizationManager.Instance.Translated("trivia.answers.2.4"),
+                },
                 CorrectAnswer = 0,
                 Reward = 66f
             },
             new PreparedTriviaQuestion
             {
                 TimeGiven = 4.5f,
-                Question = "Кого из экипажа избегает Мефодий?",
-                Answers = new[] {"Дониила", "Сапсана", "Евдокима", "Олега"},
+                Question = LocalizationManager.Instance.Translated("trivia.questions.3"),
+                Answers = new[] {                    
+                    LocalizationManager.Instance.Translated("trivia.answers.3.1"),
+                    LocalizationManager.Instance.Translated("trivia.answers.3.2"),
+                    LocalizationManager.Instance.Translated("trivia.answers.3.3"),
+                    LocalizationManager.Instance.Translated("trivia.answers.3.4"),
+                },
                 CorrectAnswer = 0,
                 Reward = 70f
             }
@@ -88,7 +105,7 @@ namespace Nodes.Trivia
                     {
                         SfxManager.Instance.Play(incorrectSfx);
                         NodeManager.Instance.Close();
-                        ToastManager.Instance.ShowToast("Неверный ответ!");
+                        ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("trivia.wrong"));
                     });
                 }
             }

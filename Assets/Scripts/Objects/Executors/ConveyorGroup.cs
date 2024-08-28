@@ -32,8 +32,8 @@ namespace Objects.Executors
             // doing nothing with the floats
         }
 
-        public string Name => "Конвейер";
-        public string Description => "Постоянно перемещает объекты и сущностей на нем согласно заданным параметрам";
+        public string Name => "obj.conveyor.name";
+        public string Description => "";
 
         public ActionInfo[] SupportedActions { get; } = {
             new()

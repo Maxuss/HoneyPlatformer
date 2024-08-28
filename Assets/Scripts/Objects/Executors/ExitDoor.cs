@@ -97,8 +97,8 @@ namespace Objects.Executors
             SceneManager.UnloadSceneAsync(nextLevel);
         }
 
-        public string Name => "Дверь выхода";
-        public string Description => "Эту дверь вам необходимо открыть чтобы пройти в следующую комнату";
+        public string Name => "obj.exit.name";
+        public string Description => "obj.exit.desc";
 
         public ActionInfo[] SupportedActions => new[]
         {

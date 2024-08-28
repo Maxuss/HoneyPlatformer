@@ -67,8 +67,8 @@ namespace Objects.Emitters
             _rx = null;
         }
 
-        public string Name => "Рычаг";
-        public string Description => "При нажатии выводит сигнал 1/0 в зависимости от нового состояния.";
+        public string Name => "obj.lever.name";
+        public string Description => "obj.lever.desc";
 
         public ActionInfo[] SupportedActions { get; } = new[]
         {

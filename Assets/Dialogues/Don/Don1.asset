@@ -15,6 +15,6 @@ MonoBehaviour:
   speeches:
   - speaker: 6
     audio: {fileID: 8300000, guid: c066bb481b3bcd202a1eae4e241d9d7d, type: 3}
-    text: "....... \u0410\u043B\u043B\u043E?"
+    text: Don/Don1.0
     characterName: "\u0414\u043E\u043D\u0438\u0438\u043B"
     speedModifier: 1

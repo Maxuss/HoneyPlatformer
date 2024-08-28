@@ -58,8 +58,8 @@ namespace Objects.Executors
         private static readonly int TpColor2 = Shader.PropertyToID("_TpColor2");
 
         
-        public string Name => "Телепорт";
-        public string Description => "Используется для (практически) мгновенного перемещения объектов по разным каналам";
+        public string Name => "obj.teleport.name";
+        public string Description => "obj.teleport.desc";
 
         public ActionInfo[] SupportedActions => new ActionInfo[]
         {

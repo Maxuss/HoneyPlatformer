@@ -110,10 +110,10 @@ namespace Objects.Emitters
             _rx = null;
         }
 
-        public string Name => "Нажимная кнопка";
+        public string Name => "obj.btn.name";
 
         public string Description =>
-            "Активируется при нажатии игроком или определенным предметом в зависимости от настройки.";
+            "obj.btn.desc";
 
         public ActionInfo[] SupportedActions { get; } = new[]
         {

@@ -66,8 +66,8 @@ namespace Objects.Executors
         {
         }
 
-        public string Name => "Генератор щитов";
-        public string Description => "Создает поле отпугивающее кибер ос.";
+        public string Name => "obj.shield.name";
+        public string Description => "obj.shield.desc";
 
         public ActionInfo[] SupportedActions { get; } = new[]
         {

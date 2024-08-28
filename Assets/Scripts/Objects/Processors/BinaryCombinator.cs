@@ -139,8 +139,8 @@ namespace Objects.Processors
             _renderer.material.SetFloat(Output, _state ? 1f : 0f);
         }
 
-        public string Name => "Логический Комбинатор";
-        public string Description => "Применяет логическую операцию к двум сигналам на входе и выводит результат.";
+        public string Name => "obj.bin.name";
+        public string Description => "obj.bin.desc";
 
         public ActionInfo[] SupportedActions { get; } = new[]
         {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2962987784252720965}
   - component: {fileID: 7502954182671725847}
   - component: {fileID: 4129726288261563318}
+  - component: {fileID: 974964825356620046}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -136,6 +137,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &974964825356620046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606846038684545438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e0e33a21be4d5cac8663e7cf0895e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  str: ui.node.minesweeper.desc
 --- !u!1 &851424710208978589
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +161,7 @@ GameObject:
   - component: {fileID: 8778228813262510926}
   - component: {fileID: 8880784085932619942}
   - component: {fileID: 4612302581273070847}
+  - component: {fileID: 8045481109262988330}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -270,6 +285,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8045481109262988330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851424710208978589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e0e33a21be4d5cac8663e7cf0895e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  str: ui.node.check
 --- !u!1 &3614934768664014602
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +506,7 @@ GameObject:
   - component: {fileID: 7585477757260910212}
   - component: {fileID: 8778020522299825508}
   - component: {fileID: 4211584068384415769}
+  - component: {fileID: 8783378606596763709}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -601,6 +630,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8783378606596763709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6312040740008845502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e0e33a21be4d5cac8663e7cf0895e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  str: ui.node.minesweeper.title
 --- !u!1 &7214330320173631716
 GameObject:
   m_ObjectHideFlags: 0

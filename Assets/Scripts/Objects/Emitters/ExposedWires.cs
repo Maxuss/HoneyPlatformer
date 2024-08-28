@@ -45,8 +45,8 @@ namespace Objects.Emitters
             _ps = transform.GetChild(0);
         }
 
-        public string Name => "Открытая проводка";
-        public string Description => "Крайне уязвимая часть проводки. Кибер-осы будут её ломать, вызывая помехи в сети";
+        public string Name => "obj.wires.name";
+        public string Description => "obj.wires.desc";
 
         public ActionInfo[] SupportedActions { get; } = new[]
         {

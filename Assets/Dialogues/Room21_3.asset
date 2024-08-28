@@ -15,8 +15,6 @@ MonoBehaviour:
   speeches:
   - speaker: 6
     audio: {fileID: 8300000, guid: 673a1c0420e4edeb6b4dd318ff3926fc, type: 3}
-    text: "\u041F\u043E\u043C\u043D\u0438\u0442\u0441\u044F, \u043C\u044B \u0433\u0434\u0435-\u0442\u043E
-      \u0442\u0430\u043C \u0438 \u0432\u0441\u0442\u0440\u0435\u0442\u0438\u043B\u0438\u0441\u044C,
-      \u043D\u0435 \u0442\u0430\u043A \u043B\u0438 \u0421\u0430\u043F\u0441\u0430\u043D?"
+    text: Room21_3.0
     characterName: "\u0414\u043E\u043D\u0438\u0438\u043B"
     speedModifier: 1.2

@@ -442,6 +442,7 @@ GameObject:
   - component: {fileID: 6443649748666504351}
   - component: {fileID: 6960273823299715659}
   - component: {fileID: 8723983937062443662}
+  - component: {fileID: 376899048911584374}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -565,6 +566,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &376899048911584374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4423725325942216281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e0e33a21be4d5cac8663e7cf0895e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  str: ui.check
 --- !u!1 &4460025037962116196
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +893,7 @@ GameObject:
   - component: {fileID: 1019739243120869578}
   - component: {fileID: 6324447834357019525}
   - component: {fileID: 3856352592316152606}
+  - component: {fileID: 4523918071304781427}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -1003,6 +1018,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4523918071304781427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668285103147038741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e0e33a21be4d5cac8663e7cf0895e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  str: ui.node.captcha.desc
 --- !u!1 &6978752049502295435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,6 +1077,7 @@ GameObject:
   - component: {fileID: 7956857829196058098}
   - component: {fileID: 1640659413428238179}
   - component: {fileID: 4133276978830047539}
+  - component: {fileID: 1085618250205272916}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -1172,6 +1201,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1085618250205272916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7927724435350429700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e0e33a21be4d5cac8663e7cf0895e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  str: ui.node.captcha.title
 --- !u!1 &8867849454724822404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,6 +1226,7 @@ GameObject:
   - component: {fileID: 1507346206512190043}
   - component: {fileID: 6403748736285997378}
   - component: {fileID: 6207232694364006366}
+  - component: {fileID: 1441422697682959541}
   m_Layer: 5
   m_Name: Placeholder
   m_TagString: Untagged
@@ -1327,3 +1370,16 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1441422697682959541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8867849454724822404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e0e33a21be4d5cac8663e7cf0895e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  str: ui.input_placeholder

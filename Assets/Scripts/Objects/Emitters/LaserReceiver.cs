@@ -81,8 +81,8 @@ namespace Objects.Emitters
             _renderer.sprite = disabledSprite;
         }
 
-        public string Name => "Приемник Лазера";
-        public string Description => "Выдает сигнал 1 когда в него попадает лазер подходящий под настроенные условия.";
+        public string Name => "obj.laser_rx.name";
+        public string Description => "obj.laser_rx.name";
 
         public ActionInfo[] SupportedActions { get; } =
         {

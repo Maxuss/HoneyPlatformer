@@ -45,8 +45,8 @@ namespace Objects.Executors
             SfxManager.Instance.Play(doorClose, .5f);
         }
 
-        public string Name => "Дверь";
-        public string Description => "Эта дверь может стать вам препятствием";
+        public string Name => "obj.door.name";
+        public string Description => "obj.door.desc";
 
         public ActionInfo[] SupportedActions => new[]
         {

@@ -28,6 +28,8 @@ namespace Controller
         private DialogueDefinition[] possibleDialogues;
 
         [FormerlySerializedAs("_inMenu")] public bool inMenu;
+
+        private float _lastCall;
         
         public static CallController Instance { get; private set; }
 
@@ -65,6 +67,7 @@ namespace Controller
         {
             if (inMenu && Input.GetKeyDown(KeyCode.Escape))
             {
+                _lastCall = Time.time;
                 donMenu.SetActive(false);
                 PlayerController.Instance.IsDisabled = false;
                 StartCoroutine(Util.DelayFrames(() => inMenu = false, 1));
@@ -76,9 +79,8 @@ namespace Controller
                 return;
             if (PlayerController.Instance.IsDisabled || !SaveManager.CurrentState.MetDon)
                 return;
-            if (!Input.GetKeyDown(KeyCode.B))
+            if (!Input.GetKeyDown(KeyCode.B) && !inMenu && Time.time - _lastCall > 2)
                 return;
-
             inMenu = true;
             StartCoroutine(CallCoroutine());
         }

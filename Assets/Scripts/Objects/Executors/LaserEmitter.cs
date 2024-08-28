@@ -11,6 +11,7 @@ using Utils;
 
 namespace Objects.Executors
 {
+    // TODO: procedurally change laser emitter texture instead of set colors
     public class LaserEmitter: MonoBehaviour, IActionContainer, IChannelReceiver
     {
         [SerializeField]
@@ -189,8 +190,8 @@ namespace Objects.Executors
             Purple
         }
 
-        public string Name => $"Источник Лазера ({EmitterType switch { EmitterColor.Blue => "Синий", EmitterColor.Yellow => "Желтый", EmitterColor.Red => "Красный", EmitterColor.Purple => "Фиолетовый" }})";
-        public string Description => "Создает лазерный луч своего цвета в зависимости от настроек.";
+        public string Name => $"obj.laser.{EmitterType}.name";
+        public string Description => "";
 
         public ActionInfo[] SupportedActions { get; } = {
             new()

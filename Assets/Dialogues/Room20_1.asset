@@ -15,6 +15,6 @@ MonoBehaviour:
   speeches:
   - speaker: 0
     audio: {fileID: 8300000, guid: 903dc92144d40c19da17d7cfadfb63b3, type: 3}
-    text: "\u041D\u0443 \u043F\u0440\u0438\u0432\u0435\u0442... \u043C\u0435\u0434\u0432\u0435\u0434..."
+    text: Room20_1.0
     characterName: "\u0421\u0430\u043F\u0441\u0430\u043D"
     speedModifier: 1.2

@@ -1,0 +1,10 @@
+﻿{
+  "menu.main.btn_start": "Начать",
+  "menu.main.btn_new": "NEW",
+  "menu.main.btn_load": "Загрузить",
+  "menu.main.btn_settings": "Настройки",
+  "menu.main.controls": "Управление:\nWASD/Space- ходить/прыжок\nR - перезапуск уровня\nE - взаимодействие\nmade by <color=#6d21c4>Kings of <color=#e8c23c>the Loop</color></color>\n<size=16>P.S: под коридором <color=#ffa>Дониила</color> прячется нечто",
+  "menu.main.btn_back": "Назад",
+  "menu.main.mus_volume": "Громкость музыки",
+  "menu.main.sfx_volume": "Громкость эффектов"
+}
