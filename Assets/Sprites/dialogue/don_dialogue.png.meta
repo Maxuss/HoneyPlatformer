@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0db5f1fd48df24cc8a6751da4d96cef0
+guid: c9e83998907933e4e926daa095c13bbb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: don_dialogue_0
+      name: "\u0411\u0443\u0431\u044D\u043A_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38dd6cb2899b89f86a94cc7884eaeb67
-      internalID: -1391894183
+      spriteID: a98f4d4222e2397438b3aa4642a2dc44
+      internalID: -408446285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: don_dialogue_1
+      name: "\u0411\u0443\u0431\u044D\u043A_1"
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9df498b694f679124a797f4cc1da8b74
-      internalID: -1021018492
+      spriteID: 39e89959523a2f242b7df8da99a540e5
+      internalID: 1136615329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: don_dialogue_2
+      name: "\u0411\u0443\u0431\u044D\u043A_2"
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b5de666613191cf685ff2482d87d760
-      internalID: -324241909
+      spriteID: 7fc600b8f1d70ae478a25423fc6f381d
+      internalID: 679252200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: don_dialogue_3
+      name: "\u0411\u0443\u0431\u044D\u043A_3"
       rect:
         serializedVersion: 2
         x: 96
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d6cea615b6eb1225b0a769d328e1343
-      internalID: -1907571186
+      spriteID: ae3c333b24eb74a4aa24037e8df3aba9
+      internalID: 1454826714
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      don_dialogue_0: -1391894183
-      don_dialogue_1: -1021018492
-      don_dialogue_2: -324241909
-      don_dialogue_3: -1907571186
+      "\u0411\u0443\u0431\u044D\u043A_0": -408446285
+      "\u0411\u0443\u0431\u044D\u043A_1": 1136615329
+      "\u0411\u0443\u0431\u044D\u043A_2": 679252200
+      "\u0411\u0443\u0431\u044D\u043A_3": 1454826714
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

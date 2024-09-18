@@ -28,10 +28,15 @@ namespace NPC
         private Quaternion[] _rotations;
         private Sequence _tween;
 
+        private Animator _animator;
+
         public bool Active => !_escaping;
 
         private void Start()
         {
+            _animator = GetComponent<Animator>();
+            _animator.StopPlayback();
+            _animator.Play("Bee", 0, Random.value);
             _center = transform.position;
             _sr = GetComponent<SpriteRenderer>();
             _stopPositions = new[]

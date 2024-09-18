@@ -104,5 +104,10 @@ namespace Utils
             var newY = circle.y > -innerRange && circle.y < innerRange ? innerRange * Mathf.Sign(circle.y) : circle.y;
             return new Vector2(newX, newY);
         }
+
+        public static Vector2 Abs(this Vector2 vec)
+        {
+            return new Vector2(Mathf.Abs(vec.x), Mathf.Abs(vec.y));
+        }
     }
 }

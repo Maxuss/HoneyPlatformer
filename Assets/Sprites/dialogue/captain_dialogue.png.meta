@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07d019c7443d4d5b084a014ef49211b2
+guid: da5cbb9d075702144b63b4fd204014ac
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: captain_dialogue_0
+      name: "\u043A\u0430\u043F\u0438\u0442\u0430\u043D\u0438\u0441\u043F\u0430\u043D\u0435\u0446_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 119b81ee3b482a78d8717521a63e1736
-      internalID: -1713010635
+      spriteID: bfa24fc1b20ea2741abba9f720cce054
+      internalID: 2073542883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: captain_dialogue_1
+      name: "\u043A\u0430\u043F\u0438\u0442\u0430\u043D\u0438\u0441\u043F\u0430\u043D\u0435\u0446_1"
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42e0a884a9c9e9bdb911dd179b6cb5d9
-      internalID: -2089272400
+      spriteID: 54c294a03468ec847a34a393675c6a1a
+      internalID: -643900113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: captain_dialogue_2
+      name: "\u043A\u0430\u043F\u0438\u0442\u0430\u043D\u0438\u0441\u043F\u0430\u043D\u0435\u0446_2"
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81008b589762deaa6bda323356bce007
-      internalID: 454944730
+      spriteID: 043aa7a44a411324a8e848dd3f59cd5b
+      internalID: 1598666357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: captain_dialogue_3
+      name: "\u043A\u0430\u043F\u0438\u0442\u0430\u043D\u0438\u0441\u043F\u0430\u043D\u0435\u0446_3"
       rect:
         serializedVersion: 2
         x: 96
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbdb3f5359b8ee6f3a6ce88d47b6dded
-      internalID: -887324070
+      spriteID: 0f736609378ba68409777caae397269a
+      internalID: 2137166005
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      captain_dialogue_0: -1713010635
-      captain_dialogue_1: -2089272400
-      captain_dialogue_2: 454944730
-      captain_dialogue_3: -887324070
+      "\u043A\u0430\u043F\u0438\u0442\u0430\u043D\u0438\u0441\u043F\u0430\u043D\u0435\u0446_0": 2073542883
+      "\u043A\u0430\u043F\u0438\u0442\u0430\u043D\u0438\u0441\u043F\u0430\u043D\u0435\u0446_1": -643900113
+      "\u043A\u0430\u043F\u0438\u0442\u0430\u043D\u0438\u0441\u043F\u0430\u043D\u0435\u0446_2": 1598666357
+      "\u043A\u0430\u043F\u0438\u0442\u0430\u043D\u0438\u0441\u043F\u0430\u043D\u0435\u0446_3": 2137166005
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

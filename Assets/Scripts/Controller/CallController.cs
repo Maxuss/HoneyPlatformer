@@ -79,9 +79,8 @@ namespace Controller
                 return;
             if (PlayerController.Instance.IsDisabled || !SaveManager.CurrentState.MetDon)
                 return;
-            if (!Input.GetKeyDown(KeyCode.B) && !inMenu && Time.time - _lastCall > 2)
+            if (!Input.GetKeyDown(KeyCode.B) && !inMenu)
                 return;
-            inMenu = true;
             StartCoroutine(CallCoroutine());
         }
 
@@ -92,6 +91,7 @@ namespace Controller
             yield return DialogueManager.Instance.StartDialogue(randomDialogue);
             PlayerController.Instance.IsDisabled = true;
             currencyText.text = SaveManager.CurrentState.Currency.ToString();
+            inMenu = true;
             donMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

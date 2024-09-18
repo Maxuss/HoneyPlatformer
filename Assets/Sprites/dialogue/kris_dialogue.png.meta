@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 222780a2a340d71fb8a8dd7fdaff31b9
+guid: 80c636daf6a479244b157b358a37005b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kris_dialogue_0
+      name: "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c01de9ca008ae25af91c0afc495a787e
-      internalID: 99548867
+      spriteID: bc96e13254db47546ad591c0f4cb0c39
+      internalID: -2092061925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kris_dialogue_1
+      name: "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_1"
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9de1bcdb8cfc57d60875014a3dde16e7
-      internalID: 2037691782
+      spriteID: 26f5370a4ac51f345bc9ae092355d53d
+      internalID: -1683669915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kris_dialogue_2
+      name: "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_2"
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01909bb902e917859bc69fe70c9178f0
-      internalID: -1352747339
+      spriteID: 9e6ef4cf060d39a49844081ce038b3c5
+      internalID: 261009750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kris_dialogue_3
+      name: "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_3"
       rect:
         serializedVersion: 2
         x: 96
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a0652c53957178808c585d32fb062a0
-      internalID: 1150042372
+      spriteID: 06d83e5bbf7f32145961585533ddc339
+      internalID: 1230345969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kris_dialogue_4
+      name: "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_4"
       rect:
         serializedVersion: 2
         x: 128
@@ -208,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 732017d77ed3fae7ea2dce18ab02fabb
-      internalID: 1237903696
+      spriteID: 149022d3db1ad3e41b83633eaf58ef7a
+      internalID: 583753591
       vertices: []
       indices: 
       edges: []
@@ -225,11 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      kris_dialogue_0: 99548867
-      kris_dialogue_1: 2037691782
-      kris_dialogue_2: -1352747339
-      kris_dialogue_3: 1150042372
-      kris_dialogue_4: 1237903696
+      "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_0": -2092061925
+      "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_1": -1683669915
+      "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_2": 261009750
+      "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_3": 1230345969
+      "\u043A\u0440\u0438\u0441\u0431\u043E\u043B\u0442\u0430\u0435\u0442_4": 583753591
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

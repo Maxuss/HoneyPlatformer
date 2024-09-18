@@ -147,13 +147,13 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
-  m_ShadowIntensity: 0.75
+  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensity: 0.513
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.15429997, y: -1.03275, z: 0}
-    m_Extent: {x: 3.0076, y: 3.04035, z: 0}
+    m_Center: {x: 0.14654994, y: -1.0392001, z: 0}
+    m_Extent: {x: 3.01475, y: 3.0511, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

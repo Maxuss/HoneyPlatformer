@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Nodes;
 using Program;
@@ -33,7 +34,7 @@ namespace Controller
         private GameObject ioChoicePrefab;
         
         private bool _tipsHidden;
-        private List<LineRenderer> _lines = new();
+        private Dictionary<IChannelSender, List<LineRenderer>> _lines = new();
         private LineRenderer _connectingLine;
 
         public bool Enabled { get; set; }
@@ -91,13 +92,13 @@ namespace Controller
             {
                 if (_tipsHidden)
                 {
-                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(80f, 80f), .5f);
-                    visualEditingNotifier.DOAnchorPos(new Vector2(80f, 40f), .5f);
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(48f, 80f), .5f);
+                    visualEditingNotifier.DOAnchorPos(new Vector2(48f, 40f), .5f);
                 }
                 else
                 {
-                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-80f, 80f), .5f);
-                    visualEditingNotifier.DOAnchorPos(new Vector2(-80f, 40f), .5f);
+                    moreVisualEditingNotifier.DOAnchorPos(new Vector2(-48f, 80f), .5f);
+                    visualEditingNotifier.DOAnchorPos(new Vector2(-48f, 40f), .5f);
                 }
 
                 _tipsHidden = !_tipsHidden;
@@ -174,21 +175,49 @@ namespace Controller
             ClearLines();
             RenderAllLines();
         }
+        
+        private Dictionary<IChannelSender, int> senderColors = new();
+
+        public void PollLineRender(IChannelSender sender)
+        {
+            if (!Enabled)
+                return;
+            if (_lines.Remove(sender, out var lines))
+            {
+                foreach (var lineRenderer in lines)
+                {
+                    DestroyImmediate(lineRenderer.gameObject);
+                }
+            }
+            var line = senderColors.GetValueOrDefault(sender, 0);
+            RenderLine(sender, lineColors[line]);
+        }
 
         private void RenderAllLines()
         {
             var groupId = 0;
             foreach(var obj in Util.GetAllComponents<IChannelSender>())
             {
-                groupId %= lineColors.Count;
-                RenderLine(obj, lineColors[groupId]);
-                groupId++;
+                Gradient lineColor;
+                if (senderColors.TryGetValue(obj, out var senderColor))
+                {
+                    lineColor = lineColors[senderColor];
+                }
+                else
+                {
+                    groupId %= lineColors.Count;
+                    lineColor = lineColors[groupId];
+                    senderColors[obj] = groupId;
+                    groupId++;
+                }
+                RenderLine(obj, lineColor);
             }
         }
 
         private void RenderLine(IChannelSender tx, Gradient newGradient)
         {
             var txPos = ((MonoBehaviour)tx).transform.position;
+            var txLines = new List<LineRenderer>();
             foreach (var rx in tx.ConnectedRx)
             {
                 if (rx == null)
@@ -216,7 +245,8 @@ namespace Controller
                     lockPos.position = 0.3f * (rxPos - txPos) + txPos;
                 }
 
-                _lines.Add(line);
+                
+                txLines.Add(line);
                 line.gameObject.SetActive(false);
                 StartCoroutine(Util.Delay(() =>
                 {
@@ -245,14 +275,17 @@ namespace Controller
                 }, 0.32f));
 
             }
+
+            _lines[tx] = txLines;
         }
 
         public void ClearLines()
         {
-            foreach (var line in _lines)
+            foreach (var lineRenderer in _lines.Values.SelectMany(lines => lines))
             {
-                DestroyImmediate(line.gameObject);
+                DestroyImmediate(lineRenderer.gameObject);
             }
+
             _lines.Clear();
         }
     }

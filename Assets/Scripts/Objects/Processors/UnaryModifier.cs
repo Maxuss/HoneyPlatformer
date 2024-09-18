@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Controller;
+using I18N;
 using JetBrains.Annotations;
 using Program;
 using Program.Channel;
@@ -35,7 +36,7 @@ namespace Objects.Processors
         private void OnEnterVisualMode()
         {
             var text = Instantiate(visualTextPrefab, transform);
-            text.text = SelectedAction.ActionIndex == 0 ? "SELF" : "NOT";
+            text.text = SelectedAction.ActionIndex == 0 ? LocalizationManager.Instance.Translated("unary.status.self") : LocalizationManager.Instance.Translated("unary.status.not");
             if (visualTextPos != null)
                 text.transform.position = visualTextPos.position;
             else
@@ -119,7 +120,7 @@ namespace Objects.Processors
             _state = !_state;
             _renderer.material.SetFloat(Output, _state ? 1f : 0f);
             _rx?.ReceiveBool(transform, _state);
-            _visualText.GetComponent<TMP_Text>().text = SelectedAction.ActionIndex == 0 ? "SELF" : "NOT";
+            _visualText.GetComponent<TMP_Text>().text = SelectedAction.ActionIndex == 0 ? LocalizationManager.Instance.Translated("unary.status.self") : LocalizationManager.Instance.Translated("unary.status.not");
         }
 
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);

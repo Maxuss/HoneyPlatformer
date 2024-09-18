@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 685124427c7dd6587b8b8bff38aef9b9
+guid: 06b62a6929c2a4a4caebfddb16bfa783
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: d_beekeper_neutral_0
+      name: "\u0436\u0438\u0440\u043E\u0441\u043B\u0430\u0432_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb67e7ebfec4c748abfebdf2c86e24f3
-      internalID: -120774379
+      spriteID: c028da89ced58fd42aee39e83d1452c4
+      internalID: 29265465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: d_beekeper_neutral_1
+      name: "\u0436\u0438\u0440\u043E\u0441\u043B\u0430\u0432_1"
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4cb4c27dcd99b41f960fe4e84ae1bcc
-      internalID: -1748884696
+      spriteID: b09438695eb087b47a02c6459eaaa84e
+      internalID: 18344168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: d_beekeper_neutral_2
+      name: "\u0436\u0438\u0440\u043E\u0441\u043B\u0430\u0432_2"
       rect:
         serializedVersion: 2
         x: 64
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5910cb9c18af4344978a0fd755daac9
-      internalID: 364910147
+      spriteID: 251e018eab2736c40ab016b113ca2ad6
+      internalID: -1014847999
       vertices: []
       indices: 
       edges: []
@@ -183,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      d_beekeper_neutral_0: -120774379
-      d_beekeper_neutral_1: -1748884696
-      d_beekeper_neutral_2: 364910147
+      "\u0436\u0438\u0440\u043E\u0441\u043B\u0430\u0432_0": 29265465
+      "\u0436\u0438\u0440\u043E\u0441\u043B\u0430\u0432_1": 18344168
+      "\u0436\u0438\u0440\u043E\u0441\u043B\u0430\u0432_2": -1014847999
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

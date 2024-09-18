@@ -1,5 +1,6 @@
 using System;
 using Controller;
+using I18N;
 using TMPro;
 using UnityEngine;
 using Utils;
@@ -40,7 +41,7 @@ namespace Level
 
         public void OpenTerminal(string terminalText)
         {
-            text.text = terminalText;
+            text.text = LocalizationManager.Instance.Translated(terminalText);
             InTerminal = true;
             terminal.gameObject.SetActive(true);
         }

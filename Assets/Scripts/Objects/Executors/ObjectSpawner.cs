@@ -92,7 +92,7 @@ namespace Objects.Executors
             SfxManager.Instance.Play(objectDestroySound, .5f);
             while (destructionAmount < 0.9f)
             {
-                destructionAmount += 0.9f * Time.fixedDeltaTime;
+                destructionAmount += 0.3f * Time.fixedDeltaTime;
                 if (objRenderer == null)
                     yield break;
                 objRenderer.material.SetFloat(Amount, destructionAmount);

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3704886658096250166}
   - component: {fileID: 7325931906027686020}
   - component: {fileID: 7730282578590759903}
+  - component: {fileID: 3501819554914129785}
   m_Layer: 0
   m_Name: Beekeeper
   m_TagString: Untagged
@@ -148,3 +149,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animate: 1
+--- !u!114 &3501819554914129785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8441227201044116438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 000000000546ffcd79dcddfd87c03ebf
+  m_ShapePath:
+  - {x: -0.5001297, y: 0.07731342, z: 0}
+  - {x: -0.32344055, y: 0.7198982, z: 0}
+  - {x: 0.3320694, y: 0.7112801, z: 0}
+  - {x: 0.44169617, y: 0.25855517, z: 0}
+  - {x: 0.6313019, y: 0.06894803, z: 0}
+  - {x: 0.6011429, y: -0.4610901, z: 0}
+  - {x: 0.41584015, y: -0.5903678, z: 0}
+  - {x: 0.42256165, y: -1.0215464, z: 0}
+  - {x: -0.50634, y: -1.016984, z: 0}
+  - {x: -0.38137054, y: -0.7239547, z: 0}
+  - {x: -0.4890976, y: -0.41368866, z: 0}
+  m_ShapePathHash: 82173927
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -212250
+  m_LocalBounds:
+    m_Center: {x: 0.062480927, y: -0.15082407, z: 0}
+    m_Extent: {x: 0.56882095, y: 0.8707223, z: 0}

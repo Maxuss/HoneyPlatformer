@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7988d6e1e0d4d11ccb82747ae7519969
+guid: 1c778f4c3a1b1de4294a61c495af2041
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sasha_dialogue_0
+      name: "\u0434\u043E\u043A\u0431\u0443\u0431\u043D\u0438\u0442_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f8d2331a9c0bce0094b99c4e6361d6d
-      internalID: 1184195485
+      spriteID: 712e80a93f02560409c4214ceb0d6001
+      internalID: -548396938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sasha_dialogue_1
+      name: "\u0434\u043E\u043A\u0431\u0443\u0431\u043D\u0438\u0442_1"
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13cf1a3530588550c8a82e48d234579d
-      internalID: -375387569
+      spriteID: d29e643b4095d4a458afbb1352329062
+      internalID: 820858457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sasha_dialogue_2
+      name: "\u0434\u043E\u043A\u0431\u0443\u0431\u043D\u0438\u0442_2"
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64c6965857198d44887ccf4d15a93e7a
-      internalID: -1743110502
+      spriteID: f934faf0ab204604bb22acefb38af22d
+      internalID: 1056579437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sasha_dialogue_3
+      name: "\u0434\u043E\u043A\u0431\u0443\u0431\u043D\u0438\u0442_3"
       rect:
         serializedVersion: 2
         x: 96
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b9d6296fdeb5f9eea6e50bdd8edf806
-      internalID: 1465266223
+      spriteID: 4c15c40d7b4efd54b93d73fc991e626f
+      internalID: 1424666069
       vertices: []
       indices: 
       edges: []
@@ -204,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sasha_dialogue_0: 1184195485
-      sasha_dialogue_1: -375387569
-      sasha_dialogue_2: -1743110502
-      sasha_dialogue_3: 1465266223
+      "\u0434\u043E\u043A\u0431\u0443\u0431\u043D\u0438\u0442_0": -548396938
+      "\u0434\u043E\u043A\u0431\u0443\u0431\u043D\u0438\u0442_1": 820858457
+      "\u0434\u043E\u043A\u0431\u0443\u0431\u043D\u0438\u0442_2": 1056579437
+      "\u0434\u043E\u043A\u0431\u0443\u0431\u043D\u0438\u0442_3": 1424666069
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -72,6 +72,9 @@ namespace Controller
             _visual = GetComponent<VisualEditingMode>();
             Instance = this;
             PPCamera = GetComponent<PixelPerfectCamera>();
+            PPCamera.gridSnapping = SettingManager.Instance.EnablePixels
+                ? PixelPerfectCamera.GridSnapping.UpscaleRenderTexture
+                : PixelPerfectCamera.GridSnapping.PixelSnapping;
             Camera = GetComponent<Camera>();
         }
 
@@ -320,7 +323,7 @@ namespace Controller
 
         private IEnumerator IncreaseBrightness()
         {
-            var amount = .7f;
+            var amount = .35f;
             var light2D = globalLight.GetComponent<Light2D>();
             while (amount < .85f)
             {
@@ -335,13 +338,13 @@ namespace Controller
         {
             var amount = .85f;
             var light2D = globalLight.GetComponent<Light2D>();
-            while (amount > .5f)
+            while (amount > .35f)
             {
                 amount -= .25f * Time.deltaTime;
                 light2D.intensity = amount;
                 yield return null;
             }
-            light2D.intensity = .7f;
+            light2D.intensity = .35f;
         }
     }
 }

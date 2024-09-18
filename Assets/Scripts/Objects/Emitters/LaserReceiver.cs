@@ -19,8 +19,8 @@ namespace Objects.Emitters
         private Sprite enabledSprite;
 
         private LaserEmitter.EmitterColor _connectedColor;
-        private LaserEmitter.EmitterColor _chosenColor = LaserEmitter.EmitterColor.Red;
-        private ReceiverMode _mode = ReceiverMode.OnlyColor;
+        private LaserEmitter.EmitterColor _chosenColor;
+        private ReceiverMode _mode = ReceiverMode.Any;
 
         private SpriteRenderer _renderer;
         private IChannelReceiver _rx;

@@ -278,6 +278,8 @@ namespace Objects.Executors
 
         public void ReceiveBool(Transform source, bool b)
         {
+            if (isActive == b)
+                return;
             isActive = b;
             RecalculateState();
         }

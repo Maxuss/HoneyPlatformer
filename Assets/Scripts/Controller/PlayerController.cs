@@ -229,6 +229,7 @@ namespace Controller
             }
             _black.color = new Color(0f, 0f, 0f, 0f);
             _black.gameObject.SetActive(false);
+            
         }
 
         private void CommitMovement()

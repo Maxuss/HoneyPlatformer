@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Controller;
+using I18N;
 using JetBrains.Annotations;
 using Program;
 using Program.Channel;
@@ -47,7 +48,7 @@ namespace Objects.Processors
         private void OnEnterVisualMode()
         {
             var text = Instantiate(visualTextPrefab, transform);
-            text.text = SupportedActions[SelectedAction.ActionIndex].ActionName;
+            text.text = LocalizationManager.Instance.Translated(SupportedActions[SelectedAction.ActionIndex].ActionName);
             if (visualTextPos != null)
                 text.transform.position = visualTextPos.position;
             else
@@ -146,37 +147,37 @@ namespace Objects.Processors
         {
             new ActionInfo
             {
-                ActionName = "OR",
+                ActionName = "binary.status.or",
                 ActionDescription = "Применяет логическую операцию ИЛИ"
             },
             new ActionInfo
             {
-                ActionName = "AND",
+                ActionName = "binary.status.and",
                 ActionDescription = "Применяет логическую операцию И"
             },
             new ActionInfo
             {
-                ActionName = "XOR",
+                ActionName = "binary.status.xor",
                 ActionDescription = "Применяет логическую операцию Исключающего ИЛИ"
             },
             new ActionInfo
             {
-                ActionName = "Импликация",
+                ActionName = "binary.status.impl",
                 ActionDescription = "Применяет логическую операцию импликации."
             },
             new ActionInfo
             {
-                ActionName = "Эквиваленция",
+                ActionName = "binary.status.eq",
                 ActionDescription = "Применяет логическую операцию эквиваленции (приравнивания)."
             },
             new ActionInfo
             {
-                ActionName = "NAND",
+                ActionName = "binary.status.nand",
                 ActionDescription = "Применяет логическую операцию отрицания И"
             },
             new ActionInfo
             {
-                ActionName = "NOR",
+                ActionName = "binary.status.nor",
                 ActionDescription = "Применяет логическую операцию отрицания ИЛИ"
             }
         };
@@ -193,7 +194,7 @@ namespace Objects.Processors
             operation = newOp;
             RecalculateOutput();
 
-            _visualText.GetComponent<TMP_Text>().text = SupportedActions[SelectedAction.ActionIndex].ActionName;
+            _visualText.GetComponent<TMP_Text>().text = LocalizationManager.Instance.Translated(SupportedActions[SelectedAction.ActionIndex].ActionName);
         }
 
         public List<IChannelReceiver> ConnectedRx => Util.ListOf(_rx);

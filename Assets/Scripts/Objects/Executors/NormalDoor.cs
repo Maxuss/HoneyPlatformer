@@ -73,7 +73,10 @@ namespace Objects.Executors
         public ActionData SelectedAction { get; set; }
         public void Begin(ActionData action)
         {
+            if ((int) _action == action.ActionIndex)
+                return;
             _action = (DoorAction) Enum.ToObject(typeof(DoorAction), action.ActionIndex);
+            
             RecalculateState();
         }
 

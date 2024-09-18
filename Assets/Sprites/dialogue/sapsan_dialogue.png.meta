@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 352354fa39b1d744bac683e7d5a579a1
+guid: 95bbba6a5a6e33642af5d5cae1023e75
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sapsan_dialogue_0
+      name: "\u0441\u0435\u043F\u0441\u0435\u043D_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6beb589edf160b87bde47792f748fe9
-      internalID: 1419790820
+      spriteID: f05bc321f51d60c4db67b1aa7b981498
+      internalID: -380527702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sapsan_dialogue_1
+      name: "\u0441\u0435\u043F\u0441\u0435\u043D_1"
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d7cfb9d7dbccf26aaf81d255959a4e0
-      internalID: 600630365
+      spriteID: 5a20b504e32fc3d409abcae5fe5bdc84
+      internalID: -1356823544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sapsan_dialogue_2
+      name: "\u0441\u0435\u043F\u0441\u0435\u043D_2"
       rect:
         serializedVersion: 2
         x: 64
@@ -166,29 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ca5ce92b5e8acda79aeab3780f36092
-      internalID: -1654675494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sapsan_dialogue_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0aa477263e8a63b90850e7f389388972
-      internalID: -1741300573
+      spriteID: db84713b9ce442649805d0569734f09d
+      internalID: 774752444
       vertices: []
       indices: 
       edges: []
@@ -204,10 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sapsan_dialogue_0: 1419790820
-      sapsan_dialogue_1: 600630365
-      sapsan_dialogue_2: -1654675494
-      sapsan_dialogue_3: -1741300573
+      "\u0441\u0435\u043F\u0441\u0435\u043D_0": -380527702
+      "\u0441\u0435\u043F\u0441\u0435\u043D_1": -1356823544
+      "\u0441\u0435\u043F\u0441\u0435\u043D_2": 774752444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

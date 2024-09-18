@@ -28,7 +28,7 @@ namespace Cutscenes
             yield return new WaitForSeconds(1f);
             CameraController.Instance.DisableFollow = true;
             yield return CameraController.Instance.TransitionToPoint(beePos.position.XY(), 2f);
-            ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("toast.level3"));
+            ToastManager.Instance.ShowToast(LocalizationManager.Instance.Translated("toast.level5"));
             yield return new WaitForSeconds(0.5f);
             yield return CameraController.Instance.TransitionToPoint(shieldPos.position.XY(), 2f);
             yield return new WaitForSeconds(1f);
