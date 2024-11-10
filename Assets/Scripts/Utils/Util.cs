@@ -109,5 +109,11 @@ namespace Utils
         {
             return new Vector2(Mathf.Abs(vec.x), Mathf.Abs(vec.y));
         }
+
+        public static Vector3 CoerceIn(this Vector3 self, Vector3 min, Vector3 max)
+        {
+            return new Vector3(Mathf.Clamp(self.x, min.x, max.x), Mathf.Clamp(self.y, min.y, max.y),
+                Mathf.Clamp(self.z, min.z, max.z));
+        }
     }
 }

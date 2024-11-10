@@ -147,8 +147,6 @@ namespace Controller
             _black = ProgrammableUIManager.Instance.Canvas.Find("Black").GetComponent<Image>();
 
             Instance = this;
-            
-            DontDestroyOnLoad(this);
         }
 
         private void FixedUpdate()
@@ -268,7 +266,7 @@ namespace Controller
                 facingDirection = _input.HorizontalMove > 0 ? FacingDirection.Right : FacingDirection.Left;
                 if (oldDir != facingDirection)
                     HandleDirectionChange();
-                _velocity.x = Mathf.MoveTowards(_velocity.x, _input.HorizontalMove * moveSpeed * (_isDragging ? 0.8f : 1f) * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.FasterSpeed) ? 1.5f : 1f),
+                _velocity.x = Mathf.MoveTowards(_velocity.x, _input.HorizontalMove * moveSpeed * (_isDragging ? 0.8f : 1f) * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.MovSpeed) ? 1.2f : 1f),
                     acceleration * Time.fixedDeltaTime);
                 
                 if (!_grounded || Time.time - _lastFootstep < timeBetweenFootsteps) return;
@@ -306,7 +304,7 @@ namespace Controller
         {
             if (_velocity.y > 0 && !_input.JumpHeld && _time - _startedJumping > .1f)
             {
-                _velocity.y *= .6f * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.HigherJumps) ? 1.25f : 1f);
+                _velocity.y *= .6f * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.JumpHeight) ? 1.1f : 1f);
             }
             
             if (!_earlyJump && !_grounded && !_input.JumpHeld && _rb.velocity.y > 0)

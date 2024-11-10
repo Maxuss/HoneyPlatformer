@@ -113,4 +113,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level_BETA_5.unity
     guid: b79974f740d13fa41aa94f7d778052e3
+  - enabled: 1
+    path: Assets/Scenes/donshop.unity
+    guid: 5f0f7f190064ca14f9d329a48842e54f
   m_configObjects: {}

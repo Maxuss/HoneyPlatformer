@@ -3,7 +3,7 @@
   "menu.main.btn_new": "NEW",
   "menu.main.btn_load": "Load game",
   "menu.main.btn_settings": "Settings",
-  "menu.main.controls": "Made by <color=#6d21c4>Kings of <color=#e8c23c>the Loop</color></color>\n<size=16>P.S: there's something mysterious under <color=#ffa>Doniil's</color> hallway",
+  "menu.main.controls": "Made by <color=#6d21c4>Kings of <color=#e8c23c>the Loop</color></color>\nControls:\nV - visual editing mode\nLShift - grab object\nR - restart",
   "menu.main.btn_back": "Back",
   "menu.main.mus_volume": "Music volume",
   "menu.main.sfx_volume": "SFX volume",
@@ -18,6 +18,7 @@
   "menu.pause.save.slot1": "File 1",
   "menu.pause.save.slot2": "File 2",
   "menu.pause.save.slot3": "File 3",
+  "menu.pause.controls": "Controls:\nV - visual editing mode\nLShift - grab object\nR - restart",
 
   "menu.don.buff1.name": "Speedster Soles (500 Dnchk.)",
   "menu.don.buff1.desc": "Boosts movement speed by 1.5 times",
@@ -305,5 +306,27 @@
   "note.level8.1": "<color=yellow>CREW DIALOGUE RECORDING</color>\n\n- Today the wasps in the Reactor Block looked off. They just turned on by themselves during the charging time, and started flying around aimlessly.\n- Damn it, they've always seemed kind of strange to me. We should tell the Captain about this accident.\n- Already told a couple of constructors about it, but you know how they are. They aren't going to waste their time helping us. Especially considering how much work they have already. \n- Either way, the more bears know about it, the better. Especially the higher ups. Be careful, and good night.\n- I'll do all I can. Good night.\n\n\n<color=yellow>END OF RECORDING",
   
   "note.level9": "To: <color=red>(CONFIDENTIAL)</color>\nFrom:  <color=#99c6f7>Energetic Research Center</color>\n\n\nWe have looked at your suggestion of an AI-based robotic technology. We sadly have to deny it due to a high risk of harming the station personnel. Artificial Intelligence has still not been fully researched and requires more time for testing. However we are sure that you can achieve success soon. We will be ready to review your suggestion again, once the machine is thoroughly tested and certified.",
-  "note.level9.1": "<color=red>(MESSAGED INTERCEPT FROM FREQUENCY RF32)</color>\n\nPSA to everyone who's reading this message. Run to the cargo bay number 4. We are getting to ready to fight IT.\n\n <color=red>MESSAGE ENDS ABRUPTLY"
+  "note.level9.1": "<color=red>(MESSAGED INTERCEPT FROM FREQUENCY RF32)</color>\n\nPSA to everyone who's reading this message. Run to the cargo bay number 4. We are getting to ready to fight IT.\n\n <color=red>MESSAGE ENDS ABRUPTLY",
+
+  "donmenu.capsule.cost": "Cost: {0} XP",
+  "donmenu.capsule.cost.blocked": "Cost: <#f00>{0} XP",
+  "donmenu.capsule.hold": "Unlock!",
+  "donmenu.capsule.hold.blocked": "<#f00>Not enough XP!",
+  "donmenu.capsule.unlocked": "Unlocked!",
+
+  "donmenu.capsule.1.title": "Doniil's Workshop",
+  "donmenu.capsule.1.desc": "In the workshop you can upgrade your equipment and even learn new tech!",
+  "donmenu.capsule.2.title": "Accelerators",
+  "donmenu.capsule.2.desc": "New artificial accelerators in Sapsan's boots will allow him to move 20% faster!",
+  "donmenu.capsule.3.title": "Sensor Systems",
+  "donmenu.capsule.3.desc": "Updating firmware of Sapsan's goggles will allow him to explore rooms in the editing mode 25% faster!",
+  "donmenu.capsule.4.title": "Spring Boosters",
+  "donmenu.capsule.4.desc": "Installation of special spring boosters will allow Sapsan to safely jump 15% higher! Fall speed will also increase due to weight.",
+  "donmenu.capsule.5.title": "EM Pillow",
+  "donmenu.capsule.5.desc": "Hacking the gravitation systems of station will allow Sapsan to float in special areas.",
+  "donmenu.capsule.6.title": "AI Training",
+  "donmenu.capsule.6.desc": "Newly developed extension module for Sapsan's goggles will allow him to calibrate broken nodes more effectively.",
+  "donmenu.capsule.7.title": "Full Access",
+  "donmenu.capsule.7.desc": "Doniil recently found this Class E access card. If we manage to mod Sapsan's access card he might be able to enter Class E locations."
+
 }

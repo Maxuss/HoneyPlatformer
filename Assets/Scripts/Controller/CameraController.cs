@@ -77,12 +77,7 @@ namespace Controller
                 : PixelPerfectCamera.GridSnapping.PixelSnapping;
             Camera = GetComponent<Camera>();
         }
-
-        private void Awake()
-        {
-            DontDestroyOnLoad(this);
-        }
-
+        
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.V) && !NodeManager.Instance.isEditing)

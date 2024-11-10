@@ -59,14 +59,11 @@ namespace Cutscenes
             StartCoroutine(mefodiy.Walk(5f, .4f));
             StartCoroutine(sasha.Walk(5f, .3f));
             
-            // yield return LevelLoader.Instance.TransitionLevel(12);
+            yield return LevelLoader.Instance.TransitionLevel(12);
             
             PlayerController.Instance.IsDisabled = false;
             PlayerController.Instance.InCutscene = false;
             PlayerController.Instance.StillCommitMovement = true;
-            
-            yield return PlayerController.Instance.FadeIn();
-            PlayerController.Instance.ShowTBC();
         }
     }
 }

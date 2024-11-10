@@ -41,7 +41,7 @@ namespace Utils
         public void Save()
         {
             var path = Path.Join(SaveManager.SavePath, "pref.json");
-            using var file = new StreamWriter(File.Exists(path) ? File.OpenWrite(path) : File.Create(path));
+            using var file = new StreamWriter(File.Create(path));
             file.Write(JsonUtility.ToJson(this, true));
             file.Close();
         }

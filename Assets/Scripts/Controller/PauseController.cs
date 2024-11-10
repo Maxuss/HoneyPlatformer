@@ -24,7 +24,7 @@ namespace Controller
 
         private void Update()
         {
-            if (!TerminalManager.Instance.InTerminal && !VisualEditingMode.Instance.Enabled && !CallController.Instance.inMenu)
+            if (!TerminalManager.Instance.InTerminal && !VisualEditingMode.Instance.Enabled)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -64,6 +64,7 @@ namespace Controller
         {
             SaveManager.CurrentState.SaveIndex = idx;
             SaveManager.CurrentState.LevelIndex = SceneManager.GetActiveScene().buildIndex;
+            SaveManager.CurrentState.LevelName = SceneManager.GetActiveScene().name;
             SaveManager.SaveGame();
             Unpause();
             ToastManager.Instance.ShowToast($"Игра сохранена в слот {idx + 1}");

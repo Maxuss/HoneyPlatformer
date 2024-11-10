@@ -21,7 +21,7 @@ namespace MainMenu
         private void OnChanged(float newVal)
         {
             SettingManager.Instance.MusicVolume = newVal;
-            menu.AudioSource.volume = newVal;
+            menu.audioSource.volume = newVal;
         }
     }
 }

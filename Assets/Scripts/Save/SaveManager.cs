@@ -13,46 +13,56 @@ namespace Save
     {
         public static SaveState CurrentState;
 
-        public static readonly string SavePath =
+        public static string SavePath =>
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BRZ");
         
         private static void CheckSaveDir()
         {
-            if (!Directory.Exists(SavePath))
-                Directory.CreateDirectory(SavePath);
+            try
+            {
+                if (!Directory.Exists(SavePath))
+                    Directory.CreateDirectory(SavePath);
+            }
+            catch (ArgumentNullException e)
+            {
+                
+            }
         }
 
         public static Dictionary<int, SaveState?> AllSaves()
         {
-            return new[] { 0, 1, 2 }.Select(each => (each, LoadGame(each))).ToDictionary(x => x.each, x => x.Item2);
+            return new[] { 0, 1, 2, 3 }.Select(each => (each, LoadGame(each))).ToDictionary(x => x.each, x => x.Item2);
         }
 
-        public static void SaveGame()
+        public static void SaveGame(bool auto = false)
         {
             CheckSaveDir();
-            var path = Path.Combine(SavePath, $"game{CurrentState.SaveIndex}.don");
-            using var fileStream = File.Exists(path) ? File.OpenWrite(path) : File.Create(path);
+            var path = Path.Combine(SavePath, "game" + (auto ? "_auto" : CurrentState.SaveIndex) + ".don");
             
-            var binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(fileStream, CurrentState);
+            using var fileStream = new StreamWriter(File.Create(path));
+
+            fileStream.Write(JsonUtility.ToJson(CurrentState, true));
+            fileStream.Flush();
+            fileStream.Close();
         }
 
         public static SaveState? LoadGame(int saveIdx)
         {
             CheckSaveDir();
-            var path = Path.Combine(SavePath, $"game{saveIdx}.don");
+            var path = Path.Combine(SavePath, "game" + (saveIdx == 3 ? "_auto" : saveIdx) + ".don");
             if (!File.Exists(path))
                 return null;
             
             using var fileStream = File.OpenRead(path);
             
-            var binaryFormatter = new BinaryFormatter();
-            var save = (SaveState) binaryFormatter.Deserialize(fileStream);
+            using var reader = new StreamReader(fileStream);
+            var save = JsonUtility.FromJson<SaveState>(reader.ReadToEnd());
             return save;
         }
 
         public static SaveState? LoadCloud()
         {
+            throw new NotImplementedException("Removed feature");
             CheckSaveDir();
             var path = Path.Combine(SavePath, $"cloud.don");
             if (!File.Exists(path))

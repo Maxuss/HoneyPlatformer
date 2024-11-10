@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using Controller;
 using Cutscenes;
+using Igroprom;
 using Level;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,8 @@ namespace Save
     {
         [SerializeField]
         private GameObject everythingPrefab;
+
+        public int LevelIndex { get; private set; }
 
         public static LevelLoader Instance { get; private set; }
 
@@ -71,16 +74,20 @@ namespace Save
             Instance = this;
         }
 
-        public void LoadLevel(int levelIdx)
+        public void LoadLevel(int levelIdx, bool searchPedestal = false)
         {
             var task = SceneManager.LoadSceneAsync(levelIdx, LoadSceneMode.Single);
             task.completed += op =>
             {
                 var scene = SceneManager.GetActiveScene();
                 var rootObjects = scene.GetRootGameObjects();
+                var watcher = rootObjects.FirstOrDefault(it => it.TryGetComponent<WatcherDoor>(out var cmp));
+                if (watcher != null)
+                    watcher.GetComponent<WatcherDoor>().beginTime = Time.realtimeSinceStartup;
+                
                 var spawnPosObj = rootObjects.First(obj => obj.CompareTag("SpawnPos") || obj.CompareTag("EntranceDoor"))
                     .GetComponent<ISpawnPos>();
-                var spawnPos = spawnPosObj.SpawnPosition;
+                var spawnPos = searchPedestal ? rootObjects.First(obj => obj.TryGetComponent<DonTerminal>(out _)).GetComponent<ISpawnPos>().SpawnPosition : spawnPosObj.SpawnPosition;
                 if (spawnPosObj is EntranceDoor door)
                 {
                     door.GetComponent<Animator>().Play("EntranceDoor");
@@ -105,6 +112,10 @@ namespace Save
                     cutscene.GetComponent<MonoBehaviour>().StartCoroutine(Util.Delay(() => cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene(), .5f));
                 }
                 MusicManager.Instance.NextAmbientTrack();
+                
+                SaveManager.CurrentState.LevelIndex = scene.buildIndex;
+                SaveManager.CurrentState.LevelName = scene.name;
+                SaveManager.SaveGame(true);
             };
         }
 
@@ -112,11 +123,15 @@ namespace Save
         {
             yield return PlayerController.Instance.FadeIn();
             var task = SceneManager.LoadSceneAsync(levelIdx, LoadSceneMode.Single);
+            LevelIndex = levelIdx;
             task.completed += op =>
             {
                 PlayerController.Instance.BlackOut();
                 var scene = SceneManager.GetActiveScene();
                 var rootObjects = scene.GetRootGameObjects();
+                var watcher = rootObjects.FirstOrDefault(it => it.TryGetComponent<WatcherDoor>(out var cmp));
+                if (watcher != null)
+                    watcher.GetComponent<WatcherDoor>().beginTime = Time.realtimeSinceStartup;
                 var spawnPosObj = rootObjects.First(obj => obj.CompareTag("SpawnPos") || obj.CompareTag("EntranceDoor"))
                     .GetComponent<ISpawnPos>();
                 var spawnPos = spawnPosObj.SpawnPosition;
@@ -141,6 +156,10 @@ namespace Save
                     CameraController.Instance.ExitProgramMode();
                     cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene();
                 }
+                
+                SaveManager.CurrentState.LevelIndex = scene.buildIndex;
+                SaveManager.CurrentState.LevelName = scene.name;
+                SaveManager.SaveGame(true);
             };
         }
     }

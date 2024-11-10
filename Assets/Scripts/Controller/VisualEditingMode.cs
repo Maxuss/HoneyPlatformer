@@ -123,7 +123,7 @@ namespace Controller
 
             var horizontal = Vector2.right * Input.GetAxisRaw("Horizontal");
             var vertical = Vector2.up * Input.GetAxisRaw("Vertical");
-            var newPos = transform.position + (Vector3) (horizontal + vertical) * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.FasterCamera) ? 1.5f : 1f);
+            var newPos = transform.position + (Vector3) (horizontal + vertical) * (SaveManager.CurrentState.DonUpgrades.Contains(DonUpgrade.CamSpeed) ? 1.25f : 1f);
             OnVisualCameraMove?.Invoke();
             transform.position = 
                 Vector3.SmoothDamp(transform.position, newPos, ref _velocity, smootheningModifier, Mathf.Infinity);

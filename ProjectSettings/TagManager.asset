@@ -14,6 +14,7 @@ TagManager:
   - SpawnPos
   - Bee
   - Teleporter
+  - DonBackground
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Program
   - OnlyPlayer
   - Distort
-  - 
+  - DonUpgrade
   - 
   - 
   - 

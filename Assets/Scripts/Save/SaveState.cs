@@ -1,24 +1,31 @@
+using System;
 using System.Collections.Generic;
 
 namespace Save
 {
     // TODO: save more data
-    [System.Serializable]
+    [Serializable]
     public struct SaveState
     {
-        public int SaveIndex { get; set; }
-        public int LevelIndex { get; set; }
+        public int SaveIndex;
+        public int LevelIndex;
+        public string LevelName;
+
+        public int Currency;
+        public bool MetDon;
+        public List<DonUpgrade> DonUpgrades;
         
-        public int Currency { get; set; }
-        public bool MetDon { get; set; }
-        public List<DonUpgrade> DonUpgrades { get; set; }
     }
 
-    [System.Serializable]
+    [Serializable]
     public enum DonUpgrade
     {
-        HigherJumps,
-        FasterSpeed,
-        FasterCamera
+        BaseUpgrade,
+        MovSpeed,
+        CamSpeed,
+        JumpHeight,
+        EmPillow,
+        Hints,
+        FullAccess,
     }
 }

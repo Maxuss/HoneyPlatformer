@@ -41,7 +41,6 @@ namespace Level
 
         public void SwitchLevel(Tilemap newTilemap)
         {
-            SaveManager.CurrentState.Currency += (int) Math.Round(newTilemap.size.magnitude / 3.5f);
             levelMap = newTilemap;
             RecalculateBounds();
         }

@@ -5,6 +5,7 @@ using Cutscenes;
 using Level;
 using Program;
 using Program.Channel;
+using Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -16,7 +17,7 @@ namespace Objects.Executors
     public class ExitDoor: MonoBehaviour, IActionContainer, IChannelReceiver
     {
         [SerializeField]
-        private int nextLevel;
+        protected int nextLevel;
         [SerializeField]
         private AudioClip doorOpen;
         [SerializeField]
@@ -31,6 +32,16 @@ namespace Objects.Executors
             _anim = GetComponent<Animator>();
         }
 
+        protected virtual void OnExit()
+        {
+            
+        }
+
+        protected virtual void OnExitDone()
+        {
+            
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag("Player"))
@@ -43,10 +54,12 @@ namespace Objects.Executors
             var tilemap = grid.transform.GetChild(0).GetComponent<Tilemap>();
 
             LevelManager.Instance.SwitchLevel(tilemap.GetComponentInChildren<Tilemap>());
+            SaveManager.CurrentState.Currency += (int) Math.Round(tilemap.GetComponentInChildren<Tilemap>().size.magnitude / 3.5f);
 
             var door = rootObjects.First(obj => obj.CompareTag("EntranceDoor"));
             var cutscene = rootObjects.FirstOrDefault(obj => obj.CompareTag("Cutscene"));
             var playerPos = PlayerController.Instance.transform.position;
+            OnExit();
             LevelManager.Instance.StartCoroutine(Util.CallbackCoroutine(
                 PlayerController.Instance.AutonomousMove(playerPos + new Vector3(tilemap.cellSize.x * 3f, 0f)),
                 () =>
@@ -61,6 +74,7 @@ namespace Objects.Executors
                 () =>
                 {
                     _anim.StopPlayback();
+                    OnExitDone();
                     var unloaded = SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(0));
                     unloaded.completed += _ =>
                     {
@@ -71,6 +85,10 @@ namespace Objects.Executors
                         CameraController.Instance.ExitProgramMode();
                         cutscene.GetComponent<MonoBehaviour>().StartCoroutine(Util.Delay(() => cutscene.GetComponent<ILevelEntranceCutscene>().StartCutscene(), .5f));
                     }
+                    
+                    SaveManager.CurrentState.LevelIndex = scene.buildIndex;
+                    SaveManager.CurrentState.LevelName = scene.name;
+                    SaveManager.SaveGame(true);
                 })
             );
         }

@@ -9,6 +9,7 @@ using Save;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
 
@@ -46,19 +47,19 @@ namespace MainMenu
         private SpriteRenderer[] areas;
         
         private Dictionary<int, SaveState?> _saveStates;
-        public AudioSource AudioSource;
+        [FormerlySerializedAs("AudioSource")] public AudioSource audioSource;
 
         public void PlaySound(AudioClip clip)
         {
-            AudioSource.PlayOneShot(clip);
+            audioSource.PlayOneShot(clip);
         }
 
         private void Start()
         {
             _saveStates = SaveManager.AllSaves();
             ReloadSaves();
-            AudioSource = GetComponent<AudioSource>();
-            AudioSource.DOFade(1f * SettingManager.Instance.MusicVolume, 2.5f);
+            audioSource = GetComponent<AudioSource>();
+            audioSource.DOFade(1f * SettingManager.Instance.MusicVolume, 2.5f);
         }
 
         public void ReloadSaves()
@@ -82,8 +83,8 @@ namespace MainMenu
                 else
                 {
                     var sSave = save.Value;
-
-                    var sName = SceneManager.GetSceneAt(sSave.LevelIndex).name.Replace("level", "");
+                    
+                    var sName = sSave.LevelName.Replace("level", "");
                     saveLevel.text = LocalizationManager.Instance.Translated($"levels.{sName}");
                     currency.text = sSave.Currency.ToString();
                 }

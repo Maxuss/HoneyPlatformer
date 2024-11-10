@@ -20,7 +20,7 @@ namespace I18N
         {
             Instance = this;
             DontDestroyOnLoad(this);
-            LoadLocalization(SettingManager.Instance.ChosenLanguage);
+            LoadLocalization(SettingManager.Instance?.ChosenLanguage ?? Language.en_US);
         }
 
         public void LoadLocalization(Language lang)
@@ -43,14 +43,14 @@ namespace I18N
             OnLanguageChange?.Invoke(lang);
         }
 
-        public string Translated(string str)
+        public string Translated(string str, string replacement = null)
         {
             if (!_localization.ContainsKey(str))
             {
                 Debug.LogWarning($"No translation string for '{str}' in language '{_currentLanguage}'");
                 return str;
             }
-            return _localization[str];
+            return _localization[str].Replace("{0}", replacement);
         }
     }
 
